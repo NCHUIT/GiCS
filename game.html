@@ -1,0 +1,1853 @@
+<html class="jf-inactive">
+
+<head>
+    <style data-merge-styles="true"></style>
+    <title>PaGamO｜最有效的線上遊戲學習平台｜讓素養學習更有趣</title>
+    <script type="text/javascript" async="" src="https://widget.intercom.io/widget/sxnd7qk7"></script>
+    <script async="" src="https://e.clarity.ms/s/0.6.34/clarity.js"></script>
+    <script async="" src="https://www.clarity.ms/tag/435j3u0fzo"></script>
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
+    <script type="text/javascript" async=""
+        src="https://www.googletagmanager.com/gtag/js?id=G-QPSW2Z74Z9&amp;l=dataLayer&amp;cx=c"></script>
+    <script gtm="GTM-WNZJFJ6" type="text/javascript" async=""
+        src="https://www.google-analytics.com/gtm/optimize.js?id=GTM-TH7KV75"></script>
+    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-WNZJFJ6"></script>
+    <script type="text/javascript" integrity="sha384-RsEu4WZflrqYcEacpfoGSib3qaSvdYwT4D+DrWqeBuDarSzjwUQR1jO8gDiXZd0E"
+        crossorigin="anonymous" async="" src="https://cdn.amplitude.com/libs/amplitude-6.2.0-min.gz.js"></script>
+    <script>
+        (function checkBrowser() {
+            var ua = window.navigator.userAgent;
+            var olderThanIE11 = /MSIE/.test(ua);
+            if (olderThanIE11) {
+                if (window.location.href.match('/application/download_browser')) return;
+                window.location = '/application/download_browser';
+            }
+        })();
+    </script>
+
+    <script>
+        //<![CDATA[
+
+        var terrainMapping = { "1": "wild/ocean", "2": "grass/grass", "3": "grass/house_hut", "4": "grass/pool", "5": "grass/sheep_ranch", "6": "sand/sand", "8": "sand/beach", "10": "hill/forest", "11": "hill/mountain", "13": "sakura/sakura", "15": "snow/snow", "16": "snow/snowman", "17": "sakura/sakura_tree", "18": "sakura/sakura_ohtorii", "21": "snow/penguin", "26": "sakura/sakura_shrine", "27": "grass/house_manor", "28": "grass/house_villa", "34": "snow/ice_house", "35": "sand/beach_resort", "41": "golden/golden_terrain", "42": "golden/golden_statue", "43": "wild/floodwood1", "44": "grass/lotus1", "45": "grass/lotus2", "46": "maple/maple", "47": "maple/maple_acorn", "48": "gene/gene", "49": "circuit/circuit", "50": "hill/kumquat_tree", "51": "special/terre_horn", "52": "sand/coral_shoal", "53": "sand/coral_island", "54": "sand/coral_mermaid_island", "55": "grass/marigold_patch", "56": "grass/marigold_field", "57": "grass/marigold_garden", "58": "grass/hyacinth_patch", "59": "grass/hyacinth_field", "60": "grass/hyacinth_garden", "61": "grass/lavender_patch", "62": "grass/lavender_field", "63": "grass/lavender_garden", "64": "grass/farmhouse", "65": "maple/squirrel", "66": "maple/autumn_castle", "70": "special/fort", "71": "special/pillbox", "72": "special/castle", "73": "sand/camel_caravan", "74": "sand/oasis", "75": "sand/pyramid", "76": "team/base", "79": "team/explosion", "82": "sand/carousel", "83": "sand/pirate_ship", "84": "sand/ferris_wheel", "85": "sand/coconut_tree", "86": "maple/autumn_ship", "87": "grass/palace_museum", "88": "snow/reindeer", "89": "grass/british_museum", "90": "grass/winter_palace", "91": "grass/tomorrow_star", "92": "grass/vatican_museum", "93": "grass/cow_ranch", "94": "grass/metropolitan_museum", "95": "grass/louvre_museum", "96": "grass/ntu/fu_bell", "97": "grass/ntu/palm_avenue", "98": "grass/farmers_market", "99": "sand/dragon_boat", "100": "sand/polaris", "101": "grass/su_huan_jen", "102": "grass/luan_shih_kuang_dao", "103": "grass/ye_shiao_chai", "104": "wild/swirlcell", "105": "sand/testrite_festival", "106": "maple/thoughts_of_autumn", "107": "sand/testrite_pumpkin", "108": "hill/black_bear", "109": "grass/thanksgiving", "110": "hill/rock_tiger", "111": "sand/ntu/fish_ship", "112": "sand/ntu/chihkan_tower", "113": "hill/fetnet_deer", "115": "snow/testrite_xmas_tree", "116": "snow/bonio_xmas_tree", "117": "hill/taiwan_blue_magpie", "118": "sand/moonlight_terrain", "119": "hill/taiwan_macaque", "120": "grass/black_sheep", "121": "grass/pink_cow", "122": "grass/brown_horse", "123": "grass/white_horse", "124": "hill/taiwan_butterfly", "125": "hill/apple_tree", "126": "sand/dreamy_carousel", "127": "sand/dreamy_pirate_ship", "128": "sand/dreamy_ferris_wheel", "129": "golden/steel_statue", "130": "grass/white_house", "131": "grass/pink_house", "132": "grass/golden_house", "133": "wild/deep_sea_beasts", "134": "grass/rijks_museum", "135": "sand/boundless_star_ring", "136": "grass/white_hat_hacker", "137": "grass/black_hat_hacker", "138": "grass/chan_chao", "139": "grass/du_du_cat", "140": "sand/info_security_soldier", "141": "sand/trojan_virus", "142": "maple/crystalline_palace", "143": "grass/road_a", "144": "grass/road_b", "145": "grass/road_c", "146": "grass/road_d", "147": "grass/road_e", "148": "grass/tree_bo", "149": "grass/hu_hu_cat", "150": "grass/seesaw", "151": "grass/tree_bo_sister", "152": "snow/santa_claus", "153": "grass/la_la_cat", "154": "sand/halley_comet", "155": "grass/tree_pa", "156": "grass/lu_lu_cat", "157": "grass/pon_pon_cat", "158": "grass/control_center", "159": "grass/rd_center", "160": "grass/dragon_factory", "161": "grass/tree_ma", "162": "grass/mia_figurine", "163": "sand/esun_bank_logo", "164": "grass/windmill", "165": "grass/iwin_soldier", "166": "grass/ningxiaks_cat", "167": "grass/maro_figurine", "168": "grass/baatar_figurine", "169": "grass/sophie_figurine", "170": "grass/kachina_figurine", "171": "grass/amir_figurine", "172": "grass/csc_badge", "173": "sand/dragon_boat_2020", "174": "grass/thunder_of_wisdom", "175": "grass/cheers", "176": "grass/aishiteru", "177": "grass/millet_festival", "178": "grass/bubble_tea_shop", "179": "grass/braggy", "180": "grass/arc_de_triomphe", "181": "grass/eiffel_tower", "182": "grass/notre_dame_de_paris", "183": "grass/dolly", "184": "grass/draca", "185": "grass/roman_warrior", "186": "grass/laser_island", "187": "maple/osmanthus_tree", "188": "grass/armored_knight", "189": "grass/the_power_of_love", "190": "grass/pumpkin_carriage", "191": "grass/candy_house", "192": "grass/beanstalk", "193": "sand/doha_art_museum", "194": "snow/monkeys_hot_spring", "195": "grass/house_of_straw", "196": "grass/house_of_sticks", "197": "grass/house_of_bricks", "198": "grass/teacher_tree", "199": "grass/wish_general_store", "200": "grass/esun_surplus_year_after_year", "201": "grass/ling_ling", "202": "grass/fried_chicken_shop", "203": "sakura/sakura_picnic", "204": "grass/chunghwa_telecom_gold_coin", "205": "grass/esun_happy_childrens_day", "206": "grass/defensive_shield", "207": "grass/patron_saint_of_cybersecurity", "208": "hill/observatory", "209": "hill/ruins", "210": "hill/mysterious_pyramid", "211": "grass/chiao_chiao", "212": "grass/black_winged_stilt", "213": "grass/ntpc_castle", "214": "grass/hsiao_hsiao", "215": "sand/golden_gate_bridge", "216": "sand/statue_of_liberty", "217": "sand/empire_state_building", "218": "sand/traditional_ice_cream_bike", "219": "grass/eco_water_cube", "220": "grass/cloud_baby", "221": "grass/gorilla_koko", "222": "grass/whales_tears", "223": "grass/aishiteru_digital_chaining", "224": "grass/mango_shaved_ice_shop", "225": "grass/disaster_prevention_little_warrior", "226": "grass/magic_eco_friendly_suit", "227": "grass/dr_q", "228": "grass/vitality_fruits_and_vegetables", "229": "grass/e_du", "230": "sand/agile_killer_whale_tica", "231": "grass/hepatitis_b_vaccine_40th_anniversary", "232": "grass/christchurch_art_gallery", "233": "grass/power_saving_lover_power_boss", "234": "grass/benq_lion", "235": "grass/kao_kirei_captain", "236": "grass/dr_bobo", "237": "maple/jade_rabbit_pounding_medicine", "238": "grass/agile_chameleon", "239": "sand/grand_egyptian_museum", "240": "grass/rainbow_paradise", "241": "sand/flying_bus", "242": "sand/teacups", "243": "sand/drop_tower", "244": "sand/boca", "245": "grass/patron_saint_of_cybersecurity_20", "246": "grass/panay", "247": "grass/ali", "248": "grass/the_power_of_love_throw_into_the_dream", "249": "sand/dreamy_flying_bus", "250": "sand/dreamy_teacups", "251": "sand/dreamy_drop_tower", "252": "sand/queen_elizabeth_ii_tower", "253": "sand/tower_bridge", "254": "sand/buckingham_palace", "255": "grass/ataw", "256": "grass/mia_stone_statue", "257": "grass/maro_stone_statue", "258": "grass/baatar_stone_statue", "259": "grass/sophie_stone_statue", "260": "grass/kachina_stone_statue", "261": "grass/amir_stone_statue", "262": "grass/sword_in_the_stone", "263": "sand/captain_mia_from_true_or_false_picket", "264": "sand/detective_amir_from_true_or_false_picket", "265": "grass/straight_sand_road", "266": "grass/southeast_sand_road", "267": "grass/southwest_sand_road", "268": "grass/inverted_y_shaped_sand_road", "269": "grass/y_shaped_sand_road", "270": "snow/gassho_style_house", "271": "grass/hkhs_crown", "272": "grass/hkhs_diamond", "273": "grass/hkhs_closed_treasure_chest", "274": "grass/hkhs_treasure_chest", "275": "grass/badminton_star_huhu", "276": "sand/seaside_wind_power_plant", "277": "grass/bunny_hot_air_balloon", "278": "grass/cat_hot_air_balloon", "279": "grass/piggy_hot_air_balloon", "280": "grass/lohas_sports_arena", "281": "sand/the_honest_wind_lion_god_of_kinmen", "282": "sakura/red_bridge", "283": "grass/baseball_star_ponpon", "284": "grass/little_dumplings_specialty_store", "285": "sand/kinmens_telephone_booth", "286": "grass/tender_teacher_tree", "287": "grass/swing_chair", "288": "grass/fountain", "289": "grass/terrace", "290": "grass/table_tennis_star_lala", "291": "grass/happy_ling_ling", "292": "sand/deyue_gun_tower", "293": "grass/cybersecurity_ninja", "294": "grass/tower_of_knowledge", "295": "grass/golden_turret", "296": "grass/magic_stone_circle", "297": "grass/glowing_makers", "298": "grass/smiley_hsiao_hsiao", "299": "grass/serious_chiao_chiao", "300": "grass/kao_kirei_captain_part_2", "301": "grass/xiao_fei_li", "302": "grass/gics_girls_in_cyber_security" };
+        var characterIDMapping = { "7": "alicia", "4": "antelope", "11": "asad", "18": "broomy", "5": "cat", "6": "cheetah", "17": "dolly", "16": "draca", "1": "eagle", "10": "erik", "2": "lizard", "12": "mika", "9": "ming", "14": "sikadeer", "13": "tiencai", "15": "wangfu", "3": "wolf", "8": "zoey" };
+
+
+//]]>
+    </script>
+    <link rel="stylesheet" media="all"
+        href="https://d32j6uwsrra4gx.cloudfront.net/assets/application-3c64c6e5cc4b783d9b350e8ab1892881e621ebc2338250bf6dc2cdf9e457ff05.css">
+    <link rel="stylesheet" media="all"
+        href="https://d32j6uwsrra4gx.cloudfront.net/assets/application-3c64c6e5cc4b783d9b350e8ab1892881e621ebc2338250bf6dc2cdf9e457ff05.css">
+    <script
+        src="https://d32j6uwsrra4gx.cloudfront.net/assets/map/map-1a9055d7ba95ca50db3cd83cd0be5c361bb103b93a72af0c4dac78cf448545d0.js"></script>
+    <script
+        src="https://d32j6uwsrra4gx.cloudfront.net/assets/prebid_ads-46220b9b3ca7fbfdd2450e6ee0039dcc9e10c6a7e9c7fcbc67eb4dba65bf5525.js"></script>
+    <script
+        src="https://d32j6uwsrra4gx.cloudfront.net/packs/js/runtime~map_components-3a18f62ede072208d128.js"></script>
+    <script src="https://d32j6uwsrra4gx.cloudfront.net/packs/js/0-080d3b70181883349810.chunk.js"></script>
+    <script src="https://d32j6uwsrra4gx.cloudfront.net/packs/js/1-8d1177b7823dc2d9ebb2.chunk.js"></script>
+    <script src="https://d32j6uwsrra4gx.cloudfront.net/packs/js/map_components-d9ea2473ff1b2ad4469a.chunk.js"></script>
+    <script src="https://d32j6uwsrra4gx.cloudfront.net/packs/js/runtime~websocket-6a8d401334d57af30fb8.js"></script>
+    <script src="https://d32j6uwsrra4gx.cloudfront.net/packs/js/websocket-500674010889368790d1.chunk.js"></script>
+    <script
+        src="https://d32j6uwsrra4gx.cloudfront.net/assets/jsfont/jsfont_setting-651754cf1a92139423f41f6fc637a910ff3e110c9ffb12208840142469de18fb.js"></script>
+    <script
+        src="https://d32j6uwsrra4gx.cloudfront.net/assets/async/ckeditor-429f79eb637e326fdd323c42b13ad4a836282198d939ecc9113d337082acb590.js"
+        async="async"></script>
+    <script
+        src="https://d32j6uwsrra4gx.cloudfront.net/assets/cdn_i18n/zh-TW-205d23e1a35ace6df30ec4de91d7d3d81876b20f06dc49159227c0542cc7c963.js"></script>
+    <link rel="stylesheet" media="screen"
+        href="https://d32j6uwsrra4gx.cloudfront.net/packs/css/map_components-c00cef7a.chunk.css">
+    <meta name="csrf-param" content="authenticity_token">
+    <meta name="csrf-token"
+        content="7FoM17omTPkD/2LzTs8DnfQ3Hb9oKQBtccESN1Q2btS642RLd8/jRw6Ibi4iZ1KlCSk/opbyZcPkHFUHo6Sj3A==">
+    <meta name="encryption-key" content="-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7PIWyhn3rvv4B9UWMTri
+Kb0J1HsAkoC25YYDoGmf019IxAgDdQZtu6fVeQIbfexQNN5qX+2hyiKUMnL+Bcll
+vxk1aGQVggKtNr9XAGdQjVsisLROi/VHuQoYGUxcF0TxxEgEW98uXn63Ub+uAsxa
+dV0Tr2y5d1pFVUIVBQeXiDIS1pY1kzE0oGMN4l4/3xow973kmN6Lo3sIB8vIioeX
+bYUY2okZm54BpLSqtxOWp/WQlimOkZ0nJwvNr5g94PCRrBvDMCt7QlwA6VUzqPLZ
+0RVrWL2+JgQV/ujWFZKvOcXtoftYwjogiFPDDhQ5GQxjW/ZdswNMs0k7RPx3jmyJ
+JwIDAQAB
+-----END PUBLIC KEY-----
+">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="robots" content="noindex">
+    <!-- 防止 Mobile Device 的 Zoom in/Out (除了 Safari 10 不支援) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="websocket-url" content="wss://ws.pagamo.org/ws">
+    <link href="https://fonts.googleapis.com/css?family=Lusitana" rel="stylesheet" type="text/css">
+    <link
+        href="//fonts.googleapis.com/css?family=PT+Serif:400|Volkhov:700|Source+Sans Pro:400|Varela+Round:400|Lora:400|Fredericka+the+Great:400|Marcellus+SC:400|Lato:400,700|Oxygen:400|Audiowide:400|Alegreya+Sans+SC:400"
+        rel="stylesheet" type="text/css">
+    <meta name="format-detection" content="telephone=no">
+    <!--<script type='text/javascript' src='//font.arphic.com/FontSubsetOutput/1422950526983/F343E86A7D0AFBED82CC648B94CEB3E4/1422950526983.JS?1688261682'></script>-->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+    <![endif]-->
+    <style>
+        .intercom-launcher-frame,
+        .intercom-launcher-badge-frame {
+            z-index: 1040 !important;
+        }
+    </style>
+
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <script type="text/javascript">
+        (function (e, t) {
+            var n = e.amplitude || { _q: [], _iq: {} }; var r = t.createElement("script")
+                ; r.type = "text/javascript"
+                ; r.integrity = "sha384-RsEu4WZflrqYcEacpfoGSib3qaSvdYwT4D+DrWqeBuDarSzjwUQR1jO8gDiXZd0E"
+                ; r.crossOrigin = "anonymous"; r.async = true
+                ; r.src = "https://cdn.amplitude.com/libs/amplitude-6.2.0-min.gz.js"
+                ; r.onload = function () {
+                    if (!e.amplitude.runQueuedFunctions) {
+                        console.log("[Amplitude] Error: could not load SDK")
+                    }
+                }
+                ; var i = t.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i)
+                ; function s(e, t) {
+                    e.prototype[t] = function () {
+                        this._q.push([t].concat(Array.prototype.slice.call(arguments, 0))); return this
+                    }
+                }
+            var o = function () { this._q = []; return this }
+                ; var a = ["add", "append", "clearAll", "prepend", "set", "setOnce", "unset"]
+                ; for (var u = 0; u < a.length; u++) { s(o, a[u]) } n.Identify = o; var c = function () {
+                    this._q = []
+                    ; return this
+                }
+                ; var l = ["setProductId", "setQuantity", "setPrice", "setRevenueType", "setEventProperties"]
+                ; for (var p = 0; p < l.length; p++) { s(c, l[p]) } n.Revenue = c
+                ; var d = ["init", "logEvent", "logRevenue", "setUserId", "setUserProperties", "setOptOut", "setVersionName", "setDomain", "setDeviceId", "enableTracking", "setGlobalUserProperties", "identify", "clearUserProperties", "setGroup", "logRevenueV2", "regenerateDeviceId", "groupIdentify", "onInit", "logEventWithTimestamp", "logEventWithGroups", "setSessionId", "resetSessionId"]
+                ; function v(e) {
+                    function t(t) {
+                        e[t] = function () {
+                            e._q.push([t].concat(Array.prototype.slice.call(arguments, 0)))
+                        }
+                    }
+                    for (var n = 0; n < d.length; n++) { t(d[n]) }
+                } v(n); n.getInstance = function (e) {
+                    e = (!e || e.length === 0 ? "$default_instance" : e).toLowerCase()
+                        ; if (!n._iq.hasOwnProperty(e)) { n._iq[e] = { _q: [] }; v(n._iq[e]) } return n._iq[e]
+                }
+                ; e.amplitude = n
+        })(window, document);
+
+        amplitude.getInstance().init('9c95fada69b38abddaf348197e99535f');
+        amplitude.getInstance().setUserId('3227759');
+        amplitude.getInstance().setUserProperties(
+            JSON.parse('{\"gender\":\"1\",\"grade\":\"\",\"school_name\":\"國立中興大學\",\"course_name\":\"2021 GiCS 資安闖天關初賽題庫\",\"gc_id\":\"4705298\",\"course_manager\":\"false\",\"group_owner\":\"false\"}')
+        );
+    </script>
+
+    <style>
+        .async-hide {
+            opacity: 0 !important
+        }
+    </style>
+    <script>
+        (function (a, s, y, n, c, h, i, d, e) {
+            s.className += ' ' + y; h.start = 1 * new Date;
+            h.end = i = function () { s.className = s.className.replace(RegExp(' ?' + y), '') };
+            (a[n] = a[n] || []).hide = h; setTimeout(function () { i(); h.end = null }, c); h.timeout = c;
+        })(window, document.documentElement, 'async-hide', 'dataLayer', 4000, { 'GTM-WNZJFJ6': true });
+    </script>
+
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WNZJFJ6');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ "user_id": "3227759", "gender": "1", "grade": "", "school_name": "國立中興大學", "course_name": "2021 GiCS 資安闖天關初賽題庫", "gc_id": "4705298", "course_manager": "false", "group_owner": "false", "any_subscription": "false" });
+
+    </script>
+
+
+    <style>
+        .cke {
+            visibility: hidden;
+        }
+    </style>
+    <style data-styled="active" data-styled-version="5.2.1"></style>
+    <link rel="preload" href="https://d32j6uwsrra4gx.cloudfront.net/packs/0b30be81daa21c9ca4f6eefd8da11939.png"
+        as="image">
+    <link rel="preload" href="https://d32j6uwsrra4gx.cloudfront.net/packs/7623d7442741aa9c62bbd97d03ec8170.png"
+        as="image">
+    <link rel="preload" href="https://d32j6uwsrra4gx.cloudfront.net/packs/97b397706819bce4c54ead46dc1518c0.png"
+        as="image">
+</head>
+
+<body lang="zh-TW" ctheme="" c-culture="" class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
+    theme="ocean">
+    <div data-react-modal-body-trap="" tabindex="0" style="position: absolute; opacity: 0;"></div>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WNZJFJ6" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+
+
+    <body_overflow_hidden_area></body_overflow_hidden_area>
+    <div id="all_text"></div>
+    <div class="snap-drawers">
+        <div class="snap-drawer snap-drawer-right" id="menu_container">
+            <div id="menu-deco"></div>
+            <ul id="side-title-bar-ul">
+                <li>
+                    <a class="title_bar_button" onclick="mapReactManager.gameSettingsToggle(true);"
+                        href="javascript:void(0)">
+                        <div class="navigation_sprite setting nav-action-logo"></div>
+                        <div class="navigation_sprite frame map_nav_style sys_font">遊戲設定</div>
+                    </a>
+                </li>
+                <li class="show_my_classes">
+                    <a class="title_bar_button" onclick="mapReactManager.myClassesToggle(true);"
+                        href="javascript:void(0)">
+                        <div class="navigation_sprite myclass nav-action-logo"></div>
+                        <div class="navigation_sprite frame map_nav_style sys_font">我的班級</div>
+                    </a>
+                </li>
+                <li>
+                    <span class="public_msg_wrapper title_bar_button title-button-message cursor_pointer">
+                        <div class="navigation_sprite message nav-action-logo public_msg_icon "></div>
+                        <div data-da-tracking="ga-click-message-management"
+                            class="navigation_sprite frame public_msg_btn map_nav_style sys_font">
+                            訊息管理
+                        </div>
+                        <div class="nmsg_count_badge" style="display: none;"></div>
+                    </span>
+                </li>
+                <li>
+                    <a class="title_bar_button" onclick="mapReactManager.tutorialListPanelToggle(true); return false;"
+                        href="#">
+                        <div class="navigation_sprite tutorial nav-action-logo"></div>
+                        <div class="navigation_sprite frame map_nav_style sys_font">遊戲教學</div>
+                    </a>
+                </li>
+                <li id="menuLangChoose" class="dropdown" data-menu-hidden="false">
+                    <a href="#" class="title_bar_button dropdown-toggle" data-toggle="dropdown" role="button"
+                        aria-expanded="false">
+                        <div class="navigation_sprite language nav-action-logo"></div>
+                        <div class="navigation_sprite map_nav_style frame" lang="zh-TW">繁體中文</div>
+                    </a>
+                    <ul class="dropdown-menu cursor_pointer sys_font" role="menu">
+                        <li>
+                            <a data-remote="true"
+                                href="/application/language_select?language_select=en&amp;method=post">
+                                <div class="not-selected-lang" lang="en">English</div>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="selected-lang" lang="zh-TW">✓ 繁體中文</div>
+                        </li>
+                        <li>
+                            <a data-remote="true"
+                                href="/application/language_select?language_select=zh-CN&amp;method=post">
+                                <div class="not-selected-lang" lang="zh-CN">简体中文</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="logout_li" data-toggle="tooltip" data-title="登出">
+                    <label class="title_bar_button" for="logout_btn">
+                        <div class="navigation_sprite logout nav-action-logo"></div>
+                        <div class="navigation_sprite frame map_nav_style sys_font">登出</div>
+                    </label>
+                    <form class="button_to" method="post" action="/users/logout"><input id="logout_btn"
+                            style="display: none;" type="submit" value=""><input type="hidden" name="authenticity_token"
+                            value="7FoM17omTPkD/2LzTs8DnfQ3Hb9oKQBtccESN1Q2btS642RLd8/jRw6Ibi4iZ1KlCSk/opbyZcPkHFUHo6Sj3A==">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="menu-snapper" style="">
+        <div id="title_bar" class="sys_font" style="">
+            <div class="navbar no_pull_refresh">
+                <a style="display:none;" href="#" onclick="themeMgr.setCurrentTheme(); return false;">切換風格</a>
+                <a href="/">
+                    <div class="navigation_sprite logo"></div>
+                </a>
+                <div id="menu-toggle" class="navigation_sprite menu cursor_pointer" style="display: block;"></div>
+                <div class="dropdown course-dropdown">
+                    <form id="form_select_course" customsubmit="changeCourse({ courseId: $(this).val() });"
+                        class="btn-font sys_font" action="/courses/switch_course?method=post" accept-charset="UTF-8"
+                        method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden"
+                            name="authenticity_token"
+                            value="7FoM17omTPkD/2LzTs8DnfQ3Hb9oKQBtccESN1Q2btS642RLd8/jRw6Ibi4iZ1KlCSk/opbyZcPkHFUHo6Sj3A=="><select
+                            name="course_select" id="course_select">
+                            <option value="10237">2021 GiCS 資安闖天關初賽題庫</option>
+                        </select></form>
+                    <script>
+                        $('#course_select option[value="10237"]').prop('selected', true);
+                        $('#course_select').change(function () { if (false) { $(this.form).submit(); } else { changeCourse({ courseId: $(this).val() }); } });
+                    </script>
+
+                </div>
+                <ul id="title-bar-ul" class="nav no-wrap" style="display: none;">
+                    <li>
+                        <a class="title_bar_button" onclick="mapReactManager.gameSettingsToggle(true);"
+                            href="javascript:void(0)">
+                            <div class="navigation_sprite setting nav-action-logo"></div>
+                            <div class="navigation_sprite frame map_nav_style sys_font">遊戲設定</div>
+                        </a>
+                    </li>
+                    <li class="show_my_classes">
+                        <a class="title_bar_button" onclick="mapReactManager.myClassesToggle(true);"
+                            href="javascript:void(0)">
+                            <div class="navigation_sprite myclass nav-action-logo"></div>
+                            <div class="navigation_sprite frame map_nav_style sys_font">我的班級</div>
+                        </a>
+                    </li>
+                    <li>
+                        <span class="public_msg_wrapper title_bar_button title-button-message cursor_pointer">
+                            <div class="navigation_sprite message nav-action-logo public_msg_icon "></div>
+                            <div data-da-tracking="ga-click-message-management"
+                                class="navigation_sprite frame public_msg_btn map_nav_style sys_font">
+                                訊息管理
+                            </div>
+                            <div class="nmsg_count_badge" style="display: none;"></div>
+                        </span>
+                    </li>
+                    <li>
+                        <a class="title_bar_button"
+                            onclick="mapReactManager.tutorialListPanelToggle(true); return false;" href="#">
+                            <div class="navigation_sprite tutorial nav-action-logo"></div>
+                            <div class="navigation_sprite frame map_nav_style sys_font">遊戲教學</div>
+                        </a>
+                    </li>
+                    <li id="menuLangChoose" class="dropdown" data-menu-hidden="false">
+                        <a href="#" class="title_bar_button dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-expanded="false">
+                            <div class="navigation_sprite language nav-action-logo"></div>
+                            <div class="navigation_sprite map_nav_style frame" lang="zh-TW">繁體中文</div>
+                        </a>
+                        <ul class="dropdown-menu cursor_pointer sys_font" role="menu">
+                            <li>
+                                <a data-remote="true"
+                                    href="/application/language_select?language_select=en&amp;method=post">
+                                    <div class="not-selected-lang" lang="en">English</div>
+                                </a>
+                            </li>
+                            <li>
+                                <div class="selected-lang" lang="zh-TW">✓ 繁體中文</div>
+                            </li>
+                            <li>
+                                <a data-remote="true"
+                                    href="/application/language_select?language_select=zh-CN&amp;method=post">
+                                    <div class="not-selected-lang" lang="zh-CN">简体中文</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="logout_li" data-toggle="tooltip" data-title="登出" data-original-title="" title="">
+                        <label class="title_bar_button" for="logout_btn">
+                            <div class="navigation_sprite logout nav-action-logo"></div>
+                            <div class="navigation_sprite frame map_nav_style sys_font">登出</div>
+                        </label>
+                        <form class="button_to" method="post" action="/users/logout"><input id="logout_btn"
+                                style="display: none;" type="submit" value=""><input type="hidden"
+                                name="authenticity_token"
+                                value="7FoM17omTPkD/2LzTs8DnfQ3Hb9oKQBtccESN1Q2btS642RLd8/jRw6Ibi4iZ1KlCSk/opbyZcPkHFUHo6Sj3A==">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="title_bar_decoration" class=""></div>
+        <div id="main_container">
+            <div id="submit_result">
+                <div class="submit_text" id="submit_correct"></div>
+                <div class="submit_text" id="submit_wrong"></div>
+            </div>
+            <div id="map_container" class="unselectable">
+                <div id="pop_window_container">
+                    <!--<div class="pop_sprite">123123</div>-->
+                    <div class="pop_sprite" style="margin-left: 0%; opacity: 0;">
+                        <div class="pop_container">
+                            <div class="pop_window_sprite icon_star"></div>
+                            <div class="pop_message sys_font">獲得<span style="color: #FFB700;">櫻花籽 x 1</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="map_perspective">
+                    <!--class="perspective_box"-->
+                    <div id="view_box" class="unselectable">
+                        <canvas id="tiled_container" class="unselectable" theme="ocean"
+                            style="background-position: 858px -11015px;" width="2000" height="1500"></canvas>
+                        <div id="tiled_cover_container" style="left: 858px; top: -11015px;"></div>
+                    </div>
+                </div>
+
+                <!--store-->
+                <div id="store_cover">
+                    <div id="store" ondragstart="return false;">
+                        <div class="cursor_pointer carousel_Rscroll"></div>
+                        <div class="carousel_calc_warper">
+                            <div class="carousel_container">
+                                <ul class="carousel_ul" kind="store" activated="" style="width: 4900px;">
+                                    <li id="store_monster_A">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="M_M1L1"></div>
+                                            <div class="prop_frame" isprop="0">
+                                                <p class="prop_price_tag sys_font"><strong>$1000</strong></p>
+                                                <div class="level_img" lv="1"></div>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_monster_B">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="M_M2L1"></div>
+                                            <div class="prop_frame" isprop="0">
+                                                <p class="prop_price_tag sys_font"><strong>$1000</strong></p>
+                                                <div class="level_img" lv="1"></div>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_monster_C">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="M_M3L1"></div>
+                                            <div class="prop_frame" isprop="0">
+                                                <p class="prop_price_tag sys_font"><strong>$1000</strong></p>
+                                                <div class="level_img" lv="1"></div>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_self_prop_add_ap1">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="P_EnergyPill1"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$2000</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_self_prop_add_ap2">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="P_EnergyPill2"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$4500</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_self_prop_add_ap3">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="P_EnergyPill3"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$10000</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_attack_prop_flame_thrower">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="flame_thrower"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$3800</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_attack_prop_bomb">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="P_Bomb"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$4400</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_attack_prop_water_gun">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="water_gun"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$3800</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_attack_prop_water_balloon">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="water_balloon"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$4400</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_defend_prop_fertilizer1">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="P_fertilizer1"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$1200</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_defend_prop_fertilizer2">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="P_fertilizer2"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$2750</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_defend_prop_fertilizer3">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="P_fertilizer3"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$5400</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_defend_prop_shield">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="P_Shield"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$1150</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_terrain_prop_grass">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="grass"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$900</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_terrain_prop_sand">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="sand"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$900</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_terrain_prop_forest">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="forest"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$2400</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_terrain_prop_pool">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="pool"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$1800</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_terrain_prop_beach">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="beach"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$2000</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_terrain_prop_mountain">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="mountain"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$2700</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_wild_prop_floodwood">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="floodwood"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$1250</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_defend_prop_marine_conservator">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="marine_conservator"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$1800</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_terrain_prop_excavator">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="excavator"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$5000</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_attack_prop_monster_nursery_car">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="monster_nursery_car"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$3200</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_self_prop_random_portal">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="P_RandomPortal"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$5000</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_wild_prop_portal">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="P_Portal"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$90000</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_self_prop_xisuidan">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="xisuidan"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$150000</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="store_self_prop_name_magic_book">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="bottom" data-trigger="click" data-original-title=""
+                                            title="">
+                                            <div class="prop_image" mtype="name_magic_book"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$150000</strong></p>
+                                            </div>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="cursor_pointer carousel_Lscroll"></div>
+                    </div>
+                </div>
+                <div id="backpack_cover">
+                    <div class="switch_button_div sys_font">
+                        <div class="backpack_sprite item_ui_tab_monsters cursor_pointer props_button" kind="monster"
+                            onclick="backpack_controller.changeKind('monster')" data-original-title="" title="">
+                        </div>
+                        <div class="backpack_sprite item_ui_tab_items cursor_pointer props_button" kind="prop"
+                            onclick="backpack_controller.changeKind('prop')" data-original-title="" title="">
+                        </div>
+                        <div class="backpack_sprite item_ui_tab_terrains cursor_pointer props_button" kind="terrain"
+                            onclick="backpack_controller.changeKind('terrain')" data-original-title="" title="">
+                        </div>
+                        <div class="backpack_sprite item_ui_tab_material cursor_pointer props_button active"
+                            kind="material" onclick="backpack_controller.changeKind('material')" data-original-title=""
+                            title="">
+                        </div>
+                        <div class="backpack_sprite item_ui_btn_close_backpack cursor_pointer close_backpack_button"
+                            onclick="window.App.propsController.hideBackpack()" data-original-title="" title="">
+                        </div>
+                    </div>
+                    <div id="backpack">
+                        <div class="cursor_pointer carousel_Rscroll"></div>
+                        <div class="carousel_calc_warper">
+                            <div class="carousel_container">
+                                <ul class="carousel_ul" kind="monster" style="width: 2625px;">
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                </ul>
+                                <ul class="carousel_ul" kind="prop" style="width: 2625px;">
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                </ul>
+                                <ul class="carousel_ul" kind="terrain" style="width: 2625px;">
+                                    <li id="backpack_terrain_prop_shepherd_song">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="top" data-trigger="click" data-original-title="" title="">
+                                            <div class="prop_image" mtype="shepherd_song"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$7000</strong></p>
+                                            </div>
+                                            <p class="totalnms" hascountall="0"><strong
+                                                    class="count_in_bag_number sys_font">1</strong></p>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="backpack_terrain_prop_sakura">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="top" data-trigger="click" data-original-title="" title="">
+                                            <div class="prop_image" mtype="sakura"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$2400</strong></p>
+                                            </div>
+                                            <p class="totalnms" hascountall="0"><strong
+                                                    class="count_in_bag_number sys_font">2</strong></p>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li id="backpack_terrain_prop_sakura_tree">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="top" data-trigger="click" data-original-title="" title="">
+                                            <div class="prop_image" mtype="sakura_tree"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$5000</strong></p>
+                                            </div>
+                                            <p class="totalnms" hascountall="0"><strong
+                                                    class="count_in_bag_number sys_font">1</strong></p>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                </ul>
+                                <ul class="carousel_ul" kind="material" style="width: 2625px;" activated="">
+                                    <li id="backpack_material_peel">
+                                        <div class="prop_div cursor_pointer" data-animation="" data-html="true"
+                                            data-placement="top" data-trigger="click" data-original-title="" title="">
+                                            <div class="prop_image" mtype="peel"></div>
+                                            <div class="prop_frame" isprop="1">
+                                                <p class="prop_price_tag sys_font"><strong>$200</strong></p>
+                                            </div>
+                                            <p class="totalnms" hascountall="0"><strong
+                                                    class="count_in_bag_number sys_font">1</strong></p>
+                                            <div class="actionbtnGroup" style="display: none;"></div>
+                                            <div class="disabled_shadow" style="display: none;"></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                    <li>
+                                        <div class="empty_card"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="cursor_pointer carousel_Lscroll"></div>
+                    </div>
+                </div>
+
+                <div id="backpack_reject_modal" class="modal hide fade" data-backdrop="false">
+                    <a href="#" data-dismiss="modal" aria-hidden="true">
+                        <div class="backpack_reject_modal_X"></div>
+                    </a>
+                    <div id="backpack_reject_body">
+                        <strong id="backpack_reject_text"></strong>
+                    </div>
+                </div>
+
+                <div id="game_modals" class="sys_font" theme="ocean">
+                    <div id="attack_modal" class="valign_center modal hide fade sys_font" data-backdrop="static"
+                        style="z-index: 1060;">
+                        <div id="attack_body" class="attack_modal origin_attack_modal_sprite"></div>
+                    </div>
+
+                    <div id="achievement_modal" class="modal hide fade">
+                        <div id="achievement_body">
+                        </div>
+                    </div>
+
+                    <div id="error_message_modal" class="modal hide fade" data-backdrop="false">
+                        <div id="error_message_body">
+                            <p id="error_message"></p>
+                        </div>
+                        <div id="OK_button">
+                            <button data-dismiss="modal" aria-hidden="true">OK</button>
+                        </div>
+                    </div>
+                    <div id="info_modal" class="valign_center modal hide fade in" theme="ocean" style="display: block;"
+                        aria-hidden="false">
+                        <div id="info_body">
+                            <div id="user_information" lang="zh-TW">
+                                <div class="information_title title-font">題目列表</div>
+                                <div class="question_list_outline">
+                                    <div id="question_list_content">
+                                        <div class="selector_container sys_font"><select id="select_volume"
+                                                class="select_style">
+                                                <option value="52730">GiCS資安女婕思/資安闖天關</option>
+                                            </select><select id="select_section" class="select_style">
+                                                <option value="0">所有單元</option>
+                                                <option value="157779">大專</option>
+                                            </select><label id="pdf_checkbox_label" class="hidden-xs"><input
+                                                    type="checkbox">檢視檔案</label></div>
+                                        <div id="question_list_container" class="tabbable">
+                                            <ul class="nav nav-tabs menu_tabs btn-font">
+                                                <li id="solved_tab_li" class="menu_tab"><a id="solved_tab_btn"
+                                                        data-toggle="tab" href="#solved_list">答對列表</a></li>
+                                                <li id="unsolved_tab_li" class="menu_tab active"><a
+                                                        id="unsolved_tab_btn" data-toggle="tab"
+                                                        href="#unsolved_list">答錯列表</a></li>
+                                                <li id="fixed_tab_li" class="menu_tab"><a id="fixed_tab_btn"
+                                                        data-toggle="tab" href="#fixed_list">訂正列表</a></li>
+                                            </ul>
+                                            <div id="tab_content_container" class="tab-content sys_font">
+                                                <ul id="solved_list" class="qlist_ul tab-pane" style="top: 0px;">
+                                                    <li class="omit-text" qid="2744667"><label>1. 墨西哥廠被駭遭勒索 10
+                                                            億贖金，鴻海：已提高資安層級! 鴻海墨西哥廠在 2005
+                                                            年時啟用，並將其作為組裝及對美洲出貨電子設備的據點。而根據外國資安網站 Bleeping Computer
+                                                            報導，此一攻擊是由駭客組織 DoppelPaymer 發起的攻擊，時間點約在 2020年</label></li>
+                                                    <li class="omit-text" qid="2744724"><label>2.
+                                                            程式模型設計時，以下何種情況為理想?</label></li>
+                                                    <li class="omit-text" qid="2744715"><label>3.
+                                                            關於SHA-256演算法的敘述,何者錯誤？</label></li>
+                                                    <li class="omit-text" qid="2744568"><label>4.
+                                                            因2020武漢肺炎疫情關係，各地區紛紛採用遠端工作模式，降低群聚感染的機會，進而資訊安全風險更須加注意，下列何者敘述有風險疑慮?</label>
+                                                    </li>
+                                                    <li class="omit-text" qid="2744680"><label>5. 網際網路安全協定（Internet
+                                                            Protocol
+                                                            Security，縮寫：IPsec）是一個協定套件，透過對IP協定的封包進行加密和認證來保護IP協定的網路傳輸協定集合。由三個主要協定組成，下列何者協定不在此集合內？</label>
+                                                    </li>
+                                                    <li class="omit-text" qid="2744571"><label>6. 有款惡意的Android
+                                                            App，當使用者開啟在Android手機上開啟，即暗中和外部C&amp;C伺服器建立連線，等待接收攻擊指令。進而控制Google相機程式來拍照、錄音並上傳到惡意伺服器，並分析照片的GPS資訊來定位。此外，惡意程式還能等待有人打來電話、自動啟動錄音，還可以同時錄影</label>
+                                                    </li>
+                                                </ul>
+                                                <ul id="unsolved_list" class="qlist_ul tab-pane active"
+                                                    style="top: 0px;">
+                                                    <li class="omit-text" qid="2744748"><label>1.
+                                                            下列關於「子網路」的相關敘述何者錯誤？</label></li>
+                                                    <li class="omit-text" qid="2744616"><label>2.
+                                                            江民公司防毒軟體在某次更新版中加入了某種病毒，該病毒會在盜版使用者使用盜版解密鑰時啟動，鎖死盜版者的電腦硬碟導致電腦停止工作，硬碟數據無法使用。請問該類病毒屬於以下哪種?</label>
+                                                    </li>
+                                                    <li class="omit-text" qid="2744691"><label>3.
+                                                            以下哪一項資訊安全政策的描述最恰當?</label></li>
+                                                    <li class="omit-text" qid="2744570"><label>4. 2020年紐西蘭證券交易所(New
+                                                            Zealand Exchange, NZX)遭分散式阻斷服務攻擊(Distributed Denial of
+                                                            Service,
+                                                            DDoS)，自當地時間25日下午4點起至28日下午1點止，持續遭受DDoS攻擊，導致交易所服務中斷時間長達4日。
+                                                            D</label></li>
+                                                    <li class="omit-text" qid="2744685"><label>5.
+                                                            在防火牆看到異常的網路流量跡象當中，檢視了入侵檢測系統，發現一個fraggle攻擊正在進行中。請問能夠更改防火牆的什麼配置來有效防止並阻止這種的攻擊？</label>
+                                                    </li>
+                                                    <li class="omit-text" qid="2744634"><label>6. 「我們是Fancy
+                                                            Bear，即將在X月X日攻擊你們的伺服主機，除非匯款20個比特幣到指定錢包，否則你的客戶服務將完全中斷。
+                                                            我的名氣歡迎去Google搜查看看，先前紐西蘭交易所遭受的攻擊（編按：導致四天股市交易中斷）就是我做的，給你一週時間準備，跟損失的企業商譽跟客戶信任相比，</label>
+                                                    </li>
+                                                </ul>
+                                                <ul id="fixed_list" class="qlist_ul tab-pane">
+                                                    <li class="omit-text" qid="2744639"><label>1.
+                                                            在2020年一名夜班護士趁著「黑色星期五購物節」打折期間，買了監視器,以方便觀察孩子們以方便監看孩子。隔不到幾天空無一人的女兒房間裡傳來陌生人的聲音，還播放恐怖片「陰兒房」的配樂。
+                                                            自稱是聖誕老公公的陌生人跟她說「哈囉」,還講髒話。女孩從此不敢在房間裡睡覺，只好睡在客廳。請問以下</label>
+                                                    </li>
+                                                </ul>
+                                                <div id="solved_files" class="qlist_ul tab-pane"
+                                                    style="position:relatie">
+                                                    <ul></ul>
+                                                    <div id="solved_pages"></div>
+                                                </div>
+                                                <div id="unsolved_files" class="qlist_ul tab-pane">
+                                                    <ul></ul>
+                                                    <div id="unsolved_pages"></div>
+                                                </div>
+                                                <div id="fixed_files" class="qlist_ul tab-pane">
+                                                    <ul></ul>
+                                                    <div id="fixed_pages"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="question_scroll hidden-xs">
+                                    <div class="scroll_up_button cursor_pointer" style="display: none;"></div>
+                                    <div class="scroll_down_button cursor_pointer" style="display: none;"></div>
+                                </div>
+                            </div>
+                            <div id="selfie_update_modal" class="valign_center modal hide fade no_shadow sys_font"
+                                aria-hidden="true">
+                                <div id="selfie_update_exit" class="cursor_pointer"
+                                    onclick="$('#selfie_update_modal').removeClass('in').css({ display: 'auto' }); return false;">
+                                </div>
+
+                                <form id="update_selfie_form" enctype="multipart/form-data"
+                                    action="/users/update_selfie" accept-charset="UTF-8" data-remote="true"
+                                    method="post"><input name="utf8" type="hidden" value="✓">
+                                    <h3 class="sys_font">上傳大頭貼</h3>
+                                    <div id="uploading_img" class="prev_selfie default_head"
+                                        style="background-image: url(&quot;https://d7enq6k3suep5.cloudfront.net/Users_114d2c8b7736d2d612772b9bc3af3039/3227759/65a65f62de93acf6.jpeg?mia=1648914860876&quot;);">
+                                    </div>
+                                    <div id="submit_selfie_div">
+                                        <div class="upload_area">
+                                            <input type="file" name="user[selfie]" id="selfie_upload">
+                                            <div>請盡量選擇300*300的圖檔。</div>
+                                            <input type="submit" name="commit" value="上傳" id="selfie_update_submit"
+                                                class="btn-font">
+                                        </div>
+                                        <div class="loading_area">
+                                            上傳中...
+                                        </div>
+                                    </div>
+                                </form>
+                                <script>
+                                    function checkSelfie() {
+                                        var SELFIE_SIZE_LIMIT = 2 * Math.pow(2, 20);
+
+                                        if ($('#selfie_upload').length === 0) return true;
+
+                                        var files = $('#selfie_upload')[0].files;
+                                        if (files.length === 0) {
+                                            alert(t('users.MSG_no_file_chosen'));
+                                            return false;
+                                        }
+
+                                        var fileExt = _.last($('#selfie_upload').val().split('.')).toLowerCase();
+                                        var whiteList = ['jpg', 'jpeg', 'gif', 'png'];
+                                        if (whiteList.indexOf(fileExt) === -1) {
+                                            alert(t('users.file_type_incorrect'));
+                                            return false;
+                                        }
+
+                                        if (files[0].size > SELFIE_SIZE_LIMIT) {
+                                            alert(t('users.image_size_over_limit', { max_size: '2MB' }));
+                                            return false;
+                                        }
+
+                                        return true;
+                                    }
+
+                                    $('#update_selfie_form').submit(function () {
+                                        if (checkSelfie()) {
+                                            $("#submit_selfie_div").attr("loading", '');
+                                            $("#selfie_update_exit").hide();
+                                        }
+                                        else {
+                                            return false;
+                                        }
+                                    });
+
+                                    $("#selfie_upload").unbind().change(function (event) {
+                                        var previewSelfie = $("#uploading_img");
+                                        var input = $(event.currentTarget);
+                                        var file = input[0].files[0];
+                                        var reader = new FileReader();
+                                        reader.onload = function (e) {
+                                            updateSelfie(previewSelfie, e.target.result);
+                                        };
+                                        reader.readAsDataURL(file);
+                                        userTracking.intercomTrackEvent(intercomAPIManager.events['selects_avatar']);
+                                    });
+                                    $(function () {
+                                        updateSelfie($('#uploading_img'), "https://d7enq6k3suep5.cloudfront.net/Users_114d2c8b7736d2d612772b9bc3af3039/3227759/65a65f62de93acf6.jpeg");
+                                    });
+                                </script>
+
+                            </div>
+                            <div class="information_links_wraper">
+                                <div id="info_selfie" class="selfie cursor_pointer">
+                                    <div class="inner">
+                                        <div class="prev_selfie default_head"
+                                            style="background-image: url(https://d7enq6k3suep5.cloudfront.net/Users_114d2c8b7736d2d612772b9bc3af3039/3227759/65a65f62de93acf6.jpeg);">
+                                        </div>
+                                        <div class="info_name">VJ</div><button
+                                            class="update_selfie_btn hidden-xs btn-font">更改大頭貼</button>
+                                    </div>
+                                </div>
+                                <div class="info_links btn-font" level="1">
+                                    <a class="info_link cursor_pointer" ltype="personal" data-carousel-idx="-2"><span
+                                            class="hidden-xs">
+                                            <span class="hidden-xs">角色檔案</span>
+                                        </span></a>
+                                    <a class="info_link cursor_pointer" ltype="rank" data-carousel-idx="-1"><span
+                                            class="hidden-xs">
+                                            <span class="hidden-xs">戰績排名</span>
+                                        </span></a>
+                                    <a class="info_link cursor_pointer active" ltype="q_list"
+                                        data-carousel-idx="0"><span class="hidden-xs">
+                                            <span class="hidden-xs">題目列表</span>
+                                        </span></a>
+                                    <a class="info_link cursor_pointer" ltype="purchased" onclick="setActiveLink(this)"
+                                        data-remote="true" href="/users/purchased" data-carousel-idx="1"><span
+                                            class="hidden-xs">已購項目</span></a><a class="info_link cursor_pointer"
+                                        ltype="statistics" onclick="setActiveLink(this)" data-remote="true"
+                                        href="/statistics/user_statistics" data-carousel-idx="2"><span
+                                            class="hidden-xs">學習分析</span></a> <a class="info_link cursor_pointer"
+                                        ltype="m_list"><span class="hidden-xs">
+                                            <span class="hidden-xs">怪獸列表</span>
+                                        </span></a>
+                                    <a class="info_link cursor_pointer" ltype="achievements"><span class="hidden-xs">
+                                            <span class="hidden-xs">遊戲成就</span>
+                                        </span></a>
+                                </div>
+                                <div class="arrow general_arrowL cursor_pointer"></div>
+                                <div class="arrow general_arrowR cursor_pointer"></div>
+                            </div>
+                            <script type="text/javascript">
+                                setPersonalInformation($('.info_link[ltype="personal"]'), null);
+                                setRankingList($('.info_link[ltype="rank"]'));
+                                setQuestionList($('.info_link[ltype="q_list"]'));
+                                setMonsterList($('.info_link[ltype="m_list"]'));
+                                setUserAchievements($('.info_link[ltype="achievements"]'), 3227759);
+                                bindUserInformationEvents("personal", true);
+                            </script>
+                        </div>
+                        <div class="info_exit cursor_pointer"></div>
+                    </div>
+                </div>
+                <!-- HEX_MENU-->
+                <div id="hex_menu" theme="ocean" class="">
+                    <div class="activity_btns">
+                    </div>
+                    <div class="hex_menu_inner">
+                        <div>
+                            <div data-da-tracking="ga-click-avatar" class="cursor_pointer character_head5"
+                                data-character="cheetah"></div>
+                            <div id="profile_name" class="omit-text sys_font">VJ</div>
+                        </div>
+                        <div id="status_content">
+                            <div id="user_quota" title="" class="sys_font" data-original-title="回復速度：0.21/每分鐘"
+                                energy="358/360">
+                                <div class="energy_bar" style="width: 99.4444%;"></div>
+                                <div class="energy_icon"></div>
+                            </div>
+                            <div id="user_dominion" title="" data-original-title="目前的領土數量">8</div>
+                            <div id="user_money" title="" data-original-title="你的金錢"><span
+                                    class="money_txt">$</span>1255</div>
+                        </div>
+                    </div>
+                    <div id="hex_menu_after" style="user-select: none; pointer-events: none;"></div>
+                    <div class="btn_group">
+                        <div class="hex_menu_btn cursor_pointer go-back-btn" title="" data-original-title="回到自己的領土">
+                        </div>
+                        <div class="hex_menu_btn cursor_pointer btn_toggle_minimap" title="" data-original-title="小地圖">
+                        </div>
+                        <div class="hex_menu_btn cursor_pointer btn_save_energy" title="" data-original-title="省力模式（關）">
+                        </div>
+                        <div class="hex_menu_btn cursor_pointer btn_friend" data-original-title="好友" title="">
+                            <div class="btn_friend_num" style="display: none;">
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="hex_menu_btn cursor_pointer" id="toggle_backpack_button"
+                            onclick="window.App.propsController.toggleBackpack();" title="" data-original-title="背包">
+                        </div>
+                        <div class="hex_menu_btn cursor_pointer active" id="personal_info_" title=""
+                            data-original-title="個人資訊"></div>
+                    </div>
+                    <div id="minimap_wrapper">
+                        <div id="minimap" class="sc-bdfBwQ jAInrT gc_menu_sprite map_panel">
+                            <div class="sc-gsTCUz bhdLno gc_menu_sprite map_frame"><canvas width="189" height="100"
+                                    class="sc-dlfnbm bcaJjD"></canvas></div>
+                            <div id="switch_mode" mode="terrain"
+                                class="sc-eCssSg hmocIu gc_menu_sprite btn_terrain cursor_pointer"
+                                data-original-title="依土地顯示" title=""></div>
+                            <div class="sc-jSgupP ckDfJz gc_menu_sprite map_direction_key_frame">
+                                <div class="sc-gKsewC sc-iBPRYJ gnwqMi cOWINi cursor_pointer">
+                                    <div class="gc_menu_sprite button_up"></div>
+                                    <div class="gc_menu_sprite button_up_active"></div>
+                                </div>
+                                <div class="sc-gKsewC sc-fubCfw gnwqMi irPtrP cursor_pointer">
+                                    <div class="gc_menu_sprite button_down"></div>
+                                    <div class="gc_menu_sprite button_down_active"></div>
+                                </div>
+                                <div class="sc-gKsewC sc-pFZIQ gnwqMi gbgfMs cursor_pointer">
+                                    <div class="gc_menu_sprite button_left"></div>
+                                    <div class="gc_menu_sprite button_left_active"></div>
+                                </div>
+                                <div class="sc-gKsewC sc-jrAGrp gnwqMi dXWCyY cursor_pointer">
+                                    <div class="gc_menu_sprite button_right"></div>
+                                    <div class="gc_menu_sprite button_right_active"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="notification_modal_1" class="notification_modal modal hide fade no_shadow"
+                    data-backdrop="false" style="display: none;" aria-hidden="true">
+                    <div class="notification_body sys_font" id="notification_body_1">
+                        <div class="popout_bg" poptype="money"></div>
+                        <div class="achievement_title">[獲得成就] 開始儲蓄</div>
+                        <div class="achievement_contents">
+                            <div class="achievement_content">擁有1000$</div>
+                            <div class="achievement_icon"> <img alt="Icon"
+                                    src=" https://global-cdn.pagamo.cn/assets/achievements/popout_msg_po_msg_money2.png">
+                            </div>
+                            <div class="achievement_reward"><span class="reward_prefix">獎品： </span><span
+                                    id="achieve_reward">經驗值 + 36</span></div>
+                        </div><a href="#" data-dismiss="modal" class="result_exit">
+                            <div class="notification_exit"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                courseCategoryInfo.initialize(["PaGamO", null, null, null, null]);
+
+                parameter.initialize([true, true, false, [], false, null, null, { "can_share_when_wrong": false, "min_word_length": 10, "show_publish_warning": true }, "School", "normal_flow", false, false]);
+
+                window.currentGc = createCurrentGc({ "id": 4705298, "key": "-1i1oa", "level": 2, "character_id": 6, "hex_occu": 8, "problem_solving": 6, "course_id": 10237, "real_name": "談維傑", "nickname": "VJ", "profile_pic": "https://d7enq6k3suep5.cloudfront.net/Users_114d2c8b7736d2d612772b9bc3af3039/3227759/65a65f62de93acf6.jpeg", "school_name": "國立中興大學", "need_tutorials": { "check_user_information": true, "goto_my_land": true, "train_land": true, "construct_terrain": true }, "pet_info": { "start_hex": { "x": -2, "y": 218 }, "name": "cat", "current_action": null }, "grade": null, "unique_user_id": "60779142" });
+
+                $(function () {
+                    ReactRailsUJS.mountComponents();
+                    bindSoundAutoLoader();
+                });
+
+                $(window).onloadOrLoaded(function () {
+
+
+
+
+                    courseOpenTimeManager.initialize(
+                        false,
+                        false,
+                        [],
+                        false
+                    );
+
+                });
+                $(function () {
+                    $('#hex_menu_after').passThrough('#hex_menu .character_head5, #hex_menu .hex_menu_btn cursor_pointer');
+                    window.App.playerController.syncQuota(360.0, 360, 300.0);
+
+                    window.App.playerController.syncMoney(1155, 17.6);
+
+                    window.App.playerController.addRoles([]);
+                    themeMgr.setCurrentTheme("ocean");
+                    window.App.mapController.init(JSON.parse("{\"top_blank\":270,\"left_blank\":85,\"right_blank\":85,\"bottom_blank\":180,\"distance\":52,\"center_cell_x\":-2,\"center_cell_y\":218,\"top\":-11440,\"bottom\":14066,\"left\":-11033,\"right\":11033}"), true);
+                    friendManager.onDocumentReady({ "friends_length": 0, "friend_request?": false }, $('.btn_friend'), $('.btn_friend_num'));
+                    propsManager.updateData([[2, 0, "A", "M_M1L1", 1, 1000, 500, null, true, null, 1, 10, 0], [3, 0, "B", "M_M2L1", 1, 1000, 500, null, true, null, 1, 10, 0], [4, 0, "C", "M_M3L1", 1, 1000, 500, null, true, null, 1, 10, 0], [11, 1, "add_ap1", "P_EnergyPill1", 0, 2000, 500, null, true, null, 0, 20, 0], [12, 1, "add_ap2", "P_EnergyPill2", 0, 4500, 1000, null, true, null, 0, 45, 0], [13, 1, "add_ap3", "P_EnergyPill3", 0, 10000, 2000, null, true, null, 0, 100, 0], [14, 2, "pull_up_monster", "P_PullMonster", 0, 3200, 1600, null, false, null, 1, null, 0], [15, 3, "shield", "P_Shield", 0, 1150, 575, null, true, null, 1, 11, 0], [16, 2, "bomb", "P_Bomb", 0, 4400, 2000, null, true, null, 1, 44, 0], [17, 2, "pull_monster_to_self", "P_PullMonsterToSelf", 0, 4500, 2250, null, false, null, 1, null, 0], [20, 4, "grass", "grass", 0, 900, 450, null, true, null, 1, 9, 0], [21, 4, "sand", "sand", 0, 900, 450, null, true, null, 1, 9, 0], [22, 4, "forest", "forest", 0, 2400, 1200, null, true, null, 1, 24, 0], [24, 4, "pool", "pool", 0, 1800, 900, null, true, null, 1, 18, 0], [27, 4, "beach", "beach", 0, 2000, 1000, null, true, null, 1, 20, 0], [30, 4, "mountain", "mountain", 0, 2700, 1350, null, true, null, 1, 27, 0], [31, 4, "sakura", "sakura", 0, 2400, 1200, null, false, null, 1, 24, 0], [33, 5, "portal", "P_Portal", 0, 90000, 45000, null, true, null, 0, null, 0], [34, 1, "random_portal", "P_RandomPortal", 0, 5000, 2500, null, true, null, 0, 50, 0], [35, 5, "territory_ticket", "P_Territory", 0, 999999, 0, null, false, null, 0, null, 0], [36, 3, "fertilizer1", "P_fertilizer1", 0, 1200, 600, null, true, null, 1, 12, 0], [37, 4, "snow", "snow", 0, 2700, 1350, null, false, null, 1, 27, 0], [38, 4, "snowman", "snowman", 0, 5600, 2800, null, false, null, 1, 56, 0], [39, 4, "sakura_tree", "sakura_tree", 0, 5000, 2500, null, false, null, 1, 50, 0], [40, 4, "sakura_ohtorii", "sakura_ohtorii", 0, 6000, 3000, null, false, null, 1, 60, 0], [43, 4, "penguin_egg", "penguin_egg", 0, 8000, 4000, null, false, null, 1, 80, 0], [48, 4, "sakura_shrine", "sakura_shrine", 0, 14000, 7000, null, false, null, 1, 140, 0], [56, 4, "ice_brick", "ice_brick", 0, 14000, 7000, null, false, null, 1, 140, 0], [60, 4, "golden_terrain", "golden_terrain", 0, 10000, 5000, null, false, null, 1, null, 1], [61, 4, "golden_statue", "golden_statue", 0, 35000, 17500, null, false, null, 1, null, 1], [62, 5, "floodwood", "floodwood", 0, 1250, 625, null, true, null, 1, 12, 0], [63, 2, "flame_thrower", "flame_thrower", 0, 3800, 1500, null, true, null, 1, 38, 0], [64, 3, "fertilizer2", "P_fertilizer2", 0, 2750, 1375, null, true, null, 1, 27, 0], [65, 3, "fertilizer3", "P_fertilizer3", 0, 5400, 2700, null, true, null, 1, 54, 0], [66, 4, "lotus1", "lotus1", 0, 5200, 2600, null, false, null, 1, 52, 0], [67, 4, "lotus2", "lotus2", 0, 7000, 3500, null, false, null, 1, 70, 0], [68, 4, "maple", "maple", 0, 2700, 1350, null, false, null, 1, 27, 0], [69, 4, "maple_acorn", "maple_acorn", 0, 5600, 2800, null, false, null, 1, 56, 0], [70, 2, "passionate_pumpkin", "P_passionate_pumpkin", 0, 4400, 2000, null, false, null, 1, 44, 0], [71, 2, "witch_wand", "P_witch_wand", 0, 3800, 1500, null, false, null, 1, 38, 0], [72, 1, "Xmas_candy", "Xmas_candy", 0, 2500, 1000, null, false, null, 0, 25, 0], [73, 0, "Xmas_cookie1", "Xmas_cookie1", 1, 1500, 750, null, false, null, 1, 15, 0], [74, 0, "Xmas_cookie2", "Xmas_cookie2", 1, 1500, 750, null, false, null, 1, 15, 0], [76, 2, "firecracker", "firecracker", 0, 4000, 2000, null, false, null, 1, null, 0], [77, 1, "rice_cake", "rice_cake", 0, 10000, 2000, null, false, null, 0, null, 0], [78, 2, "nian", "nian", 0, 3500, 1600, null, false, null, 1, null, 0], [79, 4, "lucky_kumquat", "lucky_kumquat", 0, 5400, 2700, null, false, null, 1, 54, 0], [80, 1, "red_envelope", "red_envelope", 0, 6000, 0, null, false, null, 1, 60, 0], [83, 4, "excavator", "excavator", 0, 5000, 2500, null, true, null, 1, 50, 0], [84, 1, "xisuidan", "xisuidan", 0, 150000, 75000, null, true, null, 0, null, 0], [85, 1, "berserker_hatchet", "berserker_hatchet", 0, 3000, 1500, null, false, null, 1, null, 0], [86, 1, "elder_tome", "elder_tome", 0, 3000, 1500, null, false, null, 1, null, 0], [87, 1, "philosophers_stone", "philosophers_stone", 0, 3000, 1500, null, false, null, 1, null, 0], [88, 1, "colossus_gauntlet", "colossus_gauntlet", 0, 3000, 1500, null, false, null, 1, null, 0], [89, 5, "summon_allies", "summon_allies", 0, 999999, 100, null, false, null, 0, null, 0], [90, 4, "farmer_card", "farmer_card", 0, 5000, 2500, null, false, null, 1, 50, 0], [91, 4, "shepherd_song", "shepherd_song", 0, 7000, 3500, null, false, null, 1, 70, 0], [92, 2, "water_gun", "water_gun", 0, 3800, 1500, null, true, null, 1, 38, 0], [93, 2, "water_balloon", "water_balloon", 0, 4400, 2000, null, true, null, 1, 44, 0], [94, 4, "reef", "reef", 0, 5000, 2500, 10000, false, null, 0, null, 0], [95, 4, "symbiotic_algae", "symbiotic_algae", 0, 7500, 3750, 15000, false, null, 0, null, 0], [96, 4, "mermaid_horn", "mermaid_horn", 0, 14000, 5000, 20000, false, null, 0, null, 0], [97, 4, "cabin_blueprint", "cabin_blueprint", 0, 6000, 3000, 8000, false, null, 0, null, 0], [98, 4, "manor_blueprint", "manor_blueprint", 0, 9000, 4500, 12000, false, null, 0, null, 0], [99, 4, "villa_blueprint", "villa_blueprint", 0, 14000, 7000, 16000, false, null, 0, null, 0], [100, 4, "marigold_seeds", "marigold_seeds", 0, 1800, 900, 800, false, null, 0, null, 0], [101, 4, "orange_fertilizer", "orange_fertilizer", 0, 5200, 2600, 2400, false, null, 0, null, 0], [102, 4, "orange_gardening_manual", "orange_gardening_manual", 0, 7000, 3500, 4000, false, null, 0, null, 0], [103, 4, "hyacinth_seeds", "hyacinth_seeds", 0, 1800, 900, 2400, false, null, 0, null, 0], [104, 4, "blue_fertilizer", "blue_fertilizer", 0, 5200, 2600, 4800, false, null, 0, null, 0], [105, 4, "blue_gardening_manual", "blue_gardening_manual", 0, 7000, 3500, 7200, false, null, 0, null, 0], [106, 4, "lavender_seeds", "lavender_seeds", 0, 5200, 900, 1600, false, null, 0, null, 0], [107, 4, "purple_fertilizer", "purple_fertilizer", 0, 5200, 2600, 3200, false, null, 0, null, 0], [108, 4, "purple_gardening_manual", "purple_gardening_manual", 0, 7000, 3500, 4800, false, null, 0, null, 0], [111, 4, "ceramic_squirrel_flute", "ceramic_squirrel_flute", 0, 8000, 4000, null, false, null, 1, 80, 0], [112, 4, "acorn_scepter", "acorn_scepter", 0, 14000, 7000, null, false, null, 1, 140, 0], [113, 4, "camel", "camel", 0, 4600, 2300, null, false, null, 1, 46, 0], [114, 4, "cactus", "cactus", 0, 7200, 3600, null, false, null, 1, 72, 0], [115, 4, "mummy", "mummy", 0, 12000, 6000, null, false, null, 1, 120, 0], [116, 1, "exchange_voucher_50000", "exchange_voucher_50000", 0, 50000, 25000, null, false, null, 1, null, 0], [117, 1, "exchange_voucher_10000", "exchange_voucher_10000", 0, 10000, 5000, null, false, null, 1, null, 0], [118, 1, "exchange_voucher_5000", "exchange_voucher_5000", 0, 5000, 2500, null, false, null, 1, null, 0], [119, 1, "exchange_voucher_1000", "exchange_voucher_1000", 0, 1000, 500, null, false, null, 1, null, 0], [120, 6, "hakka", "hakka", 0, 999999, 1, null, false, null, 0, null, 0], [121, 1, "name_magic_book", "name_magic_book", 0, 150000, 75000, null, true, null, 1, null, 0], [123, 4, "carousel_voucher", "carousel_voucher", 0, 10000, 5000, 20000, false, null, 0, null, 0], [124, 4, "pirate_ship_voucher", "pirate_ship_voucher", 0, 12500, 6250, 25000, false, null, 0, null, 0], [125, 4, "ferris_wheel_voucher", "ferris_wheel_voucher", 0, 15000, 7500, 30000, false, null, 0, null, 0], [126, 4, "coconut", "coconut", 0, 7200, 3600, null, false, null, 1, 72, 0], [127, 4, "ship_ticket", "ship_ticket", 0, 12000, 6000, null, false, null, 1, 120, 0], [128, 4, "autumn_ship", "autumn_ship", 0, 9000, 4500, null, false, null, 1, 90, 0], [129, 1, "moon_cake", "moon_cake", 0, 8200, 4100, null, false, null, 0, null, 0], [130, 1, "chicken_soup", "chicken_soup", 0, 13000, 6500, null, false, null, 0, 130, 0], [131, 4, "palace_museum", "palace_museum", 0, 9000, 4500, null, false, null, 1, null, 0], [132, 4, "bells", "bells", 0, 9000, 4500, null, false, null, 1, 90, 0], [133, 4, "british_museum", "british_museum", 0, 9000, 4500, null, false, null, 1, null, 0], [134, 3, "marine_conservator", "marine_conservator", 0, 1800, 900, null, true, null, 1, null, 0], [135, 4, "winter_palace", "winter_palace", 0, 9000, 4500, null, false, null, 1, null, 0], [137, 4, "vatican_museum", "vatican_museum", 0, 9000, 4500, null, false, null, 1, null, 0], [138, 4, "cowherd_crook", "cowherd_crook", 0, 10000, 5000, null, false, null, 1, 100, 0], [139, 7, "cotton", "cotton", 0, 200, 50, null, false, null, 1, null, 0], [140, 7, "ramie", "ramie", 0, 200, 50, null, false, null, 1, null, 0], [141, 7, "tempering_sand", "tempering_sand", 0, 200, 50, null, false, null, 1, null, 0], [142, 7, "fire_rock", "fire_rock", 0, 200, 50, null, false, null, 1, null, 0], [143, 7, "gravity_rock", "gravity_rock", 0, 200, 50, null, false, null, 1, null, 0], [144, 7, "plastic", "plastic", 0, 200, 50, null, false, null, 1, null, 0], [145, 7, "bamboo", "bamboo", 0, 200, 50, null, false, null, 1, null, 0], [146, 7, "metallic_powder", "metallic_powder", 0, 200, 50, null, false, null, 1, null, 0], [147, 7, "metallic_shards", "metallic_shards", 0, 200, 50, null, false, null, 1, null, 0], [148, 7, "beast_hide", "beast_hide", 0, 200, 50, null, false, null, 1, null, 0], [149, 4, "metropolitan_museum", "metropolitan_museum", 0, 9000, 4500, null, false, null, 1, null, 0], [150, 4, "louvre_museum", "louvre_museum", 0, 9000, 4500, null, false, null, 1, null, 0], [151, 4, "learning_hammer", "ntu\/learning_hammer", 0, 9000, 4500, null, false, null, 1, 90, 0], [152, 4, "school_bike", "ntu\/school_bike", 0, 9000, 4500, null, false, null, 1, 90, 0], [153, 4, "farmers_market", "farmers_market", 0, 6000, 3000, null, false, null, 1, 60, 0], [154, 7, "bones", "bones", 0, 200, 50, null, false, null, 1, null, 0], [155, 7, "fallen_leaves", "fallen_leaves", 0, 200, 50, null, false, null, 1, null, 0], [156, 7, "peel", "peel", 0, 200, 50, null, false, null, 1, null, 0], [158, 7, "star_debris", "star_debris", 0, 200, null, null, false, null, 0, null, 0], [159, 4, "tear_of_polaris", "tear_of_polaris", 0, 7000, null, null, false, null, 0, null, 0], [163, 7, "metal_parts", "metal_parts", 0, 200, 50, null, false, null, 1, null, 0], [164, 5, "sea_excavator", "sea_excavator", 0, 4000, 2000, null, false, null, 1, null, 0], [166, 1, "pugilist_gloves", "pugilist_gloves", 0, 3000, 1500, null, false, null, 1, null, 0], [167, 4, "sanqu_selection", "sanqu_selection", 0, 15000, 7500, null, false, null, 1, 150, 0], [169, 4, "black_bear", "black_bear", 0, 6500, 3250, null, false, null, 1, null, 0], [171, 4, "rock_tiger", "rock_tiger", 0, 6500, 3250, null, false, null, 1, null, 0], [172, 4, "fish_ship", "ntu\/fish_ship", 0, 9000, 4500, null, false, null, 1, null, 0], [173, 4, "chihkan_tower", "ntu\/chihkan_tower", 0, 9000, 4500, null, false, null, 1, null, 0], [174, 4, "fetnet_deer", "fetnet_deer", 0, 6500, 3250, null, false, null, 1, null, 0], [175, 3, "golden_shield", "golden_shield", 0, 150000, 75000, null, false, null, 0, null, 0], [177, 4, "bonio_xmas_socks", "bonio_xmas_socks", 0, 15000, 7500, null, false, null, 1, 150, 0], [178, 4, "blue_magpie_doll", "blue_magpie_doll", 0, 6500, 3250, null, false, null, 1, null, 0], [179, 0, "Life", "Life", 1, 2500, 1250, null, false, null, 1, null, 0], [180, 7, "laurel_branches", "laurel_branches", 0, 200, null, null, false, null, 0, null, 0], [181, 4, "moonlight_box", "moonlight_box", 0, 7000, null, null, false, null, 0, null, 0], [182, 4, "macaque_doll", "macaque_doll", 0, 6500, 3250, null, false, null, 1, null, 0], [183, 5, "golden_portal", "golden_portal", 0, 180000, 90000, null, false, null, 0, null, 0], [184, 5, "diamond_portal", "diamond_portal", 0, 360000, 180000, null, false, null, 0, null, 0], [185, 4, "horse_certification", "horse_certification", 0, 28000, 14000, null, false, null, 1, null, 1], [186, 4, "sheep_certification", "sheep_certification", 0, 12000, 6000, null, false, null, 1, null, 1], [187, 4, "cow_certification", "cow_certification", 0, 20000, 10000, null, false, null, 1, null, 1], [188, 4, "horse_whip", "horse_whip", 0, 14000, 7000, null, false, null, 1, 140, 0], [189, 4, "butterfly_doll", "butterfly_doll", 0, 6500, 3250, null, false, null, 1, null, 0], [190, 5, "angel_portal", "angel_portal", 0, 1080000, null, null, false, null, 0, null, 0], [191, 3, "diamond_shield", "diamond_shield", 0, 450000, 225000, null, false, null, 0, null, 0], [192, 3, "angel_shield", "angel_shield", 0, 900000, 450000, null, false, null, 0, null, 0], [193, 4, "apple_tree", "apple_tree", 0, 16000, 8000, null, false, null, 1, null, 1], [194, 4, "dreamy_carousel", "dreamy_carousel", 0, 16000, 8000, null, false, null, 0, null, 1], [195, 4, "dreamy_pirate_ship", "dreamy_pirate_ship", 0, 27500, 13750, null, false, null, 0, null, 1], [196, 4, "dreamy_ferris_wheel", "dreamy_ferris_wheel", 0, 39000, 19500, null, false, null, 0, null, 1], [197, 4, "steel_statue", "steel_statue", 0, 35000, 17500, null, false, null, 1, null, 1], [198, 1, "green_magic_pill", "green_magic_pill", 0, 16000, 3000, null, false, null, 0, null, 0], [199, 1, "orange_magic_pill", "orange_magic_pill", 0, 22500, 4000, null, false, null, 0, null, 0], [200, 1, "purple_magic_pill", "purple_magic_pill", 0, 28000, 5000, null, false, null, 0, null, 0], [201, 4, "white_house_blueprint", "white_house_blueprint", 0, 16000, 8000, null, false, null, 1, null, 1], [202, 4, "pink_house_blueprint", "pink_house_blueprint", 0, 23000, 11500, null, false, null, 1, null, 1], [203, 4, "golden_house_blueprint", "golden_house_blueprint", 0, 32000, 16000, null, false, null, 1, null, 1], [204, 0, "dora_bear", "dora_bear", 1, 20000, 10000, null, false, null, 1, null, 0], [205, 0, "baphomet", "baphomet", 1, 20000, 10000, null, false, null, 1, null, 0], [206, 5, "giant_beast_stone", "giant_beast_stone", 0, 9000, 4500, null, false, null, 1, null, 0], [207, 4, "rijks_museum", "rijks_museum", 0, 9000, 4500, null, false, null, 1, null, 0], [208, 7, "aura_of_the_star", "aura_of_the_star", 0, 200, null, null, false, null, 0, null, 0], [209, 4, "boundless_star_ring", "boundless_star_ring", 0, 7000, null, null, false, null, 0, null, 0], [210, 4, "white_hat", "white_hat", 0, 9000, 4500, null, false, null, 1, null, 0], [211, 4, "black_hat", "black_hat", 0, 9000, 4500, null, false, null, 1, null, 0], [212, 1, "leprechaun_key", "leprechaun_key", 0, 3000, 1500, null, false, null, 1, null, 0], [213, 4, "chan_chao_robe", "chan_chao_robe", 0, 9000, 4500, null, false, null, 1, null, 0], [214, 0, "snow_monster", "snow_monster", 1, 20000, 10000, null, false, null, 1, null, 0], [215, 4, "du_du_cat", "du_du_cat", 0, 9000, 4500, null, false, null, 1, null, 0], [216, 4, "info_security_soldier", "info_security_soldier", 0, 9000, 4500, null, false, null, 1, null, 0], [217, 4, "trojan_virus", "trojan_virus", 0, 9000, 4500, null, false, null, 1, null, 0], [218, 4, "crystalline_palace", "crystalline_palace", 0, 17000, 8500, null, false, null, 1, 170, 0], [219, 2, "bullhorn", "bullhorn", 0, 3800, 1500, null, false, null, 1, null, 0], [220, 4, "road_a", "road_a", 0, 9000, 4500, null, false, null, 1, null, 0], [221, 4, "road_b", "road_b", 0, 9000, 4500, null, false, null, 1, null, 0], [222, 4, "road_c", "road_c", 0, 9000, 4500, null, false, null, 1, null, 0], [223, 4, "road_d", "road_d", 0, 9000, 4500, null, false, null, 1, null, 0], [224, 4, "road_e", "road_e", 0, 9000, 4500, null, false, null, 1, null, 0], [225, 4, "tree_bo", "tree_bo", 0, 9000, 4500, null, false, null, 1, null, 0], [226, 4, "hu_hu_cat", "hu_hu_cat", 0, 9000, 4500, null, false, null, 1, null, 0], [227, 4, "seesaw", "seesaw", 0, 9000, 4500, null, false, null, 1, null, 0], [228, 1, "tier2_terrain_chest", "tier2_terrain_chest", 0, 30000, 15000, null, false, null, 1, null, 0], [229, 1, "tier1_terrain_chest", "tier1_terrain_chest", 0, 25000, 12500, null, false, null, 1, null, 0], [230, 1, "stone_brick_chest", "stone_brick_chest", 0, 40000, 20000, null, false, null, 1, null, 0], [231, 3, "land_essence", "land_essence", 0, 7650, 3825, null, false, null, 1, null, 0], [232, 3, "advanced_essence", "advanced_essence", 0, 9600, 4800, null, false, null, 1, null, 0], [233, 3, "ultimate_essence", "ultimate_essence", 0, 11250, 5625, null, false, null, 1, null, 0], [234, 1, "tier3_terrain_chest", "tier3_terrain_chest", 0, 50000, 25000, null, false, null, 1, null, 0], [235, 3, "land_level_up", "land_level_up", 0, 5000, 2500, null, false, null, 1, null, 0], [236, 3, "land_level_up_ex", "land_level_up_ex", 0, 30000, 15000, null, false, null, 1, null, 0], [239, 4, "tree_bo_sister", "tree_bo_sister", 0, 9000, 4500, null, false, null, 1, null, 0], [240, 1, "rare_terrain_chest", "rare_terrain_chest", 0, 65000, 32500, null, false, null, 1, null, 0], [241, 0, "mushroom_rabbit", "mushroom_rabbit", 1, 20000, 10000, null, false, null, 1, null, 0], [242, 4, "santa_claus", "santa_claus", 0, 17000, 8500, null, false, null, 1, 170, 0], [243, 4, "la_la_cat", "la_la_cat", 0, 9000, 4500, null, false, null, 1, null, 0], [244, 1, "super_rare_terrain_chest", "super_rare_terrain_chest", 0, 100000, 50000, null, false, null, 1, null, 0], [245, 0, "sea_lion_egg", "sea_lion_egg", 1, 20000, 10000, null, false, null, 1, null, 0], [246, 7, "interstellar_rock", "interstellar_rock", 0, 200, null, null, false, null, 0, null, 0], [247, 4, "interstellar_broom", "interstellar_broom", 0, 7000, null, null, false, null, 0, null, 0], [248, 4, "tree_pa", "tree_pa", 0, 9000, 4500, null, false, null, 1, null, 0], [249, 4, "lu_lu_cat", "lu_lu_cat", 0, 9000, 4500, null, false, null, 1, null, 0], [250, 4, "pon_pon_cat", "pon_pon_cat", 0, 9000, 4500, null, false, null, 1, null, 0], [254, 1, "boss_chest", "boss_chest", 0, 55000, 22500, null, false, null, 1, null, 0], [255, 1, "energy_chest", "energy_chest", 0, 55000, null, null, false, null, 0, null, 0], [257, 4, "tree_ma", "tree_ma", 0, 9000, 4500, null, false, null, 1, null, 0], [258, 7, "fr_golden_terrain", "fr_golden_terrain", 0, 200, null, null, false, null, 0, null, 0], [259, 7, "fr_golden_statue", "fr_golden_statue", 0, 200, null, null, false, null, 0, null, 0], [260, 7, "fr_steel_statue", "fr_steel_statue", 0, 200, null, null, false, null, 0, null, 0], [261, 7, "fr_cabin_blueprint", "fr_cabin_blueprint", 0, 200, null, null, false, null, 0, null, 0], [262, 7, "fr_manor_blueprint", "fr_manor_blueprint", 0, 200, null, null, false, null, 0, null, 0], [263, 7, "fr_villa_blueprint", "fr_villa_blueprint", 0, 200, null, null, false, null, 0, null, 0], [264, 7, "fr_white_house_blueprint", "fr_white_house_blueprint", 0, 200, null, null, false, null, 0, null, 0], [265, 7, "fr_pink_house_blueprint", "fr_pink_house_blueprint", 0, 200, null, null, false, null, 0, null, 0], [266, 7, "fr_golden_house_blueprint", "fr_golden_house_blueprint", 0, 200, null, null, false, null, 0, null, 0], [267, 7, "fr_sheep_certification", "fr_sheep_certification", 0, 200, null, null, false, null, 0, null, 0], [268, 7, "fr_cow_certification", "fr_cow_certification", 0, 200, null, null, false, null, 0, null, 0], [269, 7, "fr_horse_certification", "fr_horse_certification", 0, 200, null, null, false, null, 0, null, 0], [270, 7, "fr_reef", "fr_reef", 0, 200, null, null, false, null, 0, null, 0], [271, 7, "fr_symbiotic_algae", "fr_symbiotic_algae", 0, 200, null, null, false, null, 0, null, 0], [272, 7, "fr_mermaid_horn", "fr_mermaid_horn", 0, 200, null, null, false, null, 0, null, 0], [273, 7, "fr_carousel_voucher", "fr_carousel_voucher", 0, 200, null, null, false, null, 0, null, 0], [274, 7, "fr_pirate_ship_voucher", "fr_pirate_ship_voucher", 0, 200, null, null, false, null, 0, null, 0], [275, 7, "fr_ferris_wheel_voucher", "fr_ferris_wheel_voucher", 0, 200, null, null, false, null, 0, null, 0], [276, 7, "fr_dreamy_carousel", "fr_dreamy_carousel", 0, 200, null, null, false, null, 0, null, 0], [277, 7, "fr_dreamy_pirate_ship", "fr_dreamy_pirate_ship", 0, 200, null, null, false, null, 0, null, 0], [278, 7, "fr_dreamy_ferris_wheel", "fr_dreamy_ferris_wheel", 0, 200, null, null, false, null, 0, null, 0], [279, 7, "fr_apple_tree", "fr_apple_tree", 0, 200, null, null, false, null, 0, null, 0], [280, 4, "mia_figurine", "mia_figurine", 0, 16000, 8000, null, false, null, 0, null, 1], [281, 4, "esun_bank_logo", "esun_bank_logo", 0, 9000, 4500, null, false, null, 1, null, 0], [282, 1, "banana_tart", "banana_tart", 0, 8200, 2000, null, false, null, 0, null, 0], [283, 1, "sweet_potato_tart", "sweet_potato_tart", 0, 13000, 3000, null, false, null, 0, null, 0], [284, 4, "cereals", "cereals", 0, 11000, 5500, null, false, null, 1, 110, 0], [286, 4, "stone_cats_egg", "stone_cats_egg", null, 9000, 4500, null, false, null, 1, null, 0], [287, 4, "maro_figurine", "maro_figurine", null, 16000, 8000, null, false, null, 0, null, 1], [288, 4, "baatar_figurine", "baatar_figurine", null, 16000, 8000, null, false, null, 0, null, 1], [289, 4, "sophie_figurine", "sophie_figurine", null, 16000, 8000, null, false, null, 0, null, 1], [290, 4, "kachina_figurine", "kachina_figurine", null, 16000, 8000, null, false, null, 0, null, 1], [291, 4, "amir_figurine", "amir_figurine", null, 16000, 8000, null, false, null, 0, null, 1], [292, 1, "pagamo_gacha", "pagamo_gacha", null, 16000, 8000, null, false, null, 1, null, 0], [293, 3, "bone_dog_toy", "bone_dog_toy", null, 2000, 1000, null, false, null, 1, null, 0], [294, 3, "cat_scratcher", "cat_scratcher", null, 2000, 1000, null, false, null, 1, null, 0], [295, 3, "jumping_fish_toy", "jumping_fish_toy", null, 4000, 2000, null, false, null, 1, null, 0], [296, 3, "pet_ball", "pet_ball", null, 4000, 2000, null, false, null, 1, null, 0], [297, 0, "fox_egg", "fox_egg", 1, 20000, 10000, null, false, null, 1, null, 0], [298, 1, "macaron", "macaron", null, 16000, 3000, null, false, null, 0, null, 0], [299, 1, "scholar_cake", "scholar_cake", null, 16000, 3000, null, false, null, 0, null, 0], [300, 1, "number_cookie", "number_cookie", null, 16000, 3000, null, false, null, 0, null, 0], [301, 4, "csc_badge", "csc_badge", null, 9000, 4500, null, false, null, 1, null, 0], [302, 4, "dragon_boat_2020", "dragon_boat_2020", null, 4600, 2300, null, false, null, 1, null, 0], [303, 4, "thunder_of_wisdom", "thunder_of_wisdom", null, 25000, 12500, null, false, null, 0, null, 1], [305, 4, "speed_backpack", "speed_backpack", null, 9000, 4500, null, false, null, 1, null, 0], [307, 4, "bubble_tea", "bubble_tea", null, 9000, null, null, false, null, 0, null, 0], [308, 7, "milk", "milk", null, 7000, null, null, false, null, 0, null, 0], [309, 7, "tapioca_ball", "tapioca_ball", null, 7000, null, null, false, null, 0, null, 0], [310, 7, "tea_leaf", "tea_leaf", null, 7000, null, null, false, null, 0, null, 0], [312, 0, "dumb_penguins_egg", "dumb_penguins_egg", 1, 20000, 10000, null, false, null, 1, null, 0], [313, 4, "bouquet", "bouquet", null, 16000, 8000, null, false, null, 1, null, 1], [314, 4, "tower_ticket", "tower_ticket", null, 30000, 15000, null, false, null, 1, null, 1], [315, 4, "crown_of_thorns", "crown_of_thorns", null, 42500, 21250, null, false, null, 1, null, 1], [318, 4, "warrior_helmet", "warrior_helmet", null, 15500, 7750, null, false, null, 1, null, 0], [319, 4, "fantasy_light_pen", "fantasy_light_pen", null, 9000, 4500, null, false, null, 1, null, 0], [320, 4, "axe", "axe", null, 9000, 4500, null, false, null, 1, 90, 0], [321, 0, "carrot_monkeys_egg", "carrot_monkeys_egg", 1, 20000, 10000, null, false, null, 1, null, 0], [324, 4, "pumpkin", "pumpkin", null, 16000, 8000, null, false, null, 1, null, 1], [325, 4, "sweet_biscuit", "sweet_biscuit", null, 30000, 15000, null, false, null, 1, null, 1], [326, 4, "magic_beans", "magic_beans", null, 42500, 21250, null, false, null, 1, null, 1], [327, 4, "doha_pass", "doha_pass", null, 9000, 4500, null, false, null, 1, null, 0], [328, 4, "bath_bucket", "bath_bucket", null, 9000, 4500, null, false, null, 1, 90, 0], [329, 4, "straw", "straw", null, 16000, 8000, null, false, null, 1, null, 1], [330, 4, "sticks", "sticks", null, 30000, 15000, null, false, null, 1, null, 1], [331, 4, "bricks", "bricks", null, 42500, 21250, null, false, null, 1, null, 1], [332, 4, "twig", "twig", null, 9000, 4500, null, false, null, 1, null, 0], [335, 4, "martial_arts_uniform", "martial_arts_uniform", null, 9000, 4500, null, false, null, 1, null, 0], [336, 4, "fried_chicken_cutlet", "fried_chicken_cutlet", null, 9000, null, null, false, null, 0, null, 0], [337, 7, "chicken_breast", "chicken_breast", null, 200, null, null, false, null, 0, null, 0], [338, 7, "oil", "oil", null, 200, null, null, false, null, 0, null, 0], [339, 7, "flour", "flour", null, 200, null, null, false, null, 0, null, 0], [340, 4, "dango", "dango", null, 9000, 4500, null, false, null, 1, 90, 0], [342, 4, "dream_balloons", "dream_balloons", null, 9000, 4500, null, false, null, 1, null, 0], [343, 4, "frozen_shield", "frozen_shield", null, 9000, 4500, null, false, null, 1, null, 0], [344, 4, "lucky_scarf", "lucky_scarf", null, 9000, 4500, null, false, null, 1, null, 0], [345, 0, "flaming_panthers_egg", "flaming_panthers_egg", 1, 20000, 10000, null, false, null, 1, null, 0], [346, 4, "binoculars", "binoculars", null, 16000, 8000, null, false, null, 1, null, 1], [347, 4, "archaeological_map", "archaeological_map", null, 30000, 15000, null, false, null, 1, null, 1], [348, 4, "ancient_slate", "ancient_slate", null, 42500, 21250, null, false, null, 1, null, 1], [349, 4, "easter_eggs", "easter_eggs", null, 9000, 4500, null, false, null, 1, null, 0], [352, 4, "birds_nest", "birds_nest", null, 9000, 4500, null, false, null, 1, null, 0], [353, 4, "rivet", "rivet", null, 16000, 8000, null, false, null, 1, null, 1], [354, 4, "torch", "torch", null, 30000, 15000, null, false, null, 1, null, 1], [355, 4, "observatory_ticket", "observatory_ticket", null, 42500, 21250, null, false, null, 1, null, 1], [356, 4, "bike_horn", "bike_horn", null, 9000, 4500, null, false, null, 1, 90, 0], [362, 4, "mango_shaved_ice", "mango_shaved_ice", null, 9000, null, null, false, null, 0, null, 0], [363, 7, "ice_cube", "ice_cube", null, 200, null, null, false, null, 0, null, 0], [364, 7, "condensed_milk", "condensed_milk", null, 200, null, null, false, null, 0, null, 0], [365, 7, "ice_cream", "ice_cream", null, 200, null, null, false, null, 0, null, 0], [366, 7, "mango", "mango", null, 200, null, null, false, null, 0, null, 0], [369, 0, "egg_of_frozen_tear_frog", "egg_of_frozen_tear_frog", 1, 20000, 10000, null, false, null, 1, null, 0], [373, 4, "time_treasure_hourglass", "time_treasure_hourglass", null, 9000, 4500, null, false, null, 1, null, 0], [374, 0, "the_egg_of_little_wooden_horse", "the_egg_of_little_wooden_horse", 1, 20000, 10000, null, false, null, 1, null, 0], [377, 4, "circulator", "circulator", null, 9000, 4500, null, false, null, 1, null, 0], [381, 4, "pounding_medicine_mortar", "pounding_medicine_mortar", null, 15000, 7500, null, false, null, 1, null, 0], [389, 4, "self_affirmation_mirror", "self_affirmation_mirror", null, 9000, 4500, null, false, null, 1, null, 0], [390, 1, "treasure_chest_full_of_shields", "treasure_chest_full_of_shields", null, 450000, null, null, false, null, 0, null, 0], [393, 4, "flying_bus_voucher", "flying_bus_voucher", null, 16000, 8000, null, false, null, 1, null, 1], [394, 4, "teacups_voucher", "teacups_voucher", null, 30000, 15000, null, false, null, 1, null, 1], [395, 4, "drop_tower_voucher", "drop_tower_voucher", null, 42500, 21250, null, false, null, 1, null, 1], [396, 4, "boca_backpack", "boca_backpack", null, 9000, 4500, null, false, null, 1, null, 0], [397, 4, "blue_feather", "blue_feather", null, 9000, 4500, null, false, null, 1, null, 0], [398, 4, "alofo", "alofo", null, 9000, 4500, null, false, null, 1, null, 0], [399, 4, "haulus_tu_ngan", "haulus_tu_ngan", null, 9000, 4500, null, false, null, 1, null, 0], [400, 4, "dream_basketball", "dream_basketball", null, 9000, 4500, null, false, null, 1, null, 0], [401, 0, "bomb_dragons_egg", "bomb_dragons_egg", 1, 20000, 10000, null, false, null, 1, null, 0], [402, 4, "flying_bus_model", "flying_bus_model", null, 16000, 8000, null, false, null, 0, null, 1], [403, 4, "teacups_model", "teacups_model", null, 30000, 15000, null, false, null, 0, null, 1], [404, 4, "drop_tower_model", "drop_tower_model", null, 42500, 21250, null, false, null, 0, null, 1], [405, 4, "big_ben", "big_ben", null, 16000, 8000, null, false, null, 1, null, 1], [406, 4, "tower_bridge_ticket", "tower_bridge_ticket", null, 30000, 15000, null, false, null, 1, null, 1], [407, 4, "the_royal_standard", "the_royal_standard", null, 42500, 21250, null, false, null, 1, null, 1], [408, 4, "boehoe", "boehoe", null, 9000, 4500, null, false, null, 1, null, 0], [409, 4, "badge_of_kindness", "badge_of_kindness", null, 56000, 28000, null, false, null, 0, null, 1], [410, 4, "badge_of_justice", "badge_of_justice", null, 56000, 28000, null, false, null, 0, null, 1], [411, 4, "badge_of_courage", "badge_of_courage", null, 56000, 28000, null, false, null, 0, null, 1], [412, 4, "badge_of_wisdom", "badge_of_wisdom", null, 56000, 28000, null, false, null, 0, null, 1], [413, 4, "badge_of_confidence", "badge_of_confidence", null, 56000, 28000, null, false, null, 0, null, 1], [414, 4, "badge_of_perseverance", "badge_of_perseverance", null, 56000, 28000, null, false, null, 0, null, 1], [415, 4, "king_arthurs_sword", "king_arthurs_sword", null, 25000, 12500, null, false, null, 0, null, 1], [418, 4, "straight_gravel", "straight_gravel", null, 9000, 4500, null, false, null, 0, null, 0], [419, 4, "southeast_gravel", "southeast_gravel", null, 9000, 4500, null, false, null, 0, null, 0], [420, 4, "southwest_gravel", "southwest_gravel", null, 9000, 4500, null, false, null, 0, null, 0], [421, 4, "inverted_y_shaped_gravel", "inverted_y_shaped_gravel", null, 9000, 4500, null, false, null, 0, null, 0], [422, 4, "y_shaped_gravel", "y_shaped_gravel", null, 9000, 4500, null, false, null, 0, null, 0], [423, 4, "gassho_style_houses_pendant", "gassho_style_houses_pendant", null, 15000, 7500, null, false, null, 1, null, 0], [424, 1, "gravel_terrain_treasure_chest", "gravel_terrain_treasure_chest", null, 40000, 20000, null, false, null, 0, null, 0], [425, 0, "maid_chickens_egg", "maid_chickens_egg", 1, 20000, 10000, null, false, null, 1, null, 0], [430, 4, "dream_badminton", "dream_badminton", null, 9000, 4500, null, false, null, 1, null, 0], [431, 4, "powerful_battery", "powerful_battery", null, 9000, 4500, null, false, null, 1, null, 0], [432, 4, "bunny_ride_ticket", "bunny_ride_ticket", null, 16000, 8000, null, false, null, 0, null, 1], [433, 4, "cat_ride_ticket", "cat_ride_ticket", null, 16000, 8000, null, false, null, 0, null, 1], [434, 4, "piggy_ride_ticket", "piggy_ride_ticket", null, 16000, 8000, null, false, null, 0, null, 1], [436, 7, "soy_sauce", "soy_sauce", null, 200, null, null, false, null, 0, null, 0], [437, 7, "pork_filling", "pork_filling", null, 200, null, null, false, null, 0, null, 0], [438, 7, "shredded_ginger", "shredded_ginger", null, 200, null, null, false, null, 0, null, 0], [440, 4, "stone_lantern", "stone_lantern", null, 15000, 7500, null, false, null, 1, null, 0], [441, 4, "miracle_gloves", "miracle_gloves", null, 9000, 4500, null, false, null, 1, null, 0], [442, 4, "little_dumplings", "little_dumplings", null, 9000, null, null, false, null, 0, null, 0], [443, 0, "flying_minks_egg", "flying_minks_egg", 1, 20000, 10000, null, false, null, 1, null, 0], [445, 1, "stone_statues_gacha", "stone_statues_gacha", null, 42500, 21250, null, false, null, 1, null, 0], [446, 4, "tender_heart", "tender_heart", null, 9000, 4500, null, false, null, 1, null, 0], [447, 4, "cushion", "cushion", null, 16000, 8000, null, false, null, 0, null, 1], [448, 4, "wish_coin", "wish_coin", null, 30000, 15000, null, false, null, 0, null, 1], [449, 4, "afternoon_tea", "afternoon_tea", null, 42500, 21250, null, false, null, 0, null, 1], [450, 4, "magic_racket", "magic_racket", null, 9000, 4500, null, false, null, 1, null, 0], [451, 4, "magic_wand", "magic_wand", null, 9000, 4500, null, false, null, 1, null, 0], [453, 4, "shuriken", "shuriken", null, 9000, 4500, null, false, null, 1, null, 0], [454, 4, "knowledge_quill", "knowledge_quill", null, 28000, 14000, null, false, null, 0, null, 1], [455, 4, "golden_medal", "golden_medal", null, 28000, 14000, null, false, null, 0, null, 1], [456, 4, "crystal_fragment", "crystal_fragment", null, 25000, 12500, null, false, null, 0, null, 1], [457, 4, "career_dream_toolbox", "career_dream_toolbox", null, 9000, 4500, null, false, null, 1, null, 0], [458, 4, "smile_stickers_set", "smile_stickers_set", null, 9000, 4500, null, false, null, 1, null, 0], [459, 0, "egg_of_the_fighting_lion", "egg_of_the_fighting_lion", 1, 20000, 10000, null, false, null, 1, null, 0], [460, 2, "monster_nursery_car", "monster_nursery_car", null, 3200, 1600, null, true, null, 1, null, 0], [463, 4, "sunglasses", "sunglasses", null, 9000, 4500, null, false, null, 1, null, 0], [464, 4, "badge_of_gics", "badge_of_gics", null, 9000, 4500, null, false, null, 1, null, 0]]);
+                    initializeBackpack(JSON.parse("[{\"monster_id\":91,\"count_all\":1,\"count_bag\":1},{\"monster_id\":31,\"count_all\":2,\"count_bag\":2}]"));
+                    hexMenu.initialize($('#hex_menu'));
+
+                    window.tutorial = new Tutorial();
+
+                    userTracking.intercomTrackEvent(intercomAPIManager.events['enter_map']);
+                    var isChina = false;
+                    var server = isChina ? 'cn_' : '';
+                    if (intercomAPIManager.isCourseInTrack(10237, isChina)) {
+                        userTracking.intercomTrackEvent(intercomAPIManager.events['enter_course'] + ': ' + server + "10237");
+                    }
+                    var $esportsStartsNow = $('#esports-starts-now');
+                    var $esportsEndsNow = $('#esports-ends-now');
+
+                    if ($esportsStartsNow.length > 0) {
+                        $esportsEndsNow.hide();
+                        $esportsStartsNow.click(function () {
+                            commonConfirmSm(t('map.start_right_now_confirm'), function () {
+                                courseOpenTimeManager.manuallyStart(10);
+                            });
+                        });
+                    }
+                    if ($esportsEndsNow.length > 0) {
+                        $esportsEndsNow.click(function () {
+                            commonConfirmSm(t('esports/pvp.map.game_over_message'), function () {
+                                courseOpenTimeManager.manuallyEnd(10);
+                            });
+                        });
+                    }
+                    window.App.playerController.syncNickname($('#profile_name').text());
+
+                    $('.item_ui_tab_monsters').common_tooltip(t('map.prop_tabs.monster'));
+                    $('.item_ui_tab_items').common_tooltip(t('map.prop_tabs.prop'));
+                    $('.item_ui_tab_terrains').common_tooltip(t('map.prop_tabs.terrain'));
+                    $('.item_ui_tab_material').common_tooltip(t('map.prop_tabs.material'));
+                    $('.item_ui_btn_close_backpack').hover_tooltip(t('map.close_backpack'));
+
+                    mapCanvasManager.colorizeTerrain = false;
+                });
+                if (BROWSER.msie) $.fn.modal.Constructor.prototype.enforceFocus = function () { };
+            </script>
+
+            <div data-react-class="ReactMapManager"
+                data-react-props="{&quot;course_code&quot;:&quot;gics&quot;,&quot;course_name&quot;:&quot;2021 GiCS 資安闖天關初賽題庫&quot;,&quot;contest_info&quot;:{},&quot;pvp_info&quot;:{},&quot;holiday_mode_ended_at&quot;:null,&quot;novice_protection&quot;:null,&quot;static_messages&quot;:{},&quot;param_share_ex&quot;:false,&quot;quick_correctable&quot;:false,&quot;need_seat&quot;:true,&quot;show_popup_ads&quot;:false,&quot;daily_rewards_data&quot;:{&quot;received_times&quot;:2,&quot;received_today&quot;:false,&quot;reward_ids&quot;:[31,91,39,138,340,36,188],&quot;reward_names&quot;:[&quot;sakura&quot;,&quot;shepherd_song&quot;,&quot;sakura_tree&quot;,&quot;cowherd_crook&quot;,&quot;dango&quot;,&quot;fertilizer1&quot;,&quot;horse_whip&quot;]},&quot;public_msgs&quot;:[],&quot;show_xpt_missions_tab&quot;:false,&quot;show_choose_sections_btn&quot;:true,&quot;allow_tutorial&quot;:true,&quot;enable_friend_system&quot;:true,&quot;map_side_menu_info&quot;:{&quot;mission&quot;:{&quot;notify&quot;:false},&quot;crafting&quot;:{&quot;notify&quot;:false},&quot;content&quot;:{&quot;notify&quot;:false}},&quot;show_coordinate_panel&quot;:false,&quot;story_video_info&quot;:{},&quot;notification&quot;:{&quot;new_subscriptions&quot;:[]},&quot;raid_boss&quot;:null,&quot;enable_daily_reward&quot;:false,&quot;allow_boss_raid_mission&quot;:false,&quot;grade_question_restricted&quot;:false,&quot;allow_treasure_signal&quot;:false,&quot;show_challenge_tower_entry&quot;:false,&quot;general_mission_available_for_boss&quot;:true,&quot;audios&quot;:{&quot;map_background_music&quot;:&quot;https://d32j6uwsrra4gx.cloudfront.net/assets/ocean/mainmap-dad1bd38068da203b9afce8ea14a32b968c1dcb375eaa4d9ef06c98ec5fd594e.mp3&quot;,&quot;fight_background_music&quot;:&quot;https://d32j6uwsrra4gx.cloudfront.net/assets/ocean/mapfight-3bbd4ef9736315e2e1fc05425af8e320bae4961c0d77e6f9e75e71f808bafa0d.mp3&quot;,&quot;win_effect_music&quot;:&quot;https://d32j6uwsrra4gx.cloudfront.net/assets/se/answer_correct-881057266660e42bcb819459d793303ff9bd25b13c4aedacf10d0fcd08a4e723.mp3&quot;,&quot;lose_effect_music&quot;:&quot;https://d32j6uwsrra4gx.cloudfront.net/assets/se/answer_wrong-da794b0bb8d91d4a6d6e47ae4d1ac6a3a07ee94c82a7420599eef652357ccb6a.mp3&quot;,&quot;victory_sound_effect&quot;:&quot;https://d32j6uwsrra4gx.cloudfront.net/assets/result_panel/victory-64e5a4ecea3c7472490c25d1257647b07336cd3dc0a9aa04d01831f8cfebddbb.mp3&quot;,&quot;keep_going_sound_effect&quot;:&quot;https://d32j6uwsrra4gx.cloudfront.net/assets/result_panel/keep_going-c1954b2754172f16b89d447966ec7de3189dd8236b9c1c8b2577ec487728cb99.mp3&quot;,&quot;grade_result_sound_effect&quot;:&quot;https://d32j6uwsrra4gx.cloudfront.net/assets/result_panel/result-ee161ad9f8a0dedc1b60d7db4cd0f4779fb4f574247a4ec3f60badd686a4368d.mp3&quot;,&quot;panel_btn_click_sound_effect&quot;:&quot;https://d32j6uwsrra4gx.cloudfront.net/assets/result_panel/button_click-1348d7c1d1bd2761652ec8e083d2f1468406176f85ae7df2a80922ecf109f8ba.mp3&quot;}}"
+                data-react-cache-id="ReactMapManager-0">
+                <div id="audio_container" class="pgo-style-audios-29lfQn"><audio id="map_background_music" loop=""
+                        src="blob:https://www.pagamo.org/b21c83df-0c57-406d-a95e-d6e2578ef97d" type="audio/mpeg"
+                        controlslist="nodownload">Your browser does not support the audio tag.</audio><audio
+                        id="fight_background_music" loop=""
+                        src="blob:https://www.pagamo.org/9376918c-c7a9-4eb8-a5f5-f25352dd6e7c" type="audio/mpeg"
+                        controlslist="nodownload">Your browser does not support the audio tag.</audio><audio
+                        class="win_lose_effect_sound" id="win_effect_music"
+                        src="blob:https://www.pagamo.org/c2e9e5eb-ab1b-4985-8d39-821d9fc4b473" type="audio/mpeg"
+                        controlslist="nodownload">Your browser does not support the audio tag.</audio><audio
+                        class="win_lose_effect_sound" id="lose_effect_music"
+                        src="blob:https://www.pagamo.org/15ee9372-3d79-4264-a9ff-deab7928477f" type="audio/mpeg"
+                        controlslist="nodownload">Your browser does not support the audio tag.</audio><audio
+                        id="victory_sound_effect" src="blob:https://www.pagamo.org/3657496f-a17c-456b-b790-91e0e0ac6ee9"
+                        type="audio/mpeg" controlslist="nodownload">Your browser does not support the audio
+                        tag.</audio><audio id="keep_going_sound_effect"
+                        src="blob:https://www.pagamo.org/9dd5991a-3308-4260-8c72-7c6a14624726" type="audio/mpeg"
+                        controlslist="nodownload">Your browser does not support the audio tag.</audio><audio
+                        id="grade_result_sound_effect"
+                        src="blob:https://www.pagamo.org/7c073fc9-4641-42bc-bc20-9483a9c5a426" type="audio/mpeg"
+                        controlslist="nodownload">Your browser does not support the audio tag.</audio><audio
+                        id="panel_btn_click_sound_effect"
+                        src="blob:https://www.pagamo.org/fbd5cd59-4d6c-4ec2-bd96-4abcc1c71916" type="audio/mpeg"
+                        controlslist="nodownload">Your browser does not support the audio tag.</audio></div>
+                <div>
+                    <div id="all_mode_container" class="no_pull_refresh pgo-style-map-right-side-uc1kHk"
+                        style="z-index: 7;"></div>
+                    <div id="map-side-menu" data-menu-is-open="false" style="z-index: 11;" class="">
+                        <div class="map_side_menu_sprite panel_index_in pgo-style-panel-index-2S_uVl"></div>
+                        <div id="side-map-menu-btn-toggle"
+                            class="map_side_menu_sprite cursor_pointer btn_index_out pgo-style-btn-toggle-1YPukf"
+                            data-da-tracking="ga-open-side-menu"></div>
+                        <div class="pgo-style-menu-title-xFKjFA">功能選單</div>
+                        <div class="pgo-style-btns-container-1f9HGN">
+                            <div class="map_side_menu_sprite panel_top"></div>
+                            <div class="pgo-style-panel-middle-2PPx9H">
+                                <div class="map_side_menu_sprite cursor_pointer btn_mission pgo-style-menu-btn-2Vq8oM"
+                                    data-da-tracking="ga-map-side-menu-mission-book">
+                                    <div class="pgo-style-btn-name-3EDI5p">任務書</div>
+                                </div>
+                            </div>
+                            <div class="pgo-style-panel-middle-2PPx9H">
+                                <div class="map_side_menu_sprite cursor_pointer btn_content pgo-style-menu-btn-2Vq8oM"
+                                    data-da-tracking="ga-map-side-menu-content">
+                                    <div class="pgo-style-btn-name-3EDI5p">自選章節</div>
+                                </div>
+                            </div>
+                            <div class="pgo-style-panel-middle-2PPx9H">
+                                <div class="map_side_menu_sprite cursor_pointer btn_crafting pgo-style-menu-btn-2Vq8oM"
+                                    data-da-tracking="ga-map-side-menu-crafting">
+                                    <div class="pgo-style-btn-name-3EDI5p">鍛造之鎚</div>
+                                </div>
+                            </div>
+                            <div class="map_side_menu_sprite panel_bottom"></div>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        preventPullToRefresh();
+        showLoadingEffect();
+
+        var snapper = (function () {
+            var $titleBar = $('#title_bar'), $nav = $('#title_bar ul.nav');
+            var leftOffset, rightOffset;
+
+            return createSnapMenuToggle({
+                element: document.getElementById('menu-snapper'),
+                touchToDrag: false,
+                minPosition: -200,
+            }, $('#menu-toggle'), {
+                check: function () {
+                    if (leftOffset == null) {
+                        leftOffset = $nav.width() + $nav.offset().left;
+                        rightOffset = $nav.find('#menuLangChoose').offset().left - $titleBar.width();
+                    }
+                    return leftOffset >= $titleBar.width() + rightOffset;
+                },
+                show: function () {
+                    $('li#menuLangChoose').attr('data-menu-hidden', false);
+                    $('.language.nav-action-logo').removeClass('hide');
+                    $('#menuLangChoose .navigation_sprite.map_nav_style').toggleClass('sidebar_dropdownlist frame').text('繁體中文');
+                    $nav.hide();
+                },
+                hide: function () {
+                    $('li#menuLangChoose').attr('data-menu-hidden', true);
+                    $('.language.nav-action-logo').addClass('hide');
+                    $('#menuLangChoose .navigation_sprite.map_nav_style').toggleClass('sidebar_dropdownlist frame').text('繁中');
+                    $nav.show();
+                }
+            });
+        })();
+        $('#title_bar').click(closeHexagonPopup);
+        $('#menu_container>ul').html($('#title_bar .nav').html());
+        $('#menu_container li:not(.dropdown)').click(function () { snapper.close(); });
+        $(document).ready(function () {
+            setTimeout(function () { $(window).trigger('resize'); }, 3000);
+            if (themeMgr.currentTheme == "ocean")
+                $('#title_bar li[data-toggle="tooltip"]').tooltip({ container: 'body', placement: 'bottom', animation: false });
+            $('.public_msg_wrapper').find('.public_msg_icon, .public_msg_btn').click(function () {
+                mapReactManager.setMyMessagesOpen(true);
+            });
+            replaceFavicon();
+        });
+    </script>
+
+
+    <div class="portal-animation-fade-in"></div>
+    <div class="portal-animation-fade-in"></div>
+    <div class="portal-animation-fade-in"></div>
+    <div class="portal-animation-fade-in"></div>
+    <div class="portal-animation-fade-in"></div>
+    <div class="portal-animation-fade-in"></div>
+    <div class="portal-animation-fade-in">
+        <div class="ReactModal__Overlay ReactModal__Overlay--after-open overlay-animation-slide"
+            style="position: fixed; inset: 0px; background-color: rgba(0, 0, 0, 0.8); z-index: 1060;">
+            <div class="ReactModal__Content ReactModal__Content--after-open" tabindex="-1" role="dialog"
+                aria-label="Modal"
+                style="position: absolute; inset: 50% auto auto 50%; border: none; background: transparent; overflow: hidden; border-radius: 4px; outline: none; padding: 0px; box-sizing: border-box; user-select: none; transform: translate(-50%, -50%); display: table; width: 100%; height: 100%;">
+                <div id="answer-panel-wrapper" class="pgo-style-answer-panel-wrapper-a0Fsxu" data-boss-battle="false"
+                    data-gtm-vis-recent-on-screen-7068991_523="176505" data-gtm-vis-first-on-screen-7068991_523="176505"
+                    data-gtm-vis-total-visible-time-7068991_523="100" data-gtm-vis-has-fired-7068991_523="1">
+                    <div id="answer-panel" class="attack_modal_reading_sprite panel pgo-style-answer-panel-1wzE6v"
+                        data-modal-mode="true" data-boss-battle="false" data-question-id="2744748"
+                        style="z-index: 1060; transform: scale(0.877569) translate(-50%, -50%); transform-origin: 0px 0px;">
+                        <div class="attack_modal_sprite btn_exit cursor_pointer pgo-style-exit-button-1-aQN0"
+                            data-extended-answer-panel="false"></div>
+                        <div class="pgo-style-clock-1JHy5B">
+                            <div class="pgo-style-clock-number-2-E3v-">0</div>
+                            <div class="pgo-style-clock-number-2-E3v-">0</div>
+                            <div class="pgo-style-clock-number-2-E3v-">0</div>
+                            <div class="pgo-style-clock-number-2-E3v-">0</div>
+                            <div class="pgo-style-clock-number-2-E3v-">0</div>
+                            <div class="pgo-style-clock-number-2-E3v-">0</div>
+                        </div>
+                        <div class="pgo-style-question-area-2If0h0" data-question-type="choice" data-input-type="choice"
+                            data-with-sponsor-and-hint="false" data-exam-mode="false"
+                            style="width: 558px; padding-left: 0px;">
+                            <div id="answer-panel-question-with-input">
+                                <div class="answer-panel-question-content" data-self-control="false"
+                                    data-with-sponsor-and-hint="false" data-input-type="choice" data-show-detail="false"
+                                    data-exam-mode="false" style="font-size: 20px;">
+                                    <div class="question-iframe-container pgo-style-question-content-1iaDNm">
+                                        <div class="pgo-style-question-content-wrapper-vTwh8z">
+                                            <div>下列關於「子網路」的相關敘述何者錯誤？</div>
+                                        </div>
+                                    </div>
+                                    <div class="pgo-style-question-selections-TbE9eE">
+                                        <div></div>
+                                        <div class="question-iframe-container pgo-style-selection-13WO94"
+                                            data-org-position="C" data-correct="">
+                                            <div class="pgo-style-selection-choice-rrQTIw">A</div>
+                                            <div class="pgo-style-selection-content-1JGhEL">
+                                                <div>大多現今無線電話通常不會使用子網</div>
+                                            </div>
+                                        </div>
+                                        <div class="question-iframe-container pgo-style-selection-13WO94"
+                                            data-org-position="A" data-correct="">
+                                            <div class="pgo-style-selection-choice-rrQTIw">B</div>
+                                            <div class="pgo-style-selection-content-1JGhEL">
+                                                <div>它能表示這個網路或子網路之中可以使用的IP位址有多少</div>
+                                            </div>
+                                        </div>
+                                        <div class="question-iframe-container pgo-style-selection-13WO94"
+                                            data-org-position="B" data-correct="">
+                                            <div class="pgo-style-selection-choice-rrQTIw">C</div>
+                                            <div class="pgo-style-selection-content-1JGhEL">
+                                                <div>若將此用於保密的通信是非常安全的</div>
+                                            </div>
+                                        </div>
+                                        <div class="question-iframe-container pgo-style-selection-13WO94"
+                                            data-org-position="D" data-correct="">
+                                            <div class="pgo-style-selection-choice-rrQTIw">D</div>
+                                            <div class="pgo-style-selection-content-1JGhEL">
+                                                <div>對駭客來說，一日網站的用途，包括建立易於擴充又難以追查的動態指揮控制(Command and Control,
+                                                    C&amp;C)架構，也可架設獨立子網域來發動郵件攻擊</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                </div>
+                                <div data-question-type="choice" data-selection-count="4" data-exam-mode="false"
+                                    class="input-group-area pgo-style-inputs-area-2w2qDZ">
+                                    <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+                                        data-real-choice="C">A</div>
+                                    <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+                                        data-real-choice="A">B</div>
+                                    <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+                                        data-real-choice="B">C</div>
+                                    <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+                                        data-real-choice="D">D</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="attack_modal_reading_sprite error_report_S cursor_pointer pgo-style-error-report-button-1RQaWX"
+                            data-input-type="choice"></div>
+                        <div class="pgo-style-submit-button-pASHWz" data-extended-answer-panel="false">
+                            <div id="answer-panel-submit-button"
+                                class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW">送出</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=""></div>
+    <div class="portal-animation-fade-in"></div>
+    <div class="portal-animation-fade-in"></div>
+    <script type="text/javascript"
+        id="">!function (b, e, f, g, a, c, d) { b.fbq || (a = b.fbq = function () { a.callMethod ? a.callMethod.apply(a, arguments) : a.queue.push(arguments) }, b._fbq || (b._fbq = a), a.push = a, a.loaded = !0, a.version = "2.0", a.queue = [], c = e.createElement(f), c.async = !0, c.src = g, d = e.getElementsByTagName(f)[0], d.parentNode.insertBefore(c, d)) }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js"); fbq("init", "2662310930477093"); fbq("set", "agent", "tmgoogletagmanager", "2662310930477093"); fbq("track", "PageView");</script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=2662310930477093&amp;ev=PageView&amp;noscript=1"></noscript>
+    <script type="text/javascript"
+        id="">(function (a, e, b, f, g, c, d) { a[b] = a[b] || function () { (a[b].q = a[b].q || []).push(arguments) }; c = e.createElement(f); c.async = 1; c.src = "https://www.clarity.ms/tag/" + g; d = e.getElementsByTagName(f)[0]; d.parentNode.insertBefore(c, d) })(window, document, "clarity", "script", "435j3u0fzo"); clarity("set", "user_id", google_tag_manager["GTM-WNZJFJ6"].macro(7)); clarity("set", "any_subscription", google_tag_manager["GTM-WNZJFJ6"].macro(8)); clarity("set", "course_name", google_tag_manager["GTM-WNZJFJ6"].macro(9)); clarity("set", "gc_id", google_tag_manager["GTM-WNZJFJ6"].macro(10)); clarity("set", "gender", google_tag_manager["GTM-WNZJFJ6"].macro(11));
+            clarity("set", "grade", google_tag_manager["GTM-WNZJFJ6"].macro(12)); clarity("set", "teacher", google_tag_manager["GTM-WNZJFJ6"].macro(13)); clarity("set", "school_name", google_tag_manager["GTM-WNZJFJ6"].macro(14)); clarity("set", "parent_unique_id", google_tag_manager["GTM-WNZJFJ6"].macro(15));</script>
+    <iframe id="intercom-frame"
+        style="position: absolute !important; opacity: 0 !important; width: 1px !important; height: 1px !important; top: 0 !important; left: 0 !important; border: none !important; display: block !important; z-index: -1 !important; pointer-events: none;"
+        aria-hidden="true" tabindex="-1" title="Intercom"></iframe>
+    <div class="intercom-lightweight-app">
+        <style id="intercom-lightweight-app-style" type="text/css">
+            @keyframes intercom-lightweight-app-launcher {
+                from {
+                    opacity: 0;
+                    transform: scale(0.5);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+
+            @keyframes intercom-lightweight-app-gradient {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            @keyframes intercom-lightweight-app-messenger {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .intercom-lightweight-app {
+                position: fixed;
+                z-index: 2147483001;
+                width: 0;
+                height: 0;
+                font-family: intercom-font, "Helvetica Neue", "Apple Color Emoji", Helvetica, Arial, sans-serif;
+            }
+
+            .intercom-lightweight-app-gradient {
+                position: fixed;
+                z-index: 2147483002;
+                width: 500px;
+                height: 500px;
+                bottom: 0;
+                right: 0;
+                pointer-events: none;
+                background: radial-gradient(ellipse at bottom right,
+                        rgba(29, 39, 54, 0.16) 0%,
+                        rgba(29, 39, 54, 0) 72%);
+                animation: intercom-lightweight-app-gradient 200ms ease-out;
+            }
+
+            .intercom-lightweight-app-launcher {
+                position: fixed;
+                z-index: 2147483003;
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: #e16153;
+                cursor: pointer;
+                box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.06), 0 2px 32px 0 rgba(0, 0, 0, 0.16);
+                animation: intercom-lightweight-app-launcher 250ms ease;
+            }
+
+            .intercom-lightweight-app-launcher:focus {
+                outline: none;
+
+            }
+
+            .intercom-lightweight-app-launcher-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 60px;
+                height: 60px;
+                transition: transform 100ms linear, opacity 80ms linear;
+            }
+
+            .intercom-lightweight-app-launcher-icon-open {
+
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
+
+            }
+
+            .intercom-lightweight-app-launcher-icon-open svg {
+                width: 28px;
+                height: 32px;
+            }
+
+            .intercom-lightweight-app-launcher-icon-open svg path {
+                fill: rgb(255, 255, 255);
+            }
+
+            .intercom-lightweight-app-launcher-icon-self-serve {
+
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
+
+            }
+
+            .intercom-lightweight-app-launcher-icon-self-serve svg {
+                height: 56px;
+            }
+
+            .intercom-lightweight-app-launcher-icon-self-serve svg path {
+                fill: rgb(255, 255, 255);
+            }
+
+            .intercom-lightweight-app-launcher-custom-icon-open {
+                max-height: 36px;
+                max-width: 36px;
+
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
+
+            }
+
+            .intercom-lightweight-app-launcher-icon-minimize {
+
+                opacity: 0;
+                transform: rotate(-60deg) scale(0);
+
+            }
+
+            .intercom-lightweight-app-launcher-icon-minimize svg {
+                width: 16px;
+            }
+
+            .intercom-lightweight-app-launcher-icon-minimize svg path {
+                fill: rgb(255, 255, 255);
+            }
+
+            .intercom-lightweight-app-messenger {
+                position: fixed;
+                z-index: 2147483003;
+                overflow: hidden;
+                background-color: white;
+                animation: intercom-lightweight-app-messenger 250ms ease-out;
+
+                width: 376px;
+                height: calc(100% - 120px);
+                max-height: 704px;
+                min-height: 250px;
+                right: 20px;
+                bottom: 100px;
+                box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
+                border-radius: 8px;
+
+            }
+
+            .intercom-lightweight-app-messenger-header {
+                height: 75px;
+                background: linear-gradient(135deg,
+                        rgb(225, 97, 83) 0%,
+                        rgb(175, 45, 31) 100%);
+            }
+
+            @media print {
+                .intercom-lightweight-app {
+                    display: none;
+                }
+            }
+        </style>
+        <div class="intercom-lightweight-app-launcher intercom-launcher" role="button" tabindex="0"
+            aria-label="開啟 Intercom Messenger" aria-live="polite">
+            <div class="intercom-lightweight-app-launcher-icon intercom-lightweight-app-launcher-icon-open"><svg
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 32">
+                    <path
+                        d="M28 32s-4.714-1.855-8.527-3.34H3.437C1.54 28.66 0 27.026 0 25.013V3.644C0 1.633 1.54 0 3.437 0h21.125c1.898 0 3.437 1.632 3.437 3.645v18.404H28V32zm-4.139-11.982a.88.88 0 00-1.292-.105c-.03.026-3.015 2.681-8.57 2.681-5.486 0-8.517-2.636-8.571-2.684a.88.88 0 00-1.29.107 1.01 1.01 0 00-.219.708.992.992 0 00.318.664c.142.128 3.537 3.15 9.762 3.15 6.226 0 9.621-3.022 9.763-3.15a.992.992 0 00.317-.664 1.01 1.01 0 00-.218-.707z">
+                    </path>
+                </svg></div>
+            <div class="intercom-lightweight-app-launcher-icon intercom-lightweight-app-launcher-icon-minimize"><svg
+                    viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M.116 4.884l1.768-1.768L8 9.232l6.116-6.116 1.768 1.768L8 12.768.116 4.884z"></path>
+                </svg></div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade in"></div>
+    <div data-react-modal-body-trap="" tabindex="0" style="position: absolute; opacity: 0;"></div>
+</body>
+<style id="stylus-1" type="text/css" class="stylus">
+    .panel {
+        user-select: text !important
+    }
+</style>
+<editor-card style="position:absolute;top:0px;left:0px;z-index:auto;display: block !important">
+    <div dir="auto" style="all: initial;">
+        <div
+            style="color: initial; font: initial; font-feature-settings: initial; font-kerning: initial; font-optical-sizing: initial; font-synthesis: initial; font-variation-settings: initial; forced-color-adjust: initial; text-orientation: initial; text-rendering: initial; -webkit-font-smoothing: initial; -webkit-locale: initial; -webkit-text-orientation: initial; -webkit-writing-mode: initial; writing-mode: initial; zoom: initial; accent-color: initial; place-content: initial; place-items: initial; place-self: initial; alignment-baseline: initial; animation: initial; app-region: initial; appearance: initial; aspect-ratio: initial; backdrop-filter: initial; backface-visibility: initial; background: initial; background-blend-mode: initial; baseline-shift: initial; block-size: initial; border-block: initial; border: initial; border-radius: initial; border-collapse: initial; border-end-end-radius: initial; border-end-start-radius: initial; border-inline: initial; border-start-end-radius: initial; border-start-start-radius: initial; bottom: 0px; box-shadow: initial; box-sizing: initial; break-after: initial; break-before: initial; break-inside: initial; buffered-rendering: initial; caption-side: initial; caret-color: initial; clear: initial; clip: initial; clip-path: initial; clip-rule: initial; color-interpolation: initial; color-interpolation-filters: initial; color-rendering: initial; color-scheme: initial; columns: initial; column-fill: initial; gap: initial; column-rule: initial; column-span: initial; contain: initial; contain-intrinsic-block-size: initial; contain-intrinsic-size: initial; contain-intrinsic-inline-size: initial; content: initial; content-visibility: initial; counter-increment: initial; counter-reset: initial; counter-set: initial; cursor: initial; cx: initial; cy: initial; d: initial; display: flex; dominant-baseline: initial; empty-cells: initial; fill: initial; fill-opacity: initial; fill-rule: initial; filter: initial; flex: initial; flex-flow: column-reverse; float: initial; flood-color: initial; flood-opacity: initial; grid: initial; grid-area: initial; height: initial; hyphens: initial; image-orientation: initial; image-rendering: initial; inline-size: initial; inset-block: initial; inset-inline: initial; isolation: initial; left: initial; letter-spacing: initial; lighting-color: initial; line-break: initial; list-style: initial; margin-block: initial; margin: 1em; margin-inline: initial; marker: initial; mask: initial; mask-type: initial; max-block-size: initial; max-height: initial; max-inline-size: initial; max-width: initial; min-block-size: initial; min-height: initial; min-inline-size: initial; min-width: initial; mix-blend-mode: initial; object-fit: initial; object-position: initial; offset: initial; opacity: initial; order: initial; origin-trial-test-property: initial; orphans: initial; outline: initial; outline-offset: initial; overflow-anchor: initial; overflow-clip-margin: initial; overflow-wrap: initial; overflow: initial; overscroll-behavior-block: initial; overscroll-behavior-inline: initial; overscroll-behavior: initial; padding-block: initial; padding: initial; padding-inline: initial; page: initial; page-orientation: initial; paint-order: initial; perspective: initial; perspective-origin: initial; pointer-events: initial; position: fixed; quotes: initial; r: initial; resize: initial; right: 0px; ruby-position: initial; rx: initial; ry: initial; scroll-behavior: initial; scroll-margin-block: initial; scroll-margin: initial; scroll-margin-inline: initial; scroll-padding-block: initial; scroll-padding: initial; scroll-padding-inline: initial; scroll-snap-align: initial; scroll-snap-stop: initial; scroll-snap-type: initial; scrollbar-gutter: initial; shape-image-threshold: initial; shape-margin: initial; shape-outside: initial; shape-rendering: initial; size: initial; speak: initial; stop-color: initial; stop-opacity: initial; stroke: initial; stroke-dasharray: initial; stroke-dashoffset: initial; stroke-linecap: initial; stroke-linejoin: initial; stroke-miterlimit: initial; stroke-opacity: initial; stroke-width: initial; tab-size: initial; table-layout: initial; text-align: initial; text-align-last: initial; text-anchor: initial; text-combine-upright: initial; text-decoration: initial; text-decoration-skip-ink: initial; text-emphasis: initial; text-emphasis-position: initial; text-indent: initial; text-overflow: initial; text-shadow: initial; text-size-adjust: initial; text-transform: initial; text-underline-offset: initial; text-underline-position: initial; top: initial; touch-action: initial; transform: initial; transform-box: initial; transform-origin: initial; transform-style: initial; transition: initial; user-select: initial; vector-effect: initial; vertical-align: initial; visibility: initial; border-spacing: initial; -webkit-border-image: initial; -webkit-box-align: initial; -webkit-box-decoration-break: initial; -webkit-box-direction: initial; -webkit-box-flex: initial; -webkit-box-ordinal-group: initial; -webkit-box-orient: initial; -webkit-box-pack: initial; -webkit-box-reflect: initial; -webkit-highlight: initial; -webkit-hyphenate-character: initial; -webkit-line-break: initial; -webkit-line-clamp: initial; -webkit-mask-box-image: initial; -webkit-mask: initial; -webkit-mask-composite: initial; -webkit-perspective-origin-x: initial; -webkit-perspective-origin-y: initial; -webkit-print-color-adjust: initial; -webkit-rtl-ordering: initial; -webkit-ruby-position: initial; -webkit-tap-highlight-color: initial; -webkit-text-combine: initial; -webkit-text-decorations-in-effect: initial; -webkit-text-fill-color: initial; -webkit-text-security: initial; -webkit-text-stroke: initial; -webkit-transform-origin-x: initial; -webkit-transform-origin-y: initial; -webkit-transform-origin-z: initial; -webkit-user-drag: initial; -webkit-user-modify: initial; white-space: initial; widows: initial; width: initial; will-change: initial; word-break: initial; word-spacing: initial; x: initial; y: initial; z-index: 2147483647;">
+        </div>
+        <div
+            style="color: initial; font: initial; font-feature-settings: initial; font-kerning: initial; font-optical-sizing: initial; font-synthesis: initial; font-variation-settings: initial; forced-color-adjust: initial; text-orientation: initial; text-rendering: initial; -webkit-font-smoothing: initial; -webkit-locale: initial; -webkit-text-orientation: initial; -webkit-writing-mode: initial; writing-mode: initial; zoom: initial; accent-color: initial; place-content: initial; place-items: initial; place-self: initial; alignment-baseline: initial; animation: initial; app-region: initial; appearance: initial; aspect-ratio: initial; backdrop-filter: initial; backface-visibility: initial; background: initial; background-blend-mode: initial; baseline-shift: initial; block-size: initial; border-block: initial; border: initial; border-radius: initial; border-collapse: initial; border-end-end-radius: initial; border-end-start-radius: initial; border-inline: initial; border-start-end-radius: initial; border-start-start-radius: initial; inset: initial; box-shadow: initial; box-sizing: initial; break-after: initial; break-before: initial; break-inside: initial; buffered-rendering: initial; caption-side: initial; caret-color: initial; clear: initial; clip: initial; clip-path: initial; clip-rule: initial; color-interpolation: initial; color-interpolation-filters: initial; color-rendering: initial; color-scheme: initial; columns: initial; column-fill: initial; gap: initial; column-rule: initial; column-span: initial; contain: initial; contain-intrinsic-block-size: initial; contain-intrinsic-size: initial; contain-intrinsic-inline-size: initial; content: initial; content-visibility: initial; counter-increment: initial; counter-reset: initial; counter-set: initial; cursor: initial; cx: initial; cy: initial; d: initial; display: initial; dominant-baseline: initial; empty-cells: initial; fill: initial; fill-opacity: initial; fill-rule: initial; filter: initial; flex: initial; flex-flow: initial; float: initial; flood-color: initial; flood-opacity: initial; grid: initial; grid-area: initial; height: initial; hyphens: initial; image-orientation: initial; image-rendering: initial; inline-size: initial; inset-block: initial; inset-inline: initial; isolation: initial; letter-spacing: initial; lighting-color: initial; line-break: initial; list-style: initial; margin-block: initial; margin: initial; margin-inline: initial; marker: initial; mask: initial; mask-type: initial; max-block-size: initial; max-height: initial; max-inline-size: initial; max-width: initial; min-block-size: initial; min-height: initial; min-inline-size: initial; min-width: initial; mix-blend-mode: initial; object-fit: initial; object-position: initial; offset: initial; opacity: initial; order: initial; origin-trial-test-property: initial; orphans: initial; outline: initial; outline-offset: initial; overflow-anchor: initial; overflow-clip-margin: initial; overflow-wrap: initial; overflow: initial; overscroll-behavior-block: initial; overscroll-behavior-inline: initial; overscroll-behavior: initial; padding-block: initial; padding: initial; padding-inline: initial; page: initial; page-orientation: initial; paint-order: initial; perspective: initial; perspective-origin: initial; pointer-events: initial; position: absolute; quotes: initial; r: initial; resize: initial; ruby-position: initial; rx: initial; ry: initial; scroll-behavior: initial; scroll-margin-block: initial; scroll-margin: initial; scroll-margin-inline: initial; scroll-padding-block: initial; scroll-padding: initial; scroll-padding-inline: initial; scroll-snap-align: initial; scroll-snap-stop: initial; scroll-snap-type: initial; scrollbar-gutter: initial; shape-image-threshold: initial; shape-margin: initial; shape-outside: initial; shape-rendering: initial; size: initial; speak: initial; stop-color: initial; stop-opacity: initial; stroke: initial; stroke-dasharray: initial; stroke-dashoffset: initial; stroke-linecap: initial; stroke-linejoin: initial; stroke-miterlimit: initial; stroke-opacity: initial; stroke-width: initial; tab-size: initial; table-layout: initial; text-align: initial; text-align-last: initial; text-anchor: initial; text-combine-upright: initial; text-decoration: initial; text-decoration-skip-ink: initial; text-emphasis: initial; text-emphasis-position: initial; text-indent: initial; text-overflow: initial; text-shadow: initial; text-size-adjust: initial; text-transform: initial; text-underline-offset: initial; text-underline-position: initial; touch-action: initial; transform: initial; transform-box: initial; transform-origin: initial; transform-style: initial; transition: initial; user-select: initial; vector-effect: initial; vertical-align: initial; visibility: initial; border-spacing: initial; -webkit-border-image: initial; -webkit-box-align: initial; -webkit-box-decoration-break: initial; -webkit-box-direction: initial; -webkit-box-flex: initial; -webkit-box-ordinal-group: initial; -webkit-box-orient: initial; -webkit-box-pack: initial; -webkit-box-reflect: initial; -webkit-highlight: initial; -webkit-hyphenate-character: initial; -webkit-line-break: initial; -webkit-line-clamp: initial; -webkit-mask-box-image: initial; -webkit-mask: initial; -webkit-mask-composite: initial; -webkit-perspective-origin-x: initial; -webkit-perspective-origin-y: initial; -webkit-print-color-adjust: initial; -webkit-rtl-ordering: initial; -webkit-ruby-position: initial; -webkit-tap-highlight-color: initial; -webkit-text-combine: initial; -webkit-text-decorations-in-effect: initial; -webkit-text-fill-color: initial; -webkit-text-security: initial; -webkit-text-stroke: initial; -webkit-transform-origin-x: initial; -webkit-transform-origin-y: initial; -webkit-transform-origin-z: initial; -webkit-user-drag: initial; -webkit-user-modify: initial; white-space: initial; widows: initial; width: initial; will-change: initial; word-break: initial; word-spacing: initial; x: initial; y: initial; z-index: 2147483647;">
+            <link rel="stylesheet" href="chrome-extension://gpaiobkfhnonedkhhfjpmhdalgeoebfa/fonts/fabric-icons.css">
+            <div style="all: initial;"></div>
+        </div>
+    </div>
+</editor-card>
+
+</html>

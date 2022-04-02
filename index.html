@@ -1,133 +1,448 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Google Sheets API Quickstart</title>
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    <p>Google Sheets API Quickstart</p>
+<html class="jf-inactive">
 
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button" style="display: none;">Authorize</button>
-    <button id="signout_button" style="display: none;">Sign Out</button>
+<head>
+  <!-- <title>Google Sheets API Quickstart</title> -->
+  <title>資安闖天關刷題 - 2022 GiCS 尋找資安女婕思 - 中興大學資訊社</title>
+  <meta charset="utf-8" />
+  <style data-merge-styles="true"></style>
+  <link rel="stylesheet"
+    href="//d32j6uwsrra4gx.cloudfront.net/assets/application-3c64c6e5cc4b783d9b350e8ab1892881e621ebc2338250bf6dc2cdf9e457ff05.css">
+  <link rel="stylesheet" href="//d32j6uwsrra4gx.cloudfront.net/packs/css/map_components-c00cef7a.chunk.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <style>
+    .panel {
+      user-select: text !important
+    }
+  </style>
+</head>
 
-    <pre id="content" style="white-space: pre-wrap;"></pre>
+<body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
+  theme="ocean">
+  <div class="ui top fixed menu">
+    <div class="item">
+      <img src="//i.imgur.com/6LcYa68.png">
+    </div>
+    <div class="item">
+      <!-- <p>Google Sheets API Quickstart</p> -->
+      <h1 class="ui header">資安闖天關刷題 - 2022 GiCS 尋找資安女婕思</h1>
+    </div>
+    <div class="right menu">
+      <!--Add buttons to initiate auth sequence and sign out-->
+      <button class="positive ui button" id="authorize_button" style="display: none;">
+        <h5>登入 Google 帳號</h5>
+      </button>
+      <button class="negative ui button" id="signout_button" style="display: none;">
+        <h5>登出 Google 帳號</h5>
+      </button>
+    </div>
+  </div>
+  <div style="height:50px"></div>
+  <div class="ui inverted segment" style="height:640px"></div>
+  <pre id="content" style="white-space:pre-wrap"></pre>
+  <div id="answer-panel" class="attack_modal_reading_sprite panel pgo-style-answer-panel-1wzE6v" data-modal-mode="true"
+    data-boss-battle="false" style="top:52%">
+    <div class="pgo-style-clock-1JHy5B">
+      <div class="pgo-style-clock-number-2-E3v-">?</div>
+      <div class="pgo-style-clock-number-2-E3v-">?</div>
+      <div class="pgo-style-clock-number-2-E3v-">?</div>
+      <div class="pgo-style-clock-number-2-E3v-">?</div>
+      <div class="pgo-style-clock-number-2-E3v-">?</div>
+      <div class="pgo-style-clock-number-2-E3v-">?</div>
+    </div>
+    <div class="pgo-style-question-area-2If0h0" data-question-type="choice" data-input-type="choice"
+      data-with-sponsor-and-hint="false" data-exam-mode="false">
+      <div id="answer-panel-question-with-input">
+        <div class="answer-panel-question-content" data-self-control="false" data-with-sponsor-and-hint="false"
+          data-input-type="choice" data-show-detail="false" data-exam-mode="false">
+          <div class="ui active dimmer" id="loader">
+            <div class="ui text loader">題目載入中</div>
+          </div>
+          <div class="question-iframe-container pgo-style-question-content-1iaDNm">
+            <textarea rows="2" style="width:525px;border:0" name="entry.892031688"
+              onchange='this.style.height="";this.style.height=this.scrollHeight+"px"'
+              class="pgo-style-question-content-wrapper-vTwh8z" id="Question">
+              下列關於「子網路」的相關敘述何者錯誤？
+            </textarea>
+          </div>
+          <div class="pgo-style-question-selections-TbE9eE">
+            <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="A">
+              <div class="one wide column">
+                <div class="pgo-style-selection-choice-rrQTIw">A</div>
+              </div>
+              <div class="fifteen wide column">
+                <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                  class="pgo-style-selection-content-1JGhEL" name="entry.977089316" id="choiceA">
+                  大多現今無線電話通常不會使用子網
+                </textarea>
+              </div>
+            </div>
+            <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="B">
+              <div class="one wide column">
+                <div class="pgo-style-selection-choice-rrQTIw">B</div>
+              </div>
+              <div class="fifteen wide column">
+                <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                  class="pgo-style-selection-content-1JGhEL" name="entry.657500498" id="choiceB">
+                  它能表示這個網路或子網路之中可以使用的IP位址有多少
+                </textarea>
+              </div>
+            </div>
+            <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="C">
+              <div class="one wide column">
+                <div class="pgo-style-selection-choice-rrQTIw">C</div>
+              </div>
+              <div class="fifteen wide column">
+                <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                  class="pgo-style-selection-content-1JGhEL" name="entry.1532072947" id="choiceC">
+                  若將此用於保密的通信是非常安全的
+                </textarea>
+              </div>
+            </div>
+            <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="D">
+              <div class="one wide column">
+                <div class="pgo-style-selection-choice-rrQTIw">D</div>
+              </div>
+              <div class="fifteen wide column">
+                <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                  class="pgo-style-selection-content-1JGhEL" name="entry.1090409630" id="choiceD">
+                  對駭客來說，一日網站的用途，包括建立易於擴充又難以追查的動態指揮控制(Command and Control, C&amp;C)架構，也可架設獨立子網域來發動郵件攻擊
+                </textarea>
+              </div>
+            </div>
+          </div>
+          <div></div>
+        </div>
+        <div data-question-type="choice" data-selection-count="4" data-exam-mode="false"
+          class="input-group-area pgo-style-inputs-area-2w2qDZ">
+          <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+            data-real-choice="A" id="buttonA">A</div>
+          <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+            data-real-choice="B" id="buttonB">B</div>
+          <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+            data-real-choice="C" id="buttonC">C</div>
+          <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+            data-real-choice="D" id="buttonD">D</div>
+          <div class="ui inverted link list">
+            <a class="item" href="//docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw"
+              target="_blank">本表單會自動匯入 Google 試算表</a>
+          </div>
+        </div>
+        <input id='_submit' style="border:0" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
+          form="表單" type="submit" value="送出">
+      </div>
+    </div>
+    <div class="attack_modal_reading_sprite error_report_S cursor_pointer pgo-style-error-report-button-1RQaWX"
+      data-input-type="choice"></div>
+    <div class="pgo-style-submit-button-pASHWz" data-extended-answer-panel="false">
+      <div id="nextQuestion" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW">
+        下一題</div>
+    </div>
+  </div>
+  <iframe name="transFrame" id="transFrame" tabindex="-1" aria-hidden="true"
+    style="width:1px;height:1px;position:absolute;top:-100px;display:none"></iframe>
+  <div class="ui section">
+    <div class="ui inverted teal segment">
+      <div class="ui container">
+        <form class="ui form" id="表單" method="POST" target="transFrame"
+          action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse">
+          <h3>新增題目</h3>
+          <div class="field">
+            <textarea placeholder="題目" name="entry.892031688" rows="2" spellcheck="false"
+              data-ms-editor="true"></textarea>
+          </div>
+          <div class="field">
+            <input placeholder="正確答案" name="entry.977089316" type="text" spellcheck="false" data-ms-editor="true">
+          </div>
+          <div class="field">
+            <input placeholder="錯誤答案1" name="entry.657500498" type="text" spellcheck="false" data-ms-editor="true">
+          </div>
+          <div class="field">
+            <input placeholder="錯誤答案2" name="entry.1532072947" type="text" spellcheck="false" data-ms-editor="true">
+          </div>
+          <div class="field">
+            <input placeholder="錯誤答案3" name="entry.1090409630" type="text" spellcheck="false" data-ms-editor="true">
+          </div>
+          <div class="field">
+            <span class="ui inverted link list">
+              <a class="item" href="//docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw"
+                target="_blank">本表單會自動匯入 Google 試算表</a>
+            </span>
+          </div>
+        </form>
+        <input id='submit' class="ui primary button" form="表單" type="submit" value="送出">
+        <button id='clear' class="ui secondary button">清除</button>
+      </div>
+    </div>
+  </div>
+  <div class="ui inverted vertical footer segment">
+    <div class="ui center aligned container">
+      <div class="ui stackable grid">
+        <div class="column">
+          <div class="ui inverted link list">
+            <a class="item" href="//ppt.cc/fA9uAx" target="_blank" title="點我看組織章程">© 2022 NCHUIT, Club</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script charset="utf-8" src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script charset="utf-8" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <script type="text/javascript">
+    const audios = {
+      "map_background_music": "https://d32j6uwsrra4gx.cloudfront.net/assets/ocean/mainmap-dad1bd38068da203b9afce8ea14a32b968c1dcb375eaa4d9ef06c98ec5fd594e.mp3",
+      "fight_background_music": "https://d32j6uwsrra4gx.cloudfront.net/assets/ocean/mapfight-3bbd4ef9736315e2e1fc05425af8e320bae4961c0d77e6f9e75e71f808bafa0d.mp3",
+      "win_effect_music": "https://d32j6uwsrra4gx.cloudfront.net/assets/se/answer_correct-881057266660e42bcb819459d793303ff9bd25b13c4aedacf10d0fcd08a4e723.mp3",
+      "lose_effect_music": "https://d32j6uwsrra4gx.cloudfront.net/assets/se/answer_wrong-da794b0bb8d91d4a6d6e47ae4d1ac6a3a07ee94c82a7420599eef652357ccb6a.mp3",
+      "victory_sound_effect": "https://d32j6uwsrra4gx.cloudfront.net/assets/result_panel/victory-64e5a4ecea3c7472490c25d1257647b07336cd3dc0a9aa04d01831f8cfebddbb.mp3",
+      "keep_going_sound_effect": "https://d32j6uwsrra4gx.cloudfront.net/assets/result_panel/keep_going-c1954b2754172f16b89d447966ec7de3189dd8236b9c1c8b2577ec487728cb99.mp3",
+      "grade_result_sound_effect": "https://d32j6uwsrra4gx.cloudfront.net/assets/result_panel/result-ee161ad9f8a0dedc1b60d7db4cd0f4779fb4f574247a4ec3f60badd686a4368d.mp3",
+      "panel_btn_click_sound_effect": "https://d32j6uwsrra4gx.cloudfront.net/assets/result_panel/button_click-1348d7c1d1bd2761652ec8e083d2f1468406176f85ae7df2a80922ecf109f8ba.mp3"
+    };
+    const entry = {
+      題目: 'entry.892031688',
+      正確答案: 'entry.977089316',
+      錯誤答案1: 'entry.657500498',
+      錯誤答案2: 'entry.1532072947',
+      錯誤答案3: 'entry.1090409630'
+    }
 
-    <script type="text/javascript">
-      // Client ID and API key from the Developer Console
-      var CLIENT_ID = '289902636224-oro06s681gdgk1kqrv8o1oca2shocfr4.apps.googleusercontent.com';
-      var API_KEY = 'AIzaSyCRfe3-dnm9GGMH_PFm9m5WHBMb_8U9HXY';
+    // Client ID and API key from the Developer Console
+    var CLIENT_ID = '289902636224-oro06s681gdgk1kqrv8o1oca2shocfr4.apps.googleusercontent.com';
+    var API_KEY = 'AIzaSyCRfe3-dnm9GGMH_PFm9m5WHBMb_8U9HXY';
 
-      // Array of API discovery doc URLs for APIs used by the quickstart
-      var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+    // Array of API discovery doc URLs for APIs used by the quickstart
+    var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
-      // Authorization scopes required by the API; multiple scopes can be
-      // included, separated by spaces.
-      var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+    // Authorization scopes required by the API; multiple scopes can be
+    // included, separated by spaces.
+    var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
-      var authorizeButton = document.getElementById('authorize_button');
-      var signoutButton = document.getElementById('signout_button');
+    var authorizeButton = document.getElementById('authorize_button');
+    var signoutButton = document.getElementById('signout_button');
+    var nextQuestion = document.getElementById('nextQuestion');
+    var Question = document.getElementById('Question');
+    var choiceA = document.getElementById('choiceA');
+    var choiceB = document.getElementById('choiceB');
+    var choiceC = document.getElementById('choiceC');
+    var choiceD = document.getElementById('choiceD');
+    var buttonA = document.getElementById('buttonA');
+    buttonA.addEventListener('mouseup', () => {
 
-      /**
-       * Print the names and majors of students in a sample spreadsheet:
-       * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-       */
-      function listMajors() {
-        gapi.client.sheets.spreadsheets.values.get({
-          spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw',
-          range: 'Class Data!A2:E',
-        }).then(function(response) {
-          var range = response.result;
-          if (range.values.length > 0) {
-            appendPre('Name, Major:');
-            for (i = 0; i < range.values.length; i++) {
-              var row = range.values[i];
-              // Print columns A and E, which correspond to indices 0 and 4.
-              appendPre(row[0] + ', ' + row[4]);
-            }
-          } else {
-            appendPre('No data found.');
+    });
+    var buttonB = document.getElementById('buttonB');
+    var buttonC = document.getElementById('buttonC');
+    var buttonD = document.getElementById('buttonD');
+    var loader = document.getElementById('loader');
+    var submit = document.getElementById('submit');
+    var clean = document.getElementById('clear');
+    var pre = document.getElementById('content');
+
+    var data = [];
+    var current, correct;
+
+    /**
+     * From https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+     */
+    function shuffle(array) {
+      let currentIndex = array.length, randomIndex;
+      // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+      return array;
+    }
+
+    function newQuestion() {
+      loader.style.display = 'flex';
+      shuffle(data);
+      current = data.pop();
+      if (data.length < 1) loadDatabase();
+      Question.innerHTML = current[0];
+      current.splice(0, 1);
+      correct = current[0];
+      shuffle(current);
+      choiceA.innerHTML = current.pop();
+      choiceB.innerHTML = current.pop();
+      choiceC.innerHTML = current.pop();
+      choiceD.innerHTML = current.pop();
+      loader.style.display = 'none';
+    }
+
+    /**
+     * From https://developers.google.com/sheets/api/quickstart/js
+     * Print the names and majors of students in a sample spreadsheet:
+     * https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw/edit
+     */
+    function loadDatabase() {
+      loader.style.display = 'flex';
+      cleanPre();
+      gapi.client.sheets.spreadsheets.values.get({
+        spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw',
+        range: '2022 GiCS!B2:F',
+      }).then(function (response) {
+        var range = response.result;
+        if (range.values.length > 0) {
+          data = range.values;
+          for (let row, i = 0; i < range.values.length; i++) {
+            row = range.values[i];
+            appendPre(row[0] + '\n正確答案: ' + row[1] + '\n錯誤答案1: ' + row[2] + '\n錯誤答案2: ' + row[3] + '\n錯誤答案3: ' + row[4]);
           }
-        }, function(response) {
-          appendPre('Error: ' + response.result.error.message);
-        });
-      }
-
-      /**
-       *  On load, called to load the auth2 library and API client library.
-       */
-      function handleClientLoad() {
-        gapi.load('client:auth2', initClient);
-      }
-
-      /**
-       *  Initializes the API client library and sets up sign-in state
-       *  listeners.
-       */
-      function initClient() {
-        gapi.client.init({
-          apiKey: API_KEY,
-          clientId: CLIENT_ID,
-          discoveryDocs: DISCOVERY_DOCS,
-          scope: SCOPES
-        }).then(function () {
-          // Listen for sign-in state changes.
-          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-          // Handle the initial sign-in state.
-          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-          authorizeButton.onclick = handleAuthClick;
-          signoutButton.onclick = handleSignoutClick;
-        }, function(error) {
-          appendPre(JSON.stringify(error, null, 2));
-        });
-      }
-
-      /**
-       *  Called when the signed in status changes, to update the UI
-       *  appropriately. After a sign-in, the API is called.
-       */
-      function updateSigninStatus(isSignedIn) {
-        if (isSignedIn) {
-          authorizeButton.style.display = 'none';
-          signoutButton.style.display = 'block';
-          listMajors();
+          newQuestion();
         } else {
-          authorizeButton.style.display = 'block';
-          signoutButton.style.display = 'none';
+          appendPre('No data found.');
         }
-      }
+      }, function (response) {
+        appendPre('Error: ' + response.result.error.message);
+      });
+    }
 
-      /**
-       *  Sign in the user upon button click.
-       */
-      function handleAuthClick(event) {
-        gapi.auth2.getAuthInstance().signIn();
-      }
+    /**
+     *  On load, called to load the auth2 library and API client library.
+     */
+    function handleClientLoad() {
+      gapi.load('client:auth2', initClient);
+    }
 
-      /**
-       *  Sign out the user upon button click.
-       */
-      function handleSignoutClick(event) {
-        gapi.auth2.getAuthInstance().signOut();
-      }
+    /**
+     *  Initializes the API client library and sets up sign-in state
+     *  listeners.
+     */
+    function initClient() {
+      gapi.client.init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES
+      }).then(function () {
+        // Listen for sign-in state changes.
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
-      /**
-       * Append a pre element to the body containing the given message
-       * as its text node. Used to display the results of the API call.
-       *
-       * @param {string} message Text to be placed in pre element.
-       */
-      function appendPre(message) {
-        var pre = document.getElementById('content');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
+        // Handle the initial sign-in state.
+        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+        authorizeButton.onclick = handleAuthClick;
+        signoutButton.onclick = handleSignoutClick;
+      }, function (error) {
+        appendPre(JSON.stringify(error, null, 2));
+      });
+    }
+
+    /**
+     *  Called when the signed in status changes, to update the UI
+     *  appropriately. After a sign-in, the API is called.
+     */
+    function updateSigninStatus(isSignedIn) {
+      if (isSignedIn) {
+        authorizeButton.style.display = 'none';
+        signoutButton.style.display = 'block';
+        loadDatabase();
+      } else {
+        authorizeButton.style.display = 'block';
+        signoutButton.style.display = 'none';
       }
+    }
+
+    /**
+     *  Sign in the user upon button click.
+     */
+    function handleAuthClick(event) {
+      gapi.auth2.getAuthInstance().signIn();
+    }
+
+    /**
+     *  Sign out the user upon button click.
+     */
+    function handleSignoutClick(event) {
+      gapi.auth2.getAuthInstance().signOut();
+    }
+
+    /**
+     * Append a pre element to the body containing the given message
+     * as its text node. Used to display the results of the API call.
+     *
+     * @param {string} message Text to be placed in pre element.
+     */
+    function appendPre(message) {
+      pre.appendChild(document.createTextNode(message + '\n'));
+    }
+
+    function cleanPre() {
+      document.getElementById('content').innerHTML = '';
+    }
+
+    function cleanFrom() {
+      console.log(document.forms[0]);
+      for (let i = -1; document.forms[0].length - 2 > i; document.forms[0][++i].value = '');
+    }
+
+    function checkQuestion(question) {
+      for (let i = -1; data.length > ++i;)
+        if (question === data[i][0]) {
+          alert("有這個題目了");
+          return true;
+        }
+      // console.clear();
+      console.log(data);
+      return false;
+    }
+
+    authorizeButton.addEventListener("click", cleanPre);
+    signoutButton.addEventListener("click", cleanPre);
+
+    nextQuestion.addEventListener("click", newQuestion);
+    submit.addEventListener("click", cleanFrom);
+    clean.addEventListener("click", cleanFrom);
+
+    document.getElementById("Question").addEventListener("input", () => {
+      let content = String(document.forms[0][entry.題目].value);
+      let ai = content.indexOf('\nA\n');
+      let bi = content.indexOf('\nB\n', ai);
+      let ci = content.indexOf('\nC\n', bi);
+      let di = content.indexOf('\nD\n', ci);
+
+      let ans = [
+        content.substring(ai + 3, bi),
+        content.substring(bi + 3, ci),
+        content.substring(ci + 3, di),
+        content.substring(di + 3)
+      ];
+
+      var question = document.forms[0][entry.題目].value;
+      if (ai > -1 && bi > -1 && ci > -1 && di > -1) {
+        document.forms[0][entry.題目].value = content.substring(0, ai);
+        question = document.forms[0][entry.題目].value;
+        if (!checkQuestion(question)) {
+          let temp;
+          const tip = "\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
+          for (let i = -1; !confirm((temp = ans[++i]) + tip);)
+            if (i == 2) { temp = ans[3]; break; }
+          ans.splice(ans.indexOf(temp), 1);
+          console.log(ans);
+          document.forms[0][entry.正確答案].value = temp;
+          for (let i = 0; 4 > ++i; document.forms[0][entry[`錯誤答案${i}`]].value = ans[i - 1]);
+        }
+      } else if (data.length > -1)
+        checkQuestion(question);
+      console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
+    });
+    document.forms[0][entry.題目].onfocus = function () {
+      document.forms[0][entry.題目].select();
+      // Work around Chrome's little problem
+      document.forms[0][entry.題目].onmouseup = function () {
+        // Prevent further mouseup intervention
+        document.forms[0][entry.題目].onmouseup = null;
+        return false;
+      };
+    };
+  </script>
+  <script async defer src="//apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if(this.readyState==='complete'){this.onload()}">
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
-  </body>
+</body>
+
 </html>
