@@ -84,10 +84,10 @@
               data-input-type="choice" data-show-detail="false" data-exam-mode="false">
               <div class="question-iframe-container pgo-style-question-content-1iaDNm" data-inverted
                 data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center">
-                <textarea rows="2" style="width:525px;border:0" class="pgo-style-question-content-wrapper-vTwh8z"
+                <textarea rows="2" style="width:525px;border:0;overflow-y:scroll" class="pgo-style-question-content-wrapper-vTwh8z"
                   form="form" name="entry.892031688">
-                題目載入中
-            </textarea>
+                    題目載入中
+                </textarea>
               </div>
               <div class="pgo-style-question-selections-TbE9eE">
                 <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="A">
@@ -95,10 +95,10 @@
                     <div class="pgo-style-selection-choice-rrQTIw">A</div>
                   </div>
                   <div class="fifteen wide column">
-                    <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                    <textarea rows="1" style="width:500px;border:0;overflow-y:scroll" spellcheck="false" data-ms-editor="true"
                       class="pgo-style-selection-content-1JGhEL" form="form" name="entry.977089316">
-                  題目載入中
-                </textarea>
+                      題目載入中
+                    </textarea>
                   </div>
                 </div>
                 <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="B">
@@ -106,10 +106,10 @@
                     <div class="pgo-style-selection-choice-rrQTIw">B</div>
                   </div>
                   <div class="fifteen wide column">
-                    <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                    <textarea rows="1" style="width:500px;border:0;overflow-y:scroll" spellcheck="false" data-ms-editor="true"
                       class="pgo-style-selection-content-1JGhEL" form="form" name="entry.657500498">
-                  題目載入中
-                </textarea>
+                      題目載入中
+                    </textarea>
                   </div>
                 </div>
                 <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="C">
@@ -117,10 +117,10 @@
                     <div class="pgo-style-selection-choice-rrQTIw">C</div>
                   </div>
                   <div class="fifteen wide column">
-                    <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                    <textarea rows="1" style="width:500px;border:0;overflow-y:scroll" spellcheck="false" data-ms-editor="true"
                       class="pgo-style-selection-content-1JGhEL" form="form" name="entry.1532072947">
-                  題目載入中
-                </textarea>
+                      題目載入中
+                    </textarea>
                   </div>
                 </div>
                 <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="D">
@@ -128,10 +128,10 @@
                     <div class="pgo-style-selection-choice-rrQTIw">D</div>
                   </div>
                   <div class="fifteen wide column">
-                    <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                    <textarea rows="1" style="width:500px;border:0;overflow-y:scroll" spellcheck="false" data-ms-editor="true"
                       class="pgo-style-selection-content-1JGhEL" form="form" name="entry.1090409630">
-                  題目載入中
-                </textarea>
+                      題目載入中
+                    </textarea>
                   </div>
                 </div>
               </div>
@@ -400,7 +400,7 @@
 
 
     function 送出題目() {
-      if(送出按鈕.style.display != 'block') return;
+      if (送出按鈕.style.display != 'block') return;
       for (const row of 題庫)
         if (題目輸入框.value && String(row[0]).indexOf(題目輸入框.value) > -1) {
           alert("有這個題目了");
@@ -424,16 +424,16 @@
 
     async function 檢查答案(選項) {
       if (正確答案 === 選項.value) {
-        if(靜音狀態>0) new Audio('victory_sound_effect.mp3').play();
+        if (靜音狀態 > 0) new Audio('victory_sound_effect.mp3').play();
         await sleep(50);
         if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
           下一題();
-      } else if(靜音狀態>0) new Audio('keep_going_sound_effect.mp3').play();
+      } else if (靜音狀態 > 0) new Audio('keep_going_sound_effect.mp3').play();
     }
 
     var 靜音狀態 = 1;
     function 靜音切換() {
-      switch(靜音狀態){
+      switch (靜音狀態) {
         case 0: 靜音狀態 = 1;
           document.getElementById("volctrl").innerHTML = `<i class="volume down icon"></i>`;
           document.body.onclick = e => new Audio('panel_btn_click_sound_effect.mp3').play();
@@ -507,28 +507,28 @@
     };
 
     document.body.addEventListener('keydown', e => {
-      if(e.target == document.body) switch(e.key.toUpperCase()){
+      if (e.target == document.body) switch (e.key.toUpperCase()) {
         default: console.log(e.key);
-        break;case ' ': e.preventDefault(); 下一題();
-        break;case '1','A':
-          if(e.target.tagName.toUpperCase()!='TEXTAREA')
+          break; case ' ': e.preventDefault(); 下一題();
+          break; case '1', 'A':
+          if (e.target.tagName.toUpperCase() != 'TEXTAREA')
             檢查答案(選項輸入框[0]);
-        break;case '2','B':
-          if(e.target.tagName.toUpperCase()!='TEXTAREA')
+          break; case '2', 'B':
+          if (e.target.tagName.toUpperCase() != 'TEXTAREA')
             檢查答案(選項輸入框[1]);
-        break;case '3','C':
-          if(e.target.tagName.toUpperCase()!='TEXTAREA')
+          break; case '3', 'C':
+          if (e.target.tagName.toUpperCase() != 'TEXTAREA')
             檢查答案(選項輸入框[2]);
-        break;case '4','D':
-          if(e.target.tagName.toUpperCase()!='TEXTAREA')
+          break; case '4', 'D':
+          if (e.target.tagName.toUpperCase() != 'TEXTAREA')
             檢查答案(選項輸入框[3]);
-        break;case 'M':
-          if(e.target.tagName.toUpperCase()!='TEXTAREA')
+          break; case 'M':
+          if (e.target.tagName.toUpperCase() != 'TEXTAREA')
             靜音切換();
-        break;case 'enter':
-          if(e.target.tagName.toUpperCase()=='TEXTAREA')
+          break; case 'enter':
+          if (送出按鈕.style.display != 'none')
             送出題目();
-        break;case 'escape': 清除();
+          break; case 'escape': 清除();
       }
     });
   </script>
