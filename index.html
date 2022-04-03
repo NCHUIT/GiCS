@@ -44,7 +44,7 @@
           controlslist="nodownload">Your browser does not support the audio tag.</audio>
       </div>
       <div id="volctrl" class="item ui header">
-        <i class="volume off icon"></i>
+        <i class="volume up icon"></i>
       </div>
       <!--Add buttons to initiate auth sequence and sign out-->
       <button class="positive ui button" id="authorize_button" style="display: none;">
@@ -228,7 +228,7 @@
       document.forms[0][entry.錯誤答案3]
     ];
 
-    var data = [], database;
+    var data = [], database = [];
     var current, correct;
 
     var bgm = new Audio('map_background_music.mp3');
@@ -290,12 +290,14 @@
         var range = response.result;
         if (range.values.length > 0) {
           database = data = range.values; shuffle(data);
-          for (let row, i = 0; i < range.values.length; i++) {
-            row = data[i];
-            appendPre(
-              '\n🤔' + row[0] + '\n⭕正確答案: ' + row[1] + '\n錯誤答案1: '
-              + row[2] + '\n錯誤答案2: ' + row[3] + '\n錯誤答案3: ' + row[4]);
-          }
+          database.reverse();
+          for (const row of database)
+            appendPre(`
+🤔${row[0]}
+⭕正確答案:${row[1]}
+錯誤答案1:${row[2]}
+錯誤答案2:${row[3]}
+錯誤答案3:${row[4]}`);
           newQuestion();
         } else {
           appendPre('No data found.');
