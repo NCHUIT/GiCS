@@ -359,16 +359,16 @@ document.body.addEventListener('keydown', e => {
     if (e.target == document.body) switch (e.key.toUpperCase()) {
         default: console.log(e.key);
             break; case ' ': e.preventDefault(); 下一題();
-            break; case '1', 'A':
+            break; case '1':case 'A':
             if (e.target.tagName.toUpperCase() != 'TEXTAREA')
                 檢查答案(選項輸入框[0]);
-            break; case '2', 'B':
+            break; case '2':case 'B':
             if (e.target.tagName.toUpperCase() != 'TEXTAREA')
                 檢查答案(選項輸入框[1]);
-            break; case '3', 'C':
+            break; case '3':case 'C':
             if (e.target.tagName.toUpperCase() != 'TEXTAREA')
                 檢查答案(選項輸入框[2]);
-            break; case '4', 'D':
+            break; case '4':case 'D':
             if (e.target.tagName.toUpperCase() != 'TEXTAREA')
                 檢查答案(選項輸入框[3]);
             break; case 'M':
