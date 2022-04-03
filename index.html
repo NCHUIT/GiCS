@@ -438,9 +438,14 @@
       } else if (靜音狀態 > 0) new Audio('keep_going_sound_effect.mp3').play();
     }
 
-    var 靜音狀態 = 2;
+    var 靜音狀態 = -1;
     function 靜音切換() {
       switch (靜音狀態) {
+        case -1: 靜音狀態 = 2;
+          背景音樂.muted = false; 背景音樂.play();
+          document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
+          document.body.onclick = e => new Audio('panel_btn_click_sound_effect.mp3').play();
+          return;
         case 0: 靜音狀態 = 1;
           document.getElementById("volctrl").innerHTML = `<i class="volume down icon"></i>`;
           document.body.onclick = e => new Audio('panel_btn_click_sound_effect.mp3').play();
@@ -469,11 +474,13 @@
     function 地圖背景音樂() {
       if (背景音樂.src.indexOf('map_background_music.mp3') == -1)
         背景音樂.src = 'map_background_music.mp3';
+      if(靜音狀態==2) 背景音樂.play();
     }
 
     function 戰鬥背景音樂() {
       if (背景音樂.src.indexOf('fight_background_music.mp3') == -1)
         背景音樂.src = 'fight_background_music.mp3';
+      if(靜音狀態==2) 背景音樂.play();
     }
 
     題目輸入框.addEventListener("input", e => {
