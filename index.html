@@ -271,8 +271,7 @@
       選項輸入框[2].value = 選項輸入框[2].innerHTML;
       選項輸入框[3].value = 選項輸入框[3].innerHTML;
       // console.log(bgm.src);
-      if (背景音樂.src.indexOf('fight_background_music.mp3') == -1)
-        背景音樂.src = 'fight_background_music.mp3';
+      戰鬥背景音樂();
       背景音樂.play();
       載入提示.style.display = 'none';
     }
@@ -365,8 +364,7 @@
       載入提示.style.display = 'flex';
       載入按鈕.style.display = 'block';
       登入按鈕.style.display = 'none';
-      if (背景音樂.src.indexOf('map_background_music.mp3') == -1)
-        背景音樂.src = 'map_background_music.mp3';
+      地圖背景音樂();
       背景音樂.play();
       gapi.auth2.getAuthInstance().signIn();
     }
@@ -377,8 +375,7 @@
     function handleSignoutClick(event) {
       載入提示.style.display = 'flex';
       載入按鈕.style.display = 'block';
-      if (背景音樂.src.indexOf('map_background_music.mp3') == -1)
-        背景音樂.src = 'map_background_music.mp3';
+      地圖背景音樂();
       背景音樂.play();
       gapi.auth2.getAuthInstance().signOut();
     }
@@ -398,6 +395,7 @@
     }
 
     function 清除() {
+      地圖背景音樂();
       document.forms[0].reset();
       for (input of document.forms[0]){
         input.innerHTML = '';
@@ -468,7 +466,18 @@
     按鈕C.addEventListener('click', e => 檢查答案(選項輸入框[2]));
     按鈕D.addEventListener('click', e => 檢查答案(選項輸入框[3]));
 
+    function 地圖背景音樂() {
+      if (背景音樂.src.indexOf('map_background_music.mp3') == -1)
+        背景音樂.src = 'map_background_music.mp3';
+    }
+
+    function 戰鬥背景音樂() {
+      if (背景音樂.src.indexOf('fight_background_music.mp3') == -1)
+        背景音樂.src = 'fight_background_music.mp3';
+    }
+
     題目輸入框.addEventListener("input", e => {
+      地圖背景音樂();
       let content = String(題目輸入框.value);
       let ai = content.indexOf('\nA\n');
       let bi = content.indexOf('\nB\n', ai);
@@ -486,6 +495,7 @@
         題目輸入框.value = content.substring(0, ai);
         question = 題目輸入框.value;
         if (!檢查題目(question)) {
+          送出按鈕.style.display = 'block';
           let temp;
           const tip = "\n\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
           for (let i = -1; !confirm((temp = ans[++i]) + tip);)
@@ -494,11 +504,10 @@
           // console.log(ans);
           document.forms[0][entry.正確答案].value = temp;
           for (let i = 0; 4 > ++i; document.forms[0][entry[`錯誤答案${i}`]].value = ans[i - 1]);
-          送出按鈕.style.display = 'block';
         }
-      } else if (暫存題庫.length > -1) {
-        if (question && !檢查題目(question) && 選項輸入框[0].value && 選項輸入框[1] && 選項輸入框[2] && 選項輸入框[3])
-          送出按鈕.style.display = 'block';
+      } else if (暫存題庫.length > -1 &&question && !檢查題目(question)
+        && 選項輸入框[0].value && 選項輸入框[1] && 選項輸入框[2] && 選項輸入框[3]) {
+        送出按鈕.style.display = 'block';
       }
       console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
     });
