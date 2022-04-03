@@ -31,6 +31,9 @@
       <h1 class="ui header">資安闖天關刷題 - 2022 GiCS 尋找資安女婕思</h1>
     </div>
     <div class="right menu">
+      <div id="volctrl" class="item ui header">
+        <i class="volume up icon"></i>
+      </div>
       <!--Add buttons to initiate auth sequence and sign out-->
       <button class="positive ui button" id="authorize_button" style="display: none;">
         <h5>登入 Google 帳號</h5>
@@ -140,9 +143,17 @@
       </div>
       <a href="//docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw" target="_blank"
         title="查看 Google 試算表">
-        <div class="attack_modal_reading_sprite error_report_S cursor_pointer pgo-style-error-report-button-1RQaWX">
+        <div class="attack_modal_reading_sprite error_report_S cursor_pointer pgo-style-error-report-button-1RQaWX" onclick="$('.ui.modal').modal('show');">
         </div>
       </a>
+      <div class="ui modal">
+        <div class="header">Header</div>
+        <div class="content">
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+      </div>
       <div class="pgo-style-submit-button-pASHWz" data-extended-answer-panel="false">
         <div id="nextQuestion" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW">
           下一題</div>
@@ -214,7 +225,7 @@
     var 錯誤答案2 = document.forms[0][entry.錯誤答案2];
     var 錯誤答案3 = document.forms[0][entry.錯誤答案3];
 
-    var data, database;
+    var data = [], database;
     var current, correct;
 
     var bgm = new Audio('map_background_music.mp3');
@@ -224,28 +235,26 @@
      * From https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
      */
     function shuffle(array) {
-      let currentIndex = array.length, randomIndex;
-      // While there remain elements to shuffle...
-      while (currentIndex != 0) {
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex], array[currentIndex]];
+      for(let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let t = array[i];
+        array[i] = array[j];
+        array[j] = t;
       }
+      console.log(array);
       return array;
     }
 
     function newQuestion() {
       loader.style.display = 'flex';
+      submit.style.display = 'none';
       current = data.pop();
       if (data.length < 1) loadDatabase();
       題目.innerHTML = current[0];
       current.splice(0, 1);
       correct = String(current[0]);
-      console.log(correct);
-      shuffle(current);
+      current=shuffle(current);
+      console.log(current);
       正確答案.innerHTML = current.pop();
       錯誤答案1.innerHTML = current.pop();
       錯誤答案2.innerHTML = current.pop();
@@ -271,7 +280,7 @@
       }).then(function (response) {
         var range = response.result;
         if (range.values.length > 0) {
-          database = data = range.values; //shuffle(data);
+          database = data = range.values; shuffle(data);
           for (let row, i = 0; i < range.values.length; i++) {
             row = data[i];
             appendPre(
@@ -374,15 +383,34 @@
     }
 
     function checkQuestion(question) {
-      for (let i = -1; data.length > ++i;)
-        if (question === data[i][0]) {
+      for (const row of database)
+        if (question && String(row[0]).indexOf(question) > -1) {
           alert("有這個題目了");
           return true;
         }
       // console.clear();
-      // console.log(data);
+      // console.log(database);
       return false;
     }
+
+    authorizeButton.addEventListener("click", cleanPre);
+    signoutButton.addEventListener("click", cleanPre);
+    nextQuestion.addEventListener("click", newQuestion);
+    clean.addEventListener("click", () => {
+      for (input of document.forms[0])
+        input.innerHTML = '';
+    });
+
+    submit.addEventListener("click", () => {
+      for (const row of database)
+        if (題目.value && String(row[0]).indexOf(題目.value) > -1) {
+          alert("有這個題目了");
+          return;
+        }
+      if(confirm(正確答案.value+'\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表'))
+        document.forms[0].submit();
+      submit.style.display = 'none';
+    });
 
     buttonA.addEventListener('click', () => {
       if (correct === 正確答案.value){
@@ -391,6 +419,7 @@
           newQuestion();
       } else new Audio('keep_going_sound_effect.mp3').play();
     });
+
     buttonB.addEventListener('click', () => {
       if (correct === 錯誤答案1.value){
         new Audio('victory_sound_effect.mp3').play();
@@ -398,6 +427,7 @@
           newQuestion();
       } else new Audio('keep_going_sound_effect.mp3').play();
     });
+
     buttonC.addEventListener('click', () => {
       if (correct === 錯誤答案2.value){
         new Audio('victory_sound_effect.mp3').play();
@@ -405,31 +435,13 @@
           newQuestion();
       } else new Audio('keep_going_sound_effect.mp3').play();
     });
+
     buttonD.addEventListener('click', () => {
       if (correct === 錯誤答案3.value){
         new Audio('victory_sound_effect.mp3').play();
         if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
           newQuestion();
       } else new Audio('keep_going_sound_effect.mp3').play();
-    });
-
-    authorizeButton.addEventListener("click", cleanPre);
-    signoutButton.addEventListener("click", cleanPre);
-
-    nextQuestion.addEventListener("click", newQuestion);
-    submit.addEventListener("click", () => {
-      for (let i = -1; data.length > ++i;)
-        if (題目.value === data[i][0]) {
-          alert("有這個題目了");
-          return;
-        }
-      document.forms[0].submit();
-      for (input of document.forms[0])
-        input.innerHTML = '';
-    });
-    clean.addEventListener("click", () => {
-      for (input of document.forms[0])
-        input.innerHTML = '';
     });
 
     題目.addEventListener("input", () => {
@@ -458,11 +470,25 @@
           // console.log(ans);
           document.forms[0][entry.正確答案].value = temp;
           for (let i = 0; 4 > ++i; document.forms[0][entry[`錯誤答案${i}`]].value = ans[i - 1]);
+          submit.style.display = 'block';
         }
-      } else if (data.length > -1)
-        checkQuestion(question);
+      } else if (data.length > -1){
+        if(!checkQuestion(question) && 正確答案.value && 錯誤答案1 && 錯誤答案2 && 錯誤答案3)
+          submit.style.display = 'block';
+      }
       console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
     });
+
+    document.getElementById("volctrl").addEventListener("click", ()=>{
+      if(bgm.muted){
+        bgm.muted = false;
+        document.getElementById("volctrl").innerHTML=`<i class="volume up icon"></i>`;
+      } else {
+        bgm.muted = true;
+        document.getElementById("volctrl").innerHTML=`<i class="volume off icon"></i>`;
+      }
+    });
+
     題目.onfocus = () => {
       題目.select();
       // Work around Chrome's little problem
