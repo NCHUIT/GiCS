@@ -84,9 +84,8 @@
               data-input-type="choice" data-show-detail="false" data-exam-mode="false">
               <div class="question-iframe-container pgo-style-question-content-1iaDNm" data-inverted
                 data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center">
-                <textarea rows="2" style="width:525px;border:0;overflow-y:scroll" class="pgo-style-question-content-wrapper-vTwh8z"
-                  form="form" name="entry.892031688">
-                    題目載入中
+                <textarea placeholder="未輸入題目" rows="2" style="width:525px;border:0;overflow-y:scroll"
+                  class="pgo-style-question-content-wrapper-vTwh8z" form="form" name="entry.892031688">
                 </textarea>
               </div>
               <div class="pgo-style-question-selections-TbE9eE">
@@ -95,9 +94,9 @@
                     <div class="pgo-style-selection-choice-rrQTIw">A</div>
                   </div>
                   <div class="fifteen wide column">
-                    <textarea rows="1" style="width:500px;border:0;overflow-y:scroll" spellcheck="false" data-ms-editor="true"
-                      class="pgo-style-selection-content-1JGhEL" form="form" name="entry.977089316">
-                      題目載入中
+                    <textarea placeholder="未輸入選項A" rows="1" style="width:500px;border:0;overflow-y:scroll"
+                      spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
+                      name="entry.977089316">
                     </textarea>
                   </div>
                 </div>
@@ -106,9 +105,9 @@
                     <div class="pgo-style-selection-choice-rrQTIw">B</div>
                   </div>
                   <div class="fifteen wide column">
-                    <textarea rows="1" style="width:500px;border:0;overflow-y:scroll" spellcheck="false" data-ms-editor="true"
-                      class="pgo-style-selection-content-1JGhEL" form="form" name="entry.657500498">
-                      題目載入中
+                    <textarea placeholder="未輸入選項B" rows="1" style="width:500px;border:0;overflow-y:scroll"
+                      spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
+                      name="entry.657500498">
                     </textarea>
                   </div>
                 </div>
@@ -117,9 +116,9 @@
                     <div class="pgo-style-selection-choice-rrQTIw">C</div>
                   </div>
                   <div class="fifteen wide column">
-                    <textarea rows="1" style="width:500px;border:0;overflow-y:scroll" spellcheck="false" data-ms-editor="true"
-                      class="pgo-style-selection-content-1JGhEL" form="form" name="entry.1532072947">
-                      題目載入中
+                    <textarea placeholder="未輸入選項C" rows="1" style="width:500px;border:0;overflow-y:scroll"
+                      spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
+                      name="entry.1532072947">
                     </textarea>
                   </div>
                 </div>
@@ -128,9 +127,9 @@
                     <div class="pgo-style-selection-choice-rrQTIw">D</div>
                   </div>
                   <div class="fifteen wide column">
-                    <textarea rows="1" style="width:500px;border:0;overflow-y:scroll" spellcheck="false" data-ms-editor="true"
-                      class="pgo-style-selection-content-1JGhEL" form="form" name="entry.1090409630">
-                      題目載入中
+                    <textarea placeholder="未輸入選項D" rows="1" style="width:500px;border:0;overflow-y:scroll"
+                      spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
+                      name="entry.1090409630">
                     </textarea>
                   </div>
                 </div>
@@ -394,8 +393,12 @@
     }
 
     function 清除() {
-      for (input of document.forms[0])
+      document.forms[0].reset();
+      for (input of document.forms[0]){
         input.innerHTML = '';
+        input.value = ''
+      }
+      送出按鈕.style.display = 'none';
     }
 
 
@@ -406,7 +409,7 @@
           alert("有這個題目了");
           return;
         }
-      if (confirm(選項輸入框[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')){
+      if (confirm(選項輸入框[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
         document.forms[0].submit();
         送出按鈕.style.display = 'none';
       }
@@ -508,7 +511,7 @@
       };
     };
 
-    for(const 元素 of 選項輸入框)
+    for (const 元素 of 選項輸入框)
       元素.onfocus = e => {
         元素.select();
         // Work around Chrome's little problem
