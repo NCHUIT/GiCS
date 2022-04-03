@@ -174,9 +174,20 @@
       "panel_btn_click_sound_effect": "https://d32j6uwsrra4gx.cloudfront.net/assets/result_panel/button_click-1348d7c1d1bd2761652ec8e083d2f1468406176f85ae7df2a80922ecf109f8ba.mp3"
     };
 
-    var audio = new Audio(audios['map_background_music']);
-    audio.play();
-
+    for(const label in audios){
+      let audio_iframe = document.createElement('iframe');
+      audio_iframe.setAttribute('allow','autoplay')
+      audio_iframe.style.display = none;
+      audio_iframe.src = audios[label];
+      `
+<iframe src="audio/source.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+</iframe>
+<audio autoplay loop  id="playAudio">
+<source src="audio/source.mp3">
+</audio>
+`
+      document.body.appendChild(audio_iframe);
+    }
     const entry = {
       題目: 'entry.892031688',
       正確答案: 'entry.977089316',
@@ -442,6 +453,9 @@
         return false;
       };
     };
+
+    var audio = new Audio(audios['map_background_music']);
+    audio.play();
   </script>
   <script async defer src="//apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
     onreadystatechange="if(this.readyState==='complete'){this.onload()}">
