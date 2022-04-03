@@ -21,7 +21,7 @@
 </head>
 
 <body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
-  theme="ocean" onclick="靜音切換();靜音切換();">
+  theme="ocean" onclick="背景音樂.play();">
   <div class="ui top fixed menu">
     <div class="item">
       <img src="//i.imgur.com/6LcYa68.png">
@@ -265,6 +265,11 @@
       選項輸入框[1].innerHTML = 目前題目.pop();
       選項輸入框[2].innerHTML = 目前題目.pop();
       選項輸入框[3].innerHTML = 目前題目.pop();
+      題目輸入框.value = 題目輸入框.innerHTML;
+      選項輸入框[0].value = 選項輸入框[0].innerHTML;
+      選項輸入框[1].value = 選項輸入框[1].innerHTML;
+      選項輸入框[2].value = 選項輸入框[2].innerHTML;
+      選項輸入框[3].value = 選項輸入框[3].innerHTML;
       // console.log(bgm.src);
       if (背景音樂.src.indexOf('fight_background_music.mp3') == -1)
         背景音樂.src = 'fight_background_music.mp3';
