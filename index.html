@@ -409,7 +409,11 @@
 
     nextQuestion.addEventListener("click", newQuestion);
     submit.addEventListener("click", () => {
-      if (checkQuestion(題目.value)) return;
+      for (let i = -1; data.length > ++i;)
+        if (題目.value === data[i][0]) {
+          alert("有這個題目了");
+          return;
+        }
       document.forms[0].submit();
       for (input of document.forms[0])
         input.innerHTML = '';
