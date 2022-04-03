@@ -405,7 +405,6 @@
         bgm.muted = false;
         document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
         document.body.onclick = () => {
-          bgm.play();
           new Audio('panel_btn_click_sound_effect.mp3').play();
         }
       } else {
