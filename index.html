@@ -21,7 +21,7 @@
 </head>
 
 <body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
-  theme="ocean" onclick="bgm.play(); new Audio('panel_btn_click_sound_effect.mp3').play();">
+  theme="ocean" onclick="toggleMute(); toggleMute(); new Audio('panel_btn_click_sound_effect.mp3').play();">
   <div class="ui top fixed menu">
     <div class="item">
       <img src="//i.imgur.com/6LcYa68.png">
@@ -31,8 +31,20 @@
       <h1 class="ui header">資安闖天關刷題 - 2022 GiCS 尋找資安女婕思</h1>
     </div>
     <div class="right menu">
+      <div id="audio_container" class="pgo-style-audios-29lfQn">
+        <audio id="map_background_music" loop src="map_background_music.mp3" type="audio/mpeg"
+          controlslist="nodownload">Your browser does not support the audio tag.</audio>
+        <audio id="fight_background_music" loop src="fight_background_music.mp3" type="audio/mpeg"
+          controlslist="nodownload">Your browser does not support the audio tag.</audio>
+        <audio id="victory_sound_effect" src="victory_sound_effect.mp3" type="audio/mpeg" controlslist="nodownload">Your
+          browser does not support the audio tag.</audio>
+        <audio id="keep_going_sound_effect" src="keep_going_sound_effect.mp3" type="audio/mpeg"
+          controlslist="nodownload">Your browser does not support the audio tag.</audio>
+        <audio id="panel_btn_click_sound_effect" src="panel_btn_click_sound_effect.mp3" type="audio/mpeg"
+          controlslist="nodownload">Your browser does not support the audio tag.</audio>
+      </div>
       <div id="volctrl" class="item ui header">
-        <i class="volume up icon"></i>
+        <i class="volume off icon"></i>
       </div>
       <!--Add buttons to initiate auth sequence and sign out-->
       <button class="positive ui button" id="authorize_button" style="display: none;">
@@ -48,132 +60,121 @@
     </div>
   </div>
   <div style="height:50px"></div>
-  <div class="ui inverted segment" style="height:640px"></div>
-  <pre id="content" style="white-space:pre-wrap">👉狀態欄<br></pre>
-  <div id="answer-panel" class="attack_modal_reading_sprite panel pgo-style-answer-panel-1wzE6v" data-modal-mode="true"
-    data-boss-battle="false" style="top:52%">
+  <div class="ui inverted segment">
     <div class="ui active dimmer" id="loader">
       <div class="ui massive text loader">題目載入中</div>
     </div>
-    <form class="ui form" id="form" method="POST" target="transFrame"
-      action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse">
-      <div id='clear' class="attack_modal_sprite btn_exit cursor_pointer pgo-style-exit-button-1-aQN0"
-        data-tooltip="清除輸入" data-position="bottom right" data-extended-answer-panel="false"></div>
-      <div class="pgo-style-clock-1JHy5B">
-        <div class="pgo-style-clock-number-2-E3v-">?</div>
-        <div class="pgo-style-clock-number-2-E3v-">?</div>
-        <div class="pgo-style-clock-number-2-E3v-">?</div>
-        <div class="pgo-style-clock-number-2-E3v-">?</div>
-        <div class="pgo-style-clock-number-2-E3v-">?</div>
-        <div class="pgo-style-clock-number-2-E3v-">?</div>
-      </div>
-      <div class="pgo-style-question-area-2If0h0" data-question-type="choice" data-input-type="choice"
-        data-with-sponsor-and-hint="false" data-exam-mode="false">
-        <div id="answer-panel-question-with-input">
-          <div class="answer-panel-question-content" data-self-control="false" data-with-sponsor-and-hint="false"
-            data-input-type="choice" data-show-detail="false" data-exam-mode="false">
-            <div class="question-iframe-container pgo-style-question-content-1iaDNm" data-inverted
-              data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center">
-              <textarea rows="2" style="width:525px;border:0" class="pgo-style-question-content-wrapper-vTwh8z"
-                form="form" name="entry.892031688">
-              下列關於「子網路」的相關敘述何者錯誤？
+    <div id="answer-panel" class="attack_modal_reading_sprite panel ui container">
+      <form class="ui form" id="form" method="POST" target="transFrame"
+        action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse">
+        <div id='clear' class="attack_modal_sprite btn_exit cursor_pointer pgo-style-exit-button-1-aQN0"
+          data-tooltip="清除輸入" data-position="bottom right" data-extended-answer-panel="false"></div>
+        <div class="pgo-style-clock-1JHy5B">
+          <div class="pgo-style-clock-number-2-E3v-">?</div>
+          <div class="pgo-style-clock-number-2-E3v-">?</div>
+          <div class="pgo-style-clock-number-2-E3v-">?</div>
+          <div class="pgo-style-clock-number-2-E3v-">?</div>
+          <div class="pgo-style-clock-number-2-E3v-">?</div>
+          <div class="pgo-style-clock-number-2-E3v-">?</div>
+        </div>
+        <div class="pgo-style-question-area-2If0h0" data-question-type="choice" data-input-type="choice"
+          data-with-sponsor-and-hint="false" data-exam-mode="false">
+          <div id="answer-panel-question-with-input">
+            <div class="answer-panel-question-content" data-self-control="false" data-with-sponsor-and-hint="false"
+              data-input-type="choice" data-show-detail="false" data-exam-mode="false">
+              <div class="question-iframe-container pgo-style-question-content-1iaDNm" data-inverted
+                data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center">
+                <textarea rows="2" style="width:525px;border:0" class="pgo-style-question-content-wrapper-vTwh8z"
+                  form="form" name="entry.892031688">
+                題目載入中
             </textarea>
+              </div>
+              <div class="pgo-style-question-selections-TbE9eE">
+                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="A">
+                  <div class="one wide column">
+                    <div class="pgo-style-selection-choice-rrQTIw">A</div>
+                  </div>
+                  <div class="fifteen wide column">
+                    <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                      class="pgo-style-selection-content-1JGhEL" form="form" name="entry.977089316">
+                  題目載入中
+                </textarea>
+                  </div>
+                </div>
+                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="B">
+                  <div class="one wide column">
+                    <div class="pgo-style-selection-choice-rrQTIw">B</div>
+                  </div>
+                  <div class="fifteen wide column">
+                    <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                      class="pgo-style-selection-content-1JGhEL" form="form" name="entry.657500498">
+                  題目載入中
+                </textarea>
+                  </div>
+                </div>
+                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="C">
+                  <div class="one wide column">
+                    <div class="pgo-style-selection-choice-rrQTIw">C</div>
+                  </div>
+                  <div class="fifteen wide column">
+                    <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                      class="pgo-style-selection-content-1JGhEL" form="form" name="entry.1532072947">
+                  題目載入中
+                </textarea>
+                  </div>
+                </div>
+                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="D">
+                  <div class="one wide column">
+                    <div class="pgo-style-selection-choice-rrQTIw">D</div>
+                  </div>
+                  <div class="fifteen wide column">
+                    <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
+                      class="pgo-style-selection-content-1JGhEL" form="form" name="entry.1090409630">
+                  題目載入中
+                </textarea>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="pgo-style-question-selections-TbE9eE">
-              <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="A">
-                <div class="one wide column">
-                  <div class="pgo-style-selection-choice-rrQTIw">A</div>
-                </div>
-                <div class="fifteen wide column">
-                  <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
-                    class="pgo-style-selection-content-1JGhEL" form="form" name="entry.977089316">
-                  大多現今無線電話通常不會使用子網
-                </textarea>
-                </div>
-              </div>
-              <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="B">
-                <div class="one wide column">
-                  <div class="pgo-style-selection-choice-rrQTIw">B</div>
-                </div>
-                <div class="fifteen wide column">
-                  <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
-                    class="pgo-style-selection-content-1JGhEL" form="form" name="entry.657500498">
-                  它能表示這個網路或子網路之中可以使用的IP位址有多少
-                </textarea>
-                </div>
-              </div>
-              <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="C">
-                <div class="one wide column">
-                  <div class="pgo-style-selection-choice-rrQTIw">C</div>
-                </div>
-                <div class="fifteen wide column">
-                  <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
-                    class="pgo-style-selection-content-1JGhEL" form="form" name="entry.1532072947">
-                  若將此用於保密的通信是非常安全的
-                </textarea>
-                </div>
-              </div>
-              <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="D">
-                <div class="one wide column">
-                  <div class="pgo-style-selection-choice-rrQTIw">D</div>
-                </div>
-                <div class="fifteen wide column">
-                  <textarea rows="1" style="width:500px;border:0" spellcheck="false" data-ms-editor="true"
-                    class="pgo-style-selection-content-1JGhEL" form="form" name="entry.1090409630">
-                  對駭客來說，一日網站的用途，包括建立易於擴充又難以追查的動態指揮控制(Command and Control, C&amp;C)架構，也可架設獨立子網域來發動郵件攻擊
-                </textarea>
-                </div>
-              </div>
+            <div data-question-type="choice" data-selection-count="5" data-exam-mode="false"
+              class="input-group-area pgo-style-inputs-area-2w2qDZ">
+              <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+                data-real-choice="A" id="buttonA">A</div>
+              <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+                data-real-choice="B" id="buttonB">B</div>
+              <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+                data-real-choice="C" id="buttonC">C</div>
+              <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
+                data-real-choice="D" id="buttonD">D</div>
+              <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
+                data-position="bottom right" data-tooltip="請確保送出時 A 選項為正確答案，本表單會自動匯入 Google 試算表" id="submit">送出</div>
             </div>
           </div>
-          <div data-question-type="choice" data-selection-count="5" data-exam-mode="false"
-            class="input-group-area pgo-style-inputs-area-2w2qDZ">
-            <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-              data-real-choice="A" id="buttonA">A</div>
-            <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-              data-real-choice="B" id="buttonB">B</div>
-            <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-              data-real-choice="C" id="buttonC">C</div>
-            <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-              data-real-choice="D" id="buttonD">D</div>
-            <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
-              data-position="bottom right" data-tooltip="請確保送出時 A 選項為正確答案，本表單會自動匯入 Google 試算表" id="submit">送出</div>
+        </div>
+        <a href="//docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw" target="_blank"
+          title="查看 Google 試算表">
+          <div class="attack_modal_reading_sprite error_report_S cursor_pointer pgo-style-error-report-button-1RQaWX"
+            onclick="$('.ui.modal').modal('show');">
+          </div>
+        </a>
+        <div class="ui modal">
+          <div class="header">Header</div>
+          <div class="content">
+            <p></p>
+            <p></p>
+            <p></p>
           </div>
         </div>
-      </div>
-      <a href="//docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw" target="_blank"
-        title="查看 Google 試算表">
-        <div class="attack_modal_reading_sprite error_report_S cursor_pointer pgo-style-error-report-button-1RQaWX" onclick="$('.ui.modal').modal('show');">
+        <div class="pgo-style-submit-button-pASHWz" data-extended-answer-panel="false">
+          <div id="nextQuestion" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW">
+            下一題</div>
         </div>
-      </a>
-      <div class="ui modal">
-        <div class="header">Header</div>
-        <div class="content">
-          <p></p>
-          <p></p>
-          <p></p>
-        </div>
-      </div>
-      <div class="pgo-style-submit-button-pASHWz" data-extended-answer-panel="false">
-        <div id="nextQuestion" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW">
-          下一題</div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
+  <pre id="content" class="ui container" style="white-space:pre-wrap;font-size:large">👉狀態欄/目前題庫<br></pre>
   <iframe name="transFrame" id="transFrame" tabindex="-1" aria-hidden="true"
     style="width:1px;height:1px;position:absolute;top:-100px;display:none"></iframe>
-  <div id="audio_container" class="pgo-style-audios-29lfQn">
-    <audio id="map_background_music" loop src="map_background_music.mp3"
-      type="audio/mpeg" controlslist="nodownload">Your browser does not support the audio tag.</audio>
-    <audio id="fight_background_music" loop src="fight_background_music.mp3"
-      type="audio/mpeg" controlslist="nodownload">Your browser does not support the audio tag.</audio>
-    <audio id="victory_sound_effect" src="victory_sound_effect.mp3"
-      type="audio/mpeg" controlslist="nodownload">Your browser does not support the audio tag.</audio>
-    <audio id="keep_going_sound_effect" src="keep_going_sound_effect.mp3"
-      type="audio/mpeg" controlslist="nodownload">Your browser does not support the audio tag.</audio>
-    <audio id="panel_btn_click_sound_effect" src="panel_btn_click_sound_effect.mp3"
-      type="audio/mpeg" controlslist="nodownload">Your browser does not support the audio tag.</audio>
-  </div>
   <div class="ui inverted vertical footer segment">
     <div class="ui center aligned container">
       <div class="ui stackable grid">
@@ -220,10 +221,12 @@
     var clean = document.getElementById('clear');
     var pre = document.getElementById('content');
     var 題目 = document.forms[0][entry.題目];
-    var 正確答案 = document.forms[0][entry.正確答案];
-    var 錯誤答案1 = document.forms[0][entry.錯誤答案1];
-    var 錯誤答案2 = document.forms[0][entry.錯誤答案2];
-    var 錯誤答案3 = document.forms[0][entry.錯誤答案3];
+    var 選項 = [
+      document.forms[0][entry.正確答案],
+      document.forms[0][entry.錯誤答案1],
+      document.forms[0][entry.錯誤答案2],
+      document.forms[0][entry.錯誤答案3]
+    ];
 
     var data = [], database;
     var current, correct;
@@ -231,11 +234,15 @@
     var bgm = new Audio('map_background_music.mp3');
     bgm.loop = true;
 
+
+    // From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+
     /**
      * From https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
      */
     function shuffle(array) {
-      for(let i = array.length - 1; i > 0; i--) {
+      for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         let t = array[i];
         array[i] = array[j];
@@ -253,14 +260,14 @@
       題目.innerHTML = current[0];
       current.splice(0, 1);
       correct = String(current[0]);
-      current=shuffle(current);
+      current = shuffle(current);
       console.log(current);
-      正確答案.innerHTML = current.pop();
-      錯誤答案1.innerHTML = current.pop();
-      錯誤答案2.innerHTML = current.pop();
-      錯誤答案3.innerHTML = current.pop();
+      選項[0].innerHTML = current.pop();
+      選項[1].innerHTML = current.pop();
+      選項[2].innerHTML = current.pop();
+      選項[3].innerHTML = current.pop();
       console.log(bgm.src);
-      if(bgm.src.indexOf('fight_background_music.mp3')==-1)
+      if (bgm.src.indexOf('fight_background_music.mp3') == -1)
         bgm.src = 'fight_background_music.mp3';
       bgm.play();
       loader.style.display = 'none';
@@ -284,7 +291,7 @@
           for (let row, i = 0; i < range.values.length; i++) {
             row = data[i];
             appendPre(
-              '🤔' + row[0] + '\n⭕正確答案: ' + row[1] + '\n錯誤答案1: '
+              '\n🤔' + row[0] + '\n⭕正確答案: ' + row[1] + '\n錯誤答案1: '
               + row[2] + '\n錯誤答案2: ' + row[3] + '\n錯誤答案3: ' + row[4]);
           }
           newQuestion();
@@ -350,7 +357,7 @@
       loader.style.display = 'flex';
       signloaderbutton.style.display = 'block';
       authorizeButton.style.display = 'none';
-      if(bgm.src.indexOf('map_background_music.mp3')==-1)
+      if (bgm.src.indexOf('map_background_music.mp3') == -1)
         bgm.src = 'map_background_music.mp3';
       bgm.play();
       gapi.auth2.getAuthInstance().signIn();
@@ -362,7 +369,7 @@
     function handleSignoutClick(event) {
       loader.style.display = 'flex';
       signloaderbutton.style.display = 'block';
-      if(bgm.src.indexOf('map_background_music.mp3')==-1)
+      if (bgm.src.indexOf('map_background_music.mp3') == -1)
         bgm.src = 'map_background_music.mp3';
       bgm.play();
       gapi.auth2.getAuthInstance().signOut();
@@ -379,7 +386,7 @@
     }
 
     function cleanPre() {
-      document.getElementById('content').innerHTML = '👉狀態欄\n';
+      document.getElementById('content').innerHTML = '👉狀態欄/目前題庫\n';
     }
 
     function checkQuestion(question) {
@@ -393,9 +400,38 @@
       return false;
     }
 
+    function toggleMute() {
+      if (bgm.muted) {
+        bgm.muted = false;
+        document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
+        document.body.onclick = () => {
+          bgm.play();
+          new Audio('panel_btn_click_sound_effect.mp3').play();
+        }
+      } else {
+        bgm.muted = true;
+        document.getElementById("volctrl").innerHTML = `<i class="volume off icon"></i>`;
+        document.body.onclick = () => true;
+      }
+    }
+
+    async function checkAns(選項) {
+      if (correct === 選項.value) {
+        new Audio('victory_sound_effect.mp3').play();
+        await sleep(50);
+        if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
+          newQuestion();
+      } else new Audio('keep_going_sound_effect.mp3').play();
+    }
+
     authorizeButton.addEventListener("click", cleanPre);
     signoutButton.addEventListener("click", cleanPre);
     nextQuestion.addEventListener("click", newQuestion);
+    buttonA.addEventListener('click', () => checkAns(選項[0]));
+    buttonB.addEventListener('click', () => checkAns(選項[1]));
+    buttonC.addEventListener('click', () => checkAns(選項[2]));
+    buttonD.addEventListener('click', () => checkAns(選項[3]));
+
     clean.addEventListener("click", () => {
       for (input of document.forms[0])
         input.innerHTML = '';
@@ -407,42 +443,11 @@
           alert("有這個題目了");
           return;
         }
-      if(confirm(正確答案.value+'\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表'))
+      if (confirm(選項[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表'))
         document.forms[0].submit();
       submit.style.display = 'none';
     });
 
-    buttonA.addEventListener('click', () => {
-      if (correct === 正確答案.value){
-        new Audio('victory_sound_effect.mp3').play();
-        if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
-          newQuestion();
-      } else new Audio('keep_going_sound_effect.mp3').play();
-    });
-
-    buttonB.addEventListener('click', () => {
-      if (correct === 錯誤答案1.value){
-        new Audio('victory_sound_effect.mp3').play();
-        if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
-          newQuestion();
-      } else new Audio('keep_going_sound_effect.mp3').play();
-    });
-
-    buttonC.addEventListener('click', () => {
-      if (correct === 錯誤答案2.value){
-        new Audio('victory_sound_effect.mp3').play();
-        if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
-          newQuestion();
-      } else new Audio('keep_going_sound_effect.mp3').play();
-    });
-
-    buttonD.addEventListener('click', () => {
-      if (correct === 錯誤答案3.value){
-        new Audio('victory_sound_effect.mp3').play();
-        if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
-          newQuestion();
-      } else new Audio('keep_going_sound_effect.mp3').play();
-    });
 
     題目.addEventListener("input", () => {
       let content = String(題目.value);
@@ -472,22 +477,14 @@
           for (let i = 0; 4 > ++i; document.forms[0][entry[`錯誤答案${i}`]].value = ans[i - 1]);
           submit.style.display = 'block';
         }
-      } else if (data.length > -1){
-        if(!checkQuestion(question) && 正確答案.value && 錯誤答案1 && 錯誤答案2 && 錯誤答案3)
+      } else if (data.length > -1) {
+        if (!checkQuestion(question) && 選項[0].value && 選項[1] && 選項[2] && 選項[3])
           submit.style.display = 'block';
       }
       console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
     });
 
-    document.getElementById("volctrl").addEventListener("click", ()=>{
-      if(bgm.muted){
-        bgm.muted = false;
-        document.getElementById("volctrl").innerHTML=`<i class="volume up icon"></i>`;
-      } else {
-        bgm.muted = true;
-        document.getElementById("volctrl").innerHTML=`<i class="volume off icon"></i>`;
-      }
-    });
+    document.getElementById("volctrl").addEventListener("click", toggleMute);
 
     題目.onfocus = () => {
       題目.select();
