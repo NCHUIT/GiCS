@@ -413,7 +413,7 @@
 
     function 檢查題目(question) {
       for (const row of 題庫)
-        if (question && String(row[0]).indexOf(question) > -1) {
+        if (question && question.length > 5 && String(row[0]).indexOf(question) > -1) {
           alert("有這個題目了");
           return true;
         }
@@ -450,12 +450,12 @@
     下一題按鈕.addEventListener("click", 下一題);
     送出按鈕.addEventListener("click", 送出題目);
     清除按鈕.addEventListener("click", 清除);
-    按鈕A.addEventListener('click', () => 檢查答案(選項輸入框[0]));
-    按鈕B.addEventListener('click', () => 檢查答案(選項輸入框[1]));
-    按鈕C.addEventListener('click', () => 檢查答案(選項輸入框[2]));
-    按鈕D.addEventListener('click', () => 檢查答案(選項輸入框[3]));
+    按鈕A.addEventListener('click', e => 檢查答案(選項輸入框[0]));
+    按鈕B.addEventListener('click', e => 檢查答案(選項輸入框[1]));
+    按鈕C.addEventListener('click', e => 檢查答案(選項輸入框[2]));
+    按鈕D.addEventListener('click', e => 檢查答案(選項輸入框[3]));
 
-    題目輸入框.addEventListener("input", () => {
+    題目輸入框.addEventListener("input", e => {
       let content = String(題目輸入框.value);
       let ai = content.indexOf('\nA\n');
       let bi = content.indexOf('\nB\n', ai);
@@ -484,7 +484,7 @@
           送出按鈕.style.display = 'block';
         }
       } else if (暫存題庫.length > -1) {
-        if (!檢查題目(question) && 選項輸入框[0].value && 選項輸入框[1] && 選項輸入框[2] && 選項輸入框[3])
+        if (question && 檢查題目(question) && 選項輸入框[0].value && 選項輸入框[1] && 選項輸入框[2] && 選項輸入框[3])
           送出按鈕.style.display = 'block';
       }
       console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
@@ -502,20 +502,28 @@
       };
     };
 
-    document.body.addEventListener('keydown', (e) => {
-      switch(e.key.toUpperCase()){
+    document.body.addEventListener('keydown', e => {
+      if(e.target == document.body) switch(e.key.toUpperCase()){
         default: console.log(e.key);
-        break;case ' ': if(e.target == document.body) 下一題();
-        break;case '1': 檢查答案(選項輸入框[0]);
-        break;case '2': 檢查答案(選項輸入框[1]);
-        break;case '3': 檢查答案(選項輸入框[2]);
-        break;case '4': 檢查答案(選項輸入框[3]);
-        break;case 'A': 檢查答案(選項輸入框[0]);
-        break;case 'B': 檢查答案(選項輸入框[1]);
-        break;case 'C': 檢查答案(選項輸入框[2]);
-        break;case 'D': 檢查答案(選項輸入框[3]);
-        break;case 'M': 靜音切換();
-        break;case 'enter': 送出題目();
+        break;case ' ': e.preventDefault(); 下一題();
+        break;case '1','A':
+          if(e.target.tagName.toUpperCase()!='TEXTAREA')
+            檢查答案(選項輸入框[0]);
+        break;case '2','B':
+          if(e.target.tagName.toUpperCase()!='TEXTAREA')
+            檢查答案(選項輸入框[1]);
+        break;case '3','C':
+          if(e.target.tagName.toUpperCase()!='TEXTAREA')
+            檢查答案(選項輸入框[2]);
+        break;case '4','D':
+          if(e.target.tagName.toUpperCase()!='TEXTAREA')
+            檢查答案(選項輸入框[3]);
+        break;case 'M':
+          if(e.target.tagName.toUpperCase()!='TEXTAREA')
+            靜音切換();
+        break;case 'enter':
+          if(e.target.tagName.toUpperCase()=='TEXTAREA')
+            送出題目();
         break;case 'escape': 清除();
       }
     });
