@@ -46,7 +46,7 @@
         <audio id="panel_btn_click_sound_effect" src="panel_btn_click_sound_effect.mp3" type="audio/mpeg"
           controlslist="nodownload">Your browser does not support the audio tag.</audio>
       </div>
-      <div id="volctrl" class="item ui header">
+      <div id="volctrl" class="item ui header" data-tooltip="無音效/僅點選音效/音效全開" data-position="bottom right">
         <i class="volume off icon"></i>
       </div>
       <!--Add buttons to initiate auth sequence and sign out-->
@@ -65,7 +65,7 @@
   <div style="height:50px"></div>
   <div class="ui inverted segment">
     <div class="ui active dimmer" id="loader">
-      <div class="ui massive text loader">題目載入中</div>
+      <div class="ui massive text loader">題目載入中<br>若未登入請至右上方登入</div>
     </div>
     <div id="answer-panel" class="attack_modal_reading_sprite panel ui container">
       <form class="ui form" id="form" method="POST" target="transFrame"
