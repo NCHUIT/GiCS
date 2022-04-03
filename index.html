@@ -21,7 +21,7 @@
 </head>
 
 <body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
-  theme="ocean" onclick="toggleMute();toggleMute()">
+  theme="ocean" onclick="靜音切換();靜音切換()">
   <div class="ui top fixed menu">
     <div class="item">
       <img src="//i.imgur.com/6LcYa68.png">
@@ -208,31 +208,31 @@
     // included, separated by spaces.
     var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
-    var signloaderbutton = document.getElementById('signloader_button');
-    var authorizeButton = document.getElementById('authorize_button');
-    var signoutButton = document.getElementById('signout_button');
-    var nextQuestion = document.getElementById('nextQuestion');
-    var buttonA = document.getElementById('buttonA');
-    var buttonB = document.getElementById('buttonB');
-    var buttonC = document.getElementById('buttonC');
-    var buttonD = document.getElementById('buttonD');
-    var loader = document.getElementById('loader');
-    var submit = document.getElementById('submit');
-    var clean = document.getElementById('clear');
     var pre = document.getElementById('content');
-    var 題目 = document.forms[0][entry.題目];
-    var 選項 = [
+    var 載入提示 = document.getElementById('loader');
+    var 載入按鈕 = document.getElementById('signloader_button');
+    var 登入按鈕 = document.getElementById('authorize_button');
+    var 登出按鈕 = document.getElementById('signout_button');
+    var 下一題按鈕 = document.getElementById('nextQuestion');
+    var 按鈕A = document.getElementById('buttonA');
+    var 按鈕B = document.getElementById('buttonB');
+    var 按鈕C = document.getElementById('buttonC');
+    var 按鈕D = document.getElementById('buttonD');
+    var 送出按鈕 = document.getElementById('submit');
+    var 清除按鈕 = document.getElementById('clear');
+    var 題目輸入框 = document.forms[0][entry.題目];
+    var 選項輸入框 = [
       document.forms[0][entry.正確答案],
       document.forms[0][entry.錯誤答案1],
       document.forms[0][entry.錯誤答案2],
       document.forms[0][entry.錯誤答案3]
     ];
 
-    var data = [], database = [];
-    var current, correct;
+    var 暫存題庫 = [], 題庫 = [];
+    var 目前題目, 正確答案;
 
-    var bgm = new Audio('map_background_music.mp3');
-    bgm.loop = true;
+    var 背景音樂 = new Audio('map_background_music.mp3');
+    背景音樂.loop = true;
 
 
     // From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
@@ -252,25 +252,25 @@
       return array;
     }
 
-    function newQuestion() {
-      loader.style.display = 'flex';
-      submit.style.display = 'none';
-      current = data.pop();
-      if (data.length < 1) loadDatabase();
-      題目.innerHTML = current[0];
-      current.splice(0, 1);
-      correct = String(current[0]);
-      current = shuffle(current);
+    function 下一題() {
+      載入提示.style.display = 'flex';
+      送出按鈕.style.display = 'none';
+      目前題目 = 暫存題庫.pop();
+      if (暫存題庫.length < 1) 重載題庫();
+      題目輸入框.innerHTML = 目前題目[0];
+      目前題目.splice(0, 1);
+      正確答案 = String(目前題目[0]);
+      目前題目 = shuffle(目前題目);
       // console.log(current);
-      選項[0].innerHTML = current.pop();
-      選項[1].innerHTML = current.pop();
-      選項[2].innerHTML = current.pop();
-      選項[3].innerHTML = current.pop();
+      選項輸入框[0].innerHTML = 目前題目.pop();
+      選項輸入框[1].innerHTML = 目前題目.pop();
+      選項輸入框[2].innerHTML = 目前題目.pop();
+      選項輸入框[3].innerHTML = 目前題目.pop();
       // console.log(bgm.src);
-      if (bgm.src.indexOf('fight_background_music.mp3') == -1)
-        bgm.src = 'fight_background_music.mp3';
-      bgm.play();
-      loader.style.display = 'none';
+      if (背景音樂.src.indexOf('fight_background_music.mp3') == -1)
+        背景音樂.src = 'fight_background_music.mp3';
+      背景音樂.play();
+      載入提示.style.display = 'none';
     }
 
     /**
@@ -278,27 +278,27 @@
      * Print the names and majors of students in a sample spreadsheet:
      * https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw/edit
      */
-    function loadDatabase() {
-      loader.style.display = 'flex';
+    function 重載題庫() {
+      載入提示.style.display = 'flex';
       cleanPre();
       gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw',
         range: '2022 GiCS!B2:F',
       }).then(function (response) {
-        loader.style.display = 'flex';
+        載入提示.style.display = 'flex';
         cleanPre();
         var range = response.result;
         if (range.values.length > 0) {
-          database = data = range.values; shuffle(data);
-          database.reverse();
-          for (const row of database)
+          題庫 = 暫存題庫 = range.values; shuffle(暫存題庫);
+          題庫.reverse();
+          for (const row of 題庫)
             appendPre(`
 🤔${row[0]}
 ⭕正確答案:${row[1]}
 錯誤答案1:${row[2]}
 錯誤答案2:${row[3]}
 錯誤答案3:${row[4]}`);
-          newQuestion();
+          下一題();
         } else {
           appendPre('No data found.');
         }
@@ -330,8 +330,8 @@
 
         // Handle the initial sign-in state.
         updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        authorizeButton.onclick = handleAuthClick;
-        signoutButton.onclick = handleSignoutClick;
+        登入按鈕.onclick = handleAuthClick;
+        登出按鈕.onclick = handleSignoutClick;
       }, function (error) {
         appendPre(JSON.stringify(error, null, 2));
       });
@@ -342,14 +342,14 @@
      *  appropriately. After a sign-in, the API is called.
      */
     function updateSigninStatus(isSignedIn) {
-      signloaderbutton.style.display = 'none';
+      載入按鈕.style.display = 'none';
       if (isSignedIn) {
-        authorizeButton.style.display = 'none';
-        signoutButton.style.display = 'block';
-        loadDatabase();
+        登入按鈕.style.display = 'none';
+        登出按鈕.style.display = 'block';
+        重載題庫();
       } else {
-        authorizeButton.style.display = 'block';
-        signoutButton.style.display = 'none';
+        登入按鈕.style.display = 'block';
+        登出按鈕.style.display = 'none';
       }
     }
 
@@ -358,12 +358,12 @@
      *  Sign in the user upon button click.
      */
     function handleAuthClick(event) {
-      loader.style.display = 'flex';
-      signloaderbutton.style.display = 'block';
-      authorizeButton.style.display = 'none';
-      if (bgm.src.indexOf('map_background_music.mp3') == -1)
-        bgm.src = 'map_background_music.mp3';
-      bgm.play();
+      載入提示.style.display = 'flex';
+      載入按鈕.style.display = 'block';
+      登入按鈕.style.display = 'none';
+      if (背景音樂.src.indexOf('map_background_music.mp3') == -1)
+        背景音樂.src = 'map_background_music.mp3';
+      背景音樂.play();
       gapi.auth2.getAuthInstance().signIn();
     }
 
@@ -371,11 +371,11 @@
      *  Sign out the user upon button click.
      */
     function handleSignoutClick(event) {
-      loader.style.display = 'flex';
-      signloaderbutton.style.display = 'block';
-      if (bgm.src.indexOf('map_background_music.mp3') == -1)
-        bgm.src = 'map_background_music.mp3';
-      bgm.play();
+      載入提示.style.display = 'flex';
+      載入按鈕.style.display = 'block';
+      if (背景音樂.src.indexOf('map_background_music.mp3') == -1)
+        背景音樂.src = 'map_background_music.mp3';
+      背景音樂.play();
       gapi.auth2.getAuthInstance().signOut();
     }
 
@@ -393,26 +393,26 @@
       document.getElementById('content').innerHTML = '👉狀態欄/目前題庫\n';
     }
 
-    function cleanTextareas() {
+    function 清除() {
       for (input of document.forms[0])
         input.innerHTML = '';
     }
 
 
-    function sendForm() {
-      if(submit.style.display != 'block') return;
-      for (const row of database)
-        if (題目.value && String(row[0]).indexOf(題目.value) > -1) {
+    function 送出題目() {
+      if(送出按鈕.style.display != 'block') return;
+      for (const row of 題庫)
+        if (題目輸入框.value && String(row[0]).indexOf(題目輸入框.value) > -1) {
           alert("有這個題目了");
           return;
         }
-      if (confirm(選項[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表'))
+      if (confirm(選項輸入框[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表'))
         document.forms[0].submit();
-      submit.style.display = 'none';
+      送出按鈕.style.display = 'none';
     }
 
-    function checkQuestion(question) {
-      for (const row of database)
+    function 檢查題目(question) {
+      for (const row of 題庫)
         if (question && String(row[0]).indexOf(question) > -1) {
           alert("有這個題目了");
           return true;
@@ -422,41 +422,41 @@
       return false;
     }
 
-    function toggleMute() {
-      if (bgm.muted) {
-        bgm.muted = false; bgm.play();
+    async function 檢查答案(選項) {
+      if (正確答案 === 選項.value) {
+        if(!背景音樂.muted) new Audio('victory_sound_effect.mp3').play();
+        await sleep(50);
+        if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
+          下一題();
+      } else if(!背景音樂.muted) new Audio('keep_going_sound_effect.mp3').play();
+    }
+
+    function 靜音切換() {
+      if (背景音樂.muted) {
+        背景音樂.muted = false; 背景音樂.play();
         document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
         document.body.onclick = () => {
           new Audio('panel_btn_click_sound_effect.mp3').play();
         }
       } else {
-        bgm.muted = true;
+        背景音樂.muted = true;
         document.getElementById("volctrl").innerHTML = `<i class="volume off icon"></i>`;
         document.body.onclick = () => true;
       }
     }
 
-    async function checkAns(選項) {
-      if (correct === 選項.value) {
-        if(!bgm.muted) new Audio('victory_sound_effect.mp3').play();
-        await sleep(50);
-        if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
-          newQuestion();
-      } else if(!bgm.muted) new Audio('keep_going_sound_effect.mp3').play();
-    }
+    登入按鈕.addEventListener("click", cleanPre);
+    登出按鈕.addEventListener("click", cleanPre);
+    下一題按鈕.addEventListener("click", 下一題);
+    送出按鈕.addEventListener("click", 送出題目);
+    清除按鈕.addEventListener("click", 清除);
+    按鈕A.addEventListener('click', () => 檢查答案(選項輸入框[0]));
+    按鈕B.addEventListener('click', () => 檢查答案(選項輸入框[1]));
+    按鈕C.addEventListener('click', () => 檢查答案(選項輸入框[2]));
+    按鈕D.addEventListener('click', () => 檢查答案(選項輸入框[3]));
 
-    authorizeButton.addEventListener("click", cleanPre);
-    signoutButton.addEventListener("click", cleanPre);
-    nextQuestion.addEventListener("click", newQuestion);
-    submit.addEventListener("click", sendForm);
-    clean.addEventListener("click", cleanTextareas);
-    buttonA.addEventListener('click', () => checkAns(選項[0]));
-    buttonB.addEventListener('click', () => checkAns(選項[1]));
-    buttonC.addEventListener('click', () => checkAns(選項[2]));
-    buttonD.addEventListener('click', () => checkAns(選項[3]));
-
-    題目.addEventListener("input", () => {
-      let content = String(題目.value);
+    題目輸入框.addEventListener("input", () => {
+      let content = String(題目輸入框.value);
       let ai = content.indexOf('\nA\n');
       let bi = content.indexOf('\nB\n', ai);
       let ci = content.indexOf('\nC\n', bi);
@@ -468,11 +468,11 @@
         content.substring(ci + 3, di),
         content.substring(di + 3)
       ];
-      var question = 題目.value;
+      var question = 題目輸入框.value;
       if (ai > -1 && bi > -1 && ci > -1 && di > -1) {
-        題目.value = content.substring(0, ai);
-        question = 題目.value;
-        if (!checkQuestion(question)) {
+        題目輸入框.value = content.substring(0, ai);
+        question = 題目輸入框.value;
+        if (!檢查題目(question)) {
           let temp;
           const tip = "\n\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
           for (let i = -1; !confirm((temp = ans[++i]) + tip);)
@@ -481,45 +481,46 @@
           // console.log(ans);
           document.forms[0][entry.正確答案].value = temp;
           for (let i = 0; 4 > ++i; document.forms[0][entry[`錯誤答案${i}`]].value = ans[i - 1]);
-          submit.style.display = 'block';
+          送出按鈕.style.display = 'block';
         }
-      } else if (data.length > -1) {
-        if (!checkQuestion(question) && 選項[0].value && 選項[1] && 選項[2] && 選項[3])
-          submit.style.display = 'block';
+      } else if (暫存題庫.length > -1) {
+        if (!檢查題目(question) && 選項輸入框[0].value && 選項輸入框[1] && 選項輸入框[2] && 選項輸入框[3])
+          送出按鈕.style.display = 'block';
       }
       console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
     });
 
-    document.getElementById("volctrl").addEventListener("click", toggleMute);
+    document.getElementById("volctrl").addEventListener("click", 靜音切換);
 
-    題目.onfocus = () => {
-      題目.select();
+    題目輸入框.onfocus = () => {
+      題目輸入框.select();
       // Work around Chrome's little problem
-      題目.onmouseup = function () {
+      題目輸入框.onmouseup = function () {
         // Prevent further mouseup intervention
-        題目.onmouseup = null;
+        題目輸入框.onmouseup = null;
         return false;
       };
     };
+
     document.body.addEventListener('keydown', (e) => {
       if(e.key == ' ' && e.target == document.body){
         e.preventDefault();
-        newQuestion();
+        下一題();
         return;
       }
       if (!e.repeat) switch(e.key.toUpperCase()){
         default: console.log(e.key);
-        break;case '1': checkAns(選項[0]);
-        break;case '2': checkAns(選項[1]);
-        break;case '3': checkAns(選項[2]);
-        break;case '4': checkAns(選項[3]);
-        break;case 'A': checkAns(選項[0]);
-        break;case 'B': checkAns(選項[1]);
-        break;case 'C': checkAns(選項[2]);
-        break;case 'D': checkAns(選項[3]);
-        break;case 'M': toggleMute();
-        break;case 'enter': sendForm();
-        break;case 'escape': cleanTextareas();
+        break;case '1': 檢查答案(選項輸入框[0]);
+        break;case '2': 檢查答案(選項輸入框[1]);
+        break;case '3': 檢查答案(選項輸入框[2]);
+        break;case '4': 檢查答案(選項輸入框[3]);
+        break;case 'A': 檢查答案(選項輸入框[0]);
+        break;case 'B': 檢查答案(選項輸入框[1]);
+        break;case 'C': 檢查答案(選項輸入框[2]);
+        break;case 'D': 檢查答案(選項輸入框[3]);
+        break;case 'M': 靜音切換();
+        break;case 'enter': 送出題目();
+        break;case 'escape': 清除();
       }
     });
   </script>
