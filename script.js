@@ -226,6 +226,7 @@ function 送出題目() {
         document.forms[0].submit();
         送出按鈕.style.display = 'none';
     }
+    重載題庫();
 }
 
 function 檢查題目(question) {
