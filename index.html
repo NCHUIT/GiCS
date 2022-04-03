@@ -21,7 +21,7 @@
 </head>
 
 <body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
-  theme="ocean" onclick="toggleMute(); toggleMute(); new Audio('panel_btn_click_sound_effect.mp3').play();">
+  theme="ocean" onclick="toggleMute(); new Audio('panel_btn_click_sound_effect.mp3').play();">
   <div class="ui top fixed menu">
     <div class="item">
       <img src="//i.imgur.com/6LcYa68.png">
@@ -424,7 +424,7 @@
 
     function toggleMute() {
       if (bgm.muted) {
-        bgm.muted = false;
+        bgm.muted = false; bgm.play();
         document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
         document.body.onclick = () => {
           new Audio('panel_btn_click_sound_effect.mp3').play();
