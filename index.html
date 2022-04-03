@@ -70,7 +70,7 @@
               <div class="ui text loader">題目載入中</div>
             </div>
             <div class="question-iframe-container pgo-style-question-content-1iaDNm" data-inverted
-              data-tooltip="貼上時若符合格式將附有切分功能" data-position="bottom center">
+              data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center">
               <textarea rows="2" style="width:525px;border:0" class="pgo-style-question-content-wrapper-vTwh8z"
                 form="form" name="entry.892031688">
               下列關於「子網路」的相關敘述何者錯誤？
@@ -272,8 +272,6 @@
               + row[2] + '\n錯誤答案2: ' + row[3] + '\n錯誤答案3: ' + row[4]);
           }
           newQuestion();
-          audio = new Audio('map_background_music.mp3')
-          audio.play();
         } else {
           appendPre('No data found.');
         }
@@ -328,10 +326,14 @@
       }
     }
 
+    var map_background_music = new Audio('map_background_music.mp3');
+    map_background_music.loop = true;
+
     /**
      *  Sign in the user upon button click.
      */
     function handleAuthClick(event) {
+      map_background_music.play();
       gapi.auth2.getAuthInstance().signIn();
     }
 
@@ -339,6 +341,7 @@
      *  Sign out the user upon button click.
      */
     function handleSignoutClick(event) {
+      map_background_music.play();
       gapi.auth2.getAuthInstance().signOut();
     }
 
