@@ -503,13 +503,9 @@
     };
 
     document.body.addEventListener('keydown', (e) => {
-      if(e.key == ' ' && e.target == document.body){
-        e.preventDefault();
-        下一題();
-        return;
-      }
-      if (!e.repeat) switch(e.key.toUpperCase()){
+      switch(e.key.toUpperCase()){
         default: console.log(e.key);
+        break;case ' ': if(e.target == document.body) 下一題();
         break;case '1': 檢查答案(選項輸入框[0]);
         break;case '2': 檢查答案(選項輸入框[1]);
         break;case '3': 檢查答案(選項輸入框[2]);
