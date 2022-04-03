@@ -406,9 +406,10 @@
           alert("有這個題目了");
           return;
         }
-      if (confirm(選項輸入框[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表'))
+      if (confirm(選項輸入框[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')){
         document.forms[0].submit();
-      送出按鈕.style.display = 'none';
+        送出按鈕.style.display = 'none';
+      }
     }
 
     function 檢查題目(question) {
@@ -496,7 +497,8 @@
 
     document.getElementById("volctrl").addEventListener("click", 靜音切換);
 
-    題目輸入框.onfocus = () => {
+    // From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
+    題目輸入框.onfocus = e => {
       題目輸入框.select();
       // Work around Chrome's little problem
       題目輸入框.onmouseup = function () {
@@ -505,6 +507,17 @@
         return false;
       };
     };
+
+    for(const 元素 of 選項輸入框)
+      元素.onfocus = e => {
+        元素.select();
+        // Work around Chrome's little problem
+        元素.onmouseup = function () {
+          // Prevent further mouseup intervention
+          元素.onmouseup = null;
+          return false;
+        };
+      };
 
     document.body.addEventListener('keydown', e => {
       if (e.target == document.body) switch (e.key.toUpperCase()) {
