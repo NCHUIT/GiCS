@@ -350,7 +350,7 @@
       document.getElementById('content').innerHTML = '👉狀態欄\n';
     }
 
-    function checkQuestion(question = 題目.value) {
+    function checkQuestion(question) {
       for (let i = -1; data.length > ++i;)
         if (question === data[i][0]) {
           alert("有這個題目了");
@@ -387,10 +387,10 @@
 
     nextQuestion.addEventListener("click", newQuestion);
     submit.addEventListener("click", () => {
-      if (checkQuestion()) return;
+      if (checkQuestion(題目.value)) return;
+      document.forms[0].submit();
       for (input of document.forms[0])
         input.innerHTML = '';
-      document.forms[0].submit();
     });
     clean.addEventListener("click", () => {
       for (input of document.forms[0])
