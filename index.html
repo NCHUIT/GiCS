@@ -248,7 +248,7 @@
         array[i] = array[j];
         array[j] = t;
       }
-      console.log(array);
+      // console.log(array);
       return array;
     }
 
@@ -261,7 +261,7 @@
       current.splice(0, 1);
       correct = String(current[0]);
       current = shuffle(current);
-      console.log(current);
+      // console.log(current);
       選項[0].innerHTML = current.pop();
       選項[1].innerHTML = current.pop();
       選項[2].innerHTML = current.pop();
@@ -285,6 +285,8 @@
         spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw',
         range: '2022 GiCS!B2:F',
       }).then(function (response) {
+        loader.style.display = 'flex';
+        cleanPre();
         var range = response.result;
         if (range.values.length > 0) {
           database = data = range.values; shuffle(data);
@@ -389,6 +391,24 @@
       document.getElementById('content').innerHTML = '👉狀態欄/目前題庫\n';
     }
 
+    function cleanTextareas() {
+      for (input of document.forms[0])
+        input.innerHTML = '';
+    }
+
+
+    function sendForm() {
+      if(submit.style.display != 'block') return;
+      for (const row of database)
+        if (題目.value && String(row[0]).indexOf(題目.value) > -1) {
+          alert("有這個題目了");
+          return;
+        }
+      if (confirm(選項[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表'))
+        document.forms[0].submit();
+      submit.style.display = 'none';
+    }
+
     function checkQuestion(question) {
       for (const row of database)
         if (question && String(row[0]).indexOf(question) > -1) {
@@ -426,27 +446,12 @@
     authorizeButton.addEventListener("click", cleanPre);
     signoutButton.addEventListener("click", cleanPre);
     nextQuestion.addEventListener("click", newQuestion);
+    submit.addEventListener("click", sendForm);
+    clean.addEventListener("click", cleanTextareas);
     buttonA.addEventListener('click', () => checkAns(選項[0]));
     buttonB.addEventListener('click', () => checkAns(選項[1]));
     buttonC.addEventListener('click', () => checkAns(選項[2]));
     buttonD.addEventListener('click', () => checkAns(選項[3]));
-
-    clean.addEventListener("click", () => {
-      for (input of document.forms[0])
-        input.innerHTML = '';
-    });
-
-    submit.addEventListener("click", () => {
-      for (const row of database)
-        if (題目.value && String(row[0]).indexOf(題目.value) > -1) {
-          alert("有這個題目了");
-          return;
-        }
-      if (confirm(選項[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表'))
-        document.forms[0].submit();
-      submit.style.display = 'none';
-    });
-
 
     題目.addEventListener("input", () => {
       let content = String(題目.value);
@@ -494,6 +499,27 @@
         return false;
       };
     };
+    document.body.addEventListener('keydown', (e) => {
+      if(e.key == ' ' && e.target == document.body){
+        e.preventDefault();
+        newQuestion();
+        return;
+      }
+      if (!e.repeat) switch(e.key.toUpperCase()){
+        default: console.log(e.key);
+        break;case '1': checkAns(選項[0]);
+        break;case '2': checkAns(選項[1]);
+        break;case '3': checkAns(選項[2]);
+        break;case '4': checkAns(選項[3]);
+        break;case 'A': checkAns(選項[0]);
+        break;case 'B': checkAns(選項[1]);
+        break;case 'C': checkAns(選項[2]);
+        break;case 'D': checkAns(選項[3]);
+        break;case 'M': toggleMute();
+        break;case 'enter': sendForm();
+        break;case 'escape': cleanTextareas();
+      }
+    });
   </script>
   <script async defer src="//apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
     onreadystatechange="if(this.readyState==='complete'){this.onload()}">
