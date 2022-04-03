@@ -340,6 +340,7 @@
     function handleAuthClick(event) {
       loader.style.display = 'flex';
       signloaderbutton.style.display = 'block';
+      authorizeButton.style.display = 'none';
       if(bgm.src.indexOf('map_background_music.mp3')==-1)
         bgm.src = 'map_background_music.mp3';
       bgm.play();
