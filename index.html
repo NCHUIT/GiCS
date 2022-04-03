@@ -484,7 +484,7 @@
           送出按鈕.style.display = 'block';
         }
       } else if (暫存題庫.length > -1) {
-        if (question && 檢查題目(question) && 選項輸入框[0].value && 選項輸入框[1] && 選項輸入框[2] && 選項輸入框[3])
+        if (question && !檢查題目(question) && 選項輸入框[0].value && 選項輸入框[1] && 選項輸入框[2] && 選項輸入框[3])
           送出按鈕.style.display = 'block';
       }
       console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
