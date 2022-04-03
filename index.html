@@ -338,6 +338,8 @@
      *  Sign in the user upon button click.
      */
     function handleAuthClick(event) {
+      if(bgm.src.indexOf('map_background_music.mp3')==-1)
+        bgm.src = 'map_background_music.mp3';
       bgm.play();
       gapi.auth2.getAuthInstance().signIn();
     }
@@ -346,6 +348,8 @@
      *  Sign out the user upon button click.
      */
     function handleSignoutClick(event) {
+      if(bgm.src.indexOf('map_background_music.mp3')==-1)
+        bgm.src = 'map_background_music.mp3';
       bgm.play();
       gapi.auth2.getAuthInstance().signOut();
     }
