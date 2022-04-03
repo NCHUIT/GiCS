@@ -438,11 +438,11 @@
 
     async function checkAns(選項) {
       if (correct === 選項.value) {
-        new Audio('victory_sound_effect.mp3').play();
+        if(!bgm.muted) new Audio('victory_sound_effect.mp3').play();
         await sleep(50);
         if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
           newQuestion();
-      } else new Audio('keep_going_sound_effect.mp3').play();
+      } else if(!bgm.muted) new Audio('keep_going_sound_effect.mp3').play();
     }
 
     authorizeButton.addEventListener("click", cleanPre);
