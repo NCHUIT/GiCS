@@ -21,7 +21,7 @@
 </head>
 
 <body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
-  theme="ocean" onclick="靜音切換();靜音切換()">
+  theme="ocean" onclick="靜音切換();靜音切換();">
   <div class="ui top fixed menu">
     <div class="item">
       <img src="//i.imgur.com/6LcYa68.png">
@@ -424,24 +424,28 @@
 
     async function 檢查答案(選項) {
       if (正確答案 === 選項.value) {
-        if(!背景音樂.muted) new Audio('victory_sound_effect.mp3').play();
+        if(靜音狀態>0) new Audio('victory_sound_effect.mp3').play();
         await sleep(50);
         if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
           下一題();
-      } else if(!背景音樂.muted) new Audio('keep_going_sound_effect.mp3').play();
+      } else if(靜音狀態>0) new Audio('keep_going_sound_effect.mp3').play();
     }
 
+    var 靜音狀態 = 1;
     function 靜音切換() {
-      if (背景音樂.muted) {
-        背景音樂.muted = false; 背景音樂.play();
-        document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
-        document.body.onclick = () => {
-          new Audio('panel_btn_click_sound_effect.mp3').play();
-        }
-      } else {
-        背景音樂.muted = true;
-        document.getElementById("volctrl").innerHTML = `<i class="volume off icon"></i>`;
-        document.body.onclick = () => true;
+      switch(靜音狀態){
+        case 0: 靜音狀態 = 1;
+          document.getElementById("volctrl").innerHTML = `<i class="volume down icon"></i>`;
+          document.body.onclick = e => new Audio('panel_btn_click_sound_effect.mp3').play();
+          return;
+        case 1: 靜音狀態 = 2;
+          背景音樂.muted = false; 背景音樂.play();
+          document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
+          return;
+        case 2: 靜音狀態 = 0;
+          背景音樂.muted = true;
+          document.getElementById("volctrl").innerHTML = `<i class="volume off icon"></i>`;
+          document.body.onclick = e => e;
       }
     }
 
