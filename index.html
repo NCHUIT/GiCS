@@ -283,7 +283,8 @@
               + row[2] + '\n錯誤答案2: ' + row[3] + '\n錯誤答案3: ' + row[4]);
           }
           newQuestion();
-          document.getElementById("myAudio").play();
+          audio = new Audio(audios['map_background_music'])
+          audio.play();
         } else {
           appendPre('No data found.');
         }
@@ -453,9 +454,6 @@
         return false;
       };
     };
-
-    var audio = new Audio(audios['map_background_music']);
-    audio.play();
   </script>
   <script async defer src="//apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()"
     onreadystatechange="if(this.readyState==='complete'){this.onload()}">
