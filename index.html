@@ -21,7 +21,7 @@
 </head>
 
 <body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
-  theme="ocean">
+  theme="ocean" onclick="bgm.play(); new Audio('panel_btn_click_sound_effect.mp3').play();">
   <div class="ui top fixed menu">
     <div class="item">
       <img src="//i.imgur.com/6LcYa68.png">
@@ -217,6 +217,9 @@
     var data, database;
     var current, correct;
 
+    var bgm = new Audio('map_background_music.mp3');
+    bgm.loop = true;
+
     /**
      * From https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
      */
@@ -247,6 +250,10 @@
       錯誤答案1.innerHTML = current.pop();
       錯誤答案2.innerHTML = current.pop();
       錯誤答案3.innerHTML = current.pop();
+      console.log(bgm.src);
+      if(bgm.src.indexOf('fight_background_music.mp3')==-1)
+        bgm.src = 'fight_background_music.mp3';
+      bgm.play();
       loader.style.display = 'none';
     }
 
@@ -326,14 +333,12 @@
       }
     }
 
-    var map_background_music = new Audio('map_background_music.mp3');
-    map_background_music.loop = true;
 
     /**
      *  Sign in the user upon button click.
      */
     function handleAuthClick(event) {
-      map_background_music.play();
+      bgm.play();
       gapi.auth2.getAuthInstance().signIn();
     }
 
@@ -341,7 +346,7 @@
      *  Sign out the user upon button click.
      */
     function handleSignoutClick(event) {
-      map_background_music.play();
+      bgm.play();
       gapi.auth2.getAuthInstance().signOut();
     }
 
@@ -370,25 +375,33 @@
       return false;
     }
 
-    buttonA.addEventListener('mouseup', () => {
-      if (correct === 正確答案.value)
+    buttonA.addEventListener('click', () => {
+      if (correct === 正確答案.value){
+        new Audio('victory_sound_effect.mp3').play();
         if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
           newQuestion();
+      } else new Audio('keep_going_sound_effect.mp3').play();
     });
-    buttonB.addEventListener('mouseup', () => {
-      if (correct === 錯誤答案1.value)
+    buttonB.addEventListener('click', () => {
+      if (correct === 錯誤答案1.value){
+        new Audio('victory_sound_effect.mp3').play();
         if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
           newQuestion();
+      } else new Audio('keep_going_sound_effect.mp3').play();
     });
-    buttonC.addEventListener('mouseup', () => {
-      if (correct === 錯誤答案2.value)
+    buttonC.addEventListener('click', () => {
+      if (correct === 錯誤答案2.value){
+        new Audio('victory_sound_effect.mp3').play();
         if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
           newQuestion();
+      } else new Audio('keep_going_sound_effect.mp3').play();
     });
-    buttonD.addEventListener('mouseup', () => {
-      if (correct === 錯誤答案3.value)
+    buttonD.addEventListener('click', () => {
+      if (correct === 錯誤答案3.value){
+        new Audio('victory_sound_effect.mp3').play();
         if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
           newQuestion();
+      } else new Audio('keep_going_sound_effect.mp3').play();
     });
 
     authorizeButton.addEventListener("click", cleanPre);
