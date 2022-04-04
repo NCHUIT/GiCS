@@ -431,7 +431,7 @@ function 戰鬥背景音樂() {
 });
 
 document.getElementById("volctrl").addEventListener("click", 靜音切換);
-document.body.onclick = e => 靜音切換();
+document.body.onload = e => 靜音切換();
 
 // From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
 輸入框[0].onfocus = e => {
