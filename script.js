@@ -324,7 +324,7 @@ function 狀態欄續寫(message) {
 }
 
 function 清除狀態欄() {
-  document.getElementById('content').innerHTML = '👉狀態欄/目前題庫\n';
+  document.getElementById('content').innerHTML = '👉狀態欄/目前題庫(按新到舊排序)\n';
 }
 
 function 清除() {
