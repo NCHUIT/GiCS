@@ -237,10 +237,10 @@ function 重載題庫() {
     range: '2022 GiCS!B2:F',
   }).then(function (response) {
     載入提示.style.display = 'flex';
-    清除狀態欄();
     var range = response.result;
     if (range.values.length > 0) {
       題庫 = 暫存題庫 = range.values;
+      清除狀態欄();
       題庫.reverse();
       const fmt = ['🤔', '⭕正確答案: ', '錯誤答案1: ', '錯誤答案2: ', '錯誤答案3: '];
       for (const row of 題庫)
@@ -324,7 +324,7 @@ function 狀態欄續寫(message) {
 }
 
 function 清除狀態欄() {
-  document.getElementById('content').innerHTML = '👉狀態欄/目前題庫(按新到舊排序)\n';
+  document.getElementById('content').innerHTML = `👉狀態欄/目前題庫有 ${題庫.length} 題(按新到舊排序)\n`;
 }
 
 function 清除() {
