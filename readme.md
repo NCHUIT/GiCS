@@ -1,6 +1,6 @@
 # [2022 GiCS 資安闖天關刷題說明](https://nchuit.cc/2022GiCS/)
 
-## 刷題
+## 刷題熱鍵
 
 <p><kbd>空白鍵</kbd> : 下一題</p>
 <p><kbd>A</kbd> 或 <kbd>1</kbd> : 答案選A</p>
@@ -12,6 +12,7 @@
 ## 插件安裝
 
 安裝瀏覽器插件 <a href="https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne" target="_blank">Stylus[點我前往]</a>
+
 ![](https://i.imgur.com/3VIEB6n.png)
 
 安裝完之後點出插件，編寫樣式給網站
@@ -28,13 +29,21 @@
 
 ## 填充題庫
 
-<p>點擊題目文字，它是輸入框，預設點選時全選讓你貼上，提示指的格式即介紹插件說明的**直接一次選取題目答案複製後的文字格式**</p>
-<img src="https://i.imgur.com/TLoj01R.png"><br><br>
-<p>貼上後會循環詢問前3個哪個是正確答案，如果都不是就是第4個，若**按錯重新貼上即可**</p>
-<img src="https://i.imgur.com/ZWGo3dc.png"><br><br>
-<p>確認完正確答案後就可以填充題庫啦~</p>
-<img src="https://i.imgur.com/OGc6jzj.png"><br><br>
-<p>按下送出時會再問你一次</p>
-<img src="https://i.imgur.com/NyIZf6A.png"><br><br>
-<p>如果貼上或輸入到一半的時候檢查到 Google 試算表的題庫有這個題目了，會提示</p>
-<img src="https://i.imgur.com/RbuJ8hB.png"><br><br>
+點擊題目文字，它是輸入框，預設點選時全選讓你貼上，提示指的格式即介紹插件說明的**直接一次選取題目答案複製後的文字格式**
+
+![](https://i.imgur.com/TLoj01R.png)
+
+貼上後會循環詢問前3個哪個是正確答案，如果都不是就是第4個，若**按錯重新貼上即可**
+
+![](https://i.imgur.com/ZWGo3dc.png)
+
+確認完正確答案後就可以填充題庫啦~
+
+![](https://i.imgur.com/OGc6jzj.png)
+
+按下送出時會再問你一次
+![](https://i.imgur.com/NyIZf6A.png)
+
+如果貼上或輸入到一半的時候檢查到 Google 試算表的題庫有這個題目了，會提示
+
+![](https://i.imgur.com/RbuJ8hB.png)
