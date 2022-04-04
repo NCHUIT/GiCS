@@ -344,7 +344,7 @@ function 清除() {
 }
 
 function 送出題目() {
-  if (送出按鈕.style.display != 'block' || 檢查題目()) return;
+  if (送出按鈕.style.display == 'none' || 檢查題目()) return;
   if (confirm(輸入框[1].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
     document.forms[0].submit();
     $('#next').hide();
