@@ -42,6 +42,7 @@
 ![](https://i.imgur.com/OGc6jzj.png)
 
 按下送出時會再問你一次
+
 ![](https://i.imgur.com/NyIZf6A.png)
 
 如果貼上或輸入到一半的時候檢查到 Google 試算表的題庫有這個題目了，會提示
