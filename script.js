@@ -1,9 +1,116 @@
+(function (a, s, y, n, c, h, i, d, e) {
+  s.className += ' ' + y; h.start = 1 * new Date;
+  h.end = i = function () { s.className = s.className.replace(RegExp(' ?' + y), '') };
+  (a[n] = a[n] || []).hide = h; setTimeout(function () { i(); h.end = null }, c); h.timeout = c;
+})(window, document.documentElement, 'async-hide', 'dataLayer', 4000, { 'GTM-WNZJFJ6': true });
+(function (w, d, s, l, i) {
+  w[l] = w[l] || []; w[l].push({
+    'gtm.start':
+      new Date().getTime(), event: 'gtm.js'
+  }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+      'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-WNZJFJ6');
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({ "user_id": "3227759", "gender": "1", "grade": "", "school_name": "國立中興大學", "course_name": "2021 GiCS 資安闖天關初賽題庫", "gc_id": "4705298", "course_manager": "false", "group_owner": "false", "any_subscription": "false" });
+(function checkBrowser() {
+  var ua = window.navigator.userAgent;
+  var olderThanIE11 = /MSIE/.test(ua);
+  if (olderThanIE11) {
+    if (window.location.href.match('/application/download_browser')) return;
+    window.location = '/application/download_browser';
+  }
+})();
+//<![CDATA[
+var terrainMapping = {
+  "1": "wild/ocean", "2": "grass/grass", "3": "grass/house_hut", "4": "grass/pool", "5": "grass/sheep_ranch",
+  "6": "sand/sand", "8": "sand/beach", "10": "hill/forest", "11": "hill/mountain", "13": "sakura/sakura",
+  "15": "snow/snow", "16": "snow/snowman", "17": "sakura/sakura_tree", "18": "sakura/sakura_ohtorii",
+  "21": "snow/penguin", "26": "sakura/sakura_shrine", "27": "grass/house_manor", "28": "grass/house_villa",
+  "34": "snow/ice_house", "35": "sand/beach_resort", "41": "golden/golden_terrain", "42": "golden/golden_statue",
+  "43": "wild/floodwood1", "44": "grass/lotus1", "45": "grass/lotus2", "46": "maple/maple", "47": "maple/maple_acorn",
+  "48": "gene/gene", "49": "circuit/circuit", "50": "hill/kumquat_tree", "51": "special/terre_horn",
+  "52": "sand/coral_shoal", "53": "sand/coral_island", "54": "sand/coral_mermaid_island", "55": "grass/marigold_patch",
+  "56": "grass/marigold_field", "57": "grass/marigold_garden", "58": "grass/hyacinth_patch", "59": "grass/hyacinth_field",
+  "60": "grass/hyacinth_garden", "61": "grass/lavender_patch", "62": "grass/lavender_field", "63": "grass/lavender_garden",
+  "64": "grass/farmhouse", "65": "maple/squirrel", "66": "maple/autumn_castle", "70": "special/fort",
+  "71": "special/pillbox", "72": "special/castle", "73": "sand/camel_caravan", "74": "sand/oasis", "75": "sand/pyramid",
+  "76": "team/base", "79": "team/explosion", "82": "sand/carousel", "83": "sand/pirate_ship", "84": "sand/ferris_wheel",
+  "85": "sand/coconut_tree", "86": "maple/autumn_ship", "87": "grass/palace_museum", "88": "snow/reindeer",
+  "89": "grass/british_museum", "90": "grass/winter_palace", "91": "grass/tomorrow_star", "92": "grass/vatican_museum",
+  "93": "grass/cow_ranch", "94": "grass/metropolitan_museum", "95": "grass/louvre_museum", "96": "grass/ntu/fu_bell",
+  "97": "grass/ntu/palm_avenue", "98": "grass/farmers_market", "99": "sand/dragon_boat", "100": "sand/polaris",
+  "101": "grass/su_huan_jen", "102": "grass/luan_shih_kuang_dao", "103": "grass/ye_shiao_chai", "104": "wild/swirlcell",
+  "105": "sand/testrite_festival", "106": "maple/thoughts_of_autumn", "107": "sand/testrite_pumpkin",
+  "108": "hill/black_bear", "109": "grass/thanksgiving", "110": "hill/rock_tiger", "111": "sand/ntu/fish_ship",
+  "112": "sand/ntu/chihkan_tower", "113": "hill/fetnet_deer", "115": "snow/testrite_xmas_tree", "116": "snow/bonio_xmas_tree",
+  "117": "hill/taiwan_blue_magpie", "118": "sand/moonlight_terrain", "119": "hill/taiwan_macaque", "120": "grass/black_sheep",
+  "121": "grass/pink_cow", "122": "grass/brown_horse", "123": "grass/white_horse", "124": "hill/taiwan_butterfly",
+  "125": "hill/apple_tree", "126": "sand/dreamy_carousel", "127": "sand/dreamy_pirate_ship", "128": "sand/dreamy_ferris_wheel",
+  "129": "golden/steel_statue", "130": "grass/white_house", "131": "grass/pink_house", "132": "grass/golden_house",
+  "133": "wild/deep_sea_beasts", "134": "grass/rijks_museum", "135": "sand/boundless_star_ring",
+  "136": "grass/white_hat_hacker", "137": "grass/black_hat_hacker", "138": "grass/chan_chao", "139": "grass/du_du_cat",
+  "140": "sand/info_security_soldier", "141": "sand/trojan_virus", "142": "maple/crystalline_palace", "143": "grass/road_a",
+  "144": "grass/road_b", "145": "grass/road_c", "146": "grass/road_d", "147": "grass/road_e", "148": "grass/tree_bo",
+  "149": "grass/hu_hu_cat", "150": "grass/seesaw", "151": "grass/tree_bo_sister", "152": "snow/santa_claus",
+  "153": "grass/la_la_cat", "154": "sand/halley_comet", "155": "grass/tree_pa", "156": "grass/lu_lu_cat",
+  "157": "grass/pon_pon_cat", "158": "grass/control_center", "159": "grass/rd_center", "160": "grass/dragon_factory",
+  "161": "grass/tree_ma", "162": "grass/mia_figurine", "163": "sand/esun_bank_logo", "164": "grass/windmill",
+  "165": "grass/iwin_soldier", "166": "grass/ningxiaks_cat", "167": "grass/maro_figurine", "168": "grass/baatar_figurine",
+  "169": "grass/sophie_figurine", "170": "grass/kachina_figurine", "171": "grass/amir_figurine", "172": "grass/csc_badge",
+  "173": "sand/dragon_boat_2020", "174": "grass/thunder_of_wisdom", "175": "grass/cheers", "176": "grass/aishiteru",
+  "177": "grass/millet_festival", "178": "grass/bubble_tea_shop", "179": "grass/braggy", "180": "grass/arc_de_triomphe",
+  "181": "grass/eiffel_tower", "182": "grass/notre_dame_de_paris", "183": "grass/dolly", "184": "grass/draca",
+  "185": "grass/roman_warrior", "186": "grass/laser_island", "187": "maple/osmanthus_tree", "188": "grass/armored_knight",
+  "189": "grass/the_power_of_love", "190": "grass/pumpkin_carriage", "191": "grass/candy_house", "192": "grass/beanstalk",
+  "193": "sand/doha_art_museum", "194": "snow/monkeys_hot_spring", "195": "grass/house_of_straw",
+  "196": "grass/house_of_sticks", "197": "grass/house_of_bricks", "198": "grass/teacher_tree",
+  "199": "grass/wish_general_store", "200": "grass/esun_surplus_year_after_year", "201": "grass/ling_ling",
+  "202": "grass/fried_chicken_shop", "203": "sakura/sakura_picnic", "204": "grass/chunghwa_telecom_gold_coin",
+  "205": "grass/esun_happy_childrens_day", "206": "grass/defensive_shield", "207": "grass/patron_saint_of_cybersecurity",
+  "208": "hill/observatory", "209": "hill/ruins", "210": "hill/mysterious_pyramid", "211": "grass/chiao_chiao",
+  "212": "grass/black_winged_stilt", "213": "grass/ntpc_castle", "214": "grass/hsiao_hsiao", "215": "sand/golden_gate_bridge",
+  "216": "sand/statue_of_liberty", "217": "sand/empire_state_building", "218": "sand/traditional_ice_cream_bike",
+  "219": "grass/eco_water_cube", "220": "grass/cloud_baby", "221": "grass/gorilla_koko", "222": "grass/whales_tears",
+  "223": "grass/aishiteru_digital_chaining", "224": "grass/mango_shaved_ice_shop",
+  "225": "grass/disaster_prevention_little_warrior", "226": "grass/magic_eco_friendly_suit", "227": "grass/dr_q",
+  "228": "grass/vitality_fruits_and_vegetables", "229": "grass/e_du", "230": "sand/agile_killer_whale_tica",
+  "231": "grass/hepatitis_b_vaccine_40th_anniversary", "232": "grass/christchurch_art_gallery",
+  "233": "grass/power_saving_lover_power_boss", "234": "grass/benq_lion", "235": "grass/kao_kirei_captain",
+  "236": "grass/dr_bobo", "237": "maple/jade_rabbit_pounding_medicine", "238": "grass/agile_chameleon",
+  "239": "sand/grand_egyptian_museum", "240": "grass/rainbow_paradise", "241": "sand/flying_bus", "242": "sand/teacups",
+  "243": "sand/drop_tower", "244": "sand/boca", "245": "grass/patron_saint_of_cybersecurity_20", "246": "grass/panay",
+  "247": "grass/ali", "248": "grass/the_power_of_love_throw_into_the_dream", "249": "sand/dreamy_flying_bus",
+  "250": "sand/dreamy_teacups", "251": "sand/dreamy_drop_tower", "252": "sand/queen_elizabeth_ii_tower",
+  "253": "sand/tower_bridge", "254": "sand/buckingham_palace", "255": "grass/ataw", "256": "grass/mia_stone_statue",
+  "257": "grass/maro_stone_statue", "258": "grass/baatar_stone_statue", "259": "grass/sophie_stone_statue",
+  "260": "grass/kachina_stone_statue", "261": "grass/amir_stone_statue", "262": "grass/sword_in_the_stone",
+  "263": "sand/captain_mia_from_true_or_false_picket", "264": "sand/detective_amir_from_true_or_false_picket",
+  "265": "grass/straight_sand_road", "266": "grass/southeast_sand_road", "267": "grass/southwest_sand_road",
+  "268": "grass/inverted_y_shaped_sand_road", "269": "grass/y_shaped_sand_road", "270": "snow/gassho_style_house",
+  "271": "grass/hkhs_crown", "272": "grass/hkhs_diamond", "273": "grass/hkhs_closed_treasure_chest",
+  "274": "grass/hkhs_treasure_chest", "275": "grass/badminton_star_huhu", "276": "sand/seaside_wind_power_plant",
+  "277": "grass/bunny_hot_air_balloon", "278": "grass/cat_hot_air_balloon", "279": "grass/piggy_hot_air_balloon",
+  "280": "grass/lohas_sports_arena", "281": "sand/the_honest_wind_lion_god_of_kinmen", "282": "sakura/red_bridge",
+  "283": "grass/baseball_star_ponpon", "284": "grass/little_dumplings_specialty_store", "285": "sand/kinmens_telephone_booth",
+  "286": "grass/tender_teacher_tree", "287": "grass/swing_chair", "288": "grass/fountain", "289": "grass/terrace",
+  "290": "grass/table_tennis_star_lala", "291": "grass/happy_ling_ling", "292": "sand/deyue_gun_tower",
+  "293": "grass/cybersecurity_ninja", "294": "grass/tower_of_knowledge", "295": "grass/golden_turret",
+  "296": "grass/magic_stone_circle", "297": "grass/glowing_makers", "298": "grass/smiley_hsiao_hsiao",
+  "299": "grass/serious_chiao_chiao", "300": "grass/kao_kirei_captain_part_2", "301": "grass/xiao_fei_li",
+  "302": "grass/gics_girls_in_cyber_security"
+};
+var characterIDMapping = {
+  "1": "eagle", "2": "lizard", "3": "wolf", "4": "antelope", "5": "cat", "6": "cheetah",
+  "7": "alicia", "8": "zoey","9": "ming", "10": "erik", "11": "asad", "12": "mika",
+  "13": "tiencai", "14": "sikadeer", "15": "wangfu", "16": "draca", "17": "dolly", "18": "broomy"};
+//]]>
 const entry = {
-    題目: 'entry.892031688',
-    正確答案: 'entry.977089316',
-    錯誤答案1: 'entry.657500498',
-    錯誤答案2: 'entry.1532072947',
-    錯誤答案3: 'entry.1090409630'
+  題目: 'entry.892031688',
+  正確答案: 'entry.977089316',
+  錯誤答案1: 'entry.657500498',
+  錯誤答案2: 'entry.1532072947',
+  錯誤答案3: 'entry.1090409630'
 }
 
 // Client ID and API key from the Developer Console
@@ -31,10 +138,10 @@ var 送出按鈕 = document.getElementById('submit');
 var 清除按鈕 = document.getElementById('clear');
 var 題目輸入框 = document.forms[0][entry.題目];
 var 選項輸入框 = [
-    document.forms[0][entry.正確答案],
-    document.forms[0][entry.錯誤答案1],
-    document.forms[0][entry.錯誤答案2],
-    document.forms[0][entry.錯誤答案3]
+  document.forms[0][entry.正確答案],
+  document.forms[0][entry.錯誤答案1],
+  document.forms[0][entry.錯誤答案2],
+  document.forms[0][entry.錯誤答案3]
 ];
 
 var 暫存題庫 = [], 題庫 = [];
@@ -51,39 +158,39 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
  * From https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
  */
 function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        let t = array[i];
-        array[i] = array[j];
-        array[j] = t;
-    }
-    // console.log(array);
-    return array;
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let t = array[i];
+    array[i] = array[j];
+    array[j] = t;
+  }
+  // console.log(array);
+  return array;
 }
 
 function 下一題() {
-    載入提示.style.display = 'flex';
-    送出按鈕.style.display = 'none';
-    目前題目 = 暫存題庫.pop();
-    if (暫存題庫.length < 1) 重載題庫();
-    題目輸入框.innerHTML = 目前題目[0];
-    目前題目.splice(0, 1);
-    正確答案 = String(目前題目[0]);
-    目前題目 = shuffle(目前題目);
-    // console.log(current);
-    選項輸入框[0].innerHTML = 目前題目.pop();
-    選項輸入框[1].innerHTML = 目前題目.pop();
-    選項輸入框[2].innerHTML = 目前題目.pop();
-    選項輸入框[3].innerHTML = 目前題目.pop();
-    題目輸入框.value = 題目輸入框.innerHTML;
-    選項輸入框[0].value = 選項輸入框[0].innerHTML;
-    選項輸入框[1].value = 選項輸入框[1].innerHTML;
-    選項輸入框[2].value = 選項輸入框[2].innerHTML;
-    選項輸入框[3].value = 選項輸入框[3].innerHTML;
-    // console.log(bgm.src);
-    戰鬥背景音樂();
-    背景音樂.play();
-    載入提示.style.display = 'none';
+  載入提示.style.display = 'flex';
+  送出按鈕.style.display = 'none';
+  目前題目 = 暫存題庫.pop();
+  if (暫存題庫.length < 1) 重載題庫();
+  題目輸入框.innerHTML = 目前題目[0];
+  目前題目.splice(0, 1);
+  正確答案 = String(目前題目[0]);
+  目前題目 = shuffle(目前題目);
+  // console.log(current);
+  選項輸入框[0].innerHTML = 目前題目.pop();
+  選項輸入框[1].innerHTML = 目前題目.pop();
+  選項輸入框[2].innerHTML = 目前題目.pop();
+  選項輸入框[3].innerHTML = 目前題目.pop();
+  題目輸入框.value = 題目輸入框.innerHTML;
+  選項輸入框[0].value = 選項輸入框[0].innerHTML;
+  選項輸入框[1].value = 選項輸入框[1].innerHTML;
+  選項輸入框[2].value = 選項輸入框[2].innerHTML;
+  選項輸入框[3].value = 選項輸入框[3].innerHTML;
+  // console.log(bgm.src);
+  戰鬥背景音樂();
+  背景音樂.play();
+  載入提示.style.display = 'none';
 }
 
 /**
@@ -92,39 +199,39 @@ function 下一題() {
  * https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw/edit
  */
 function 重載題庫() {
+  載入提示.style.display = 'flex';
+  cleanPre();
+  gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw',
+    range: '2022 GiCS!B2:F',
+  }).then(function (response) {
     載入提示.style.display = 'flex';
     cleanPre();
-    gapi.client.sheets.spreadsheets.values.get({
-        spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw',
-        range: '2022 GiCS!B2:F',
-    }).then(function (response) {
-        載入提示.style.display = 'flex';
-        cleanPre();
-        var range = response.result;
-        if (range.values.length > 0) {
-            題庫 = 暫存題庫 = range.values; shuffle(暫存題庫);
-            題庫.reverse();
-            for (const row of 題庫)
-                appendPre(`
+    var range = response.result;
+    if (range.values.length > 0) {
+      題庫 = 暫存題庫 = range.values; shuffle(暫存題庫);
+      題庫.reverse();
+      for (const row of 題庫)
+        appendPre(`
   🤔${row[0]}
   ⭕正確答案:${row[1]}
   錯誤答案1:${row[2]}
   錯誤答案2:${row[3]}
   錯誤答案3:${row[4]}`);
-            下一題();
-        } else {
-            appendPre('No data found.');
-        }
-    }, function (response) {
-        appendPre('Error: ' + response.result.error.message);
-    });
+      下一題();
+    } else {
+      appendPre('No data found.');
+    }
+  }, function (response) {
+    appendPre('Error: ' + response.result.error.message);
+  });
 }
 
 /**
  *  On load, called to load the auth2 library and API client library.
  */
 function handleClientLoad() {
-    gapi.load('client:auth2', initClient);
+  gapi.load('client:auth2', initClient);
 }
 
 /**
@@ -132,22 +239,22 @@ function handleClientLoad() {
  *  listeners.
  */
 function initClient() {
-    gapi.client.init({
-        apiKey: API_KEY,
-        clientId: CLIENT_ID,
-        discoveryDocs: DISCOVERY_DOCS,
-        scope: SCOPES
-    }).then(function () {
-        // Listen for sign-in state changes.
-        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+  gapi.client.init({
+    apiKey: API_KEY,
+    clientId: CLIENT_ID,
+    discoveryDocs: DISCOVERY_DOCS,
+    scope: SCOPES
+  }).then(function () {
+    // Listen for sign-in state changes.
+    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
-        // Handle the initial sign-in state.
-        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        登入按鈕.onclick = handleAuthClick;
-        登出按鈕.onclick = handleSignoutClick;
-    }, function (error) {
-        appendPre(JSON.stringify(error, null, 2));
-    });
+    // Handle the initial sign-in state.
+    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    登入按鈕.onclick = handleAuthClick;
+    登出按鈕.onclick = handleSignoutClick;
+  }, function (error) {
+    appendPre(JSON.stringify(error, null, 2));
+  });
 }
 
 /**
@@ -155,15 +262,15 @@ function initClient() {
  *  appropriately. After a sign-in, the API is called.
  */
 function updateSigninStatus(isSignedIn) {
-    載入按鈕.style.display = 'none';
-    if (isSignedIn) {
-        登入按鈕.style.display = 'none';
-        登出按鈕.style.display = 'block';
-        重載題庫();
-    } else {
-        登入按鈕.style.display = 'block';
-        登出按鈕.style.display = 'none';
-    }
+  載入按鈕.style.display = 'none';
+  if (isSignedIn) {
+    登入按鈕.style.display = 'none';
+    登出按鈕.style.display = 'block';
+    重載題庫();
+  } else {
+    登入按鈕.style.display = 'block';
+    登出按鈕.style.display = 'none';
+  }
 }
 
 
@@ -171,23 +278,23 @@ function updateSigninStatus(isSignedIn) {
  *  Sign in the user upon button click.
  */
 function handleAuthClick(event) {
-    載入提示.style.display = 'flex';
-    載入按鈕.style.display = 'block';
-    登入按鈕.style.display = 'none';
-    地圖背景音樂();
-    背景音樂.play();
-    gapi.auth2.getAuthInstance().signIn();
+  載入提示.style.display = 'flex';
+  載入按鈕.style.display = 'block';
+  登入按鈕.style.display = 'none';
+  地圖背景音樂();
+  背景音樂.play();
+  gapi.auth2.getAuthInstance().signIn();
 }
 
 /**
  *  Sign out the user upon button click.
  */
 function handleSignoutClick(event) {
-    載入提示.style.display = 'flex';
-    載入按鈕.style.display = 'block';
-    地圖背景音樂();
-    背景音樂.play();
-    gapi.auth2.getAuthInstance().signOut();
+  載入提示.style.display = 'flex';
+  載入按鈕.style.display = 'block';
+  地圖背景音樂();
+  背景音樂.play();
+  gapi.auth2.getAuthInstance().signOut();
 }
 
 /**
@@ -197,79 +304,79 @@ function handleSignoutClick(event) {
  * @param {string} message Text to be placed in pre element.
  */
 function appendPre(message) {
-    pre.appendChild(document.createTextNode(message + '\n'));
+  pre.appendChild(document.createTextNode(message + '\n'));
 }
 
 function cleanPre() {
-    document.getElementById('content').innerHTML = '👉狀態欄/目前題庫\n';
+  document.getElementById('content').innerHTML = '👉狀態欄/目前題庫\n';
 }
 
 function 清除() {
-    地圖背景音樂();
-    document.forms[0].reset();
-    for (input of document.forms[0]) {
-        input.innerHTML = '';
-        input.value = ''
-    }
-    送出按鈕.style.display = 'none';
+  地圖背景音樂();
+  document.forms[0].reset();
+  for (input of document.forms[0]) {
+    input.innerHTML = '';
+    input.value = ''
+  }
+  送出按鈕.style.display = 'none';
 }
 
 
 function 送出題目() {
-    if (送出按鈕.style.display != 'block') return;
-    for (const row of 題庫)
-        if (題目輸入框.value && String(row[0]).indexOf(題目輸入框.value) > -1) {
-            alert("有這個題目了");
-            return;
-        }
-    if (confirm(選項輸入框[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
-        document.forms[0].submit();
-        送出按鈕.style.display = 'none';
+  if (送出按鈕.style.display != 'block') return;
+  for (const row of 題庫)
+    if (題目輸入框.value && String(row[0]).indexOf(題目輸入框.value) > -1) {
+      alert("有這個題目了");
+      return;
     }
-    重載題庫();
+  if (confirm(選項輸入框[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
+    document.forms[0].submit();
+    送出按鈕.style.display = 'none';
+  }
+  重載題庫();
 }
 
 function 檢查題目(question) {
-    for (const row of 題庫)
-        if (question && question.length > 5 && String(row[0]).indexOf(question) > -1) {
-            alert("有這個題目了");
-            return true;
-        }
-    // console.clear();
-    // console.log(database);
-    return false;
+  for (const row of 題庫)
+    if (question && question.length > 5 && String(row[0]).indexOf(question) > -1) {
+      alert("有這個題目了");
+      return true;
+    }
+  // console.clear();
+  // console.log(database);
+  return false;
 }
 
 async function 檢查答案(選項) {
-    if (正確答案 === 選項.value) {
-        if (靜音狀態 > 0) new Audio('victory_sound_effect.mp3').play();
-        await sleep(50);
-        if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
-            下一題();
-    } else if (靜音狀態 > 0) new Audio('keep_going_sound_effect.mp3').play();
+  if (正確答案 === 選項.value) {
+    if (靜音狀態 > 0) new Audio('victory_sound_effect.mp3').play();
+    await sleep(50);
+    if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
+      下一題();
+  } else if (靜音狀態 > 0) new Audio('keep_going_sound_effect.mp3').play();
 }
 
 var 靜音狀態 = -1;
 function 靜音切換() {
-    switch (靜音狀態) {
-        case -1: 靜音狀態 = 2;
-            背景音樂.muted = false; 背景音樂.play();
-            document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
-            document.body.onclick = e => new Audio('panel_btn_click_sound_effect.mp3').play();
-            return;
-        case 0: 靜音狀態 = 1;
-            document.getElementById("volctrl").innerHTML = `<i class="volume down icon"></i>`;
-            document.body.onclick = e => new Audio('panel_btn_click_sound_effect.mp3').play();
-            return;
-        case 1: 靜音狀態 = 2;
-            背景音樂.muted = false; 背景音樂.play();
-            document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
-            return;
-        case 2: 靜音狀態 = 0;
-            背景音樂.muted = true;
-            document.getElementById("volctrl").innerHTML = `<i class="volume off icon"></i>`;
-            document.body.onclick = e => e;
-    }
+  switch (靜音狀態) {
+    case -1: 靜音狀態 = 2;
+      背景音樂.muted = false; 背景音樂.play();
+      document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
+      document.body.onclick = e => new Audio('panel_btn_click_sound_effect.mp3').play();
+      return;
+    case 0: 靜音狀態 = 1;
+      document.getElementById("volctrl").innerHTML = `<i class="volume down icon"></i>`;
+      document.body.onclick = e => new Audio('panel_btn_click_sound_effect.mp3').play();
+      return;
+    case 1: 靜音狀態 = 2;
+      背景音樂.muted = false; 背景音樂.play();
+      document.getElementById("volctrl").innerHTML = `<i class="volume up icon"></i>`;
+      return;
+    case 2: 靜音狀態 = 0;
+      背景音樂.muted = true;
+      document.getElementById("volctrl").innerHTML = `<i class="volume off icon"></i>`;
+      document.body.onclick = e => e;
+  }
 }
 
 登入按鈕.addEventListener("click", cleanPre);
@@ -283,51 +390,51 @@ function 靜音切換() {
 按鈕D.addEventListener('click', e => 檢查答案(選項輸入框[3]));
 
 function 地圖背景音樂() {
-    if (背景音樂.src.indexOf('map_background_music.mp3') == -1)
-        背景音樂.src = 'map_background_music.mp3';
-    if (靜音狀態 == 2) 背景音樂.play();
+  if (背景音樂.src.indexOf('map_background_music.mp3') == -1)
+    背景音樂.src = 'map_background_music.mp3';
+  if (靜音狀態 == 2) 背景音樂.play();
 }
 
 function 戰鬥背景音樂() {
-    if (背景音樂.src.indexOf('fight_background_music.mp3') == -1)
-        背景音樂.src = 'fight_background_music.mp3';
-    if (靜音狀態 == 2) 背景音樂.play();
+  if (背景音樂.src.indexOf('fight_background_music.mp3') == -1)
+    背景音樂.src = 'fight_background_music.mp3';
+  if (靜音狀態 == 2) 背景音樂.play();
 }
 
 題目輸入框.addEventListener("input", e => {
-    地圖背景音樂();
-    let content = String(題目輸入框.value);
-    let ai = content.indexOf('\nA\n');
-    let bi = content.indexOf('\nB\n', ai);
-    let ci = content.indexOf('\nC\n', bi);
-    let di = content.indexOf('\nD\n', ci);
-    console.log(ai, bi, ci, di);
-    let ans = [
-        content.substring(ai + 3, bi),
-        content.substring(bi + 3, ci),
-        content.substring(ci + 3, di),
-        content.substring(di + 3)
-    ];
-    var question = 題目輸入框.value;
-    if (ai > -1 && bi > -1 && ci > -1 && di > -1) {
-        題目輸入框.value = content.substring(0, ai);
-        question = 題目輸入框.value;
-        if (!檢查題目(question)) {
-            送出按鈕.style.display = 'block';
-            let temp;
-            const tip = "\n\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
-            for (let i = -1; !confirm((temp = ans[++i]) + tip);)
-                if (i == 2) { temp = ans[3]; break; }
-            ans.splice(ans.indexOf(temp), 1);
-            // console.log(ans);
-            document.forms[0][entry.正確答案].value = temp;
-            for (let i = 0; 4 > ++i; document.forms[0][entry[`錯誤答案${i}`]].value = ans[i - 1]);
-        }
-    } else if (暫存題庫.length > -1 && question && !檢查題目(question)
-        && 選項輸入框[0].value && 選項輸入框[1] && 選項輸入框[2] && 選項輸入框[3]) {
-        送出按鈕.style.display = 'block';
+  地圖背景音樂();
+  let content = String(題目輸入框.value);
+  let ai = content.indexOf('\nA\n');
+  let bi = content.indexOf('\nB\n', ai);
+  let ci = content.indexOf('\nC\n', bi);
+  let di = content.indexOf('\nD\n', ci);
+  console.log(ai, bi, ci, di);
+  let ans = [
+    content.substring(ai + 3, bi),
+    content.substring(bi + 3, ci),
+    content.substring(ci + 3, di),
+    content.substring(di + 3)
+  ];
+  var question = 題目輸入框.value;
+  if (ai > -1 && bi > -1 && ci > -1 && di > -1) {
+    題目輸入框.value = content.substring(0, ai);
+    question = 題目輸入框.value;
+    if (!檢查題目(question)) {
+      送出按鈕.style.display = 'block';
+      let temp;
+      const tip = "\n\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
+      for (let i = -1; !confirm((temp = ans[++i]) + tip);)
+        if (i == 2) { temp = ans[3]; break; }
+      ans.splice(ans.indexOf(temp), 1);
+      // console.log(ans);
+      document.forms[0][entry.正確答案].value = temp;
+      for (let i = 0; 4 > ++i; document.forms[0][entry[`錯誤答案${i}`]].value = ans[i - 1]);
     }
-    console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
+  } else if (暫存題庫.length > -1 && question && !檢查題目(question)
+    && 選項輸入框[0].value && 選項輸入框[1] && 選項輸入框[2] && 選項輸入框[3]) {
+    送出按鈕.style.display = 'block';
+  }
+  console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
 });
 
 document.getElementById("volctrl").addEventListener("click", 靜音切換);
@@ -335,48 +442,48 @@ document.body.onclick = e => 靜音切換();
 
 // From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
 題目輸入框.onfocus = e => {
-    題目輸入框.select();
-    // Work around Chrome's little problem
-    題目輸入框.onmouseup = function () {
-        // Prevent further mouseup intervention
-        題目輸入框.onmouseup = null;
-        return false;
-    };
+  題目輸入框.select();
+  // Work around Chrome's little problem
+  題目輸入框.onmouseup = function () {
+    // Prevent further mouseup intervention
+    題目輸入框.onmouseup = null;
+    return false;
+  };
 };
 
 for (const 元素 of 選項輸入框)
-    元素.onfocus = e => {
-        元素.select();
-        // Work around Chrome's little problem
-        元素.onmouseup = function () {
-            // Prevent further mouseup intervention
-            元素.onmouseup = null;
-            return false;
-        };
+  元素.onfocus = e => {
+    元素.select();
+    // Work around Chrome's little problem
+    元素.onmouseup = function () {
+      // Prevent further mouseup intervention
+      元素.onmouseup = null;
+      return false;
     };
+  };
 
 document.body.addEventListener('keydown', e => {
-    if (e.target == document.body) switch (e.key.toUpperCase()) {
-        default: console.log(e.key);
-            break; case ' ': e.preventDefault(); 下一題();
-            break; case '1':case 'A':
-            if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-                檢查答案(選項輸入框[0]);
-            break; case '2':case 'B':
-            if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-                檢查答案(選項輸入框[1]);
-            break; case '3':case 'C':
-            if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-                檢查答案(選項輸入框[2]);
-            break; case '4':case 'D':
-            if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-                檢查答案(選項輸入框[3]);
-            break; case 'M':
-            if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-                靜音切換();
-            break; case 'enter':
-            if (送出按鈕.style.display != 'none')
-                送出題目();
-            break; case 'escape': 清除();
-    }
+  if (e.target == document.body) switch (e.key.toUpperCase()) {
+    default: console.log(e.key);
+      break; case ' ': e.preventDefault(); 下一題();
+      break; case '1': case 'A':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(選項輸入框[0]);
+      break; case '2': case 'B':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(選項輸入框[1]);
+      break; case '3': case 'C':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(選項輸入框[2]);
+      break; case '4': case 'D':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(選項輸入框[3]);
+      break; case 'M':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        靜音切換();
+      break; case 'enter':
+      if (送出按鈕.style.display != 'none')
+        送出題目();
+      break; case 'escape': 清除();
+  }
 });
