@@ -1,13 +1,18 @@
 # [2022 GiCS 資安闖天關刷題說明](https://nchuit.cc/2022GiCS/)
 
-## 刷題熱鍵
+## 刷題
 
+### 鍵盤熱鍵
 <p><kbd>空白鍵</kbd> : 下一題</p>
 <p><kbd>A</kbd> 或 <kbd>1</kbd> : 答案選A</p>
 <p><kbd>B</kbd> 或 <kbd>2</kbd> : 答案選B</p>
 <p><kbd>C</kbd> 或 <kbd>3</kbd> : 答案選C</p>
 <p><kbd>D</kbd> 或 <kbd>4</kbd> : 答案選D</p>
 <p><kbd>M</kbd> : 無音效/僅點選音效/音效全開 三段式靜音切換</p>
+
+![](https://i.imgur.com/m5tRrfu.png) : 說明
+
+![](https://i.imgur.com/0FnNzZS.png) : 清除輸入
 
 ## 插件安裝
 
