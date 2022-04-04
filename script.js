@@ -212,7 +212,8 @@ function 打亂陣列(array) {
 
 function 下一題() {
   載入提示.style.display = 'flex';
-  送出按鈕.style.display = 'none';
+  $('#submit').hide();
+  $('#next').show()
   目前題目 = 暫存題庫.pop();
   if (暫存題庫.length < 1) 重載題庫();
   輸入框[0].value = 輸入框[0].innerHTML = 目前題目[0];
