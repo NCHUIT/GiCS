@@ -158,15 +158,9 @@ function 音效播放(音效) {
   音效.play();
 }
 
-var 靜音狀態 = -1;
+var 靜音狀態 = 0;
 function 靜音切換() {
   switch (靜音狀態) {
-    case -1: 靜音狀態 = 2;
-      靜音切換按鈕.innerHTML = `<i class="volume up icon"></i>`;
-      正解音效.muted = 錯題音效.muted = 點擊音效.muted = false;
-      目前背景音樂.muted = false;
-      目前背景音樂.play();
-      return;
     case 0: 靜音狀態 = 1;
       靜音切換按鈕.innerHTML = `<i class="volume down icon"></i>`;
       正解音效.muted = 錯題音效.muted = 點擊音效.muted = false;
