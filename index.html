@@ -52,7 +52,7 @@ JwIDAQAB
 <body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
   theme="ocean">
   <div class="ui top fixed compact menu">
-    <a class="item visible having sm" data-tooltip="點我前往原始碼 GitHub 存放庫" data-position="bottom left"
+    <a class="cursor_pointer item visible having sm" data-tooltip="點我前往原始碼 GitHub 存放庫" data-position="bottom left"
       href="//github.com/NCHUIT/2022GiCS" target="_blank">
       <!-- <p>Google Sheets API Quickstart</p> -->
       <img src="//i.imgur.com/6LcYa68.png">
@@ -64,29 +64,29 @@ JwIDAQAB
           controlslist="nodownload">Your browser does not support the audio tag.</audio>
         <audio id="fight_background_music" loop src="fight_background_music.mp3" type="audio/mpeg"
           controlslist="nodownload">Your browser does not support the audio tag.</audio>
-        <audio id="victory_sound_effect" src="victory_sound_effect.mp3" type="audio/mpeg"
-          controlslist="nodownload">Your browser does not support the audio tag.</audio>
+        <audio id="victory_sound_effect" src="victory_sound_effect.mp3" type="audio/mpeg" controlslist="nodownload">Your
+          browser does not support the audio tag.</audio>
         <audio id="keep_going_sound_effect" src="keep_going_sound_effect.mp3" type="audio/mpeg"
           controlslist="nodownload">Your browser does not support the audio tag.</audio>
         <audio id="panel_btn_click_sound_effect" src="panel_btn_click_sound_effect.mp3" type="audio/mpeg"
           controlslist="nodownload">Your browser does not support the audio tag.</audio>
       </div>
-      <div id="volctrl" class="item ui header" data-tooltip="無音效/僅點選音效/音效全開" data-position="bottom right">
+      <div id="volctrl" class="cursor_pointer item ui header" data-tooltip="無音效/僅點選音效/音效全開" data-position="bottom right">
         <i class="volume off icon"></i>
       </div>
       <!--Add buttons to initiate auth sequence and sign out-->
-      <button class="positive ui button" id="authorize_button" style="display: none;">
+      <button class="cursor_pointer positive ui button" id="authorize_button" style="display: none;">
         <h5>登入</h5>
       </button>
-      <button class="negative ui button" id="signout_button" style="display: none;">
+      <button class="cursor_pointer negative ui button" id="signout_button" style="display: none;">
         <h5>登出</h5>
       </button>
-      <button class="massive ui loading button" id="signloader_button">
+      <button class="cursor_pointer massive ui loading button" id="signloader_button">
       </button>
     </div>
   </div>
   <div style="height:50px"></div>
-  <div class="viewport-height fix-bg section ui inverted segment">
+  <div class="ui inverted segment">
     <div class="ui active dimmer" id="loader">
       <div class="ui massive text loader">題目載入中<br>若未登入請至右上方登入</div>
     </div>
@@ -106,55 +106,55 @@ JwIDAQAB
         <div class="pgo-style-question-area-2If0h0" data-question-type="choice" data-input-type="choice"
           data-with-sponsor-and-hint="false" data-exam-mode="false">
           <div id="answer-panel-question-with-input">
-            <div class="answer-panel-question-content" data-self-control="false" data-with-sponsor-and-hint="false"
-              data-input-type="choice" data-show-detail="false" data-exam-mode="false">
+            <div id="answer-panel-question-content" class="answer-panel-question-content" data-self-control="false">
               <div class="question-iframe-container pgo-style-question-content-1iaDNm ui container" data-inverted
-                data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center">
-                <textarea placeholder="未輸入題目" rows="2" style="width:100%;border:0;overflow-y:scroll"
-                  class="pgo-style-question-content-wrapper-vTwh8z" form="form" name="entry.892031688">
+                data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center"
+                style="margin-left: unset!important;margin-right: unset!important;">
+                <textarea placeholder="未輸入題目" rows="2" style="width:100%;border:0;overflow-y:hidden"
+                  class="cursor_pointer pgo-style-question-content-wrapper-vTwh8z" form="form" name="entry.892031688">
                 </textarea>
               </div>
               <div class="pgo-style-question-selections-TbE9eE">
-                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="A">
+                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid">
                   <div class="one wide column">
                     <div class="pgo-style-selection-choice-rrQTIw">A</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項A" rows="1" style="width:100%;border:0;overflow-y:scroll"
-                      spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
+                    <textarea placeholder="未輸入選項A" rows="1" style="width:100%;border:0;overflow-y:hidden"
+                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL" form="form"
                       name="entry.977089316">
                     </textarea>
                   </div>
                 </div>
-                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="B">
+                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid">
                   <div class="one wide column">
                     <div class="pgo-style-selection-choice-rrQTIw">B</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項B" rows="1" style="width:100%;border:0;overflow-y:scroll"
-                      spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
+                    <textarea placeholder="未輸入選項B" rows="1" style="width:100%;border:0;overflow-y:hidden"
+                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL" form="form"
                       name="entry.657500498">
                     </textarea>
                   </div>
                 </div>
-                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="C">
+                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid">
                   <div class="one wide column">
                     <div class="pgo-style-selection-choice-rrQTIw">C</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項C" rows="1" style="width:100%;border:0;overflow-y:scroll"
-                      spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
+                    <textarea placeholder="未輸入選項C" rows="1" style="width:100%;border:0;overflow-y:hidden"
+                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL" form="form"
                       name="entry.1532072947">
                     </textarea>
                   </div>
                 </div>
-                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid" data-org-position="D">
+                <div class="question-iframe-container pgo-style-selection-13WO94 ui grid">
                   <div class="one wide column">
                     <div class="pgo-style-selection-choice-rrQTIw">D</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項D" rows="1" style="width:100%;border:0;overflow-y:scroll"
-                      spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
+                    <textarea placeholder="未輸入選項D" rows="1" style="width:100%;border:0;overflow-y:hidden"
+                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL" form="form"
                       name="entry.1090409630">
                     </textarea>
                   </div>
@@ -164,13 +164,13 @@ JwIDAQAB
             <div data-question-type="choice" data-selection-count="4" data-exam-mode="false"
               class="input-group-area pgo-style-inputs-area-2w2qDZ">
               <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-                data-real-choice="A" id="buttonA">A</div>
+                style="user-select: none!important" id="buttonA">A</div>
               <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-                data-real-choice="B" id="buttonB">B</div>
+                style="user-select: none!important" id="buttonB">B</div>
               <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-                data-real-choice="C" id="buttonC">C</div>
+                style="user-select: none!important" id="buttonC">C</div>
               <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-                data-real-choice="D" id="buttonD">D</div>
+                style="user-select: none!important" id="buttonD">D</div>
             </div>
           </div>
         </div>
@@ -279,10 +279,12 @@ JwIDAQAB
           </div>
         </div>
         <div class="pgo-style-submit-button-pASHWz" data-extended-answer-panel="false">
-          <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW" style="display:none"
-            data-position="bottom right" data-tooltip="請確保送出時 A 選項為正確答案，本表單會自動匯入 Google 試算表" id="submit">
+          <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
+            style="user-select: none!important;display:none" data-position="bottom right"
+            data-tooltip="請確保送出時 A 選項為正確答案，本表單會自動匯入 Google 試算表" id="submit">
             送出</div>
-          <div id="next" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW">
+          <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
+            style="user-select: none!important" id="next">
             下一題</div>
         </div>
       </form>
@@ -295,7 +297,7 @@ JwIDAQAB
     <div class="ui center aligned container">
       <div class="ui stackable grid">
         <div class="column">
-          <div class="ui inverted link list" data-tooltip="點我看組織章程">
+          <div class="cursor_pointer ui inverted link list" data-tooltip="點我看組織章程">
             <a class="item" href="//ppt.cc/fA9uAx" target="_blank">© 2022 NCHUIT, Club</a>
           </div>
         </div>

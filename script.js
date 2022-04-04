@@ -204,19 +204,27 @@ function 打亂陣列(array) {
   return array;
 }
 
+function 輸入框欄高自適應(輸入框) {
+  輸入框.style.height = "auto";
+  輸入框.style.height = 輸入框.scrollHeight + "px";
+}
+
 function 下一題() {
   載入提示.style.display = 'flex';
   $('#submit').hide();
   $('#next').show()
+  document.getElementById('answer-panel-question-content').scrollTo(0, 0);
   目前題目 = 暫存題庫.pop();
   if (暫存題庫.length < 1) 重載題庫();
   輸入框[0].value = 輸入框[0].innerHTML = 目前題目[0];
+  輸入框欄高自適應(輸入框[0]);
   正確答案 = String(目前題目[1]);
   目前題目 = 打亂陣列(目前題目.slice(1));
   // console.log(current);
   for (let 元素 of 輸入框.slice(1)) {
     元素.value = 目前題目.pop();
     元素.innerHTML = 元素.value;
+    輸入框欄高自適應(元素);
   }
   目前題目 = 輸入框[0].innerHTML;
   // console.log(bgm.src);
@@ -251,6 +259,7 @@ function 重載題庫() {
     } else 狀態欄續寫('No data found.');
   }, function (response) {
     狀態欄續寫('Error: ' + response.result.error.message);
+    下一題();
   });
 }
 
@@ -294,6 +303,7 @@ function 初始化客戶端() {
     };
   }, function (error) {
     狀態欄續寫(JSON.stringify(error, null, 2));
+    下一題();
   });
 }
 
@@ -324,7 +334,7 @@ function 狀態欄續寫(message) {
 }
 
 function 清除狀態欄() {
-  document.getElementById('content').innerHTML = `👉狀態欄/目前題庫有 ${題庫.length} 題(按新到舊排序)\n`;
+  document.getElementById('content').innerHTML = `👉目前題庫有${題庫.length}題(新到舊)\n`;
 }
 
 function 清除() {
@@ -364,6 +374,8 @@ function 檢查題目() {
 
 function 輸入() {
   切換背景音樂('map');
+  for (let 元素 of 輸入框)
+    輸入框欄高自適應(元素);
   let content = String(輸入框[0].value);
   let ai = content.indexOf('\nA\n');
   let bi = content.indexOf('\nB\n', ai);
@@ -377,7 +389,7 @@ function 輸入() {
     content.substring(di + 3)
   ];
   if (ai > 5) 輸入框[0].value = content.substring(0, ai);
-  if (檢查題目()){
+  if (檢查題目()) {
     輸入框[0].value = 輸入框[0].innerHTML = 目前題目;
     $('#submit').hide();
     $('#next').show()
@@ -404,6 +416,39 @@ function 輸入() {
   // console.log(ai,bi,ci,di);
 }
 
+var 介面狀態;
+function 調整介面() {
+  for (let 元素 of 輸入框)
+    輸入框欄高自適應(元素);
+  if (window.screen.width < 767) {
+    if (介面狀態 == '小') return;
+    介面狀態 = '小';
+    $('#answer-panel').addClass('attack_modal_m');
+    $('#answer-panel').addClass('attack_modal_m_sprite');
+    $('#answer-panel').removeClass('panel');
+    $('#answer-panel').removeClass('attack_modal_reading_sprite');
+    $('.input-group-area').attr('data-selection-count', 6);
+    $('.input-group-area .attack_modal_sprite').addClass('attack_modal_m_sprite');
+    $('.input-group-area .attack_modal_sprite').removeClass('attack_modal_sprite');
+    $('.btn04').addClass('btn04_m');
+    $('.btn04').removeClass('btn04');
+  } else {
+    if (介面狀態 == '大') return;
+    介面狀態 = '大';
+    $('#answer-panel').addClass('panel');
+    $('#answer-panel').addClass('attack_modal_reading_sprite');
+    $('#answer-panel').removeClass('attack_modal_m');
+    $('#answer-panel').removeClass('attack_modal_m_sprite');
+    $('.input-group-area').attr('data-selection-count', 4);
+    $('.input-group-area .attack_modal_m_sprite').addClass('attack_modal_sprite');
+    $('.input-group-area .attack_modal_m_sprite').removeClass('attack_modal_m_sprite');
+    $('.btn04_m').addClass('btn04');
+    $('.btn04_m').removeClass('btn04_m');
+  }
+}
+
+載入按鈕.addEventListener("click", 下一題);
+載入提示.addEventListener("mouseover", 下一題);
 下一題按鈕.addEventListener("click", 下一題);
 送出按鈕.addEventListener("click", 送出題目);
 清除按鈕.addEventListener("click", 清除);
@@ -412,8 +457,9 @@ function 輸入() {
 按鈕C.addEventListener("click", e => 檢查答案(輸入框[3]));
 按鈕D.addEventListener("click", e => 檢查答案(輸入框[4]));
 靜音切換按鈕.addEventListener("click", 靜音切換);
-document.body.addEventListener("click", e => 音效播放(點擊音效));
-document.body.onload = e => 靜音切換();
+document.body.addEventListener("click", e => { 音效播放(點擊音效); 調整介面() });
+document.body.onload = e => { 靜音切換(); 調整介面() };
+window.addEventListener('resize', 調整介面, true);
 
 // From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
 for (const 元素 of 輸入框) {
