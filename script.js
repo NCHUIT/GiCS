@@ -102,8 +102,9 @@ var terrainMapping = {
 };
 var characterIDMapping = {
   "1": "eagle", "2": "lizard", "3": "wolf", "4": "antelope", "5": "cat", "6": "cheetah",
-  "7": "alicia", "8": "zoey","9": "ming", "10": "erik", "11": "asad", "12": "mika",
-  "13": "tiencai", "14": "sikadeer", "15": "wangfu", "16": "draca", "17": "dolly", "18": "broomy"};
+  "7": "alicia", "8": "zoey", "9": "ming", "10": "erik", "11": "asad", "12": "mika",
+  "13": "tiencai", "14": "sikadeer", "15": "wangfu", "16": "draca", "17": "dolly", "18": "broomy"
+};
 //]]>
 const entry = {
   題目: 'entry.892031688',
@@ -136,8 +137,8 @@ var 按鈕C = document.getElementById('buttonC');
 var 按鈕D = document.getElementById('buttonD');
 var 送出按鈕 = document.getElementById('submit');
 var 清除按鈕 = document.getElementById('clear');
-var 題目輸入框 = document.forms[0][entry.題目];
-var 選項輸入框 = [
+var 輸入框 = [
+  document.forms[0][entry.題目],
   document.forms[0][entry.正確答案],
   document.forms[0][entry.錯誤答案1],
   document.forms[0][entry.錯誤答案2],
@@ -150,13 +151,6 @@ var 目前題目, 正確答案;
 var 背景音樂 = new Audio('map_background_music.mp3');
 背景音樂.loop = true;
 
-
-// From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-
-/**
- * From https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
- */
 function 打亂陣列(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -173,20 +167,15 @@ function 下一題() {
   送出按鈕.style.display = 'none';
   目前題目 = 暫存題庫.pop();
   if (暫存題庫.length < 1) 重載題庫();
-  題目輸入框.innerHTML = 目前題目[0];
+  輸入框[0].innerHTML = 目前題目[0];
   目前題目.splice(0, 1);
   正確答案 = String(目前題目[0]);
   目前題目 = 打亂陣列(目前題目);
   // console.log(current);
-  選項輸入框[0].innerHTML = 目前題目.pop();
-  選項輸入框[1].innerHTML = 目前題目.pop();
-  選項輸入框[2].innerHTML = 目前題目.pop();
-  選項輸入框[3].innerHTML = 目前題目.pop();
-  題目輸入框.value = 題目輸入框.innerHTML;
-  選項輸入框[0].value = 選項輸入框[0].innerHTML;
-  選項輸入框[1].value = 選項輸入框[1].innerHTML;
-  選項輸入框[2].value = 選項輸入框[2].innerHTML;
-  選項輸入框[3].value = 選項輸入框[3].innerHTML;
+  for (let 元素 of 輸入框) {
+    元素.value = 目前題目.pop();
+    元素.innerHTML = 元素.value;
+  }
   // console.log(bgm.src);
   戰鬥背景音樂();
   背景音樂.play();
@@ -209,20 +198,15 @@ function 重載題庫() {
     cleanPre();
     var range = response.result;
     if (range.values.length > 0) {
-      題庫 = 暫存題庫 = range.values; 
+      題庫 = 暫存題庫 = range.values;
       題庫.reverse();
+      const fmt = ['🤔', '⭕正確答案', '錯誤答案1', '錯誤答案2', '錯誤答案3'];
       for (const row of 題庫)
-        appendPre(`
-  🤔${row[0]}
-  ⭕正確答案:${row[1]}
-  錯誤答案1:${row[2]}
-  錯誤答案2:${row[3]}
-  錯誤答案3:${row[4]}`);
+        for (const i in fmt)
+          appendPre('\n' + i + row[i]);
       打亂陣列(暫存題庫);
       下一題();
-    } else {
-      appendPre('No data found.');
-    }
+    } else appendPre('No data found.');
   }, function (response) {
     appendPre('Error: ' + response.result.error.message);
   });
@@ -325,7 +309,7 @@ function 清除() {
 
 function 送出題目() {
   if (送出按鈕.style.display != 'block' || 檢查題目()) return;
-  if (confirm(選項輸入框[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
+  if (confirm(輸入框[1].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
     document.forms[0].submit();
     $('#next').hide();
     $('#submit').show()
@@ -334,11 +318,11 @@ function 送出題目() {
 }
 
 function 檢查題目() {
-  const value = 題目輸入框.value;
-  const innerHTML = 題目輸入框.innerHTML;
+  const value = 輸入框[0].value;
+  const innerHTML = 輸入框[0].innerHTML;
   for (const row of 題庫)
     if ((value && value.length > 5 && String(row[0]).indexOf(value) > -1)
-      ||(innerHTML && innerHTML.length > 5 && String(row[0]).indexOf(innerHTML) > -1)) {
+      || (innerHTML && innerHTML.length > 5 && String(row[0]).indexOf(innerHTML) > -1)) {
       alert("有這個題目了");
       return true;
     }
@@ -347,8 +331,10 @@ function 檢查題目() {
   return false;
 }
 
+// From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function 檢查答案(選項) {
-  if (正確答案 === 選項.value) {
+  if (正確答案 === 選項.value || 正確答案 === 選項.innerHTML) {
     if (靜音狀態 > 0) new Audio('victory_sound_effect.mp3').play();
     await sleep(50);
     if (confirm('⭕答對啦！\n\n按下取消(Esc)返回、確定(Enter)下一題'))
@@ -384,10 +370,10 @@ function 靜音切換() {
 下一題按鈕.addEventListener("click", 下一題);
 送出按鈕.addEventListener("click", 送出題目);
 清除按鈕.addEventListener("click", 清除);
-按鈕A.addEventListener('click', e => 檢查答案(選項輸入框[0]));
-按鈕B.addEventListener('click', e => 檢查答案(選項輸入框[1]));
-按鈕C.addEventListener('click', e => 檢查答案(選項輸入框[2]));
-按鈕D.addEventListener('click', e => 檢查答案(選項輸入框[3]));
+按鈕A.addEventListener('click', e => 檢查答案(輸入框[1]));
+按鈕B.addEventListener('click', e => 檢查答案(輸入框[2]));
+按鈕C.addEventListener('click', e => 檢查答案(輸入框[3]));
+按鈕D.addEventListener('click', e => 檢查答案(輸入框[4]));
 
 function 地圖背景音樂() {
   if (背景音樂.src.indexOf('map_background_music.mp3') == -1)
@@ -401,24 +387,23 @@ function 戰鬥背景音樂() {
   if (靜音狀態 == 2) 背景音樂.play();
 }
 
-題目輸入框.addEventListener("input", e => {
+輸入框[0].addEventListener("input", e => {
   地圖背景音樂();
-  let content = String(題目輸入框.value);
+  let content = String(輸入框[0].value);
   let ai = content.indexOf('\nA\n');
   let bi = content.indexOf('\nB\n', ai);
   let ci = content.indexOf('\nC\n', bi);
   let di = content.indexOf('\nD\n', ci);
-  console.log(ai, bi, ci, di);
+  // console.log(ai, bi, ci, di);
   let ans = [
     content.substring(ai + 3, bi),
     content.substring(bi + 3, ci),
     content.substring(ci + 3, di),
     content.substring(di + 3)
   ];
-  var question = 題目輸入框.value;
   if (ai > -1 && bi > -1 && ci > -1 && di > -1) {
-    題目輸入框.value = content.substring(0, ai);
-    question = 題目輸入框.value;
+    輸入框[0].value = content.substring(0, ai);
+    question = 輸入框[0].value;
     if (!檢查題目()) {
       $('#next').hide();
       $('#submit').show()
@@ -432,34 +417,34 @@ function 戰鬥背景音樂() {
       for (let i = 0; 4 > ++i; document.forms[0][entry[`錯誤答案${i}`]].value = ans[i - 1]);
     }
   } else if (暫存題庫.length > -1 && !檢查題目()
-    && (選項輸入框[0].value || 選項輸入框[0].innerHTML)
-    && (選項輸入框[1].value || 選項輸入框[1].innerHTML)
-    && (選項輸入框[2].value || 選項輸入框[2].innerHTML)
-    && (選項輸入框[3].value || 選項輸入框[3].innerHTML)) {
-      $('#next').hide();
-      $('#submit').show()
+    && (輸入框[1].value || 輸入框[1].innerHTML)
+    && (輸入框[2].value || 輸入框[2].innerHTML)
+    && (輸入框[3].value || 輸入框[3].innerHTML)
+    && (輸入框[4].value || 輸入框[4].innerHTML)) {
+    $('#next').hide();
+    $('#submit').show()
   } else {
     $('#submit').hide();
     $('#next').show()
   }
-  console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
+  // console.log(ai,bi,ci,di);
 });
 
 document.getElementById("volctrl").addEventListener("click", 靜音切換);
 document.body.onclick = e => 靜音切換();
 
 // From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
-題目輸入框.onfocus = e => {
-  題目輸入框.select();
+輸入框[0].onfocus = e => {
+  輸入框[0].select();
   // Work around Chrome's little problem
-  題目輸入框.onmouseup = function () {
+  輸入框[0].onmouseup = function () {
     // Prevent further mouseup intervention
-    題目輸入框.onmouseup = null;
+    輸入框[0].onmouseup = null;
     return false;
   };
 };
 
-for (const 元素 of 選項輸入框)
+for (const 元素 of 輸入框)
   元素.onfocus = e => {
     元素.select();
     // Work around Chrome's little problem
@@ -476,16 +461,16 @@ document.body.addEventListener('keydown', e => {
       break; case ' ': e.preventDefault(); 下一題();
       break; case '1': case 'A':
       if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(選項輸入框[0]);
+        檢查答案(輸入框[1]);
       break; case '2': case 'B':
       if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(選項輸入框[1]);
+        檢查答案(輸入框[2]);
       break; case '3': case 'C':
       if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(選項輸入框[2]);
+        檢查答案(輸入框[3]);
       break; case '4': case 'D':
       if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(選項輸入框[3]);
+        檢查答案(輸入框[4]);
       break; case 'M':
       if (e.target.tagName.toUpperCase() != 'TEXTAREA')
         靜音切換();
