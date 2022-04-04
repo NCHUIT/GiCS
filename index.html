@@ -70,17 +70,13 @@ JwIDAQAB
 
 <body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
   theme="ocean">
-  <div class="ui top fixed menu">
-    <div class="item">
-      <img src="//i.imgur.com/6LcYa68.png">
-    </div>
-    <div class="item visible having sm">
+  <div class="ui top fixed compact menu">
+    <a class="item visible having sm" data-tooltip="點我前往原始碼 GitHub 存放庫" data-position="bottom left"
+      href="//github.com/NCHUIT/2022GiCS" target="_blank">
       <!-- <p>Google Sheets API Quickstart</p> -->
-      <a class="ui header" data-tooltip="點我前往原始碼 GitHub 存放庫" data-position="bottom left"
-        href="//github.com/NCHUIT/2022GiCS" target="_blank">
-        2022 GiCS 資安闖天關刷題
-      </a>
-    </div>
+      <img src="//i.imgur.com/6LcYa68.png">
+      &nbsp;&nbsp;2022 GiCS 闖關刷題
+    </a>
     <div class="right menu">
       <div id="audio_container" class="pgo-style-audios-29lfQn">
         <audio id="map_background_music" loop src="map_background_music.mp3" type="audio/mpeg"
@@ -298,10 +294,10 @@ JwIDAQAB
           </div>
         </div>
         <div class="pgo-style-submit-button-pASHWz" data-extended-answer-panel="false">
-          <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
+          <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW" style="display:none"
             data-position="bottom right" data-tooltip="請確保送出時 A 選項為正確答案，本表單會自動匯入 Google 試算表" id="submit">
             送出</div>
-          <div id="nextQuestion" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW">
+          <div id="next" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW">
             下一題</div>
         </div>
       </form>

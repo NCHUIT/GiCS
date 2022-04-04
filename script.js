@@ -326,7 +326,8 @@ function 送出題目() {
   if (送出按鈕.style.display != 'block' || 檢查題目()) return;
   if (confirm(選項輸入框[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
     document.forms[0].submit();
-    送出按鈕.style.display = 'none';
+    $('#next').hide();
+    $('#submit').show()
   }
   重載題庫();
 }
@@ -418,7 +419,8 @@ function 戰鬥背景音樂() {
     題目輸入框.value = content.substring(0, ai);
     question = 題目輸入框.value;
     if (!檢查題目()) {
-      送出按鈕.style.display = 'block';
+      $('#next').hide();
+      $('#submit').show()
       let temp;
       const tip = "\n\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
       for (let i = -1; !confirm((temp = ans[++i]) + tip);)
@@ -433,7 +435,11 @@ function 戰鬥背景音樂() {
     && (選項輸入框[1].value || 選項輸入框[1].innerHTML)
     && (選項輸入框[2].value || 選項輸入框[2].innerHTML)
     && (選項輸入框[3].value || 選項輸入框[3].innerHTML)) {
-    送出按鈕.style.display = 'block';
+      $('#next').hide();
+      $('#submit').show()
+  } else {
+    $('#submit').hide();
+    $('#next').show()
   }
   console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);
 });
