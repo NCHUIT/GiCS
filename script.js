@@ -250,7 +250,7 @@ function 重載題庫() {
       const fmt = ['🤔', '⭕正確答案', '錯誤答案1', '錯誤答案2', '錯誤答案3'];
       for (const row of 題庫)
         for (const i in fmt)
-          狀態欄續寫('\n' + i + row[i]);
+          狀態欄續寫('\n' + fmt[i] + row[i]);
       打亂陣列(暫存題庫);
       下一題();
     } else 狀態欄續寫('No data found.');
@@ -345,12 +345,12 @@ function 清除() {
 
 function 送出題目() {
   if (送出按鈕.style.display == 'none' || 檢查題目()) return;
-  if (confirm(輸入框[1].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
+  else if (confirm(輸入框[1].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
     document.forms[0].submit();
-    $('#next').hide();
-    $('#submit').show()
+    $('#submit').hide()
+    $('#next').show();
+    重載題庫();
   }
-  重載題庫();
 }
 
 function 檢查題目() {
