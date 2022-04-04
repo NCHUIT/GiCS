@@ -323,12 +323,7 @@ function 清除() {
 
 
 function 送出題目() {
-  if (送出按鈕.style.display != 'block') return;
-  for (const row of 題庫)
-    if (題目輸入框.value && String(row[0]).indexOf(題目輸入框.value) > -1) {
-      alert("有這個題目了");
-      return;
-    }
+  if (送出按鈕.style.display != 'block' || 檢查題目()) return;
   if (confirm(選項輸入框[0].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
     document.forms[0].submit();
     送出按鈕.style.display = 'none';
@@ -336,9 +331,12 @@ function 送出題目() {
   重載題庫();
 }
 
-function 檢查題目(question) {
+function 檢查題目() {
+  const value = 題目輸入框.value;
+  const innerHTML = 題目輸入框.innerHTML;
   for (const row of 題庫)
-    if (question && question.length > 5 && String(row[0]).indexOf(question) > -1) {
+    if ((value && value.length > 5 && String(row[0]).indexOf(value) > -1)
+      ||(innerHTML && innerHTML.length > 5 && String(row[0]).indexOf(innerHTML) > -1)) {
       alert("有這個題目了");
       return true;
     }
@@ -419,7 +417,7 @@ function 戰鬥背景音樂() {
   if (ai > -1 && bi > -1 && ci > -1 && di > -1) {
     題目輸入框.value = content.substring(0, ai);
     question = 題目輸入框.value;
-    if (!檢查題目(question)) {
+    if (!檢查題目()) {
       送出按鈕.style.display = 'block';
       let temp;
       const tip = "\n\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
@@ -430,8 +428,11 @@ function 戰鬥背景音樂() {
       document.forms[0][entry.正確答案].value = temp;
       for (let i = 0; 4 > ++i; document.forms[0][entry[`錯誤答案${i}`]].value = ans[i - 1]);
     }
-  } else if (暫存題庫.length > -1 && question && !檢查題目(question)
-    && 選項輸入框[0].value && 選項輸入框[1] && 選項輸入框[2] && 選項輸入框[3]) {
+  } else if (暫存題庫.length > -1 && !檢查題目()
+    && (選項輸入框[0].value || 選項輸入框[0].innerHTML)
+    && (選項輸入框[1].value || 選項輸入框[1].innerHTML)
+    && (選項輸入框[2].value || 選項輸入框[2].innerHTML)
+    && (選項輸入框[3].value || 選項輸入框[3].innerHTML)) {
     送出按鈕.style.display = 'block';
   }
   console.log(`ai:${ai},bi:${bi},ci:${ci},di:${di}`);

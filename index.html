@@ -76,7 +76,7 @@ JwIDAQAB
     </div>
     <div class="item visible having sm">
       <!-- <p>Google Sheets API Quickstart</p> -->
-      <a class="ui large header" data-tooltip="點我前往原始碼 GitHub 存放庫" data-position="bottom left"
+      <a class="ui header" data-tooltip="點我前往原始碼 GitHub 存放庫" data-position="bottom left"
         href="//github.com/NCHUIT/2022GiCS" target="_blank">
         2022 GiCS 資安闖天關刷題
       </a>
@@ -99,14 +99,12 @@ JwIDAQAB
       </div>
       <!--Add buttons to initiate auth sequence and sign out-->
       <button class="positive ui button" id="authorize_button" style="display: none;">
-        <h5>登入 Google 帳號</h5>
+        <h5>登入</h5>
       </button>
       <button class="negative ui button" id="signout_button" style="display: none;">
-        <h5>登出 Google 帳號</h5>
+        <h5>登出</h5>
       </button>
-      <button class="ui button" id="signloader_button">
-        <div class="ui active inline loader"></div>
-        <h5 style="display:inline">正在載入中</h5>
+      <button class="massive ui loading button" id="signloader_button">
       </button>
     </div>
   </div>
@@ -115,7 +113,7 @@ JwIDAQAB
     <div class="ui active dimmer" id="loader">
       <div class="ui massive text loader">題目載入中<br>若未登入請至右上方登入</div>
     </div>
-    <div id="answer-panel" class="attack_modal_reading_sprite panel ui container">
+    <div id="answer-panel" class="attack_modal_reading_sprite panel ui container" style="background-repeat:no-repeat">
       <form class="ui form" id="form" method="POST" target="transFrame"
         action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse">
         <div id='clear' class="attack_modal_sprite btn_exit cursor_pointer pgo-style-exit-button-1-aQN0"
@@ -133,9 +131,9 @@ JwIDAQAB
           <div id="answer-panel-question-with-input">
             <div class="answer-panel-question-content" data-self-control="false" data-with-sponsor-and-hint="false"
               data-input-type="choice" data-show-detail="false" data-exam-mode="false">
-              <div class="question-iframe-container pgo-style-question-content-1iaDNm" data-inverted
+              <div class="question-iframe-container pgo-style-question-content-1iaDNm ui container" data-inverted
                 data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center">
-                <textarea placeholder="未輸入題目" rows="2" style="width:525px;border:0;overflow-y:scroll"
+                <textarea placeholder="未輸入題目" rows="2" style="width:100%;border:0;overflow-y:scroll"
                   class="pgo-style-question-content-wrapper-vTwh8z" form="form" name="entry.892031688">
                 </textarea>
               </div>
@@ -144,8 +142,8 @@ JwIDAQAB
                   <div class="one wide column">
                     <div class="pgo-style-selection-choice-rrQTIw">A</div>
                   </div>
-                  <div class="fifteen wide column">
-                    <textarea placeholder="未輸入選項A" rows="1" style="width:500px;border:0;overflow-y:scroll"
+                  <div class="right floated fourteen wide column">
+                    <textarea placeholder="未輸入選項A" rows="1" style="width:100%;border:0;overflow-y:scroll"
                       spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
                       name="entry.977089316">
                     </textarea>
@@ -155,8 +153,8 @@ JwIDAQAB
                   <div class="one wide column">
                     <div class="pgo-style-selection-choice-rrQTIw">B</div>
                   </div>
-                  <div class="fifteen wide column">
-                    <textarea placeholder="未輸入選項B" rows="1" style="width:500px;border:0;overflow-y:scroll"
+                  <div class="right floated fourteen wide column">
+                    <textarea placeholder="未輸入選項B" rows="1" style="width:100%;border:0;overflow-y:scroll"
                       spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
                       name="entry.657500498">
                     </textarea>
@@ -166,8 +164,8 @@ JwIDAQAB
                   <div class="one wide column">
                     <div class="pgo-style-selection-choice-rrQTIw">C</div>
                   </div>
-                  <div class="fifteen wide column">
-                    <textarea placeholder="未輸入選項C" rows="1" style="width:500px;border:0;overflow-y:scroll"
+                  <div class="right floated fourteen wide column">
+                    <textarea placeholder="未輸入選項C" rows="1" style="width:100%;border:0;overflow-y:scroll"
                       spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
                       name="entry.1532072947">
                     </textarea>
@@ -177,8 +175,8 @@ JwIDAQAB
                   <div class="one wide column">
                     <div class="pgo-style-selection-choice-rrQTIw">D</div>
                   </div>
-                  <div class="fifteen wide column">
-                    <textarea placeholder="未輸入選項D" rows="1" style="width:500px;border:0;overflow-y:scroll"
+                  <div class="right floated fourteen wide column">
+                    <textarea placeholder="未輸入選項D" rows="1" style="width:100%;border:0;overflow-y:scroll"
                       spellcheck="false" data-ms-editor="true" class="pgo-style-selection-content-1JGhEL" form="form"
                       name="entry.1090409630">
                     </textarea>
@@ -186,7 +184,7 @@ JwIDAQAB
                 </div>
               </div>
             </div>
-            <div data-question-type="choice" data-selection-count="5" data-exam-mode="false"
+            <div data-question-type="choice" data-selection-count="4" data-exam-mode="false"
               class="input-group-area pgo-style-inputs-area-2w2qDZ">
               <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
                 data-real-choice="A" id="buttonA">A</div>
@@ -196,17 +194,11 @@ JwIDAQAB
                 data-real-choice="C" id="buttonC">C</div>
               <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
                 data-real-choice="D" id="buttonD">D</div>
-              <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
-                data-position="bottom right" data-tooltip="請確保送出時 A 選項為正確答案，本表單會自動匯入 Google 試算表" id="submit">送出</div>
             </div>
           </div>
         </div>
         <div class="attack_modal_reading_sprite error_report_S cursor_pointer pgo-style-error-report-button-1RQaWX"
-          onclick="$('.ui.modal').modal('show');document.getElementById('modal').style.left='25%';">
-          <!-- <a href target="_blank">
-            <div style="height: 100%;width: 100%;"></div>
-            </div>
-          </a> -->
+          onclick="$('.ui.modal').modal('show');document.getElementById('modal').style.left='unset';">
         </div>
         <div class="ui small modal" id="modal">
           <div class="header">說明</div>
@@ -221,7 +213,7 @@ JwIDAQAB
             <p>本網頁資源媒體皆取自
               <a href="//www.pagamo.org/map?course_code=gics" target="_blank">PaGamO - 2021 GiCS 資安闖天關初賽題庫[點我前往]</a>
             </p>
-            <div class="ui steps">
+            <div class="ui top attached steps">
               <a id="step1" class="step" onclick="
                 $(this).addClass('active');$('#step1_info').show();
                 $('#step2').removeClass('active');$('#step2_info').hide();
@@ -253,7 +245,7 @@ JwIDAQAB
                 </div>
               </a>
             </div>
-            <div id="step1_info" class="ui segment" style="display: none;">
+            <div id="step1_info" class="ui attached segment" style="display: none;">
               <p>安裝瀏覽器插件
                 <a href="//chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne"
                   target="_blank">Stylus[點我前往]</a>
@@ -266,7 +258,7 @@ JwIDAQAB
               <p>重新載入頁面後可以一次複製題目答案</p>
               <img src="//i.imgur.com/JtUJSCd.png" /><br><br>
             </div>
-            <div id="step2_info" class="ui segment" style="display: none;">
+            <div id="step2_info" class="ui attached segment" style="display: none;">
               <p>點擊題目文字，它是輸入框，預設點選時全選讓你貼上，提示指的格式即介紹插件說明的<br><b>直接一次選取題目答案複製後的文字格式</b></p>
               <img src="//i.imgur.com/TLoj01R.png"><br><br>
               <p>貼上後會循環詢問前3個哪個是正確答案，如果都不是就是第4個，若<b>按錯重新貼上即可</b></p>
@@ -278,7 +270,7 @@ JwIDAQAB
               <p>如果貼上或輸入到一半的時候檢查到 Google 試算表的題庫有<b>這個題目了</b>，會提示</p>
               <img src="//i.imgur.com/RbuJ8hB.png"><br><br>
             </div>
-            <div id="step3_info" class="ui segment">
+            <div id="step3_info" class="ui attached segment">
               <p><button class="ui button">空白鍵</button> : 下一題</p>
               <p>
                 <button class="ui button">A</button> 或
@@ -306,6 +298,9 @@ JwIDAQAB
           </div>
         </div>
         <div class="pgo-style-submit-button-pASHWz" data-extended-answer-panel="false">
+          <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
+            data-position="bottom right" data-tooltip="請確保送出時 A 選項為正確答案，本表單會自動匯入 Google 試算表" id="submit">
+            送出</div>
           <div id="nextQuestion" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW">
             下一題</div>
         </div>
