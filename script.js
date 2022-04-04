@@ -129,7 +129,7 @@ var 載入提示 = document.getElementById('loader');
 var 載入按鈕 = document.getElementById('signloader_button');
 var 登入按鈕 = document.getElementById('authorize_button');
 var 登出按鈕 = document.getElementById('signout_button');
-var 下一題按鈕 = document.getElementById('nextQuestion');
+var 下一題按鈕 = document.getElementById('next');
 var 按鈕A = document.getElementById('buttonA');
 var 按鈕B = document.getElementById('buttonB');
 var 按鈕C = document.getElementById('buttonC');
@@ -157,7 +157,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 /**
  * From https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
  */
-function shuffle(array) {
+function 打亂陣列(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     let t = array[i];
@@ -176,7 +176,7 @@ function 下一題() {
   題目輸入框.innerHTML = 目前題目[0];
   目前題目.splice(0, 1);
   正確答案 = String(目前題目[0]);
-  目前題目 = shuffle(目前題目);
+  目前題目 = 打亂陣列(目前題目);
   // console.log(current);
   選項輸入框[0].innerHTML = 目前題目.pop();
   選項輸入框[1].innerHTML = 目前題目.pop();
@@ -209,7 +209,7 @@ function 重載題庫() {
     cleanPre();
     var range = response.result;
     if (range.values.length > 0) {
-      題庫 = 暫存題庫 = range.values; shuffle(暫存題庫);
+      題庫 = 暫存題庫 = range.values; 
       題庫.reverse();
       for (const row of 題庫)
         appendPre(`
@@ -218,6 +218,7 @@ function 重載題庫() {
   錯誤答案1:${row[2]}
   錯誤答案2:${row[3]}
   錯誤答案3:${row[4]}`);
+      打亂陣列(暫存題庫);
       下一題();
     } else {
       appendPre('No data found.');
