@@ -109,6 +109,7 @@ var 載入按鈕 = document.getElementById('載入按鈕');
 var 登入按鈕 = document.getElementById('登入按鈕');
 var 登出按鈕 = document.getElementById('登出按鈕');
 var 送出按鈕 = document.getElementById('送出按鈕');
+var 至頂按紐 = document.getElementById("至頂按紐");
 var 狀態欄 = document.getElementById('狀態欄');
 var 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
 var 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
@@ -259,15 +260,23 @@ function 載入客戶端() {
  *  appropriately. After a sign-in, the API is called.
  */
 function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get()) {
+  //console.log('isSignedIn:',isSignedIn,typeof isSignedIn);
   載入按鈕.style.display = 'none';
   if (isSignedIn) {
     登入按鈕.style.display = 'none';
     登出按鈕.style.display = 'block';
-    重載題庫();
+    if(isSignedIn===true) 重載題庫();
   } else {
     登入按鈕.style.display = 'block';
     登出按鈕.style.display = 'none';
   }
+  return isSignedIn;
+}
+
+function 登入() {
+  切換背景音樂('map');
+  載入按鈕.style.display = 'block';
+  gapi.auth2.getAuthInstance().signIn();
 }
 
 /**
@@ -283,8 +292,6 @@ function 初始化客戶端() {
   }).then(function () {
     // Listen for sign-in state changes.
     gapi.auth2.getAuthInstance().isSignedIn.listen(更新登入狀態);
-    // Handle the initial sign-in state.
-    更新登入狀態();
     if (!gapi.auth2.getAuthInstance().isSignedIn.get()) 登入();
   }, 錯誤 => 彈出錯誤訊息(JSON.stringify(錯誤, null, 2)));
 }
@@ -381,7 +388,7 @@ function 輸入() {
     ans.splice(ans.indexOf(temp), 1);
     // console.log(ans);
     輸入框[1].value = temp;
-    for (const i of Array(3).keys()){
+    for (const i of Array(3).keys()) {
       輸入框[2 + i].value = 輸入框[2 + i].innerHTML = ans[i];
     }
   } else if (
@@ -431,70 +438,15 @@ function 調整介面() {
   }
 }
 
-// from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
-//Get the button
-var 至頂按紐 = document.getElementById("至頂按紐");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = e => {
-  if (document.body.scrollTop > 20
-    || document.documentElement.scrollTop > 20) {
-    至頂按紐.style.display = "block";
-  } else {
-    至頂按紐.style.display = "none";
-  }
-};
-
-// When the user clicks on the button, scroll to the top of the document
-至頂按紐.onclick = e => {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-};
-
 // EventListener
-載入按鈕.onclick = e => {
-  // Handle the initial sign-in state.
-  更新登入狀態();
-  下一題();
-};
 document.getElementById('下一題按鈕').onclick = e => 下一題();
 document.getElementById('清除按鈕').onclick = e => 清除輸入框();
-載入提示.onclick = e => 下一題();
-送出按鈕.onclick = e => 送出題目();
-靜音切換按鈕.onclick = e => 靜音切換();
-window.onresize = e => 調整介面();
-
-document.body.onload = e => { 靜音切換(); 調整介面() };
-document.body.onclick = e => { 音效播放(點擊音效); 調整介面() };
 document.getElementById('選單說明按鈕').onclick = e => 彈出說明視窗();
 document.getElementById('驚嘆號按鈕').onclick = e => 彈出說明視窗();
 document.getElementById('按鈕A').onclick = e => 檢查答案(輸入框[1]);
 document.getElementById('按鈕B').onclick = e => 檢查答案(輸入框[2]);
 document.getElementById('按鈕C').onclick = e => 檢查答案(輸入框[3]);
 document.getElementById('按鈕D').onclick = e => 檢查答案(輸入框[4]);
-
-function 登入() {
-  重設狀態欄();
-  載入提示.style.display = 'flex';
-  載入按鈕.style.display = 'block';
-  登入按鈕.style.display = 'none';
-  切換背景音樂('map');
-  try {
-    gapi.auth2.getAuthInstance().signIn();
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-登入按鈕.onclick = e => 登入();
-
-登出按鈕.onclick = e => {
-  重設狀態欄();
-  載入提示.style.display = 'flex';
-  載入按鈕.style.display = 'block';
-  切換背景音樂('map');
-  gapi.auth2.getAuthInstance().signOut();
-};
 
 document.getElementById('step1').onclick = e => {
   $('#step1').addClass('active'); $('#step1_info').show();
@@ -514,6 +466,30 @@ document.getElementById('step3').onclick = e => {
   $('#step3').addClass('active'); $('#step3_info').show()
 };
 
+載入提示.onclick = e => 下一題();
+送出按鈕.onclick = e => 送出題目();
+靜音切換按鈕.onclick = e => 靜音切換();
+
+// When the user clicks on the button, scroll to the top of the document
+至頂按紐.onclick = e => {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+};
+
+登入按鈕.onclick = e => 登入();
+
+登出按鈕.onclick = e => {
+  切換背景音樂('map');
+  載入按鈕.style.display = 'block';
+  gapi.auth2.getAuthInstance().signOut();
+  更新登入狀態(false);
+};
+
+載入按鈕.onclick = e => {
+  // Handle the initial sign-in state.
+  更新登入狀態();
+  下一題();
+};
 
 // From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
 for (const 元素 of 輸入框) {
@@ -529,9 +505,30 @@ for (const 元素 of 輸入框) {
   };
 }
 
+window.onresize = e => 調整介面();
+window.onfocus = e => { 更新登入狀態(e); 調整介面() };
+window.onblur = e => {
+  調整介面();
+  登入按鈕.style.display = 'none';
+  登出按鈕.style.display = 'none';
+  載入按鈕.style.display = 'block';
+}
+// from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = e => {
+  if (document.body.scrollTop > 20
+    || document.documentElement.scrollTop > 20) {
+    至頂按紐.style.display = "block";
+  } else {
+    至頂按紐.style.display = "none";
+  }
+};
+
+document.body.onload = e => { 靜音切換(); 調整介面() };
+document.body.onclick = e => { 音效播放(點擊音效); 調整介面() };
 document.body.onkeydown = e => {
   if (e.target == document.body) switch (e.key.toUpperCase()) {
-    default: console.log(e.key);
+    default: //console.log(e.key);
       break; case ' ': e.preventDefault(); 下一題();
       break; case '1': case 'A':
       if (e.target.tagName.toUpperCase() != 'TEXTAREA')

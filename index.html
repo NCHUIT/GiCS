@@ -2,9 +2,8 @@
 <html class="jf-inactive">
 
 <head>
-  <!-- <title>Google Sheets API Quickstart</title> -->
   <title>資安闖天關刷題 - 2022 GiCS 尋找資安女婕思 - 中興大學資訊社</title>
-  <meta name="description" content="請用電腦打開">
+  <meta name="description" content="最好用電腦打開">
   <meta property="og:image"
     content="https://stickershop.line-scdn.net/stickershop/v1/sticker/166501723/android/sticker.png">
   <meta charset="utf-8" />
@@ -52,41 +51,49 @@ JwIDAQAB
 <body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" theme="ocean">
   <div class="ui top compact menu"></div>
   <div class="ui top fixed compact menu">
-    <a class="cursor_pointer item" data-tooltip="點我前往原始碼 GitHub 存放庫" data-position="bottom left"
+    <a class="cursor_pointer item" data-tooltip="GitHub 原始碼存放庫" data-position="bottom left"
       href="//github.com/NCHUIT/2022GiCS" target="_blank">
-      <!-- <p>Google Sheets API Quickstart</p> -->
-      <img src="//i.imgur.com/6LcYa68.png">
-      <span class="fitmobile">&nbsp;&nbsp;2022 GiCS 闖關刷題</span>
+      <i><img src="//i.imgur.com/6LcYa68.png"></i>
+      <span class="mobilehide">&nbsp;&nbsp;2022 GiCS 資安闖天關刷題</span>
+    </a>
+    <a id="選單原站按鈕" class="cursor_pointer item" data-tooltip="PaGamO - 2021 GiCS 資安闖天關初賽題庫" data-position="bottom left"
+      href="//www.pagamo.org/map?course_code=gics" target="_blank">
+      <i><img src="//i.imgur.com/3UoAhdC.png"></i>
+      <span class="mobilehide2">&nbsp;&nbsp;PaGamO原站</span>
     </a>
     <div class="right menu">
-      <div id="選單說明按鈕" class="cursor_pointer item ui header" data-tooltip="說明" data-position="bottom right">
+      <a id="選單試算表按鈕" class="cursor_pointer item ui header" data-tooltip="Google 試算表" data-position="bottom center"
+        href="//docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw" target="_blank">
+        <i><img src="//i.imgur.com/ky2ykVM.png"></i>
+      </a>
+      <div id="選單說明按鈕" class="cursor_pointer item ui header" data-tooltip="說明" data-position="bottom center">
         <i class="fa fa-question-circle"></i>
       </div>
       <div id="靜音切換按鈕" class="cursor_pointer item ui header" data-tooltip="無音效/僅點選音效/音效全開" data-position="bottom right">
         <i class="fa fa-volume-off"></i>
       </div>
       <div id="audio_container" class="pgo-style-audios-29lfQn">
-        <audio id="map_background_music" loop src="map_background_music.mp3" type="audio/mpeg"
-          controlslist="nodownload">Your browser does not support the audio tag.</audio>
-        <audio id="fight_background_music" loop src="fight_background_music.mp3" type="audio/mpeg"
-          controlslist="nodownload">Your browser does not support the audio tag.</audio>
-        <audio id="victory_sound_effect" src="victory_sound_effect.mp3" type="audio/mpeg" controlslist="nodownload">Your
-          browser does not support the audio tag.</audio>
-        <audio id="keep_going_sound_effect" src="keep_going_sound_effect.mp3" type="audio/mpeg"
-          controlslist="nodownload">Your browser does not support the audio tag.</audio>
-        <audio id="panel_btn_click_sound_effect" src="panel_btn_click_sound_effect.mp3" type="audio/mpeg"
-          controlslist="nodownload">Your browser does not support the audio tag.</audio>
+        <audio type="audio/mpeg" controlslist="nodownload" id="map_background_music" loop
+          src="map_background_music.mp3">你的瀏覽器不支援音訊</audio>
+        <audio type="audio/mpeg" controlslist="nodownload" id="fight_background_music" loop
+          src="fight_background_music.mp3">你的瀏覽器不支援音訊</audio>
+        <audio type="audio/mpeg" controlslist="nodownload" id="victory_sound_effect" src="victory_sound_effect.mp3">
+          你的瀏覽器不支援音訊</audio>
+        <audio type="audio/mpeg" controlslist="nodownload" id="keep_going_sound_effect"
+          src="keep_going_sound_effect.mp3">你的瀏覽器不支援音訊</audio>
+        <audio type="audio/mpeg" controlslist="nodownload" id="panel_btn_click_sound_effect"
+          src="panel_btn_click_sound_effect.mp3">你的瀏覽器不支援音訊</audio>
       </div>
-      <!--Add buttons to initiate auth sequence and sign out-->
-      <button id="登入按鈕" class="cursor_pointer positive ui button" data-tooltip="登入 Google 帳號 以存取試算表填充題庫"
-        data-position="bottom right" style="display:none">
-        <h5>登入</h5>
-      </button>
-      <button id="登出按鈕" class="cursor_pointer negative ui button" style="display:none">
-        <h5>登出</h5>
-      </button>
-      <button id="載入按鈕" class="cursor_pointer massive ui loading button">
-      </button>
+      <div class="item" data-tooltip="登入 Google 帳號 以存取試算表" data-position="bottom right">
+        <!--Add buttons to initiate auth sequence and sign out-->
+        <div id="登入按鈕" class="cursor_pointer positive ui button" style="display:none">
+          <h5>登入</h5>
+        </div>
+        <div id="登出按鈕" class="cursor_pointer negative ui button" style="display:none">
+          <h5>登出</h5>
+        </div>
+        <div id="載入按鈕" class="cursor_pointer massive ui loading button">載入</div>
+      </div>
     </div>
   </div>
   <div class="ui inverted segment">
@@ -186,21 +193,13 @@ JwIDAQAB
     </div>
   </div>
   <pre id="狀態欄" class="ui container">👉目前題庫(載入中)<br></pre>
-  <div id="至頂按紐" class="cursor_pointer circular ui negative icon button" data-tooltip="回到最上面" data-position="top right" data-inverted>
-    <i class="angle double up icon"></i></div>
+  <div id="至頂按紐" class="cursor_pointer circular ui negative icon button" data-tooltip="回到最上面" data-position="top right"
+    data-inverted>
+    <i class="angle double up icon"></i>
+  </div>
   <div id="說明視窗" class="ui small modal" style="display:none">
     <div class="header">說明</div>
     <div class="scrolling content">
-      <p>本說明也有放在
-        <a href="//md.nchuit.cc/2022GiCS/edit?view" target="_blank">HackMD[點我前往]</a>
-      </p>
-      <p>本網頁資料庫使用
-        <a href="//docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw" target="_blank">Google
-          試算表[點我前往]</a>
-      </p>
-      <p>本網頁資源媒體皆取自
-        <a href="//www.pagamo.org/map?course_code=gics" target="_blank">PaGamO - 2021 GiCS 資安闖天關初賽題庫[點我前往]</a>
-      </p>
       <div class="ui top attached steps">
         <a id="step1" class="step">
           <i class="plus square icon"></i>
@@ -249,7 +248,25 @@ JwIDAQAB
         <p>如果貼上或輸入到一半的時候檢查到 Google 試算表的題庫有<b>這個題目了</b>，會提示</p>
         <img src="//i.imgur.com/RbuJ8hB.png"><br><br>
       </div>
-      <div id="step3_info" class="ui attached segment">
+      <div id="step3_info" class="ui active attached segment">
+        <p>本頁說明同步存放於
+          <a href="//md.nchuit.cc/2022GiCS/edit?view" target="_blank">
+            <i><img src="https://hackmd.io/favicon.png" height="20"></i>
+            HackMD[點我前往]
+          </a>
+        </p>
+        <p>本網頁的資料庫使用
+          <a href="//docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw" target="_blank">
+            <i><img src="https://i.imgur.com/n4hNxBA.png" height="20"></i>
+            Google 試算表[點我前往]
+          </a>
+        </p>
+        <p>本網頁資源媒體取自
+          <a href="//www.pagamo.org/map?course_code=gics" target="_blank">
+            <i><img src="https://i.imgur.com/3UoAhdC.png" height="20"></i>
+            PaGamO - 2021 GiCS 資安闖天關初賽題庫[點我前往]
+          </a>
+        </p>
         <h3 class="header">鍵盤熱鍵</h3>
         <p><button class="ui button">空白鍵</button> : 下一題</p>
         <p>
@@ -273,13 +290,13 @@ JwIDAQAB
         </p>
         <h3 class="header">畫面按鈕</h3>
         <p>
-          <i class="fa fa-volume-off"> 三段式靜音切換:</i><br>
-          <i class="fa fa-volume-mute"> 靜音</i> /
-          <i class="fa fa-volume-down"> 僅點選音效</i> /
-          <i class="fa fa-volume-up"> 播放背景音樂</i>
+          <i class="fa fa-volume-off"></i> 三段式靜音切換:<br>
+          <i class="fa fa-volume-mute"></i> 靜音 /
+          <i class="fa fa-volume-down"></i> 僅點選音效 /
+          <i class="fa fa-volume-up"></i> 播放背景音樂
         </p>
-        <p><img src="https://i.imgur.com/m5tRrfu.png"> 或 <i class="fa fa-question-circle"></i> : 說明
-        <p><img src="https://i.imgur.com/0FnNzZS.png"> : 清除輸入</p>
+        <p><img src="//i.imgur.com/m5tRrfu.png"> 或 <i class="fa fa-question-circle"></i> : 說明
+        <p><img src="//i.imgur.com/0FnNzZS.png"> : 清除輸入</p>
       </div>
     </div>
   </div>
@@ -307,6 +324,7 @@ JwIDAQAB
     onreadystatechange="if(this.readyState==='complete'){this.onload()}">
     </script>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
   <script
     src="//d32j6uwsrra4gx.cloudfront.net/assets/map/map-1a9055d7ba95ca50db3cd83cd0be5c361bb103b93a72af0c4dac78cf448545d0.js"></script>
   <script
