@@ -258,7 +258,7 @@ function 載入客戶端() {
  *  Called when the signed in status changes, to update the UI
  *  appropriately. After a sign-in, the API is called.
  */
-function 更新登入狀態(isSignedIn=gapi.auth2.getAuthInstance().isSignedIn.get()) {
+function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get()) {
   載入按鈕.style.display = 'none';
   if (isSignedIn) {
     登入按鈕.style.display = 'none';
@@ -285,7 +285,7 @@ function 初始化客戶端() {
     gapi.auth2.getAuthInstance().isSignedIn.listen(更新登入狀態);
     // Handle the initial sign-in state.
     更新登入狀態();
-    if(!gapi.auth2.getAuthInstance().isSignedIn.get()) 登入();
+    if (!gapi.auth2.getAuthInstance().isSignedIn.get()) 登入();
   }, 錯誤 => 彈出錯誤訊息(JSON.stringify(錯誤, null, 2)));
 }
 
@@ -334,7 +334,7 @@ function 送出題目() {
     $('#下一題按鈕').show();
     重載題庫();
   }
-  if(!gapi.auth2.getAuthInstance().isSignedIn.get())
+  if (!gapi.auth2.getAuthInstance().isSignedIn.get())
     彈出錯誤訊息('未登入');
 }
 
@@ -381,8 +381,9 @@ function 輸入() {
     ans.splice(ans.indexOf(temp), 1);
     // console.log(ans);
     輸入框[1].value = temp;
-    for (const i in Array(3))
+    for (const i of Array(3).keys()){
       輸入框[2 + i].value = 輸入框[2 + i].innerHTML = ans[i];
+    }
   } else if (
     (輸入框[1].value || 輸入框[1].innerHTML) &&
     (輸入框[2].value || 輸入框[2].innerHTML) &&
@@ -430,6 +431,26 @@ function 調整介面() {
   }
 }
 
+// from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
+//Get the button
+var 至頂按紐 = document.getElementById("至頂按紐");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = e => {
+  if (document.body.scrollTop > 20
+    || document.documentElement.scrollTop > 20) {
+    至頂按紐.style.display = "block";
+  } else {
+    至頂按紐.style.display = "none";
+  }
+};
+
+// When the user clicks on the button, scroll to the top of the document
+至頂按紐.onclick = e => {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+};
+
 // EventListener
 載入按鈕.onclick = e => {
   // Handle the initial sign-in state.
@@ -458,9 +479,9 @@ function 登入() {
   載入按鈕.style.display = 'block';
   登入按鈕.style.display = 'none';
   切換背景音樂('map');
-  try{
-  gapi.auth2.getAuthInstance().signIn();
-  } catch(e) {
+  try {
+    gapi.auth2.getAuthInstance().signIn();
+  } catch (e) {
     console.log(e);
   }
 }
