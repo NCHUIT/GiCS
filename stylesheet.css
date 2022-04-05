@@ -65,8 +65,20 @@ iframe[name="formResponse"] {
   left: unset !important;
 }
 
+/* from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_hide_scrollbar_keep_func */
 .ui.inverted.segment {
-  overflow-y: scroll;
+  overflow-y: scroll; /* Add the ability to scroll */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.ui.inverted.segment::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.ui.inverted.segment {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 @media (max-width: 450px) {

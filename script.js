@@ -159,7 +159,7 @@ function 靜音切換() {
       目前背景音樂.play();
       return;
     case 2: 靜音狀態 = 0;
-      靜音切換按鈕.innerHTML = `<i class="fa fa-volume-off"></i>`;
+      靜音切換按鈕.innerHTML = `<i class="fa fa-volume-mute"></i>`;
       正解音效.muted = 錯題音效.muted = 點擊音效.muted = true;
       目前背景音樂.muted = true;
   }
@@ -199,8 +199,8 @@ function 欄高自適應(元素) {
 
 function 下一題() {
   載入提示.style.display = 'flex';
-  $('#submit').hide();
-  $('#next').show()
+  $('#送出按鈕').hide();
+  $('#下一題按鈕').show()
   document.getElementById('answer-panel-question-content').scrollTo(0, 0);
   if (暫存題庫.length < 1) 重載題庫();
   目前題目 = 暫存題庫.pop();
@@ -322,18 +322,20 @@ function 清除輸入框() {
     input.innerHTML = '';
     input.value = ''
   }
-  $('#submit').hide();
-  $('#next').show();
+  $('#送出按鈕').hide();
+  $('#下一題按鈕').show();
 }
 
 function 送出題目() {
   if (送出按鈕.style.display == 'none' || 檢查題目()) return;
   else if (confirm(輸入框[1].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
     document.forms[0].submit();
-    $('#submit').hide()
-    $('#next').show();
+    $('#送出按鈕').hide()
+    $('#下一題按鈕').show();
     重載題庫();
   }
+  if(!gapi.auth2.getAuthInstance().isSignedIn.get())
+    彈出錯誤訊息('未登入');
 }
 
 function 檢查題目() {
@@ -367,11 +369,11 @@ function 輸入() {
   if (ai > 5) 輸入框[0].value = content.substring(0, ai);
   if (檢查題目()) {
     輸入框[0].value = 輸入框[0].innerHTML = 目前題目;
-    $('#submit').hide();
-    $('#next').show()
+    $('#送出按鈕').hide();
+    $('#下一題按鈕').show()
   } else if (ai > -1 && bi > -1 && ci > -1 && di > -1) {
-    $('#next').hide();
-    $('#submit').show()
+    $('#下一題按鈕').hide();
+    $('#送出按鈕').show()
     let temp;
     const tip = "\n這是正確答案嗎?\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
     for (let i = -1; !confirm((temp = ans[++i]) + tip);)
@@ -387,8 +389,8 @@ function 輸入() {
     (輸入框[3].value || 輸入框[3].innerHTML) &&
     (輸入框[4].value || 輸入框[4].innerHTML)
   ) {
-    $('#next').hide();
-    $('#submit').show()
+    $('#下一題按鈕').hide();
+    $('#送出按鈕').show()
   }
   // console.log(ai,bi,ci,di);
   for (let 元素 of 輸入框)
