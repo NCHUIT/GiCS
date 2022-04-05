@@ -156,16 +156,16 @@ var 靜音狀態 = 0;
 function 靜音切換() {
   switch (靜音狀態) {
     case 0: 靜音狀態 = 1;
-      靜音切換按鈕.innerHTML = `<i class="volume down icon"></i>`;
+      靜音切換按鈕.innerHTML = `<i class="fa fa-volume-down"></i>`;
       正解音效.muted = 錯題音效.muted = 點擊音效.muted = false;
       return;
     case 1: 靜音狀態 = 2;
-      靜音切換按鈕.innerHTML = `<i class="volume up icon"></i>`;
+      靜音切換按鈕.innerHTML = `<i class="fa fa-volume-up"></i>`;
       目前背景音樂.muted = false;
       目前背景音樂.play();
       return;
     case 2: 靜音狀態 = 0;
-      靜音切換按鈕.innerHTML = `<i class="volume off icon"></i>`;
+      靜音切換按鈕.innerHTML = `<i class="fa fa-volume-off"></i>`;
       正解音效.muted = 錯題音效.muted = 點擊音效.muted = true;
       目前背景音樂.muted = true;
   }
