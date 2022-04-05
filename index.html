@@ -30,15 +30,14 @@ JwIDAQAB
   <style data-merge-styles="true"></style>
   <style data-styled="active" data-styled-version="5.2.1"></style>
   <link rel="stylesheet" href="stylesheet.css">
-  <link rel="stylesheet" href="//nchuit.cc/css/site.css">
   <link rel="stylesheet" media="all"
     href="//d32j6uwsrra4gx.cloudfront.net/assets/application-3c64c6e5cc4b783d9b350e8ab1892881e621ebc2338250bf6dc2cdf9e457ff05.css">
   <link rel="stylesheet" media="screen"
     href="//d32j6uwsrra4gx.cloudfront.net/packs/css/map_components-c00cef7a.chunk.css">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lusitana">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <link rel="stylesheet"
-    href="//fonts.googleapis.com/css?family=PT+Serif:400|Volkhov:700|Source+Sans Pro:400|Varela+Round:400|Lora:400|Fredericka+the+Great:400|Marcellus+SC:400|Lato:400,700|Oxygen:400|Audiowide:400|Alegreya+Sans+SC:400">
+    href="//fonts.googleapis.com/css?family=Lusitana|PT+Serif:400|Volkhov:700|Source+Sans Pro:400|Varela+Round:400|Lora:400|Fredericka+the+Great:400|Marcellus+SC:400|Lato:400,700|Oxygen:400|Audiowide:400|Alegreya+Sans+SC:400">
   <link rel="apple-touch-icon" href="//www.pagamo.org/apple-touch-icon.png">
   <link rel="preload" href="//d32j6uwsrra4gx.cloudfront.net/packs/0b30be81daa21c9ca4f6eefd8da11939.png" as="image">
   <link rel="preload" href="//d32j6uwsrra4gx.cloudfront.net/packs/7623d7442741aa9c62bbd97d03ec8170.png" as="image">
@@ -50,22 +49,19 @@ JwIDAQAB
 <![endif]-->
 </head>
 
-<body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" style="overscroll-behavior: none;"
-  theme="ocean">
+<body lang="zh-TW" ctheme c-culture class="unselectable ReactModal__Body--open" theme="ocean">
   <div class="ui top fixed compact menu">
-    <a class="cursor_pointer item visible having sm" data-tooltip="點我前往原始碼 GitHub 存放庫" data-position="bottom left"
+    <a class="cursor_pointer item" data-tooltip="點我前往原始碼 GitHub 存放庫" data-position="bottom left"
       href="//github.com/NCHUIT/2022GiCS" target="_blank">
       <!-- <p>Google Sheets API Quickstart</p> -->
       <img src="//i.imgur.com/6LcYa68.png">
-      &nbsp;&nbsp;2022 GiCS 闖關刷題
+      <span class="fitmobile">&nbsp;&nbsp;2022 GiCS 闖關刷題</span>
     </a>
     <div class="right menu">
-      <div class="cursor_pointer item ui header" data-tooltip="說明" data-position="bottom right"
-        onclick="$('#說明視窗').modal('show');document.getElementById('說明視窗').style.left='unset';">
+      <div id="選單說明按鈕" class="cursor_pointer item ui header" data-tooltip="說明" data-position="bottom right">
         <i class="question circle icon"></i>
       </div>
-      <div id="volctrl" class="cursor_pointer item ui header" data-tooltip="無音效/僅點選音效/音效全開"
-        data-position="bottom right">
+      <div id="靜音切換按鈕" class="cursor_pointer item ui header" data-tooltip="無音效/僅點選音效/音效全開" data-position="bottom right">
         <i class="volume off icon"></i>
       </div>
       <div id="audio_container" class="pgo-style-audios-29lfQn">
@@ -81,26 +77,26 @@ JwIDAQAB
           controlslist="nodownload">Your browser does not support the audio tag.</audio>
       </div>
       <!--Add buttons to initiate auth sequence and sign out-->
-      <button class="cursor_pointer positive ui button" data-tooltip="登入 Google 帳號 以存取試算表填充題庫"
-        data-position="bottom right" id="authorize_button" style="display: none;">
+      <button id="登入按鈕" class="cursor_pointer positive ui button" data-tooltip="登入 Google 帳號 以存取試算表填充題庫"
+        data-position="bottom right" style="display:none">
         <h5>登入</h5>
       </button>
-      <button class="cursor_pointer negative ui button" id="signout_button" style="display: none;">
+      <button id="登出按鈕" class="cursor_pointer negative ui button" style="display:none">
         <h5>登出</h5>
       </button>
-      <button class="cursor_pointer massive ui loading button" id="signloader_button">
+      <button id="載入按鈕" class="cursor_pointer massive ui loading button">
       </button>
     </div>
   </div>
   <div style="height:50px"></div>
   <div class="ui inverted segment">
-    <div class="ui active dimmer" id="loader">
-      <div class="ui massive text loader">題目載入中<br>若未登入請至右上方登入</div>
+    <div id="載入提示" class="ui active dimmer">
+      <div class="ui massive text loader">題目載入中<br>未登入請至右上方登入</div>
     </div>
-    <div id="answer-panel" class="attack_modal_reading_sprite panel ui container" style="background-repeat:no-repeat">
-      <form class="ui form" id="form" method="POST" target="transFrame"
+    <div id="answer-panel" class="attack_modal_reading_sprite panel ui container">
+      <form id="form" class="ui form" method="POST" target="transFrame"
         action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse">
-        <div id='clear' class="attack_modal_sprite btn_exit cursor_pointer pgo-style-exit-button-1-aQN0"
+        <div id='清除按鈕' class="attack_modal_sprite btn_exit cursor_pointer pgo-style-exit-button-1-aQN0"
           data-tooltip="清除輸入" data-position="bottom right" data-extended-answer-panel="false"></div>
         <div class="pgo-style-clock-1JHy5B">
           <div class="pgo-style-clock-number-2-E3v-">?</div>
@@ -115,10 +111,9 @@ JwIDAQAB
           <div id="answer-panel-question-with-input">
             <div id="answer-panel-question-content" class="answer-panel-question-content" data-self-control="false">
               <div class="question-iframe-container pgo-style-question-content-1iaDNm ui container" data-inverted
-                data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center"
-                style="margin-left: unset!important;margin-right: unset!important;">
-                <textarea placeholder="未輸入題目" rows="2" style="width:100%;border:0;overflow-y:hidden"
-                  class="cursor_pointer pgo-style-question-content-wrapper-vTwh8z" form="form" name="entry.892031688">
+                data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center">
+                <textarea placeholder="未輸入題目" rows="2" form="form" name="entry.892031688"
+                  class="cursor_pointer pgo-style-question-content-wrapper-vTwh8z">
                 </textarea>
               </div>
               <div class="pgo-style-question-selections-TbE9eE">
@@ -127,9 +122,8 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">A</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項A" rows="1" style="width:100%;border:0;overflow-y:hidden"
-                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL"
-                      form="form" name="entry.977089316">
+                    <textarea placeholder="未輸入選項A" name="entry.977089316" form="form" spellcheck="false"
+                      data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
                 </div>
@@ -138,9 +132,8 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">B</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項B" rows="1" style="width:100%;border:0;overflow-y:hidden"
-                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL"
-                      form="form" name="entry.657500498">
+                    <textarea placeholder="未輸入選項B" name="entry.657500498" form="form" spellcheck="false"
+                      data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
                 </div>
@@ -149,9 +142,8 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">C</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項C" rows="1" style="width:100%;border:0;overflow-y:hidden"
-                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL"
-                      form="form" name="entry.1532072947">
+                    <textarea placeholder="未輸入選項C" name="entry.1532072947" form="form" spellcheck="false"
+                      data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
                 </div>
@@ -160,9 +152,8 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">D</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項D" rows="1" style="width:100%;border:0;overflow-y:hidden"
-                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL"
-                      form="form" name="entry.1090409630">
+                    <textarea placeholder="未輸入選項D" name="entry.1090409630" form="form" spellcheck="false"
+                      data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
                 </div>
@@ -170,136 +161,125 @@ JwIDAQAB
             </div>
             <div data-question-type="choice" data-selection-count="4" data-exam-mode="false"
               class="input-group-area pgo-style-inputs-area-2w2qDZ">
-              <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-                style="user-select: none!important" id="buttonA">A</div>
-              <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-                style="user-select: none!important" id="buttonB">B</div>
-              <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-                style="user-select: none!important" id="buttonC">C</div>
-              <div class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm"
-                style="user-select: none!important" id="buttonD">D</div>
+              <div id="按鈕A"
+                class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm">A</div>
+              <div id="按鈕B"
+                class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm">B</div>
+              <div id="按鈕C"
+                class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm">C</div>
+              <div id="按鈕D"
+                class="cursor_pointer choice-button attack_modal_sprite btn_4a1 pgo-style-input-answer-2o3iYm">D</div>
             </div>
           </div>
         </div>
-        <div class="attack_modal_reading_sprite error_report_S cursor_pointer pgo-style-error-report-button-1RQaWX"
-          onclick="$('#說明視窗').modal('show');document.getElementById('說明視窗').style.left='unset';">
-        </div>
-        <div class="ui small modal" id="說明視窗">
-          <div class="header">說明</div>
-          <div class="scrolling content">
-            <p>本說明也有放在
-              <a href="//md.nchuit.cc/2022GiCS/edit?view" target="_blank">HackMD[點我前往]</a>
-            </p>
-            <p>本網頁資料庫使用
-              <a href="//docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw"
-                target="_blank">Google 試算表[點我前往]</a>
-            </p>
-            <p>本網頁資源媒體皆取自
-              <a href="//www.pagamo.org/map?course_code=gics" target="_blank">PaGamO - 2021 GiCS 資安闖天關初賽題庫[點我前往]</a>
-            </p>
-            <div class="ui top attached steps">
-              <a id="step1" class="step" onclick="
-                $(this).addClass('active');$('#step1_info').show();
-                $('#step2').removeClass('active');$('#step2_info').hide();
-                $('#step3').removeClass('active');$('#step3_info').hide()">
-                <i class="plus square icon"></i>
-                <div class="content">
-                  <div class="title">安裝插件</div>
-                  <div class="description">讓你可以複製題目</div>
-                </div>
-              </a>
-              <a id="step2" class="step" onclick="
-                $('#step1').removeClass('active');$('#step1_info').hide();
-                $(this).addClass('active');$('#step2_info').show();
-                $('#step3').removeClass('active');$('#step3_info').hide()">
-                <i class="paste icon"></i>
-                <div class="content">
-                  <div class="title">填充題庫</div>
-                  <div class="description">複製題目到試算表</div>
-                </div>
-              </a>
-              <a id="step3" class="active step" onclick="
-                $('#step1').removeClass('active');$('#step1_info').hide();
-                $('#step2').removeClass('active');$('#step2_info').hide();
-                $(this).addClass('active');$('#step3_info').show()">
-                <i class="gamepad icon"></i>
-                <div class="content">
-                  <div class="title">刷題</div>
-                  <div class="description">熱鍵說明</div>
-                </div>
-              </a>
-            </div>
-            <div id="step1_info" class="ui attached segment" style="display: none;">
-              <p>安裝瀏覽器插件
-                <a href="//chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne"
-                  target="_blank">Stylus[點我前往]</a>
-              </p>
-              <img src="//i.imgur.com/3VIEB6n.png" /><br><br>
-              <p>安裝完之後點出插件，編寫樣式給網站</p>
-              <img src="//i.imgur.com/IYrOZwl.png" /><br><br>
-              <p>貼上原始碼<code>*{user-select:text!important}</code>後儲存</p>
-              <img src="//i.imgur.com/f5TxOgM.png" /><br><br>
-              <p>重新載入頁面後可以一次複製題目答案</p>
-              <img src="//i.imgur.com/JtUJSCd.png" /><br><br>
-            </div>
-            <div id="step2_info" class="ui attached segment" style="display: none;">
-              <p>點擊題目文字，它是輸入框，預設點選時全選讓你貼上，提示指的格式即介紹插件說明的<br><b>直接一次選取題目答案複製後的文字格式</b></p>
-              <img src="//i.imgur.com/TLoj01R.png"><br><br>
-              <p>貼上後會循環詢問前3個哪個是正確答案，如果都不是就是第4個，若<b>按錯重新貼上即可</b></p>
-              <img src="//i.imgur.com/ZWGo3dc.png"><br><br>
-              <p>確認完正確答案後就可以填充題庫啦~</p>
-              <img src="//i.imgur.com/OGc6jzj.png"><br><br>
-              <p>按下送出時會再問你一次</p>
-              <img src="//i.imgur.com/NyIZf6A.png"><br><br>
-              <p>如果貼上或輸入到一半的時候檢查到 Google 試算表的題庫有<b>這個題目了</b>，會提示</p>
-              <img src="//i.imgur.com/RbuJ8hB.png"><br><br>
-            </div>
-            <div id="step3_info" class="ui attached segment">
-              <h3 class="header">鍵盤熱鍵</h3>
-              <p><button class="ui button">空白鍵</button> : 下一題</p>
-              <p>
-                <button class="ui button">A</button> 或&nbsp;
-                <button class="ui button">1</button> : 答案選A
-              </p>
-              <p>
-                <button class="ui button">B</button> 或&nbsp;
-                <button class="ui button">2</button> : 答案選B
-              </p>
-              <p>
-                <button class="ui button">C</button> 或&nbsp;
-                <button class="ui button">3</button> : 答案選C
-              </p>
-              <p>
-                <button class="ui button">D</button> 或&nbsp;
-                <button class="ui button">4</button> : 答案選D
-              </p>
-              <p>
-                <button class="ui button">M</button> : 三段式靜音切換
-              </p>
-              <h3 class="header">畫面按鈕</h3>
-              <p>
-                <i class="volume off icon"></i>無音效/
-                <i class="volume down icon"></i>僅點選音效/
-                <i class="volume up icon"></i>播放背景音樂
-              </p>
-              <p><img src="https://i.imgur.com/m5tRrfu.png"> : 說明</p>
-              <p><img src="https://i.imgur.com/0FnNzZS.png"> : 清除輸入</p>
-            </div>
-          </div>
+        <div id="驚嘆號按鈕"
+          class="attack_modal_reading_sprite error_report_S cursor_pointer pgo-style-error-report-button-1RQaWX">
         </div>
         <div class="pgo-style-submit-button-pASHWz" data-extended-answer-panel="false">
-          <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
-            style="user-select: none!important;display:none" data-position="bottom right"
-            data-tooltip="請確保送出時 A 選項為正確答案，本表單會自動匯入 Google 試算表" id="submit">
+          <div id="送出按鈕" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
+            data-position="bottom right" data-tooltip="請確保送出時 A 選項為正確答案，本表單會自動匯入 Google 試算表">
             送出</div>
-          <div class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW"
-            style="user-select: none!important" id="next">
+          <div id="下一題按鈕" class="cursor_pointer general2_sprite btn04 pgo-style-submit-button-30KwXW">
             下一題</div>
         </div>
       </form>
     </div>
   </div>
-  <pre id="content" class="ui container" style="white-space:pre-wrap;font-size:large">👉目前題庫(載入中)<br></pre>
+  <pre id="狀態欄" class="ui container">👉目前題庫(載入中)<br></pre>
+  <div id="說明視窗" class="ui small modal" style="display:none">
+    <div class="header">說明</div>
+    <div class="scrolling content">
+      <p>本說明也有放在
+        <a href="//md.nchuit.cc/2022GiCS/edit?view" target="_blank">HackMD[點我前往]</a>
+      </p>
+      <p>本網頁資料庫使用
+        <a href="//docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw" target="_blank">Google
+          試算表[點我前往]</a>
+      </p>
+      <p>本網頁資源媒體皆取自
+        <a href="//www.pagamo.org/map?course_code=gics" target="_blank">PaGamO - 2021 GiCS 資安闖天關初賽題庫[點我前往]</a>
+      </p>
+      <div class="ui top attached steps">
+        <a id="step1" class="step">
+          <i class="plus square icon"></i>
+          <div class="content">
+            <div class="title">安裝插件</div>
+            <div class="description">讓你可以複製題目</div>
+          </div>
+        </a>
+        <a id="step2" class="step">
+          <i class="paste icon"></i>
+          <div class="content">
+            <div class="title">填充題庫</div>
+            <div class="description">複製題目到試算表</div>
+          </div>
+        </a>
+        <a id="step3" class="active step">
+          <i class="gamepad icon"></i>
+          <div class="content">
+            <div class="title">刷題</div>
+            <div class="description">熱鍵說明</div>
+          </div>
+        </a>
+      </div>
+      <div id="step1_info" class="ui attached segment" style="display:none">
+        <p>安裝瀏覽器插件
+          <a href="//chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne"
+            target="_blank">Stylus[點我前往]</a>
+        </p>
+        <img src="//i.imgur.com/3VIEB6n.png" /><br><br>
+        <p>安裝完之後點出插件，編寫樣式給網站</p>
+        <img src="//i.imgur.com/IYrOZwl.png" /><br><br>
+        <p>貼上原始碼<code>*{user-select:text!important}</code>後儲存</p>
+        <img src="//i.imgur.com/f5TxOgM.png" /><br><br>
+        <p>重新載入頁面後可以一次複製題目答案</p>
+        <img src="//i.imgur.com/JtUJSCd.png" /><br><br>
+      </div>
+      <div id="step2_info" class="ui attached segment" style="display:none">
+        <p>點擊題目文字，它是輸入框，預設點選時全選讓你貼上，提示指的格式即介紹插件說明的<br><b>直接一次選取題目答案複製後的文字格式</b></p>
+        <img src="//i.imgur.com/TLoj01R.png"><br><br>
+        <p>貼上後會循環詢問前3個哪個是正確答案，如果都不是就是第4個，若<b>按錯重新貼上即可</b></p>
+        <img src="//i.imgur.com/ZWGo3dc.png"><br><br>
+        <p>確認完正確答案後就可以填充題庫啦~</p>
+        <img src="//i.imgur.com/OGc6jzj.png"><br><br>
+        <p>按下送出時會再問你一次</p>
+        <img src="//i.imgur.com/NyIZf6A.png"><br><br>
+        <p>如果貼上或輸入到一半的時候檢查到 Google 試算表的題庫有<b>這個題目了</b>，會提示</p>
+        <img src="//i.imgur.com/RbuJ8hB.png"><br><br>
+      </div>
+      <div id="step3_info" class="ui attached segment">
+        <h3 class="header">鍵盤熱鍵</h3>
+        <p><button class="ui button">空白鍵</button> : 下一題</p>
+        <p>
+          <button class="ui button">A</button> 或&nbsp;
+          <button class="ui button">1</button> : 答案選A
+        </p>
+        <p>
+          <button class="ui button">B</button> 或&nbsp;
+          <button class="ui button">2</button> : 答案選B
+        </p>
+        <p>
+          <button class="ui button">C</button> 或&nbsp;
+          <button class="ui button">3</button> : 答案選C
+        </p>
+        <p>
+          <button class="ui button">D</button> 或&nbsp;
+          <button class="ui button">4</button> : 答案選D
+        </p>
+        <p>
+          <button class="ui button">M</button> : 三段式靜音切換
+        </p>
+        <h3 class="header">畫面按鈕</h3>
+        <p>
+          <i class="volume off icon"></i>無音效/
+          <i class="volume down icon"></i>僅點選音效/
+          <i class="volume up icon"></i>播放背景音樂
+        </p>
+        <p><img src="https://i.imgur.com/m5tRrfu.png"> : 說明</p>
+        <p><img src="https://i.imgur.com/0FnNzZS.png"> : 清除輸入</p>
+      </div>
+    </div>
+  </div>
   <div id="錯誤訊息視窗" class="ui tiny modal" style="display:none">
     <div class="header">⚠️錯誤訊息</div>
     <pre id="錯誤訊息視窗內文" class="content"></pre>
@@ -343,8 +323,7 @@ JwIDAQAB
     src="//d32j6uwsrra4gx.cloudfront.net/assets/async/ckeditor-429f79eb637e326fdd323c42b13ad4a836282198d939ecc9113d337082acb590.js"></script>
   <script
     src="//d32j6uwsrra4gx.cloudfront.net/assets/cdn_i18n/zh-TW-205d23e1a35ace6df30ec4de91d7d3d81876b20f06dc49159227c0542cc7c963.js"></script>
-  <iframe name="transFrame" id="transFrame" tabindex="-1" aria-hidden="true"
-    style="width:1px;height:1px;position:absolute;top:-100px;display:none"></iframe>
+  <iframe id="transFrame" name="transFrame" tabindex="-1" aria-hidden="true"></iframe>
 </body>
 
 </html>

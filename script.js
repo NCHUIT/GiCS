@@ -91,13 +91,6 @@ var characterIDMapping = {
   "13": "tiencai", "14": "sikadeer", "15": "wangfu", "16": "draca", "17": "dolly", "18": "broomy"
 };
 //]]>
-const entry = {
-  題目: 'entry.892031688',
-  正確答案: 'entry.977089316',
-  錯誤答案1: 'entry.657500498',
-  錯誤答案2: 'entry.1532072947',
-  錯誤答案3: 'entry.1090409630'
-}
 
 // Client ID and API key from the Developer Console
 var CLIENT_ID = '289902636224-oro06s681gdgk1kqrv8o1oca2shocfr4.apps.googleusercontent.com';
@@ -110,34 +103,39 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 // included, separated by spaces.
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
-var 狀態欄 = document.getElementById('content');
-var 靜音切換按鈕 = document.getElementById("volctrl");
-var 載入提示 = document.getElementById('loader');
-var 載入按鈕 = document.getElementById('signloader_button');
-var 登入按鈕 = document.getElementById('authorize_button');
-var 登出按鈕 = document.getElementById('signout_button');
-var 下一題按鈕 = document.getElementById('next');
-var 按鈕A = document.getElementById('buttonA');
-var 按鈕B = document.getElementById('buttonB');
-var 按鈕C = document.getElementById('buttonC');
-var 按鈕D = document.getElementById('buttonD');
-var 送出按鈕 = document.getElementById('submit');
-var 清除按鈕 = document.getElementById('clear');
+var 靜音切換按鈕 = document.getElementById("靜音切換按鈕");
+var 載入提示 = document.getElementById('載入提示');
+var 載入按鈕 = document.getElementById('載入按鈕');
+var 登入按鈕 = document.getElementById('登入按鈕');
+var 登出按鈕 = document.getElementById('登出按鈕');
+var 按鈕A = document.getElementById('按鈕A');
+var 按鈕B = document.getElementById('按鈕B');
+var 按鈕C = document.getElementById('按鈕C');
+var 按鈕D = document.getElementById('按鈕D');
+var 下一題按鈕 = document.getElementById('下一題按鈕');
+var 送出按鈕 = document.getElementById('送出按鈕');
+var 清除按鈕 = document.getElementById('清除按鈕');
+var 狀態欄 = document.getElementById('狀態欄');
+var 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
+var 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
+var 正解音效 = document.getElementById('victory_sound_effect');
+var 錯題音效 = document.getElementById('keep_going_sound_effect');
+var 點擊音效 = document.getElementById('panel_btn_click_sound_effect');
+
 var 輸入框 = [
-  document.forms[0][entry.題目],
-  document.forms[0][entry.正確答案],
-  document.forms[0][entry.錯誤答案1],
-  document.forms[0][entry.錯誤答案2],
-  document.forms[0][entry.錯誤答案3]
+  document.forms[0]['entry.892031688'],
+  document.forms[0]['entry.977089316'],
+  document.forms[0]['entry.657500498'],
+  document.forms[0]['entry.1532072947'],
+  document.forms[0]['entry.1090409630']
 ];
 
 var 暫存題庫 = [], 題庫 = [];
 var 目前題目, 正確答案;
 
-
 var 目前背景音樂 = new Audio();
+
 function 切換背景音樂(哪個) {
-  目前背景音樂 = 哪個;
   switch (哪個) {
     case 'map': document.getElementById('fight_background_music').muted = true; break;
     case 'fight': document.getElementById('map_background_music').muted = true;
@@ -148,10 +146,6 @@ function 切換背景音樂(哪個) {
     目前背景音樂.play();
   }
 }
-
-var 正解音效 = document.getElementById('victory_sound_effect');
-var 錯題音效 = document.getElementById('keep_going_sound_effect');
-var 點擊音效 = document.getElementById('panel_btn_click_sound_effect');
 
 function 音效播放(音效) {
   音效.currentTime = 0;
@@ -204,9 +198,9 @@ function 打亂陣列(array) {
   return array;
 }
 
-function 輸入框欄高自適應(輸入框) {
-  輸入框.style.height = "auto";
-  輸入框.style.height = 輸入框.scrollHeight + "px";
+function 欄高自適應(元素) {
+  元素.style.height = "auto";
+  元素.style.height = 元素.scrollHeight + "px";
 }
 
 function 下一題() {
@@ -217,14 +211,14 @@ function 下一題() {
   目前題目 = 暫存題庫.pop();
   if (暫存題庫.length < 1) 重載題庫();
   輸入框[0].value = 輸入框[0].innerHTML = 目前題目[0];
-  輸入框欄高自適應(輸入框[0]);
+  欄高自適應(輸入框[0]);
   正確答案 = String(目前題目[1]);
   目前題目 = 打亂陣列(目前題目.slice(1));
   // console.log(current);
   for (let 元素 of 輸入框.slice(1)) {
     元素.value = 目前題目.pop();
     元素.innerHTML = 元素.value;
-    輸入框欄高自適應(元素);
+    欄高自適應(元素);
   }
   目前題目 = 輸入框[0].innerHTML;
   // console.log(bgm.src);
@@ -283,21 +277,6 @@ function 初始化客戶端() {
 
     // Handle the initial sign-in state.
     更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get());
-    登入按鈕.onclick = e => {
-      重設狀態欄();
-      載入提示.style.display = 'flex';
-      載入按鈕.style.display = 'block';
-      登入按鈕.style.display = 'none';
-      切換背景音樂('map');
-      gapi.auth2.getAuthInstance().signIn();
-    };
-    登出按鈕.onclick = e => {
-      重設狀態欄();
-      載入提示.style.display = 'flex';
-      載入按鈕.style.display = 'block';
-      切換背景音樂('map');
-      gapi.auth2.getAuthInstance().signOut();
-    };
   }, 錯誤 => 彈出錯誤訊息(JSON.stringify(錯誤, null, 2)));
 }
 
@@ -327,20 +306,21 @@ function 狀態欄續寫(訊息) {
   狀態欄.appendChild(document.createTextNode(訊息 + '\n'));
 }
 
-function 重設狀態欄(訊息=`👉目前題庫有${題庫.length}題(新到舊)`) {
-  狀態欄.innerHTML = 訊息+'\n';
+function 重設狀態欄(訊息 = `👉目前題庫有${題庫.length}題(新到舊)`) {
+  狀態欄.innerHTML = 訊息 + '\n';
 }
 
-var 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
-var 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
-function 彈出錯誤訊息(訊息){
+function 彈出錯誤訊息(訊息) {
   重設狀態欄('⚠️錯誤訊息');
   狀態欄續寫(訊息);
-  錯誤訊息視窗內文.innerHTML=訊息;
+  錯誤訊息視窗內文.innerHTML = 訊息;
   $('#錯誤訊息視窗').modal('show');
-  document.getElementById('錯誤訊息視窗').style.left='unset';
+  錯誤訊息視窗.style.left = 'unset';
 }
 
+function 彈出說明視窗() {
+  $('#說明視窗').modal('show');
+}
 function 清除輸入框() {
   切換背景音樂('map');
   document.forms[0].reset();
@@ -378,8 +358,6 @@ function 檢查題目() {
 
 function 輸入() {
   切換背景音樂('map');
-  for (let 元素 of 輸入框)
-    輸入框欄高自適應(元素);
   let content = String(輸入框[0].value);
   let ai = content.indexOf('\nA\n');
   let bi = content.indexOf('\nB\n', ai);
@@ -401,13 +379,14 @@ function 輸入() {
     $('#next').hide();
     $('#submit').show()
     let temp;
-    const tip = "\n\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
+    const tip = "\n這是正確答案嗎?\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
     for (let i = -1; !confirm((temp = ans[++i]) + tip);)
       if (i == 2) { temp = ans[3]; break; }
     ans.splice(ans.indexOf(temp), 1);
     // console.log(ans);
-    document.forms[0][entry.正確答案].value = temp;
-    for (let i = 0; 4 > ++i; document.forms[0][entry[`錯誤答案${i}`]].value = ans[i - 1]);
+    輸入框[1].value = temp;
+    for (const i in Array(3))
+      輸入框[2 + i].value = 輸入框[2 + i].innerHTML = ans[i];
   } else if (
     (輸入框[1].value || 輸入框[1].innerHTML) &&
     (輸入框[2].value || 輸入框[2].innerHTML) &&
@@ -418,15 +397,17 @@ function 輸入() {
     $('#submit').show()
   }
   // console.log(ai,bi,ci,di);
+  for (let 元素 of 輸入框)
+    欄高自適應(元素);
 }
 
 var 介面狀態;
 function 調整介面() {
-  for (let 元素 of 輸入框)
-    輸入框欄高自適應(元素);
   if (window.screen.width < 767) {
     if (介面狀態 == '小') return;
     介面狀態 = '小';
+    for (let 元素 of 輸入框)
+      欄高自適應(元素);
     $('#answer-panel').addClass('attack_modal_m');
     $('#answer-panel').addClass('attack_modal_m_sprite');
     $('#answer-panel').removeClass('panel');
@@ -439,6 +420,8 @@ function 調整介面() {
   } else {
     if (介面狀態 == '大') return;
     介面狀態 = '大';
+    for (let 元素 of 輸入框)
+      欄高自適應(元素);
     $('#answer-panel').addClass('panel');
     $('#answer-panel').addClass('attack_modal_reading_sprite');
     $('#answer-panel').removeClass('attack_modal_m');
@@ -451,9 +434,9 @@ function 調整介面() {
   }
 }
 
+// EventListener
 載入按鈕.addEventListener("click", 下一題);
 載入提示.addEventListener("click", 下一題);
-載入提示.addEventListener("mouseover", 下一題);
 下一題按鈕.addEventListener("click", 下一題);
 送出按鈕.addEventListener("click", 送出題目);
 清除按鈕.addEventListener("click", 清除輸入框);
@@ -462,9 +445,47 @@ function 調整介面() {
 按鈕C.addEventListener("click", e => 檢查答案(輸入框[3]));
 按鈕D.addEventListener("click", e => 檢查答案(輸入框[4]));
 靜音切換按鈕.addEventListener("click", 靜音切換);
+window.addEventListener('resize', 調整介面, true);
 document.body.addEventListener("click", e => { 音效播放(點擊音效); 調整介面() });
 document.body.onload = e => { 靜音切換(); 調整介面() };
-window.addEventListener('resize', 調整介面, true);
+document.getElementById('選單說明按鈕').onclick = e => 彈出說明視窗();
+document.getElementById('驚嘆號按鈕').onclick = e => 彈出說明視窗();
+
+登入按鈕.onclick = e => {
+  重設狀態欄();
+  載入提示.style.display = 'flex';
+  載入按鈕.style.display = 'block';
+  登入按鈕.style.display = 'none';
+  切換背景音樂('map');
+  gapi.auth2.getAuthInstance().signIn();
+};
+
+登出按鈕.onclick = e => {
+  重設狀態欄();
+  載入提示.style.display = 'flex';
+  載入按鈕.style.display = 'block';
+  切換背景音樂('map');
+  gapi.auth2.getAuthInstance().signOut();
+};
+
+document.getElementById('step1').onclick = e => {
+  $('#step1').addClass('active'); $('#step1_info').show();
+  $('#step2').removeClass('active'); $('#step2_info').hide();
+  $('#step3').removeClass('active'); $('#step3_info').hide()
+};
+
+document.getElementById('step2').onclick = e => {
+  $('#step1').removeClass('active'); $('#step1_info').hide();
+  $('#step2').addClass('active'); $('#step2_info').show();
+  $('#step3').removeClass('active'); $('#step3_info').hide()
+};
+
+document.getElementById('step3').onclick = e => {
+  $('#step1').removeClass('active'); $('#step1_info').hide();
+  $('#step2').removeClass('active'); $('#step2_info').hide();
+  $('#step3').addClass('active'); $('#step3_info').show()
+};
+
 
 // From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
 for (const 元素 of 輸入框) {
