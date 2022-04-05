@@ -7,6 +7,12 @@ tags: GiCS
 
 ![](https://img.shields.io/github/commit-activity/w/NCHUIT/2022GiCS?color=important) ![](https://img.shields.io/github/last-commit/NCHUIT/2022GiCS?color=success) ![](https://img.shields.io/github/languages/top/NCHUIT/2022GiCS) ![](https://img.shields.io/github/license/NCHUIT/2022GiCS?color=critical) [![](https://hackmd.io/@NCHUIT/2022GiCS/badge)](https://md.nchuit.cc/2022GiCS/edit)
 
+本頁說明同步存放於 <a target="_blank" href="https://md.nchuit.cc/2022GiCS/edit?view"><img src="https://hackmd.io/favicon.png" height="20"> HackMD[點我前往]</a>
+<br>
+本網頁的資料庫使用 <a target="_blank" href="https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw"><img src="https://i.imgur.com/n4hNxBA.png" height="20"> Google 試算表[點我前往]</a>
+<br>
+本網頁資源媒體取自 <a target="_blank" href="https://www.pagamo.org/map?course_code=gics"><img src="https://i.imgur.com/3UoAhdC.png" height="20"> PaGamO - 2021 GiCS 資安闖天關初賽題庫[點我前往]</a>
+
 ## 刷題
 
 ### 鍵盤熱鍵
