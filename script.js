@@ -108,13 +108,7 @@ var 載入提示 = document.getElementById('載入提示');
 var 載入按鈕 = document.getElementById('載入按鈕');
 var 登入按鈕 = document.getElementById('登入按鈕');
 var 登出按鈕 = document.getElementById('登出按鈕');
-var 按鈕A = document.getElementById('按鈕A');
-var 按鈕B = document.getElementById('按鈕B');
-var 按鈕C = document.getElementById('按鈕C');
-var 按鈕D = document.getElementById('按鈕D');
-var 下一題按鈕 = document.getElementById('下一題按鈕');
 var 送出按鈕 = document.getElementById('送出按鈕');
-var 清除按鈕 = document.getElementById('清除按鈕');
 var 狀態欄 = document.getElementById('狀態欄');
 var 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
 var 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
@@ -208,8 +202,8 @@ function 下一題() {
   $('#submit').hide();
   $('#next').show()
   document.getElementById('answer-panel-question-content').scrollTo(0, 0);
-  目前題目 = 暫存題庫.pop();
   if (暫存題庫.length < 1) 重載題庫();
+  目前題目 = 暫存題庫.pop();
   輸入框[0].value = 輸入框[0].innerHTML = 目前題目[0];
   欄高自適應(輸入框[0]);
   正確答案 = String(目前題目[1]);
@@ -261,6 +255,22 @@ function 載入客戶端() {
 }
 
 /**
+ *  Called when the signed in status changes, to update the UI
+ *  appropriately. After a sign-in, the API is called.
+ */
+function 更新登入狀態(isSignedIn=gapi.auth2.getAuthInstance().isSignedIn.get()) {
+  載入按鈕.style.display = 'none';
+  if (isSignedIn) {
+    登入按鈕.style.display = 'none';
+    登出按鈕.style.display = 'block';
+    重載題庫();
+  } else {
+    登入按鈕.style.display = 'block';
+    登出按鈕.style.display = 'none';
+  }
+}
+
+/**
  *  Initializes the API client library and sets up sign-in state
  *  listeners.
  */
@@ -273,26 +283,10 @@ function 初始化客戶端() {
   }).then(function () {
     // Listen for sign-in state changes.
     gapi.auth2.getAuthInstance().isSignedIn.listen(更新登入狀態);
-
     // Handle the initial sign-in state.
-    更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get());
+    更新登入狀態();
+    if(!gapi.auth2.getAuthInstance().isSignedIn.get()) 登入();
   }, 錯誤 => 彈出錯誤訊息(JSON.stringify(錯誤, null, 2)));
-}
-
-/**
- *  Called when the signed in status changes, to update the UI
- *  appropriately. After a sign-in, the API is called.
- */
-function 更新登入狀態(isSignedIn) {
-  載入按鈕.style.display = 'none';
-  if (isSignedIn) {
-    登入按鈕.style.display = 'none';
-    登出按鈕.style.display = 'block';
-    重載題庫();
-  } else {
-    登入按鈕.style.display = 'block';
-    登出按鈕.style.display = 'none';
-  }
 }
 
 /**
@@ -320,6 +314,7 @@ function 彈出錯誤訊息(訊息) {
 function 彈出說明視窗() {
   $('#說明視窗').modal('show');
 }
+
 function 清除輸入框() {
   切換背景音樂('map');
   document.forms[0].reset();
@@ -434,30 +429,41 @@ function 調整介面() {
 }
 
 // EventListener
-載入按鈕.addEventListener("click", 下一題);
-載入提示.addEventListener("click", 下一題);
-下一題按鈕.addEventListener("click", 下一題);
-送出按鈕.addEventListener("click", 送出題目);
-清除按鈕.addEventListener("click", 清除輸入框);
-按鈕A.addEventListener("click", e => 檢查答案(輸入框[1]));
-按鈕B.addEventListener("click", e => 檢查答案(輸入框[2]));
-按鈕C.addEventListener("click", e => 檢查答案(輸入框[3]));
-按鈕D.addEventListener("click", e => 檢查答案(輸入框[4]));
-靜音切換按鈕.addEventListener("click", 靜音切換);
-window.addEventListener('resize', 調整介面, true);
-document.body.addEventListener("click", e => { 音效播放(點擊音效); 調整介面() });
+載入按鈕.onclick = e => {
+  // Handle the initial sign-in state.
+  更新登入狀態();
+  下一題();
+};
+document.getElementById('下一題按鈕').onclick = e => 下一題();
+document.getElementById('清除按鈕').onclick = e => 清除輸入框();
+載入提示.onclick = e => 下一題();
+送出按鈕.onclick = e => 送出題目();
+靜音切換按鈕.onclick = e => 靜音切換();
+window.onresize = e => 調整介面();
+
 document.body.onload = e => { 靜音切換(); 調整介面() };
+document.body.onclick = e => { 音效播放(點擊音效); 調整介面() };
 document.getElementById('選單說明按鈕').onclick = e => 彈出說明視窗();
 document.getElementById('驚嘆號按鈕').onclick = e => 彈出說明視窗();
+document.getElementById('按鈕A').onclick = e => 檢查答案(輸入框[1]);
+document.getElementById('按鈕B').onclick = e => 檢查答案(輸入框[2]);
+document.getElementById('按鈕C').onclick = e => 檢查答案(輸入框[3]);
+document.getElementById('按鈕D').onclick = e => 檢查答案(輸入框[4]);
 
-登入按鈕.onclick = e => {
+function 登入() {
   重設狀態欄();
   載入提示.style.display = 'flex';
   載入按鈕.style.display = 'block';
   登入按鈕.style.display = 'none';
   切換背景音樂('map');
+  try{
   gapi.auth2.getAuthInstance().signIn();
-};
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+登入按鈕.onclick = e => 登入();
 
 登出按鈕.onclick = e => {
   重設狀態欄();
@@ -500,7 +506,7 @@ for (const 元素 of 輸入框) {
   };
 }
 
-document.body.addEventListener('keydown', e => {
+document.body.onkeydown = e => {
   if (e.target == document.body) switch (e.key.toUpperCase()) {
     default: console.log(e.key);
       break; case ' ': e.preventDefault(); 下一題();
@@ -524,4 +530,4 @@ document.body.addEventListener('keydown', e => {
         送出題目();
       break; case 'escape': 清除輸入框();
   }
-});
+};

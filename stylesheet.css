@@ -15,12 +15,16 @@
   opacity: 0 !important;
 }
 
+#載入提示{
+	z-index: 100;
+}
+
 #狀態欄 {
   white-space: pre-wrap;
   font-size: large;
 }
 
-#transFrame {
+iframe[name="formResponse"] {
   width: 1px;
   height: 1px;
   position: absolute;

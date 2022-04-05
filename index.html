@@ -94,7 +94,7 @@ JwIDAQAB
       <div class="ui massive text loader">題目載入中<br>未登入請至右上方登入</div>
     </div>
     <div id="answer-panel" class="attack_modal_reading_sprite panel ui container">
-      <form id="form" class="ui form" method="POST" target="transFrame"
+      <form id="form" class="ui form" method="POST" target="formResponse"
         action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse">
         <div id='清除按鈕' class="attack_modal_sprite btn_exit cursor_pointer pgo-style-exit-button-1-aQN0"
           data-tooltip="清除輸入" data-position="bottom right" data-extended-answer-panel="false"></div>
@@ -112,7 +112,7 @@ JwIDAQAB
             <div id="answer-panel-question-content" class="answer-panel-question-content" data-self-control="false">
               <div class="question-iframe-container pgo-style-question-content-1iaDNm ui container" data-inverted
                 data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center">
-                <textarea placeholder="未輸入題目" rows="2" form="form" name="entry.892031688"
+                <textarea placeholder="未輸入題目" name="entry.892031688" form="form" rows="2"
                   class="cursor_pointer pgo-style-question-content-wrapper-vTwh8z">
                 </textarea>
               </div>
@@ -303,10 +303,7 @@ JwIDAQAB
   <script async defer src="//apis.google.com/js/api.js" onload="this.onload=function(){};載入客戶端()"
     onreadystatechange="if(this.readyState==='complete'){this.onload()}">
     </script>
-  <script async src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
-  <script async src="//cdnjs.cloudflare.com/ajax/libs/fetch/3.6.2/fetch.min.js"></script>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-  <script async src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.2/underscore-min.js"></script>
   <script
     src="//d32j6uwsrra4gx.cloudfront.net/assets/map/map-1a9055d7ba95ca50db3cd83cd0be5c361bb103b93a72af0c4dac78cf448545d0.js"></script>
   <script
@@ -323,7 +320,7 @@ JwIDAQAB
     src="//d32j6uwsrra4gx.cloudfront.net/assets/async/ckeditor-429f79eb637e326fdd323c42b13ad4a836282198d939ecc9113d337082acb590.js"></script>
   <script
     src="//d32j6uwsrra4gx.cloudfront.net/assets/cdn_i18n/zh-TW-205d23e1a35ace6df30ec4de91d7d3d81876b20f06dc49159227c0542cc7c963.js"></script>
-  <iframe id="transFrame" name="transFrame" tabindex="-1" aria-hidden="true"></iframe>
+  <iframe name="formResponse" sandbox="allow-scripts allow-same-origin" tabindex="-1" aria-hidden="true" frame-border="0"></iframe>
 </body>
 
 </html>
