@@ -1,16 +1,33 @@
+---
+tags: GiCS
+---
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
 # [2022 GiCS 資安闖天關刷題說明](https://nchuit.cc/2022GiCS/)
+
+![](https://img.shields.io/github/commit-activity/w/NCHUIT/2022GiCS?color=important) ![](https://img.shields.io/github/last-commit/NCHUIT/2022GiCS?color=success) ![](https://img.shields.io/github/languages/top/NCHUIT/2022GiCS) ![](https://img.shields.io/github/license/NCHUIT/2022GiCS?color=critical) [![](https://hackmd.io/@NCHUIT/2022GiCS/badge)](https://md.nchuit.cc/2022GiCS/edit)
 
 ## 刷題
 
 ### 鍵盤熱鍵
-<p><kbd>空白鍵</kbd> : 下一題</p>
-<p><kbd>A</kbd> 或 <kbd>1</kbd> : 答案選A</p>
-<p><kbd>B</kbd> 或 <kbd>2</kbd> : 答案選B</p>
-<p><kbd>C</kbd> 或 <kbd>3</kbd> : 答案選C</p>
-<p><kbd>D</kbd> 或 <kbd>4</kbd> : 答案選D</p>
-<p><kbd>M</kbd> : 無音效/僅點選音效/音效全開 三段式靜音切換</p>
 
-![](https://i.imgur.com/m5tRrfu.png) : 說明
+<kbd>空白鍵</kbd> : 下一題
+
+<kbd>A</kbd> 或 <kbd>1</kbd> : 答案選A
+
+<kbd>B</kbd> 或 <kbd>2</kbd> : 答案選B
+
+<kbd>C</kbd> 或 <kbd>3</kbd> : 答案選C
+
+<kbd>D</kbd> 或 <kbd>4</kbd> : 答案選D
+
+<kbd>M</kbd> : 三段式靜音切換
+
+### 畫面按鈕
+
+<i class="fa fa-volume-off"></i>  無音效/ <i class="fa fa-volume-down"></i> 僅點選音效/ <i class="fa fa-volume-up"></i> 播放背景音樂
+
+![](https://i.imgur.com/m5tRrfu.png) 或 <i class="fa fa-question-circle"></i> : 說明
 
 ![](https://i.imgur.com/0FnNzZS.png) : 清除輸入
 
