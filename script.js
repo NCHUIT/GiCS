@@ -166,22 +166,6 @@ function 靜音切換() {
   }
 }
 
-// From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-async function 檢查答案(選項) {
-  // console.log(正確答案,'\n',選項.value,'\n',選項.innerHTML);
-  if (正確答案 === 選項.value || 正確答案 === 選項.innerHTML) {
-    錯題音效.pause();
-    音效播放(正解音效);
-    await sleep(50);
-    if (confirm('⭕答對啦！\n\n' + 正確答案 + '\n\n按下取消(Esc)返回、確定(Enter)下一題'))
-      下一題();
-  } else {
-    正解音效.pause();
-    音效播放(錯題音效);
-  }
-}
-
 function 打亂陣列(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -191,11 +175,6 @@ function 打亂陣列(array) {
   }
   // console.log(array);
   return array;
-}
-
-function 欄高自適應(元素) {
-  元素.style.height = "auto";
-  元素.style.height = 元素.scrollHeight + "px";
 }
 
 function 下一題() {
@@ -219,6 +198,53 @@ function 下一題() {
   // console.log(bgm.src);
   切換背景音樂('fight');
   載入提示.style.display = 'none';
+}
+
+// From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function 檢查答案(選項) {
+  // console.log(正確答案,'\n',選項.value,'\n',選項.innerHTML);
+  if (正確答案 === 選項.value || 正確答案 === 選項.innerHTML) {
+    錯題音效.pause();
+    音效播放(正解音效);
+    await sleep(50);
+    if (confirm('⭕答對啦！\n\n' + 正確答案 + '\n\n按下取消(Esc)返回、確定(Enter)下一題'))
+      下一題();
+  } else {
+    正解音效.pause();
+    音效播放(錯題音效);
+  }
+}
+
+function 欄高自適應(元素) {
+  元素.style.height = "auto";
+  元素.style.height = 元素.scrollHeight + "px";
+}
+
+/**
+ * Append a pre element to the body containing the given message
+ * as its text node. Used to display the results of the API call.
+ *
+ * @param {string} 訊息 Text to be placed in pre element.
+ */
+function 狀態欄續寫(訊息) {
+  狀態欄.appendChild(document.createTextNode(訊息 + '\n'));
+}
+
+function 重設狀態欄(訊息 = `👉目前題庫有${題庫.length}題(新到舊)`) {
+  狀態欄.innerHTML = 訊息 + '\n';
+}
+
+function 彈出錯誤訊息(訊息) {
+  重設狀態欄('⚠️錯誤訊息');
+  狀態欄續寫(訊息);
+  錯誤訊息視窗內文.innerHTML = 訊息;
+  $('#錯誤訊息視窗').modal('show');
+  錯誤訊息視窗.style.left = 'unset';
+}
+
+function 彈出說明視窗() {
+  $('#說明視窗').modal('show');
 }
 
 /**
@@ -246,13 +272,6 @@ function 重載題庫() {
       下一題();
     } else 彈出錯誤訊息('No data found.');
   }, 回應 => 彈出錯誤訊息('Error: ' + 回應.result.error.message));
-}
-
-/**
- *  On load, called to load the auth2 library and API client library.
- */
-function 載入客戶端() {
-  gapi.load('client:auth2', 初始化客戶端);
 }
 
 /**
@@ -297,29 +316,10 @@ function 初始化客戶端() {
 }
 
 /**
- * Append a pre element to the body containing the given message
- * as its text node. Used to display the results of the API call.
- *
- * @param {string} 訊息 Text to be placed in pre element.
+ *  On load, called to load the auth2 library and API client library.
  */
-function 狀態欄續寫(訊息) {
-  狀態欄.appendChild(document.createTextNode(訊息 + '\n'));
-}
-
-function 重設狀態欄(訊息 = `👉目前題庫有${題庫.length}題(新到舊)`) {
-  狀態欄.innerHTML = 訊息 + '\n';
-}
-
-function 彈出錯誤訊息(訊息) {
-  重設狀態欄('⚠️錯誤訊息');
-  狀態欄續寫(訊息);
-  錯誤訊息視窗內文.innerHTML = 訊息;
-  $('#錯誤訊息視窗').modal('show');
-  錯誤訊息視窗.style.left = 'unset';
-}
-
-function 彈出說明視窗() {
-  $('#說明視窗').modal('show');
+function 載入客戶端() {
+  gapi.load('client:auth2', 初始化客戶端);
 }
 
 function 清除輸入框() {
@@ -524,7 +524,7 @@ window.onscroll = e => {
   }
 };
 
-document.body.onload = e => { 靜音切換(); 調整介面() };
+document.body.onload = e => { 靜音切換(); 調整介面(); 下一題() };
 document.body.onclick = e => { 音效播放(點擊音效); 調整介面() };
 document.body.onkeydown = e => {
   if (e.target == document.body) switch (e.key.toUpperCase()) {
