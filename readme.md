@@ -25,9 +25,11 @@ tags: GiCS
 
 ### 畫面按鈕
 
-<i class="fa fa-volume-off"></i>  無音效/ <i class="fa fa-volume-down"></i> 僅點選音效/ <i class="fa fa-volume-up"></i> 播放背景音樂
+🔈三段式靜音切換
 
-![](https://i.imgur.com/m5tRrfu.png) 或 <i class="fa fa-question-circle"></i> : 說明
+🔇靜音/🔉僅點選音效/🔊播放背景音樂
+
+![](https://i.imgur.com/m5tRrfu.png) 或 ❔ : 說明
 
 ![](https://i.imgur.com/0FnNzZS.png) : 清除輸入
 
