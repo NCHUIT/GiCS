@@ -228,8 +228,7 @@ function 下一題() {
 
 /**
  * From https://developers.google.com/sheets/api/quickstart/js
- * Print the names and majors of students in a sample spreadsheet:
- * https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw/edit
+ * Spreadsheet: https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw
  */
 function 重載題庫() {
   載入提示.style.display = 'flex';
