@@ -60,6 +60,14 @@ JwIDAQAB
       &nbsp;&nbsp;2022 GiCS 闖關刷題
     </a>
     <div class="right menu">
+      <div class="cursor_pointer item ui header" data-tooltip="說明" data-position="bottom right"
+        onclick="$('#說明視窗').modal('show');document.getElementById('說明視窗').style.left='unset';">
+        <i class="question circle icon"></i>
+      </div>
+      <div id="volctrl" class="cursor_pointer item ui header" data-tooltip="無音效/僅點選音效/音效全開"
+        data-position="bottom right">
+        <i class="volume off icon"></i>
+      </div>
       <div id="audio_container" class="pgo-style-audios-29lfQn">
         <audio id="map_background_music" loop src="map_background_music.mp3" type="audio/mpeg"
           controlslist="nodownload">Your browser does not support the audio tag.</audio>
@@ -72,11 +80,9 @@ JwIDAQAB
         <audio id="panel_btn_click_sound_effect" src="panel_btn_click_sound_effect.mp3" type="audio/mpeg"
           controlslist="nodownload">Your browser does not support the audio tag.</audio>
       </div>
-      <div id="volctrl" class="cursor_pointer item ui header" data-tooltip="無音效/僅點選音效/音效全開" data-position="bottom right">
-        <i class="volume off icon"></i>
-      </div>
       <!--Add buttons to initiate auth sequence and sign out-->
-      <button class="cursor_pointer positive ui button" id="authorize_button" style="display: none;">
+      <button class="cursor_pointer positive ui button" data-tooltip="登入 Google 帳號 以存取試算表填充題庫"
+        data-position="bottom right" id="authorize_button" style="display: none;">
         <h5>登入</h5>
       </button>
       <button class="cursor_pointer negative ui button" id="signout_button" style="display: none;">
@@ -122,8 +128,8 @@ JwIDAQAB
                   </div>
                   <div class="right floated fourteen wide column">
                     <textarea placeholder="未輸入選項A" rows="1" style="width:100%;border:0;overflow-y:hidden"
-                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL" form="form"
-                      name="entry.977089316">
+                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL"
+                      form="form" name="entry.977089316">
                     </textarea>
                   </div>
                 </div>
@@ -133,8 +139,8 @@ JwIDAQAB
                   </div>
                   <div class="right floated fourteen wide column">
                     <textarea placeholder="未輸入選項B" rows="1" style="width:100%;border:0;overflow-y:hidden"
-                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL" form="form"
-                      name="entry.657500498">
+                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL"
+                      form="form" name="entry.657500498">
                     </textarea>
                   </div>
                 </div>
@@ -144,8 +150,8 @@ JwIDAQAB
                   </div>
                   <div class="right floated fourteen wide column">
                     <textarea placeholder="未輸入選項C" rows="1" style="width:100%;border:0;overflow-y:hidden"
-                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL" form="form"
-                      name="entry.1532072947">
+                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL"
+                      form="form" name="entry.1532072947">
                     </textarea>
                   </div>
                 </div>
@@ -155,8 +161,8 @@ JwIDAQAB
                   </div>
                   <div class="right floated fourteen wide column">
                     <textarea placeholder="未輸入選項D" rows="1" style="width:100%;border:0;overflow-y:hidden"
-                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL" form="form"
-                      name="entry.1090409630">
+                      spellcheck="false" data-ms-editor="true" class="cursor_pointer pgo-style-selection-content-1JGhEL"
+                      form="form" name="entry.1090409630">
                     </textarea>
                   </div>
                 </div>
@@ -176,9 +182,9 @@ JwIDAQAB
           </div>
         </div>
         <div class="attack_modal_reading_sprite error_report_S cursor_pointer pgo-style-error-report-button-1RQaWX"
-          onclick="$('.ui.modal').modal('show');document.getElementById('modal').style.left='unset';">
+          onclick="$('#說明視窗').modal('show');document.getElementById('說明視窗').style.left='unset';">
         </div>
-        <div class="ui small modal" id="modal">
+        <div class="ui small modal" id="說明視窗">
           <div class="header">說明</div>
           <div class="scrolling content">
             <p>本說明也有放在
@@ -249,7 +255,7 @@ JwIDAQAB
               <img src="//i.imgur.com/RbuJ8hB.png"><br><br>
             </div>
             <div id="step3_info" class="ui attached segment">
-              <h4 class="header">鍵盤熱鍵</h4>
+              <h3 class="header">鍵盤熱鍵</h3>
               <p><button class="ui button">空白鍵</button> : 下一題</p>
               <p>
                 <button class="ui button">A</button> 或&nbsp;
@@ -269,11 +275,13 @@ JwIDAQAB
               </p>
               <p>
                 <button class="ui button">M</button> : 三段式靜音切換
+              </p>
+              <h3 class="header">畫面按鈕</h3>
+              <p>
                 <i class="volume off icon"></i>無音效/
                 <i class="volume down icon"></i>僅點選音效/
                 <i class="volume up icon"></i>播放背景音樂
               </p>
-              <h4 class="header">畫面按鈕</h4>
               <p><img src="https://i.imgur.com/m5tRrfu.png"> : 說明</p>
               <p><img src="https://i.imgur.com/0FnNzZS.png"> : 清除輸入</p>
             </div>
@@ -291,9 +299,14 @@ JwIDAQAB
       </form>
     </div>
   </div>
-  <pre id="content" class="ui container" style="white-space:pre-wrap;font-size:large">👉狀態欄/目前題庫(載入中)<br></pre>
-  <iframe name="transFrame" id="transFrame" tabindex="-1" aria-hidden="true"
-    style="width:1px;height:1px;position:absolute;top:-100px;display:none"></iframe>
+  <pre id="content" class="ui container" style="white-space:pre-wrap;font-size:large">👉目前題庫(載入中)<br></pre>
+  <div id="錯誤訊息視窗" class="ui tiny modal" style="display:none">
+    <div class="header">⚠️錯誤訊息</div>
+    <pre id="錯誤訊息視窗內文" class="content"></pre>
+    <div class="actions">
+      <div class="ui negative button">關閉 </div>
+    </div>
+  </div>
   <div class="ui inverted vertical footer segment">
     <div class="ui center aligned container">
       <div class="ui stackable grid">
@@ -305,11 +318,11 @@ JwIDAQAB
       </div>
     </div>
   </div>
+  <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
   <script charset="UTF-8" src="script.js"></script>
   <script async defer src="//apis.google.com/js/api.js" onload="this.onload=function(){};載入客戶端()"
     onreadystatechange="if(this.readyState==='complete'){this.onload()}">
     </script>
-  <script async src="//code.jquery.com/jquery-3.6.0.min.js"></script>
   <script async src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/fetch/3.6.2/fetch.min.js"></script>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
@@ -330,6 +343,8 @@ JwIDAQAB
     src="//d32j6uwsrra4gx.cloudfront.net/assets/async/ckeditor-429f79eb637e326fdd323c42b13ad4a836282198d939ecc9113d337082acb590.js"></script>
   <script
     src="//d32j6uwsrra4gx.cloudfront.net/assets/cdn_i18n/zh-TW-205d23e1a35ace6df30ec4de91d7d3d81876b20f06dc49159227c0542cc7c963.js"></script>
+  <iframe name="transFrame" id="transFrame" tabindex="-1" aria-hidden="true"
+    style="width:1px;height:1px;position:absolute;top:-100px;display:none"></iframe>
 </body>
 
 </html>

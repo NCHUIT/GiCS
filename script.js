@@ -110,7 +110,7 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 // included, separated by spaces.
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
-var pre = document.getElementById('content');
+var 狀態欄 = document.getElementById('content');
 var 靜音切換按鈕 = document.getElementById("volctrl");
 var 載入提示 = document.getElementById('loader');
 var 載入按鈕 = document.getElementById('signloader_button');
@@ -239,7 +239,7 @@ function 下一題() {
  */
 function 重載題庫() {
   載入提示.style.display = 'flex';
-  清除狀態欄();
+  重設狀態欄();
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw',
     range: '2022 GiCS!B2:F',
@@ -248,7 +248,7 @@ function 重載題庫() {
     var range = response.result;
     if (range.values.length > 0) {
       題庫 = 暫存題庫 = range.values;
-      清除狀態欄();
+      重設狀態欄();
       題庫.reverse();
       const fmt = ['🤔', '⭕正確答案: ', '錯誤答案1: ', '錯誤答案2: ', '錯誤答案3: '];
       for (const row of 題庫)
@@ -256,11 +256,8 @@ function 重載題庫() {
           狀態欄續寫('\n' + fmt[i] + row[i]);
       打亂陣列(暫存題庫);
       下一題();
-    } else 狀態欄續寫('No data found.');
-  }, function (response) {
-    狀態欄續寫('Error: ' + response.result.error.message);
-    下一題();
-  });
+    } else 彈出錯誤訊息('No data found.');
+  }, 回應 => 彈出錯誤訊息('Error: ' + 回應.result.error.message));
 }
 
 /**
@@ -287,7 +284,7 @@ function 初始化客戶端() {
     // Handle the initial sign-in state.
     更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get());
     登入按鈕.onclick = e => {
-      清除狀態欄();
+      重設狀態欄();
       載入提示.style.display = 'flex';
       載入按鈕.style.display = 'block';
       登入按鈕.style.display = 'none';
@@ -295,16 +292,13 @@ function 初始化客戶端() {
       gapi.auth2.getAuthInstance().signIn();
     };
     登出按鈕.onclick = e => {
-      清除狀態欄();
+      重設狀態欄();
       載入提示.style.display = 'flex';
       載入按鈕.style.display = 'block';
       切換背景音樂('map');
       gapi.auth2.getAuthInstance().signOut();
     };
-  }, function (error) {
-    狀態欄續寫(JSON.stringify(error, null, 2));
-    下一題();
-  });
+  }, 錯誤 => 彈出錯誤訊息(JSON.stringify(錯誤, null, 2)));
 }
 
 /**
@@ -327,17 +321,27 @@ function 更新登入狀態(isSignedIn) {
  * Append a pre element to the body containing the given message
  * as its text node. Used to display the results of the API call.
  *
- * @param {string} message Text to be placed in pre element.
+ * @param {string} 訊息 Text to be placed in pre element.
  */
-function 狀態欄續寫(message) {
-  pre.appendChild(document.createTextNode(message + '\n'));
+function 狀態欄續寫(訊息) {
+  狀態欄.appendChild(document.createTextNode(訊息 + '\n'));
 }
 
-function 清除狀態欄() {
-  document.getElementById('content').innerHTML = `👉目前題庫有${題庫.length}題(新到舊)\n`;
+function 重設狀態欄(訊息=`👉目前題庫有${題庫.length}題(新到舊)`) {
+  狀態欄.innerHTML = 訊息+'\n';
 }
 
-function 清除() {
+var 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
+var 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
+function 彈出錯誤訊息(訊息){
+  重設狀態欄('⚠️錯誤訊息');
+  狀態欄續寫(訊息);
+  錯誤訊息視窗內文.innerHTML=訊息;
+  $('#錯誤訊息視窗').modal('show');
+  document.getElementById('錯誤訊息視窗').style.left='unset';
+}
+
+function 清除輸入框() {
   切換背景音樂('map');
   document.forms[0].reset();
   for (input of document.forms[0]) {
@@ -448,10 +452,11 @@ function 調整介面() {
 }
 
 載入按鈕.addEventListener("click", 下一題);
+載入提示.addEventListener("click", 下一題);
 載入提示.addEventListener("mouseover", 下一題);
 下一題按鈕.addEventListener("click", 下一題);
 送出按鈕.addEventListener("click", 送出題目);
-清除按鈕.addEventListener("click", 清除);
+清除按鈕.addEventListener("click", 清除輸入框);
 按鈕A.addEventListener("click", e => 檢查答案(輸入框[1]));
 按鈕B.addEventListener("click", e => 檢查答案(輸入框[2]));
 按鈕C.addEventListener("click", e => 檢查答案(輸入框[3]));
@@ -497,6 +502,6 @@ document.body.addEventListener('keydown', e => {
       break; case 'enter':
       if (送出按鈕.style.display != 'none')
         送出題目();
-      break; case 'escape': 清除();
+      break; case 'escape': 清除輸入框();
   }
 });
