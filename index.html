@@ -98,7 +98,7 @@ JwIDAQAB
   </div>
   <div class="ui inverted segment">
     <div id="載入提示" class="ui active dimmer">
-      <div class="ui massive text loader">題目載入中<br>未登入請至右上方登入</div>
+      <div class="ui massive text loader">題目載入中<br>未登入請至右上方登入<br>已登入遲遲未載入請點我</div>
     </div>
     <div id="answer-panel" class="attack_modal_reading_sprite panel ui container">
       <form id="form" class="ui form" method="POST" target="formResponse"
@@ -304,7 +304,8 @@ JwIDAQAB
     <div class="header">⚠️錯誤訊息</div>
     <pre id="錯誤訊息視窗內文" class="content"></pre>
     <div class="actions">
-      <div class="ui negative button">關閉 </div>
+      <div id="錯誤訊息視窗登入按鈕" class="ui positive button">重新登入</div>
+      <div class="ui negative button">關閉</div>
     </div>
   </div>
   <div class="ui inverted vertical footer segment">

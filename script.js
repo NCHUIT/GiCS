@@ -113,6 +113,7 @@ var 至頂按紐 = document.getElementById("至頂按紐");
 var 狀態欄 = document.getElementById('狀態欄');
 var 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
 var 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
+var 錯誤訊息視窗登入按鈕 = document.getElementById('錯誤訊息視窗登入按鈕');
 var 正解音效 = document.getElementById('victory_sound_effect');
 var 錯題音效 = document.getElementById('keep_going_sound_effect');
 var 點擊音效 = document.getElementById('panel_btn_click_sound_effect');
@@ -182,7 +183,7 @@ function 下一題() {
   $('#送出按鈕').hide();
   $('#下一題按鈕').show()
   document.getElementById('answer-panel-question-content').scrollTo(0, 0);
-  if (暫存題庫.length < 1) 重載題庫();
+  if (暫存題庫.length < 1) 更新登入狀態();
   目前題目 = 暫存題庫.pop();
   輸入框[0].value = 輸入框[0].innerHTML = 目前題目[0];
   欄高自適應(輸入框[0]);
@@ -280,13 +281,14 @@ function 重載題庫() {
  *  Called when the signed in status changes, to update the UI
  *  appropriately. After a sign-in, the API is called.
  */
-function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get()) {
+function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get(), 只是看看) {
   //console.log('isSignedIn:',isSignedIn,typeof isSignedIn);
   載入按鈕.style.display = 'none';
   if (isSignedIn) {
     登入按鈕.style.display = 'none';
     登出按鈕.style.display = 'block';
-    if(isSignedIn===true) 重載題庫();
+    if(只是看看) return;
+    重載題庫();
   } else {
     登入按鈕.style.display = 'block';
     登出按鈕.style.display = 'none';
@@ -295,14 +297,13 @@ function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn
 }
 
 function 登入() {
-  // 重設狀態欄();
-  // 載入提示.style.display = 'flex';
+  載入提示.style.display = 'flex';
   載入按鈕.style.display = 'block';
   登入按鈕.style.display = 'none';
   切換背景音樂('map');
-  try{
+  try {
     gapi.auth2.getAuthInstance().signIn();
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   }
 }
@@ -320,7 +321,8 @@ function 初始化客戶端() {
   }).then(function () {
     // Listen for sign-in state changes.
     gapi.auth2.getAuthInstance().isSignedIn.listen(更新登入狀態);
-    if (!gapi.auth2.getAuthInstance().isSignedIn.get()) 登入();
+    // Handle the initial sign-in state.
+    if (!更新登入狀態()) 登入();
   }, 錯誤 => 彈出錯誤訊息(JSON.stringify(錯誤, null, 2)));
 }
 
@@ -335,8 +337,8 @@ function 清除輸入框() {
   切換背景音樂('map');
   document.forms[0].reset();
   for (input of document.forms[0]) {
-    input.innerHTML = '';
-    input.value = ''
+    input.value = input.innerHTML = null;
+    欄高自適應(input);
   }
   $('#送出按鈕').hide();
   $('#下一題按鈕').show();
@@ -348,9 +350,9 @@ function 送出題目() {
     document.forms[0].submit();
     $('#送出按鈕').hide()
     $('#下一題按鈕').show();
-    重載題庫();
+    更新登入狀態();
   }
-  if(!gapi.auth2.getAuthInstance().isSignedIn.get())
+  if (!gapi.auth2.getAuthInstance().isSignedIn.get())
     彈出錯誤訊息('未登入');
 }
 
@@ -447,10 +449,10 @@ function 調整介面() {
 }
 
 // EventListener
-document.getElementById('下一題按鈕').onclick = e => 下一題();
-document.getElementById('清除按鈕').onclick = e => 清除輸入框();
-document.getElementById('選單說明按鈕').onclick = e => 彈出說明視窗();
-document.getElementById('驚嘆號按鈕').onclick = e => 彈出說明視窗();
+document.getElementById('下一題按鈕').onclick = 下一題;
+document.getElementById('清除按鈕').onclick = 清除輸入框;
+document.getElementById('選單說明按鈕').onclick = 彈出說明視窗;
+document.getElementById('驚嘆號按鈕').onclick = 彈出說明視窗;
 document.getElementById('按鈕A').onclick = e => 檢查答案(輸入框[1]);
 document.getElementById('按鈕B').onclick = e => 檢查答案(輸入框[2]);
 document.getElementById('按鈕C').onclick = e => 檢查答案(輸入框[3]);
@@ -474,9 +476,9 @@ document.getElementById('step3').onclick = e => {
   $('#step3').addClass('active'); $('#step3_info').show()
 };
 
-載入提示.onclick = e => 下一題();
-送出按鈕.onclick = e => 送出題目();
-靜音切換按鈕.onclick = e => 靜音切換();
+載入提示.onclick = 下一題;
+送出按鈕.onclick = 送出題目;
+靜音切換按鈕.onclick = 靜音切換;
 
 // When the user clicks on the button, scroll to the top of the document
 至頂按紐.onclick = e => {
@@ -484,12 +486,15 @@ document.getElementById('step3').onclick = e => {
   document.documentElement.scrollTop = 0;
 };
 
-登入按鈕.onclick = e => 登入();
+錯誤訊息視窗登入按鈕.onclick =登入;
+登入按鈕.onclick = 登入;
 
 登出按鈕.onclick = e => {
-  // 載入提示.style.display = 'flex';
+  重設狀態欄('您已登出');
   載入按鈕.style.display = 'block';
   切換背景音樂('map');
+  暫存題庫 = 題庫 = 目前題目 = 正確答案 = [];
+  清除輸入框();
   gapi.auth2.getAuthInstance().signOut();
   更新登入狀態(false);
 };
@@ -514,8 +519,11 @@ for (const 元素 of 輸入框) {
   };
 }
 
-window.onresize = e => 調整介面();
-window.onfocus = e => { 更新登入狀態(e); 調整介面() };
+window.onresize = 調整介面;
+window.onfocus = e => {
+  更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get(), true);
+  調整介面();
+};
 window.onblur = e => {
   調整介面();
   登入按鈕.style.display = 'none';
@@ -533,9 +541,10 @@ window.onscroll = e => {
   }
 };
 
-document.body.onload = e => { 靜音切換(); 調整介面(); 下一題() };
+document.body.onload = e => { 靜音切換(); 調整介面() };
 document.body.onclick = e => { 音效播放(點擊音效); 調整介面() };
 document.body.onkeydown = e => {
+  音效播放(點擊音效);
   if (e.target == document.body) switch (e.key.toUpperCase()) {
     default: //console.log(e.key);
       break; case ' ': e.preventDefault(); 下一題();
