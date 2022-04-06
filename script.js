@@ -250,12 +250,14 @@ function 彈出說明視窗() {
 /**
  * From https://developers.google.com/sheets/api/quickstart/js
  * Spreadsheet: https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw
+ * test: https://docs.google.com/spreadsheets/d/1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E
  */
 function 重載題庫() {
   載入提示.style.display = 'flex';
   重設狀態欄();
   gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw',
+    spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw', // real
+    // spreadsheetId: '1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E', // for test authority
     range: '2022 GiCS!B2:F',
   }).then(function (response) {
     載入提示.style.display = 'flex';
@@ -293,9 +295,16 @@ function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn
 }
 
 function 登入() {
-  切換背景音樂('map');
+  // 重設狀態欄();
+  // 載入提示.style.display = 'flex';
   載入按鈕.style.display = 'block';
-  gapi.auth2.getAuthInstance().signIn();
+  登入按鈕.style.display = 'none';
+  切換背景音樂('map');
+  try{
+    gapi.auth2.getAuthInstance().signIn();
+  } catch(e) {
+    console.log(e);
+  }
 }
 
 /**
@@ -341,7 +350,7 @@ function 送出題目() {
     $('#下一題按鈕').show();
     重載題庫();
   }
-  if (!gapi.auth2.getAuthInstance().isSignedIn.get())
+  if(!gapi.auth2.getAuthInstance().isSignedIn.get())
     彈出錯誤訊息('未登入');
 }
 
@@ -388,9 +397,8 @@ function 輸入() {
     ans.splice(ans.indexOf(temp), 1);
     // console.log(ans);
     輸入框[1].value = temp;
-    for (const i of Array(3).keys()) {
+    for (const i of Array(3).keys())
       輸入框[2 + i].value = 輸入框[2 + i].innerHTML = ans[i];
-    }
   } else if (
     (輸入框[1].value || 輸入框[1].innerHTML) &&
     (輸入框[2].value || 輸入框[2].innerHTML) &&
@@ -479,8 +487,9 @@ document.getElementById('step3').onclick = e => {
 登入按鈕.onclick = e => 登入();
 
 登出按鈕.onclick = e => {
-  切換背景音樂('map');
+  // 載入提示.style.display = 'flex';
   載入按鈕.style.display = 'block';
+  切換背景音樂('map');
   gapi.auth2.getAuthInstance().signOut();
   更新登入狀態(false);
 };
