@@ -417,11 +417,11 @@ function 輸入() {
 
 var 介面狀態;
 function 調整介面() {
+  for (let 元素 of 輸入框)
+    欄高自適應(元素);
   if (window.screen.width < 767) {
     if (介面狀態 == '小') return;
     介面狀態 = '小';
-    for (let 元素 of 輸入框)
-      欄高自適應(元素);
     $('#answer-panel').addClass('attack_modal_m');
     $('#answer-panel').addClass('attack_modal_m_sprite');
     $('#answer-panel').removeClass('panel');
@@ -434,8 +434,6 @@ function 調整介面() {
   } else {
     if (介面狀態 == '大') return;
     介面狀態 = '大';
-    for (let 元素 of 輸入框)
-      欄高自適應(元素);
     $('#answer-panel').addClass('panel');
     $('#answer-panel').addClass('attack_modal_reading_sprite');
     $('#answer-panel').removeClass('attack_modal_m');
