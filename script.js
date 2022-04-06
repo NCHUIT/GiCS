@@ -186,18 +186,17 @@ function 下一題() {
   if (暫存題庫.length < 1) 更新登入狀態();
   目前題目 = 暫存題庫.pop();
   輸入框[0].value = 輸入框[0].innerHTML = 目前題目[0];
-  欄高自適應(輸入框[0]);
   正確答案 = String(目前題目[1]);
   目前題目 = 打亂陣列(目前題目.slice(1));
   // console.log(current);
   for (let 元素 of 輸入框.slice(1)) {
     元素.value = 目前題目.pop();
     元素.innerHTML = 元素.value;
-    欄高自適應(元素);
   }
   目前題目 = 輸入框[0].innerHTML;
   // console.log(bgm.src);
   切換背景音樂('fight');
+  調整介面();
   載入提示.style.display = 'none';
 }
 
@@ -287,7 +286,7 @@ function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn
   if (isSignedIn) {
     登入按鈕.style.display = 'none';
     登出按鈕.style.display = 'block';
-    if(只是看看) return;
+    if (只是看看) return;
     重載題庫();
   } else {
     登入按鈕.style.display = 'block';
@@ -336,10 +335,9 @@ function 載入客戶端() {
 function 清除輸入框() {
   切換背景音樂('map');
   document.forms[0].reset();
-  for (input of document.forms[0]) {
+  for (input of document.forms[0])
     input.value = input.innerHTML = null;
-    欄高自適應(input);
-  }
+  調整介面();
   $('#送出按鈕').hide();
   $('#下一題按鈕').show();
 }
@@ -411,8 +409,7 @@ function 輸入() {
     $('#送出按鈕').show()
   }
   // console.log(ai,bi,ci,di);
-  for (let 元素 of 輸入框)
-    欄高自適應(元素);
+  調整介面();
 }
 
 var 介面狀態;
@@ -449,13 +446,13 @@ function 調整介面() {
 // from https://www.w3schools.com/js/tryit.asp?filename=tryjs_timing_clock
 function 計時() {
   const t = new Date();
-  let hms = [t.getHours(),t.getMinutes(),t.getSeconds()];
-  hms = checkTime(hms[0])+checkTime(hms[1])+checkTime(hms[2]);
-  for(const i in 時鐘) 時鐘[i].innerHTML=hms[i];
-  setTimeout(計時, 1000-t%1000);
+  let hms = [t.getHours(), t.getMinutes(), t.getSeconds()];
+  hms = checkTime(hms[0]) + checkTime(hms[1]) + checkTime(hms[2]);
+  for (const i in 時鐘) 時鐘[i].innerHTML = hms[i];
+  setTimeout(計時, 1000 - t % 1000);
 }
 
-function checkTime(i=0) {
+function checkTime(i = 0) {
   return (i < 10 ? '0' + i : i.toString());  // add zero in front of numbers < 10
 }
 
@@ -497,7 +494,7 @@ document.getElementById('step3').onclick = e => {
   document.documentElement.scrollTop = 0;
 };
 
-錯誤訊息視窗登入按鈕.onclick =登入;
+錯誤訊息視窗登入按鈕.onclick = 登入;
 登入按鈕.onclick = 登入;
 
 登出按鈕.onclick = e => {
@@ -530,7 +527,7 @@ for (const 元素 of 輸入框) {
   };
 }
 
-window.onresize = 調整介面;
+window.onresize = e => { 調整介面() };
 window.onfocus = e => {
   更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get(), true);
   調整介面();
@@ -544,8 +541,8 @@ window.onblur = e => {
 // from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = e => {
-  if (document.body.scrollTop > 20
-    || document.documentElement.scrollTop > 20) {
+  if (document.body.scrollTop > innerHeight
+    || document.documentElement.scrollTop > innerHeight) {
     至頂按紐.style.display = "block";
   } else {
     至頂按紐.style.display = "none";
