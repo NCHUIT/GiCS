@@ -124,8 +124,7 @@ var 輸入框 = [
   document.forms[0]['entry.1090409630']
 ];
 
-var 暫存題庫 = [], 題庫 = [];
-var 目前題目, 正確答案;
+var 暫存題庫 = [], 題庫 = [], 目前題目 = [], 正確答案;
 
 var 目前背景音樂 = new Audio();
 
@@ -191,7 +190,8 @@ function 下一題() {
     元素.value = 目前題目.pop();
     元素.innerHTML = 元素.value;
   }
-  目前題目 = 輸入框[0].innerHTML;
+  for (const i in 輸入框)
+    目前題目[i] = 輸入框[i].innerHTML;
   // console.log(bgm.src);
   切換背景音樂('fight');
   調整介面();
@@ -201,16 +201,28 @@ function 下一題() {
 // From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function 檢查答案(選項) {
-  // console.log(正確答案,'\n',選項.value,'\n',選項.innerHTML);
-  if (正確答案 === 選項.value || 正確答案 === 選項.innerHTML) {
-    錯題音效.pause();
-    音效播放(正解音效);
-    await sleep(50);
-    if (confirm('⭕答對啦！\n\n' + 正確答案 + '\n\n按下取消(Esc)返回、確定(Enter)下一題'))
-      下一題();
+  if (送出按鈕.style.display == 'none'){
+    // console.log(正確答案,'\n',選項.value,'\n',選項.innerHTML);
+    if (正確答案 === 選項.value || 正確答案 === 選項.innerHTML) {
+      錯題音效.pause();
+      音效播放(正解音效);
+      await sleep(50);
+      if (confirm('⭕答對啦！\n\n' + 正確答案 + '\n\n按下取消(Esc)返回、確定(Enter)下一題'))
+        下一題();
+    } else {
+      正解音效.pause();
+      音效播放(錯題音效);
+    }
   } else {
-    正解音效.pause();
-    音效播放(錯題音效);
+    for (const 元素 of 輸入框.slice(1)){
+      if(元素.value == 選項.value)
+        [輸入框[1].value, 選項.value] =
+        [選項.value, 輸入框[1].value];
+      if(元素.innerHTML == 選項.innerHTML)
+        [輸入框[1].innerHTML, 選項.innerHTML] =
+        [選項.innerHTML, 輸入框[1].innerHTML];
+    }
+    調整介面();
   }
 }
 
@@ -360,10 +372,11 @@ function 檢查題目() {
       && String(row[0]).indexOf(value) > -1)
       || (innerHTML && innerHTML.length > 5
         && String(row[0]).indexOf(innerHTML) > -1)) {
-      if (confirm(
+      if (!confirm(
 `有這個題目了，檢查正確答案無誤?
 
 ⭕正確答案: ${row[1]}
+
 錯誤答案1: ${row[2]}
 錯誤答案2: ${row[3]}
 錯誤答案3: ${row[4]}
@@ -395,7 +408,8 @@ function 輸入() {
   ];
   if (ai > 5) 輸入框[0].value = content.substring(0, ai);
   if (檢查題目()) {
-    輸入框[0].value = 輸入框[0].innerHTML = 目前題目;
+    for(const i in 輸入框)
+      輸入框[i].value = 輸入框[i].innerHTML = 目前題目[i];
     $('#送出按鈕').hide();
     $('#下一題按鈕').show()
   } else if (ai > -1 && bi > -1 && ci > -1 && di > -1) {
