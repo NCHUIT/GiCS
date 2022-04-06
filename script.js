@@ -1,9 +1,7 @@
 (function checkBrowser() {
-  var ua = window.navigator.userAgent;
-  var olderThanIE11 = /MSIE/.test(ua);
-  if (olderThanIE11) {
-    if (window.location.href.match('/application/download_browser')) return;
-    window.location = '/application/download_browser';
+  if (/MSIE/.test(navigator.userAgent)) {
+    if (location.href.match('/application/download_browser')) return;
+    location = '/application/download_browser';
   }
 })();
 //<![CDATA[
@@ -358,10 +356,23 @@ function 檢查題目() {
   const value = 輸入框[0].value;
   const innerHTML = 輸入框[0].innerHTML;
   for (const row of 題庫)
-    if ((value && value.length > 5 && String(row[0]).indexOf(value) > -1)
-      || (innerHTML && innerHTML.length > 5 && String(row[0]).indexOf(innerHTML) > -1)) {
-      alert("有這個題目了");
-      return true;
+    if ((value && value.length > 5
+      && String(row[0]).indexOf(value) > -1)
+      || (innerHTML && innerHTML.length > 5
+        && String(row[0]).indexOf(innerHTML) > -1)) {
+      if (confirm(
+`有這個題目了，檢查正確答案無誤?
+
+⭕正確答案: ${row[1]}
+錯誤答案1: ${row[2]}
+錯誤答案2: ${row[3]}
+錯誤答案3: ${row[4]}
+
+按下取消(Esc)以關閉，確定(Enter)以編輯/送出修改
+👉記得到試算表刪掉原來錯的，自動刪除開發中...`
+))
+        return true;
+      else break;
     }
   // console.clear();
   // console.log(database);
@@ -391,7 +402,10 @@ function 輸入() {
     $('#下一題按鈕').hide();
     $('#送出按鈕').show()
     let temp;
-    const tip = "\n這是正確答案嗎?\n按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案";
+    const tip = `
+
+這是正確答案嗎?
+按下取消(Esc)選為錯誤答案、確定(Enter)選為正確答案`;
     for (let i = -1; !confirm((temp = ans[++i]) + tip);)
       if (i == 2) { temp = ans[3]; break; }
     ans.splice(ans.indexOf(temp), 1);
@@ -416,7 +430,7 @@ var 介面狀態;
 function 調整介面() {
   for (let 元素 of 輸入框)
     欄高自適應(元素);
-  if (window.screen.width < 767) {
+  if (screen.width < 767) {
     if (介面狀態 == '小') return;
     介面狀態 = '小';
     $('#answer-panel').addClass('attack_modal_m');
@@ -448,8 +462,8 @@ function 計時() {
   const t = new Date();
   let hms = [t.getHours(), t.getMinutes(), t.getSeconds()];
   hms = checkTime(hms[0]) + checkTime(hms[1]) + checkTime(hms[2]);
-  for (const i in 時鐘) 時鐘[i].innerHTML = hms[i];
-  setTimeout(計時, 1000 - t % 1000);
+  for (const i in 時鐘) if (時鐘[i].innerHTML != hms[i]) 時鐘[i].innerHTML = hms[i];
+  setTimeout(計時, 1000 - new Date() % 1000);
 }
 
 function checkTime(i = 0) {
@@ -457,7 +471,7 @@ function checkTime(i = 0) {
 }
 
 // EventListener
-document.getElementById('下一題按鈕').onclick = 下一題;
+document.getElementById('下一題按鈕').onclick = 載入提示.onclick = 下一題;
 document.getElementById('清除按鈕').onclick = 清除輸入框;
 document.getElementById('選單說明按鈕').onclick = 彈出說明視窗;
 document.getElementById('驚嘆號按鈕').onclick = 彈出說明視窗;
@@ -484,7 +498,6 @@ document.getElementById('step3').onclick = e => {
   $('#step3').addClass('active'); $('#step3_info').show()
 };
 
-載入提示.onclick = 下一題;
 送出按鈕.onclick = 送出題目;
 靜音切換按鈕.onclick = 靜音切換;
 
@@ -494,8 +507,7 @@ document.getElementById('step3').onclick = e => {
   document.documentElement.scrollTop = 0;
 };
 
-錯誤訊息視窗登入按鈕.onclick = 登入;
-登入按鈕.onclick = 登入;
+錯誤訊息視窗登入按鈕.onclick = 登入按鈕.onclick = 登入;
 
 登出按鈕.onclick = e => {
   重設狀態欄('您已登出');
@@ -527,20 +539,19 @@ for (const 元素 of 輸入框) {
   };
 }
 
-window.onresize = e => { 調整介面() };
-window.onfocus = e => {
+onload = onresize = 調整介面;
+onfocus = e => {
   更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get(), true);
   調整介面();
 };
-window.onblur = e => {
-  調整介面();
+onblur = e => {
   登入按鈕.style.display = 'none';
   登出按鈕.style.display = 'none';
   載入按鈕.style.display = 'block';
 }
 // from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
 // When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = e => {
+onscroll = e => {
   if (document.body.scrollTop > innerHeight
     || document.documentElement.scrollTop > innerHeight) {
     至頂按紐.style.display = "block";
@@ -549,10 +560,9 @@ window.onscroll = e => {
   }
 };
 
-document.body.onload = e => { 靜音切換(); 調整介面(); 計時(); };
-document.body.onclick = e => { 音效播放(點擊音效); 調整介面() };
+document.body.onload = e => { 靜音切換(); 調整介面(); 計時() };
+document.body.onclick = e => 音效播放(點擊音效);
 document.body.onkeydown = e => {
-  音效播放(點擊音效);
   if (e.target == document.body) switch (e.key.toUpperCase()) {
     default: //console.log(e.key);
       break; case ' ': e.preventDefault(); 下一題();
