@@ -557,6 +557,7 @@ onload = onresize = 調整介面;
 onfocus = e => {
   更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get(), true);
   調整介面();
+  輸入框[0].focus();
 };
 onblur = e => {
   登入按鈕.style.display = 'none';
