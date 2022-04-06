@@ -103,13 +103,13 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 // included, separated by spaces.
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
+var 時鐘 = document.getElementById("時鐘").children;
 var 靜音切換按鈕 = document.getElementById("靜音切換按鈕");
 var 載入提示 = document.getElementById('載入提示');
 var 載入按鈕 = document.getElementById('載入按鈕');
 var 登入按鈕 = document.getElementById('登入按鈕');
 var 登出按鈕 = document.getElementById('登出按鈕');
 var 送出按鈕 = document.getElementById('送出按鈕');
-var 至頂按紐 = document.getElementById("至頂按紐");
 var 狀態欄 = document.getElementById('狀態欄');
 var 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
 var 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
@@ -448,6 +448,19 @@ function 調整介面() {
   }
 }
 
+// from https://www.w3schools.com/js/tryit.asp?filename=tryjs_timing_clock
+function 計時() {
+  const t = new Date();
+  let hms = [t.getHours(),t.getMinutes(),t.getSeconds()];
+  hms = checkTime(hms[0])+checkTime(hms[1])+checkTime(hms[2]);
+  for(const i in 時鐘) 時鐘[i].innerHTML=hms[i];
+  setTimeout(計時, 1000-t%1000);
+}
+
+function checkTime(i=0) {
+  return (i < 10 ? '0' + i : i.toString());  // add zero in front of numbers < 10
+}
+
 // EventListener
 document.getElementById('下一題按鈕').onclick = 下一題;
 document.getElementById('清除按鈕').onclick = 清除輸入框;
@@ -541,7 +554,7 @@ window.onscroll = e => {
   }
 };
 
-document.body.onload = e => { 靜音切換(); 調整介面() };
+document.body.onload = e => { 靜音切換(); 調整介面(); 計時(); };
 document.body.onclick = e => { 音效播放(點擊音效); 調整介面() };
 document.body.onkeydown = e => {
   音效播放(點擊音效);
