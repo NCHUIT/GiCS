@@ -1,19 +1,28 @@
 ---
 tags: GiCS
 ---
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-# [2022 GiCS 資安闖天關刷題說明](https://nchuit.cc/2022GiCS/)
+# 2022 GiCS 資安闖天關刷題說明
 
 ![](https://img.shields.io/github/commit-activity/w/NCHUIT/2022GiCS?color=important) ![](https://img.shields.io/github/last-commit/NCHUIT/2022GiCS?color=success) ![](https://img.shields.io/github/languages/top/NCHUIT/2022GiCS) ![](https://img.shields.io/github/license/NCHUIT/2022GiCS?color=critical) [![](https://hackmd.io/@NCHUIT/2022GiCS/badge)](https://md.nchuit.cc/2022GiCS/edit)
 
-本頁說明同步存放於 <a target="_blank" href="https://md.nchuit.cc/2022GiCS/edit?view"><img src="https://hackmd.io/favicon.png" height="20"> HackMD[點我前往]</a>
+本頁說明導向此網站 [<img src="//i.imgur.com/6LcYa68.png" height="20"> 2022 GiCS 資安闖天關刷題[點我前往]](https://nchuit.cc/2022GiCS)
 <br>
-本網頁的資料庫使用 <a target="_blank" href="https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw"><img src="https://i.imgur.com/n4hNxBA.png" height="20"> Google 試算表[點我前往]</a>
+本頁說明同步存放於 [<img src="https://hackmd.io/favicon.png" height="20"> HackMD[點我前往]](https://md.nchuit.cc/2022GiCS/edit?view)
+<br>
+本網頁的資料庫使用 [<img src="https://i.imgur.com/n4hNxBA.png" height="20"> Google 試算表[點我前往教學]](https://developers.google.com/sheets/api/quickstart/js)
 <br>
 本網頁資源媒體取自 <a target="_blank" href="https://www.pagamo.org/map?course_code=gics"><img src="https://i.imgur.com/3UoAhdC.png" height="20"> PaGamO - 2021 GiCS 資安闖天關初賽題庫[點我前往]</a>
 
-## 刷題
+<details open><summary><h2 style="display:inline;border-bottom:0">目錄</h2></summary>
+
++ [<i class="fa fa-fw fa-gamepad"></i>刷題](#刷題) - 熱鍵說明
++ [<i class="fa fa-fw fa-plus-square"></i>插件安裝](#插件安裝) - 讓你可以複製題目
++ [<i class="fa fa-fw fa-paste"></i>填充題庫](#填充題庫) - 複製題目到試算表
+
+</details>
+
+## <i class="fa fa-fw fa-gamepad"></i>刷題
 
 ### 鍵盤熱鍵
 
@@ -39,7 +48,7 @@ tags: GiCS
 
 ![](https://i.imgur.com/0FnNzZS.png) : 清除輸入
 
-## 插件安裝
+## <i class="fa fa-fw fa-plus-square"></i>插件安裝
 
 安裝瀏覽器插件 <a href="https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne" target="_blank">Stylus[點我前往]</a>
 
@@ -57,7 +66,7 @@ tags: GiCS
 
 ![](https://i.imgur.com/JtUJSCd.png)
 
-## 填充題庫
+## <i class="fa fa-fw fa-paste"></i>填充題庫
 
 點擊題目文字，它是輸入框，預設點選時全選讓你貼上，提示指的格式即介紹插件說明的**直接一次選取題目答案複製後的文字格式**
 
