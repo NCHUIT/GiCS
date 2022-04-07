@@ -101,22 +101,22 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 // included, separated by spaces.
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
-var 時鐘 = document.getElementById("時鐘").children;
-var 靜音切換按鈕 = document.getElementById("靜音切換按鈕");
-var 載入提示 = document.getElementById('載入提示');
-var 載入按鈕 = document.getElementById('載入按鈕');
-var 登入按鈕 = document.getElementById('登入按鈕');
-var 登出按鈕 = document.getElementById('登出按鈕');
-var 送出按鈕 = document.getElementById('送出按鈕');
-var 狀態欄 = document.getElementById('狀態欄');
-var 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
-var 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
-var 錯誤訊息視窗登入按鈕 = document.getElementById('錯誤訊息視窗登入按鈕');
-var 正解音效 = document.getElementById('victory_sound_effect');
-var 錯題音效 = document.getElementById('keep_going_sound_effect');
-var 點擊音效 = document.getElementById('panel_btn_click_sound_effect');
+const 時鐘 = document.getElementById("時鐘").children;
+const 靜音切換按鈕 = document.getElementById("靜音切換按鈕");
+const 載入提示 = document.getElementById('載入提示');
+const 載入按鈕 = document.getElementById('載入按鈕');
+const 登入按鈕 = document.getElementById('登入按鈕');
+const 登出按鈕 = document.getElementById('登出按鈕');
+const 送出按鈕 = document.getElementById('送出按鈕');
+const 狀態欄 = document.getElementById('狀態欄');
+const 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
+const 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
+const 錯誤訊息視窗登入按鈕 = document.getElementById('錯誤訊息視窗登入按鈕');
+const 正解音效 = document.getElementById('victory_sound_effect');
+const 錯題音效 = document.getElementById('keep_going_sound_effect');
+const 點擊音效 = document.getElementById('panel_btn_click_sound_effect');
 
-var 輸入框 = [
+const 輸入框 = [
   document.forms[0]['entry.892031688'],
   document.forms[0]['entry.977089316'],
   document.forms[0]['entry.657500498'],
@@ -126,7 +126,111 @@ var 輸入框 = [
 
 var 暫存題庫 = [], 題庫 = [], 目前題目 = [], 正確答案;
 
-var 目前背景音樂 = new Audio();
+var 目前背景音樂 = new Audio(), 靜音狀態 = 0;
+
+// EventListener
+document.getElementById('下一題按鈕').onclick = 載入提示.onclick = 下一題;
+document.getElementById('清除按鈕').onclick = 清除輸入框;
+document.getElementById('選單說明按鈕').onclick = 彈出說明視窗;
+document.getElementById('驚嘆號按鈕').onclick = 彈出說明視窗;
+document.getElementById('按鈕A').onclick = e => 檢查答案(輸入框[1]);
+document.getElementById('按鈕B').onclick = e => 檢查答案(輸入框[2]);
+document.getElementById('按鈕C').onclick = e => 檢查答案(輸入框[3]);
+document.getElementById('按鈕D').onclick = e => 檢查答案(輸入框[4]);
+
+送出按鈕.onclick = 送出題目;
+靜音切換按鈕.onclick = 靜音切換;
+
+// When the user clicks on the button, scroll to the top of the document
+至頂按紐.onclick = e => {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+};
+
+錯誤訊息視窗登入按鈕.onclick = 登入按鈕.onclick = 登入;
+
+登出按鈕.onclick = e => {
+  重設狀態欄('您已登出');
+  載入按鈕.style.display = 'block';
+  切換背景音樂('map');
+  暫存題庫 = 題庫 = 目前題目 = 正確答案 = [];
+  清除輸入框();
+  gapi.auth2.getAuthInstance().signOut();
+  更新登入狀態(false);
+};
+
+載入按鈕.onclick = e => {
+  更新登入狀態();
+  下一題();
+};
+
+// From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
+for (const 元素 of 輸入框) {
+  元素.addEventListener("input", 輸入);
+  元素.onfocus = e => {
+    元素.select();
+    // Work around Chrome's little problem
+    元素.onmouseup = function () {
+      // Prevent further mouseup intervention
+      元素.onmouseup = null;
+      return false;
+    };
+  };
+}
+
+onload = onresize = 調整介面;
+onfocus = e => {
+  更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get(), true);
+  調整介面();
+  輸入框[0].focus();
+};
+onblur = e => {
+  調整介面();
+  登入按鈕.style.display = 登出按鈕.style.display = 'none';
+  載入按鈕.style.display = 'block';
+}
+// from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
+// When the user scrolls down 20px from the top of the document, show the button
+onscroll = e => {
+  調整介面();
+  if (document.body.scrollTop > innerHeight
+    || document.documentElement.scrollTop > innerHeight) {
+    至頂按紐.style.display = "block";
+  } else {
+    至頂按紐.style.display = "none";
+  }
+};
+
+document.body.onload = e => { 靜音切換(); 調整介面(); 計時() };
+document.body.onclick = e => 音效播放(點擊音效);
+document.body.onkeydown = e => {
+  if (e.target == document.body) switch (e.key.toUpperCase()) {
+    default: //console.log(e.key);
+      break; case ' ': e.preventDefault(); 下一題();
+      break; case '1': case 'A':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(輸入框[1]);
+      break; case '2': case 'B':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(輸入框[2]);
+      break; case '3': case 'C':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(輸入框[3]);
+      break; case '4': case 'D':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(輸入框[4]);
+      break; case 'M':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        靜音切換();
+      break; case 'enter':
+      if (送出按鈕.style.display != 'none')
+        送出題目();
+      break; case 'escape': 清除輸入框();
+  }
+};
+
+// From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 function 切換背景音樂(哪個) {
   switch (哪個) {
@@ -145,7 +249,6 @@ function 音效播放(音效) {
   音效.play();
 }
 
-var 靜音狀態 = 0;
 function 靜音切換() {
   switch (靜音狀態) {
     case 0: 靜音狀態 = 1;
@@ -198,8 +301,6 @@ function 下一題() {
   載入提示.style.display = 'none';
 }
 
-// From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function 檢查答案(選項) {
   if (送出按鈕.style.display == 'none'){
     // console.log(正確答案,'\n',選項.value,'\n',選項.innerHTML);
@@ -254,6 +355,7 @@ function 彈出錯誤訊息(訊息) {
 }
 
 function 彈出說明視窗() {
+  $('#說明視窗 iframe').attr("height",screen.height*.7);
   $('#說明視窗').modal('show');
 }
 
@@ -483,122 +585,3 @@ function 計時() {
 function checkTime(i = 0) {
   return (i < 10 ? '0' + i : i.toString());  // add zero in front of numbers < 10
 }
-
-// EventListener
-document.getElementById('下一題按鈕').onclick = 載入提示.onclick = 下一題;
-document.getElementById('清除按鈕').onclick = 清除輸入框;
-document.getElementById('選單說明按鈕').onclick = 彈出說明視窗;
-document.getElementById('驚嘆號按鈕').onclick = 彈出說明視窗;
-document.getElementById('按鈕A').onclick = e => 檢查答案(輸入框[1]);
-document.getElementById('按鈕B').onclick = e => 檢查答案(輸入框[2]);
-document.getElementById('按鈕C').onclick = e => 檢查答案(輸入框[3]);
-document.getElementById('按鈕D').onclick = e => 檢查答案(輸入框[4]);
-
-document.getElementById('step1').onclick = e => {
-  $('#step1').addClass('active'); $('#step1_info').show();
-  $('#step2').removeClass('active'); $('#step2_info').hide();
-  $('#step3').removeClass('active'); $('#step3_info').hide()
-};
-
-document.getElementById('step2').onclick = e => {
-  $('#step1').removeClass('active'); $('#step1_info').hide();
-  $('#step2').addClass('active'); $('#step2_info').show();
-  $('#step3').removeClass('active'); $('#step3_info').hide()
-};
-
-document.getElementById('step3').onclick = e => {
-  $('#step1').removeClass('active'); $('#step1_info').hide();
-  $('#step2').removeClass('active'); $('#step2_info').hide();
-  $('#step3').addClass('active'); $('#step3_info').show()
-};
-
-送出按鈕.onclick = 送出題目;
-靜音切換按鈕.onclick = 靜音切換;
-
-// When the user clicks on the button, scroll to the top of the document
-至頂按紐.onclick = e => {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-};
-
-錯誤訊息視窗登入按鈕.onclick = 登入按鈕.onclick = 登入;
-
-登出按鈕.onclick = e => {
-  重設狀態欄('您已登出');
-  載入按鈕.style.display = 'block';
-  切換背景音樂('map');
-  暫存題庫 = 題庫 = 目前題目 = 正確答案 = [];
-  清除輸入框();
-  gapi.auth2.getAuthInstance().signOut();
-  更新登入狀態(false);
-};
-
-載入按鈕.onclick = e => {
-  // Handle the initial sign-in state.
-  更新登入狀態();
-  下一題();
-};
-
-// From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
-for (const 元素 of 輸入框) {
-  元素.addEventListener("input", 輸入);
-  元素.onfocus = e => {
-    元素.select();
-    // Work around Chrome's little problem
-    元素.onmouseup = function () {
-      // Prevent further mouseup intervention
-      元素.onmouseup = null;
-      return false;
-    };
-  };
-}
-
-onload = onresize = 調整介面;
-onfocus = e => {
-  更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get(), true);
-  調整介面();
-  輸入框[0].focus();
-};
-onblur = e => {
-  登入按鈕.style.display = 'none';
-  登出按鈕.style.display = 'none';
-  載入按鈕.style.display = 'block';
-}
-// from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
-// When the user scrolls down 20px from the top of the document, show the button
-onscroll = e => {
-  if (document.body.scrollTop > innerHeight
-    || document.documentElement.scrollTop > innerHeight) {
-    至頂按紐.style.display = "block";
-  } else {
-    至頂按紐.style.display = "none";
-  }
-};
-
-document.body.onload = e => { 靜音切換(); 調整介面(); 計時() };
-document.body.onclick = e => 音效播放(點擊音效);
-document.body.onkeydown = e => {
-  if (e.target == document.body) switch (e.key.toUpperCase()) {
-    default: //console.log(e.key);
-      break; case ' ': e.preventDefault(); 下一題();
-      break; case '1': case 'A':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[1]);
-      break; case '2': case 'B':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[2]);
-      break; case '3': case 'C':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[3]);
-      break; case '4': case 'D':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[4]);
-      break; case 'M':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        靜音切換();
-      break; case 'enter':
-      if (送出按鈕.style.display != 'none')
-        送出題目();
-      break; case 'escape': 清除輸入框();
-  }
-};

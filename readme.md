@@ -6,12 +6,10 @@ tags: GiCS
 
 ![](https://img.shields.io/github/commit-activity/w/NCHUIT/2022GiCS?color=important) ![](https://img.shields.io/github/last-commit/NCHUIT/2022GiCS?color=success) ![](https://img.shields.io/github/languages/top/NCHUIT/2022GiCS) ![](https://img.shields.io/github/license/NCHUIT/2022GiCS?color=critical) [![](https://hackmd.io/@NCHUIT/2022GiCS/badge)](https://md.nchuit.cc/2022GiCS/edit)
 
-本頁說明導向此網站 [<img src="//i.imgur.com/6LcYa68.png" height="20"> 2022 GiCS 資安闖天關刷題[點我前往]](https://nchuit.cc/2022GiCS)
-<br>
-本頁說明同步存放於 [<img src="https://hackmd.io/favicon.png" height="20"> HackMD[點我前往]](https://md.nchuit.cc/2022GiCS/edit?view)
-<br>
-本網頁的資料庫使用 [<img src="https://i.imgur.com/n4hNxBA.png" height="20"> Google 試算表[點我前往教學]](https://developers.google.com/sheets/api/quickstart/js)
-<br>
+本網頁原始碼存放庫 [<i class="fa fa-fw fa-github"></i>[點我前往]](https://github.com/NCHUIT/2022GiCS)  
+本頁說明導向此網站 [<img src="https://i.imgur.com/6LcYa68.png" height="20"> 2022 GiCS 資安闖天關刷題[點我前往]](https://nchuit.cc/2022GiCS)  
+本頁說明同步存放於 [<img src="https://hackmd.io/favicon.png" height="20"> HackMD[點我前往]](https://md.nchuit.cc/2022GiCS/edit?view)  
+本網頁的資料庫使用 [<img src="https://i.imgur.com/n4hNxBA.png" height="20"> Google 試算表[點我前往教學]](https://developers.google.com/sheets/api/quickstart/js)  
 本網頁資源媒體取自 <a target="_blank" href="https://www.pagamo.org/map?course_code=gics"><img src="https://i.imgur.com/3UoAhdC.png" height="20"> PaGamO - 2021 GiCS 資安闖天關初賽題庫[點我前往]</a>
 
 <details open><summary><h2 style="display:inline;border-bottom:0">目錄</h2></summary>
@@ -40,17 +38,17 @@ tags: GiCS
 
 ### 畫面按鈕
 
-🔈三段式靜音切換
+<i class="fa fa-fw fa-volume-off"></i>三段式靜音切換
 
-🔇靜音/🔉僅點選音效/🔊播放背景音樂
+<i class="fa fa-fw fa-volume-off"></i>靜音/<i class="fa fa-fw fa-volume-down"></i>僅點選音效/<i class="fa fa-fw fa-volume-up"></i>播放背景音樂
 
-![](https://i.imgur.com/m5tRrfu.png) 或 ❔ : 說明
+![](https://i.imgur.com/m5tRrfu.png) 或 <i class="fa fa-fw fa-question-circle"></i> : 說明
 
 ![](https://i.imgur.com/0FnNzZS.png) : 清除輸入
 
 ## <i class="fa fa-fw fa-plus-square"></i>插件安裝
 
-安裝瀏覽器插件 <a href="https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne" target="_blank">Stylus[點我前往]</a>
+安裝瀏覽器插件 [Stylus[點我前往]](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne)
 
 ![](https://i.imgur.com/3VIEB6n.png)
 
@@ -58,7 +56,7 @@ tags: GiCS
 
 ![](https://i.imgur.com/IYrOZwl.png)
 
-貼上原始碼<code>*{user-select:text!important}</code>後儲存
+貼上原始碼 `*{user-select:text!important}` 後儲存
 
 ![](https://i.imgur.com/f5TxOgM.png)
 
