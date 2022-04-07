@@ -15,7 +15,9 @@
   user-select: text !important;
 }
 
-a, button, .button {
+a,
+button,
+.button {
   cursor: url(https://d32j6uwsrra4gx.cloudfront.net/assets/cursor/cursor_2-5bc72c1de1cf2d9d0b1abad66805d921726319e66dc61f50e4b6b581e42a4a63.cur),
     pointer !important
 }
@@ -28,8 +30,8 @@ iframe[name="formResponse"] {
   display: none;
 }
 
-i img{
-  height:24px!important;
+i img {
+  height: 24px !important;
 }
 
 #載入提示 {
@@ -69,7 +71,7 @@ i img{
   white-space: unset !important;
 }
 
-.ui.modal {
+.ui.modal, #說明視窗.ui.modal {
   top: unset !important;
   left: unset !important;
 }
