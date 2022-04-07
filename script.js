@@ -389,7 +389,7 @@ var 介面狀態;
 function 調整介面() {
   for (let 元素 of 輸入框)
     欄高自適應(元素);
-  if (screen.width < 767) {
+  if (innerWidth < 767) {
     if (介面狀態 == '小') return;
     介面狀態 = '小';
     $('#answer-panel').addClass('attack_modal_m');
