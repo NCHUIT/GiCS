@@ -1,9 +1,3 @@
-(function checkBrowser() {
-  if (/MSIE/.test(navigator.userAgent)) {
-    if (location.href.match('/application/download_browser')) return;
-    location = '/application/download_browser';
-  }
-})();
 //<![CDATA[
 var terrainMapping = {
   "1": "wild/ocean", "2": "grass/grass", "3": "grass/house_hut", "4": "grass/pool", "5": "grass/sheep_ranch",
@@ -90,17 +84,6 @@ var characterIDMapping = {
 };
 //]]>
 
-// Client ID and API key from the Developer Console
-var CLIENT_ID = '289902636224-oro06s681gdgk1kqrv8o1oca2shocfr4.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyCRfe3-dnm9GGMH_PFm9m5WHBMb_8U9HXY';
-
-// Array of API discovery doc URLs for APIs used by the quickstart
-var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
-
-// Authorization scopes required by the API; multiple scopes can be
-// included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
-
 const 時鐘 = document.getElementById("時鐘").children;
 const 靜音切換按鈕 = document.getElementById("靜音切換按鈕");
 const 載入提示 = document.getElementById('載入提示');
@@ -108,10 +91,13 @@ const 載入按鈕 = document.getElementById('載入按鈕');
 const 登入按鈕 = document.getElementById('登入按鈕');
 const 登出按鈕 = document.getElementById('登出按鈕');
 const 送出按鈕 = document.getElementById('送出按鈕');
+const 至頂按鈕 = document.getElementById('至頂按鈕');
 const 狀態欄 = document.getElementById('狀態欄');
 const 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
 const 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
 const 錯誤訊息視窗登入按鈕 = document.getElementById('錯誤訊息視窗登入按鈕');
+const 載入背景音樂 = document.getElementById('map_background_music')
+const 答題背景音樂 = document.getElementById('fight_background_music')
 const 正解音效 = document.getElementById('victory_sound_effect');
 const 錯題音效 = document.getElementById('keep_going_sound_effect');
 const 點擊音效 = document.getElementById('panel_btn_click_sound_effect');
@@ -128,115 +114,10 @@ var 暫存題庫 = [], 題庫 = [], 目前題目 = [], 正確答案;
 
 var 目前背景音樂 = new Audio(), 靜音狀態 = 0;
 
-// EventListener
-document.getElementById('下一題按鈕').onclick = 載入提示.onclick = 下一題;
-document.getElementById('清除按鈕').onclick = 清除輸入框;
-document.getElementById('選單說明按鈕').onclick = 彈出說明視窗;
-document.getElementById('驚嘆號按鈕').onclick = 彈出說明視窗;
-document.getElementById('按鈕A').onclick = e => 檢查答案(輸入框[1]);
-document.getElementById('按鈕B').onclick = e => 檢查答案(輸入框[2]);
-document.getElementById('按鈕C').onclick = e => 檢查答案(輸入框[3]);
-document.getElementById('按鈕D').onclick = e => 檢查答案(輸入框[4]);
-
-送出按鈕.onclick = 送出題目;
-靜音切換按鈕.onclick = 靜音切換;
-
-// When the user clicks on the button, scroll to the top of the document
-至頂按紐.onclick = e => {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-};
-
-錯誤訊息視窗登入按鈕.onclick = 登入按鈕.onclick = 登入;
-
-登出按鈕.onclick = e => {
-  重設狀態欄('您已登出');
-  載入按鈕.style.display = 'block';
-  切換背景音樂('map');
-  暫存題庫 = 題庫 = 目前題目 = 正確答案 = [];
-  清除輸入框();
-  gapi.auth2.getAuthInstance().signOut();
-  更新登入狀態(false);
-};
-
-載入按鈕.onclick = e => {
-  更新登入狀態();
-  下一題();
-};
-
-// From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
-for (const 元素 of 輸入框) {
-  元素.addEventListener("input", 輸入);
-  元素.onfocus = e => {
-    元素.select();
-    // Work around Chrome's little problem
-    元素.onmouseup = function () {
-      // Prevent further mouseup intervention
-      元素.onmouseup = null;
-      return false;
-    };
-  };
-}
-
-onload = onresize = 調整介面;
-onfocus = e => {
-  更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get(), true);
-  調整介面();
-  輸入框[0].focus();
-};
-onblur = e => {
-  調整介面();
-  登入按鈕.style.display = 登出按鈕.style.display = 'none';
-  載入按鈕.style.display = 'block';
-}
-// from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
-// When the user scrolls down 20px from the top of the document, show the button
-onscroll = e => {
-  調整介面();
-  if (document.body.scrollTop > innerHeight
-    || document.documentElement.scrollTop > innerHeight) {
-    至頂按紐.style.display = "block";
-  } else {
-    至頂按紐.style.display = "none";
-  }
-};
-
-document.body.onload = e => { 靜音切換(); 調整介面(); 計時() };
-document.body.onclick = e => 音效播放(點擊音效);
-document.body.onkeydown = e => {
-  if (e.target == document.body) switch (e.key.toUpperCase()) {
-    default: //console.log(e.key);
-      break; case ' ': e.preventDefault(); 下一題();
-      break; case '1': case 'A':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[1]);
-      break; case '2': case 'B':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[2]);
-      break; case '3': case 'C':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[3]);
-      break; case '4': case 'D':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[4]);
-      break; case 'M':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        靜音切換();
-      break; case 'enter':
-      if (送出按鈕.style.display != 'none')
-        送出題目();
-      break; case 'escape': 清除輸入框();
-  }
-};
-
 // From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-
 function 切換背景音樂(哪個) {
-  switch (哪個) {
-    case 'map': document.getElementById('fight_background_music').muted = true; break;
-    case 'fight': document.getElementById('map_background_music').muted = true;
-  }
+  答題背景音樂.muted = 載入背景音樂.muted = true;
   目前背景音樂 = document.getElementById(哪個 + '_background_music');
   if (靜音狀態 == 2) {
     目前背景音樂.muted = false;
@@ -270,9 +151,7 @@ function 靜音切換() {
 function 打亂陣列(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
-    let t = array[i];
-    array[i] = array[j];
-    array[j] = t;
+    [array[i], array[j]] = [array[j], array[i]];
   }
   // console.log(array);
   return array;
@@ -302,7 +181,7 @@ function 下一題() {
 }
 
 async function 檢查答案(選項) {
-  if (送出按鈕.style.display == 'none'){
+  if (送出按鈕.style.display == 'none') {
     // console.log(正確答案,'\n',選項.value,'\n',選項.innerHTML);
     if (正確答案 === 選項.value || 正確答案 === 選項.innerHTML) {
       錯題音效.pause();
@@ -315,13 +194,11 @@ async function 檢查答案(選項) {
       音效播放(錯題音效);
     }
   } else {
-    for (const 元素 of 輸入框.slice(1)){
-      if(元素.value == 選項.value)
-        [輸入框[1].value, 選項.value] =
-        [選項.value, 輸入框[1].value];
-      if(元素.innerHTML == 選項.innerHTML)
-        [輸入框[1].innerHTML, 選項.innerHTML] =
-        [選項.innerHTML, 輸入框[1].innerHTML];
+    for (const 元素 of 輸入框.slice(1)) {
+      if (元素.value == 選項.value || 元素.innerHTML == 選項.innerHTML) {
+        [輸入框[1].value, 輸入框[1].innerHTML, 選項.value, 選項.innerHTML] =
+          [選項.value, 選項.innerHTML, 輸入框[1].value, 輸入框[1].innerHTML];
+      }
     }
     調整介面();
   }
@@ -332,12 +209,6 @@ function 欄高自適應(元素) {
   元素.style.height = 元素.scrollHeight + "px";
 }
 
-/**
- * Append a pre element to the body containing the given message
- * as its text node. Used to display the results of the API call.
- *
- * @param {string} 訊息 Text to be placed in pre element.
- */
 function 狀態欄續寫(訊息) {
   狀態欄.appendChild(document.createTextNode(訊息 + '\n'));
 }
@@ -355,7 +226,7 @@ function 彈出錯誤訊息(訊息) {
 }
 
 function 彈出說明視窗() {
-  $('#說明視窗 iframe').attr("height",screen.height*.7);
+  $('#說明視窗 iframe').attr("height", screen.height * .7);
   $('#說明視窗').modal('show');
 }
 
@@ -419,31 +290,6 @@ function 登入() {
   }
 }
 
-/**
- *  Initializes the API client library and sets up sign-in state
- *  listeners.
- */
-function 初始化客戶端() {
-  gapi.client.init({
-    apiKey: API_KEY,
-    clientId: CLIENT_ID,
-    discoveryDocs: DISCOVERY_DOCS,
-    scope: SCOPES
-  }).then(function () {
-    // Listen for sign-in state changes.
-    gapi.auth2.getAuthInstance().isSignedIn.listen(更新登入狀態);
-    // Handle the initial sign-in state.
-    if (!更新登入狀態()) 登入();
-  }, 錯誤 => 彈出錯誤訊息(JSON.stringify(錯誤, null, 2)));
-}
-
-/**
- *  On load, called to load the auth2 library and API client library.
- */
-function 載入客戶端() {
-  gapi.load('client:auth2', 初始化客戶端);
-}
-
 function 清除輸入框() {
   切換背景音樂('map');
   document.forms[0].reset();
@@ -474,8 +320,7 @@ function 檢查題目() {
       && String(row[0]).indexOf(value) > -1)
       || (innerHTML && innerHTML.length > 5
         && String(row[0]).indexOf(innerHTML) > -1)) {
-      if (!confirm(
-`有這個題目了，檢查正確答案無誤?
+      if (!confirm(`有這個題目了，檢查正確答案無誤?
 
 ⭕正確答案: ${row[1]}
 
@@ -484,9 +329,7 @@ function 檢查題目() {
 錯誤答案3: ${row[4]}
 
 按下取消(Esc)以關閉，確定(Enter)以編輯/送出修改
-👉記得到試算表刪掉原來錯的，自動刪除開發中...`
-))
-        return true;
+👉記得到試算表刪掉原來錯的，自動刪除開發中...`)) return true;
       else break;
     }
   // console.clear();
@@ -510,7 +353,7 @@ function 輸入() {
   ];
   if (ai > 5) 輸入框[0].value = content.substring(0, ai);
   if (檢查題目()) {
-    for(const i in 輸入框)
+    for (const i in 輸入框)
       輸入框[i].value = 輸入框[i].innerHTML = 目前題目[i];
     $('#送出按鈕').hide();
     $('#下一題按鈕').show()
@@ -574,14 +417,134 @@ function 調整介面() {
 }
 
 // from https://www.w3schools.com/js/tryit.asp?filename=tryjs_timing_clock
+const 補零 = i => i < 10 ? '0' + i : i.toString();  // add zero in front of numbers < 10
 function 計時() {
   const t = new Date();
   let hms = [t.getHours(), t.getMinutes(), t.getSeconds()];
-  hms = checkTime(hms[0]) + checkTime(hms[1]) + checkTime(hms[2]);
+  hms = 補零(hms[0]) + 補零(hms[1]) + 補零(hms[2]);
   for (const i in 時鐘) if (時鐘[i].innerHTML != hms[i]) 時鐘[i].innerHTML = hms[i];
   setTimeout(計時, 1000 - new Date() % 1000);
 }
 
-function checkTime(i = 0) {
-  return (i < 10 ? '0' + i : i.toString());  // add zero in front of numbers < 10
+// EventListener
+document.getElementById('清除按鈕').onclick = 清除輸入框;
+document.getElementById('下一題按鈕').onclick = 載入提示.onclick = 下一題;
+document.getElementById('選單說明按鈕').onclick =
+  document.getElementById('驚嘆號按鈕').onclick = 彈出說明視窗;
+document.getElementById('按鈕A').onclick = e => 檢查答案(輸入框[1]);
+document.getElementById('按鈕B').onclick = e => 檢查答案(輸入框[2]);
+document.getElementById('按鈕C').onclick = e => 檢查答案(輸入框[3]);
+document.getElementById('按鈕D').onclick = e => 檢查答案(輸入框[4]);
+
+送出按鈕.onclick = 送出題目;
+靜音切換按鈕.onclick = 靜音切換;
+
+// When the user clicks on the button, scroll to the top of the document
+至頂按鈕.onclick = e => {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+};
+
+錯誤訊息視窗登入按鈕.onclick = 登入按鈕.onclick = 登入;
+
+登出按鈕.onclick = e => {
+  重設狀態欄('您已登出');
+  載入按鈕.style.display = 'block';
+  切換背景音樂('map');
+  暫存題庫 = 題庫 = 目前題目 = 正確答案 = [];
+  清除輸入框();
+  gapi.auth2.getAuthInstance().signOut();
+  更新登入狀態(false);
+};
+
+載入按鈕.onclick = e => {
+  更新登入狀態();
+  下一題();
+};
+
+// From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
+for (const 元素 of 輸入框) {
+  元素.addEventListener("input", 輸入);
+  元素.onfocus = e => {
+    元素.select();
+    // Work around Chrome's little problem
+    元素.onmouseup = function () {
+      // Prevent further mouseup intervention
+      元素.onmouseup = null;
+      return false;
+    };
+  };
 }
+
+onload = onresize = 調整介面;
+onfocus = e => {
+  更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get(), true);
+  調整介面();
+  if(載入提示.style.display!='none') 輸入框[0].focus();
+};
+onblur = e => {
+  調整介面();
+  登入按鈕.style.display = 登出按鈕.style.display = 'none';
+  載入按鈕.style.display = 'block';
+}
+// from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
+// When the user scrolls down 20px from the top of the document, show the button
+onscroll = e => {
+  調整介面(); console.log('test');
+  if (document.body.scrollTop > innerHeight
+    || document.documentElement.scrollTop > innerHeight) {
+    至頂按鈕.style.display = "block";
+  } else {
+    至頂按鈕.style.display = "none";
+  }
+};
+
+document.body.onload = e => { 靜音切換(); 調整介面(); 計時() };
+document.body.onclick = e => 音效播放(點擊音效);
+document.body.onkeydown = e => {
+  if (e.target == document.body) switch (e.key.toUpperCase()) {
+    default: //console.log(e.key);
+      break; case ' ': e.preventDefault(); 下一題();
+      break; case '1': case 'A':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(輸入框[1]);
+      break; case '2': case 'B':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(輸入框[2]);
+      break; case '3': case 'C':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(輸入框[3]);
+      break; case '4': case 'D':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        檢查答案(輸入框[4]);
+      break; case 'M':
+      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
+        靜音切換();
+      break; case 'enter':
+      if (送出按鈕.style.display != 'none')
+        送出題目();
+      break; case 'escape': 清除輸入框();
+  }
+};
+
+/**
+ * On load, called to load the auth2 library and API client library.
+ * Initializes the API client library and sets up sign-in state  listeners.
+ */
+gapi.load('client:auth2', e => {
+  gapi.client.init({
+    // Client ID and API key from the Developer Console
+    clientId: '289902636224-oro06s681gdgk1kqrv8o1oca2shocfr4.apps.googleusercontent.com',
+    apiKey: 'AIzaSyCRfe3-dnm9GGMH_PFm9m5WHBMb_8U9HXY',
+    /**Array of API discovery doc URLs for APIs used by the quickstart */
+    discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
+    /**Authorization scopes required by the API; multiple scopes can be
+     * included, separated by spaces. */
+    scope: "https://www.googleapis.com/auth/spreadsheets.readonly"
+  }).then(e => {
+    // Listen for sign-in state changes.
+    gapi.auth2.getAuthInstance().isSignedIn.listen(更新登入狀態);
+    // Handle the initial sign-in state.
+    if (!更新登入狀態()) 登入();
+  }, 錯誤 => 彈出錯誤訊息(JSON.stringify(錯誤, null, 2)));
+});

@@ -77,7 +77,7 @@ i img {
 }
 
 /* from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp */
-#至頂按紐 {
+#至頂按鈕 {
   display: none;
   /* Hidden by default */
   position: fixed;
