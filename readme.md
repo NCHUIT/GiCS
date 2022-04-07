@@ -70,7 +70,8 @@ tags: GiCS
 
 ![](https://i.imgur.com/TLoj01R.png)
 
-貼上後會循環詢問前3個哪個是正確答案，如果都不是就是第4個，若**按錯重新貼上或點按鈕將選項換至A**
+貼上後會循環詢問前3個哪個是正確答案，如果都不是就是第4個  
+**若按錯重新貼上或點按鈕將選項換至A即可**
 
 ![](https://i.imgur.com/ZWGo3dc.png)
 
@@ -84,4 +85,4 @@ tags: GiCS
 
 如果貼上或輸入到一半的時候檢查到 Google 試算表的題庫有這個題目了，會提示
 
-![](https://i.imgur.com/RbuJ8hB.png)
+![](https://i.imgur.com/hzNbTMH.png)
