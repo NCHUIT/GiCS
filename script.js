@@ -16,13 +16,15 @@ const 正解音效 = document.getElementById('victory_sound_effect');
 const 錯題音效 = document.getElementById('keep_going_sound_effect');
 const 點擊音效 = document.getElementById('panel_btn_click_sound_effect');
 
-const 輸入框 = [
-  document.forms[0]['entry.892031688'],
-  document.forms[0]['entry.977089316'],
-  document.forms[0]['entry.657500498'],
-  document.forms[0]['entry.1532072947'],
-  document.forms[0]['entry.1090409630']
+var 輸入框 = [
+  document.forms[0][0],
+  document.forms[0][1],
+  document.forms[0][2],
+  document.forms[0][3],
+  document.forms[0][4],
 ];
+
+var 選擇年份 = '';
 
 var 暫存題庫 = [], 題庫 = [], 目前題目 = [], 正確答案;
 
@@ -30,6 +32,7 @@ var 目前背景音樂 = new Audio(), 靜音狀態 = 0;
 
 // From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+
 function 切換背景音樂(哪個) {
   答題背景音樂.muted = 載入背景音樂.muted = true;
   目前背景音樂 = document.getElementById(哪個 + '_background_music');
@@ -146,17 +149,20 @@ function 彈出說明視窗() {
 
 /**
  * From https://developers.google.com/sheets/api/quickstart/js
- * Spreadsheet: https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw
  * test: https://docs.google.com/spreadsheets/d/1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E
+ * real: https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw
  */
-function 重載題庫() {
+async function 重載題庫() {
   載入提示.style.display = 'flex';
   重設狀態欄();
+  $('#選擇視窗').modal('show');
+  while(!選擇年份) await sleep(1000);
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw', // real
-    // spreadsheetId: '1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E', // for test authority
-    range: '2022 GiCS!B2:F',
+    // spreadsheetId: '1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E', // test
+    range: 選擇年份,
   }).then(function (response) {
+    選擇年份 = '';
     載入提示.style.display = 'flex';
     var range = response.result;
     if (range.values.length > 0) {
@@ -349,6 +355,24 @@ document.getElementById('按鈕A').onclick = e => 檢查答案(輸入框[1]);
 document.getElementById('按鈕B').onclick = e => 檢查答案(輸入框[2]);
 document.getElementById('按鈕C').onclick = e => 檢查答案(輸入框[3]);
 document.getElementById('按鈕D').onclick = e => 檢查答案(輸入框[4]);
+
+document.getElementById('選擇視窗2021按鈕').onclick = e => {
+  選擇年份 = '2021!B2:F';
+  document.forms[0][0].setAttribute("name", "entry.892031688");
+  document.forms[0][1].setAttribute("name", "entry.977089316");
+  document.forms[0][2].setAttribute("name", "entry.657500498");
+  document.forms[0][3].setAttribute("name", "entry.1532072947");
+  document.forms[0][4].setAttribute("name", "entry.1090409630");
+}
+
+document.getElementById('選擇視窗2022按鈕').onclick = e => {
+  選擇年份 = '2022!B2:F';
+  document.forms[0][0].setAttribute("name", "entry.1911469271");
+  document.forms[0][1].setAttribute("name", "entry.1072618664");
+  document.forms[0][2].setAttribute("name", "entry.1728754073");
+  document.forms[0][3].setAttribute("name", "entry.1621978531");
+  document.forms[0][4].setAttribute("name", "entry.1926198241");
+}
 
 送出按鈕.onclick = 送出題目;
 靜音切換按鈕.onclick = 靜音切換;

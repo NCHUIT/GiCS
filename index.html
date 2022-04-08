@@ -105,8 +105,10 @@ JwIDAQAB
       <div class="ui massive text loader">題目載入中<br>未登入請至右上方登入<br>已登入遲遲未載入請點我</div>
     </div>
     <div id="answer-panel" class="attack_modal_reading_sprite panel ui container">
-      <form id="form" class="ui form" method="POST" target="formResponse"
-        action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse">
+      <!-- 2022 GiCS, 大專 -->
+      <!-- <form action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse" -->
+      <form action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSeqkw8jflmdbSgiEbjodnfLw5zEDebYxzMT0V9gTpOb8wjyTQ/formResponse"
+        id="form" class="ui form" method="POST" target="formResponse">
         <div id='清除按鈕' class="attack_modal_sprite btn_exit cursor_pointer pgo-style-exit-button-1-aQN0"
           data-tooltip="清除輸入" data-position="bottom right" data-extended-answer-panel="false"></div>
         <div id="時鐘" class="pgo-style-clock-1JHy5B">
@@ -123,7 +125,7 @@ JwIDAQAB
             <div id="answer-panel-question-content" class="answer-panel-question-content" data-self-control="false">
               <div class="question-iframe-container pgo-style-question-content-1iaDNm ui container" data-inverted
                 data-tooltip="貼上時若符合格式將附有切分至答案的功能" data-position="bottom center">
-                <textarea placeholder="未輸入題目" name="entry.892031688" form="form" rows="2"
+                <textarea placeholder="未輸入題目" form="form" rows="2"
                   class="cursor_pointer pgo-style-question-content-wrapper-vTwh8z">
                 </textarea>
               </div>
@@ -133,7 +135,7 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">A</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項A" name="entry.977089316" form="form" spellcheck="false"
+                    <textarea placeholder="未輸入選項A" form="form" spellcheck="false"
                       data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
@@ -143,7 +145,7 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">B</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項B" name="entry.657500498" form="form" spellcheck="false"
+                    <textarea placeholder="未輸入選項B" form="form" spellcheck="false"
                       data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
@@ -153,7 +155,7 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">C</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項C" name="entry.1532072947" form="form" spellcheck="false"
+                    <textarea placeholder="未輸入選項C" form="form" spellcheck="false"
                       data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
@@ -163,7 +165,7 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">D</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項D" name="entry.1090409630" form="form" spellcheck="false"
+                    <textarea placeholder="未輸入選項D" form="form" spellcheck="false"
                       data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
@@ -202,6 +204,13 @@ JwIDAQAB
   <div id="說明視窗" class="ui large modal">
     <iframe class="content" style="padding:unset" frame-border="0" width="100%" height="100%"
       src="https://hackmd.io/@NCHUIT/2022GiCS">說明載入中...</iframe>
+  </div>
+  <div id="選擇視窗" class="ui mini modal">
+    <div class="header">請選擇題庫年份</div>
+    <div class="actions">
+      <div id="選擇視窗2022按鈕" class="ui positive button">2022</div>
+      <div id="選擇視窗2021按鈕" class="ui negative button">2021</div>
+    </div>
   </div>
   <div id="錯誤訊息視窗" class="ui tiny modal">
     <div class="header">⚠️錯誤訊息</div>

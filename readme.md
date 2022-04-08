@@ -56,7 +56,7 @@ tags: GiCS
 
 ![](https://i.imgur.com/IYrOZwl.png)
 
-貼上原始碼 `*{user-select:text!important}` 後儲存
+貼上代碼 `*{user-select:text!important}` 後，看你要不要命名然後儲存
 
 ![](https://i.imgur.com/f5TxOgM.png)
 
