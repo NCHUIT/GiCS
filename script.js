@@ -1,20 +1,11 @@
-/** Copyright (C) 2022 NCHUIT <admin@nchuit.cc>
+/** Copyright (C) 2022 NCHUIT <admin@nchuit.cc>. CC BY-NC-SA 4.0
  *
- *  Everyone is permitted to copy and distribute verbatim or modified
- *  copies of this license document, and changing it is allowed as long
- *  as the name is changed.
- *
- *             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
- *                     Version 2, December 2004
- *    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
- *
- *   0. You just DO WHAT THE FUCK YOU WANT TO. */
-
-var 選擇年份 = '';
-
-var 暫存題庫 = [], 題庫 = [], 目前題目 = [], 正確答案;
-
-var 目前背景音樂 = new Audio(), 靜音狀態 = 0;
+ * Portions of this page are modifications based on work created and
+ * shared by Google and used according to terms described in the
+ * Creative Commons 4.0 Attribution License.
+ */
+var 選擇年份 = '', 暫存題庫 = [], 題庫 = [], 目前題目 = [], 目前背景音樂 = new Audio(),
+  介面狀態, 登入狀態, 正確答案, 靜音狀態;
 
 const 時鐘 = document.getElementById("時鐘").children;
 const 靜音切換按鈕 = document.getElementById("靜音切換按鈕");
@@ -49,6 +40,49 @@ const 輸入框 = [
 // From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 const sleep = (ms = 0) => new Promise(r => setTimeout(r, ms));
 
+// From https://www.w3schools.com/js/tryit.asp?filename=tryjs_timing_clock
+const 補零 = i => i < 10 ? '0' + i : i.toString();  // add zero in front of numbers < 10
+function 計時() {
+  const t = new Date();
+  let hms = [t.getHours(), t.getMinutes(), t.getSeconds()];
+  hms = 補零(hms[0]) + 補零(hms[1]) + 補零(hms[2]);
+  for (const i in 時鐘) if (時鐘[i].innerHTML != hms[i]) 時鐘[i].innerHTML = hms[i];
+  setTimeout(計時, 1000 - new Date() % 1000);
+}
+
+function 調整介面() {
+  $('#說明視窗 iframe').attr("height", screen.height * .7);
+  for (const 元素 of 輸入框) {
+    元素.style.height = "auto";
+    元素.style.height = 元素.scrollHeight + "px";
+  }
+  if (innerWidth < 767) {
+    if (介面狀態 == '小') return;
+    介面狀態 = '小';
+    $('#answer-panel').addClass('attack_modal_m');
+    $('#answer-panel').addClass('attack_modal_m_sprite');
+    $('#answer-panel').removeClass('panel');
+    $('#answer-panel').removeClass('attack_modal_reading_sprite');
+    $('.input-group-area').attr('data-selection-count', 6);
+    $('.input-group-area .attack_modal_sprite').addClass('attack_modal_m_sprite');
+    $('.input-group-area .attack_modal_sprite').removeClass('attack_modal_sprite');
+    $('.btn04').addClass('btn04_m');
+    $('.btn04').removeClass('btn04');
+  } else {
+    if (介面狀態 == '大') return;
+    介面狀態 = '大';
+    $('#answer-panel').addClass('panel');
+    $('#answer-panel').addClass('attack_modal_reading_sprite');
+    $('#answer-panel').removeClass('attack_modal_m');
+    $('#answer-panel').removeClass('attack_modal_m_sprite');
+    $('.input-group-area').attr('data-selection-count', 4);
+    $('.input-group-area .attack_modal_m_sprite').addClass('attack_modal_sprite');
+    $('.input-group-area .attack_modal_m_sprite').removeClass('attack_modal_m_sprite');
+    $('.btn04_m').addClass('btn04');
+    $('.btn04_m').removeClass('btn04_m');
+  }
+}
+
 function 切換背景音樂(哪個 = '') {
   答題背景音樂.muted = 載入背景音樂.muted = true;
   目前背景音樂 = document.getElementById(哪個 + '_background_music');
@@ -65,6 +99,7 @@ function 音效播放(音效 = new HTMLAudioElement()) {
 
 function 靜音切換() {
   switch (靜音狀態) {
+    default:
     case 0: 靜音狀態 = 1;
       靜音切換按鈕.innerHTML = `<i class="fa fa-volume-down"></i>`;
       正解音效.muted = 錯題音效.muted = 點擊音效.muted = false;
@@ -81,6 +116,25 @@ function 靜音切換() {
   }
 }
 
+/** From https://developers.google.com/sheets/api/quickstart/js
+ *  Called when the signed in status changes, to update the UI
+ *  appropriately. After a sign-in, the API is called.
+ */
+function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get(), 只是看看 = false) {
+  載入按鈕.style.display = 'none';
+  if (isSignedIn) {
+    登入按鈕.style.display = 'none';
+    登出按鈕.style.display = 'block';
+    if (只是看看) return;
+    重載題庫();
+  } else {
+    登入按鈕.style.display = 'block';
+    登出按鈕.style.display = 'none';
+  }
+  return isSignedIn;
+}
+
+// From https://stackoverflow.com/a/12646864/13189986
 function 打亂陣列(陣列 = []) {
   for (let i = 陣列.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -94,15 +148,13 @@ function 下一題() {
   $('#送出按鈕').hide();
   $('#下一題按鈕').show()
   document.getElementById('answer-panel-question-content').scrollTo(0, 0);
-  if (暫存題庫.length < 1) 更新登入狀態();
+  while (暫存題庫.length < 1) 更新登入狀態();
   目前題目 = 暫存題庫.pop();
   輸入框[0].value = 輸入框[0].innerHTML = 目前題目[0];
   正確答案 = String(目前題目[1]);
   目前題目 = 打亂陣列(目前題目.slice(1));
-  for (let 元素 of 輸入框.slice(1)) {
-    元素.value = 目前題目.pop();
-    元素.innerHTML = 元素.value;
-  }
+  for (const 元素 of 輸入框.slice(1))
+    元素.value = 元素.innerHTML = 目前題目.pop();
   for (const i in 輸入框) 目前題目[i] = 輸入框[i].innerHTML;
   切換背景音樂('fight');
   調整介面();
@@ -132,16 +184,12 @@ async function 檢查答案(選項 = new HTMLElement()) {
   }
 }
 
-function 欄高自適應(元素 = new HTMLElement()) {
-  元素.style.height = "auto";
-  元素.style.height = 元素.scrollHeight + "px";
-}
-
+// From https://developers.google.com/sheets/api/quickstart/js
 function 狀態欄續寫(訊息 = '') {
   狀態欄.appendChild(document.createTextNode(訊息 + '\n'));
 }
 
-function 重設狀態欄(訊息 = `👉目前題庫有${題庫.length}題(新到舊)`) {
+function 重設狀態欄(訊息 = `👉${選擇年份}目前題庫有${題庫.length}題(新到舊)`) {
   狀態欄.innerHTML = 訊息 + '\n';
 }
 
@@ -153,26 +201,20 @@ function 彈出錯誤訊息(訊息 = '') {
   錯誤訊息視窗.style.left = 'unset';
 }
 
-function 彈出說明視窗() {
-  $('#說明視窗').modal('show');
-}
-
-/**
- * From https://developers.google.com/sheets/api/quickstart/js  
- * Test: https://docs.google.com/spreadsheets/d/1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E  
- * Real: https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw
- */
+// From https://developers.google.com/sheets/api/quickstart/js
 async function 重載題庫() {
   載入提示.style.display = 'flex';
+  選擇年份 = '';
+  while (!選擇年份) {
+    $('#選擇視窗').modal('show');
+    await sleep(50);
+  }
   重設狀態欄();
-  $('#選擇視窗').modal('show');
-  while (!選擇年份) await sleep(1000);
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw', // Real
     // spreadsheetId: '1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E', // Test
-    range: 選擇年份,
+    range: 選擇年份 +'!B2:F',
   }).then(function (response) {
-    選擇年份 = '';
     載入提示.style.display = 'flex';
     var range = response.result;
     if (range.values.length > 0) {
@@ -187,24 +229,6 @@ async function 重載題庫() {
       下一題();
     } else 彈出錯誤訊息('No data found.');
   }, 回應 => 彈出錯誤訊息('Error: ' + 回應.result.error.message));
-}
-
-/**
- *  Called when the signed in status changes, to update the UI
- *  appropriately. After a sign-in, the API is called.
- */
-function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get(), 只是看看 = false) {
-  載入按鈕.style.display = 'none';
-  if (isSignedIn) {
-    登入按鈕.style.display = 'none';
-    登出按鈕.style.display = 'block';
-    if (只是看看) return;
-    重載題庫();
-  } else {
-    登入按鈕.style.display = 'block';
-    登出按鈕.style.display = 'none';
-  }
-  return isSignedIn;
 }
 
 function 登入() {
@@ -309,56 +333,15 @@ function 輸入() {
   調整介面();
 }
 
-var 介面狀態;
-function 調整介面() {
-  $('#說明視窗 iframe').attr("height", screen.height * .7);
-  for (let 元素 of 輸入框)
-    欄高自適應(元素);
-  if (innerWidth < 767) {
-    if (介面狀態 == '小') return;
-    介面狀態 = '小';
-    $('#answer-panel').addClass('attack_modal_m');
-    $('#answer-panel').addClass('attack_modal_m_sprite');
-    $('#answer-panel').removeClass('panel');
-    $('#answer-panel').removeClass('attack_modal_reading_sprite');
-    $('.input-group-area').attr('data-selection-count', 6);
-    $('.input-group-area .attack_modal_sprite').addClass('attack_modal_m_sprite');
-    $('.input-group-area .attack_modal_sprite').removeClass('attack_modal_sprite');
-    $('.btn04').addClass('btn04_m');
-    $('.btn04').removeClass('btn04');
-  } else {
-    if (介面狀態 == '大') return;
-    介面狀態 = '大';
-    $('#answer-panel').addClass('panel');
-    $('#answer-panel').addClass('attack_modal_reading_sprite');
-    $('#answer-panel').removeClass('attack_modal_m');
-    $('#answer-panel').removeClass('attack_modal_m_sprite');
-    $('.input-group-area').attr('data-selection-count', 4);
-    $('.input-group-area .attack_modal_m_sprite').addClass('attack_modal_sprite');
-    $('.input-group-area .attack_modal_m_sprite').removeClass('attack_modal_m_sprite');
-    $('.btn04_m').addClass('btn04');
-    $('.btn04_m').removeClass('btn04_m');
-  }
-}
-
-// from https://www.w3schools.com/js/tryit.asp?filename=tryjs_timing_clock
-const 補零 = i => i < 10 ? '0' + i : i.toString();  // add zero in front of numbers < 10
-function 計時() {
-  const t = new Date();
-  let hms = [t.getHours(), t.getMinutes(), t.getSeconds()];
-  hms = 補零(hms[0]) + 補零(hms[1]) + 補零(hms[2]);
-  for (const i in 時鐘) if (時鐘[i].innerHTML != hms[i]) 時鐘[i].innerHTML = hms[i];
-  setTimeout(計時, 1000 - new Date() % 1000);
-}
-
 // EventListener
 document.getElementById('清除按鈕').onclick = 清除輸入框;
-document.getElementById('下一題按鈕').onclick = 載入提示.onclick = 下一題;
+document.getElementById('下一題按鈕').onclick = 下一題;
 document.getElementById('選單說明按鈕').onclick =
-  document.getElementById('驚嘆號按鈕').onclick = 彈出說明視窗;
+  document.getElementById('驚嘆號按鈕').onclick = e => $('#說明視窗').modal('show');
 
 document.getElementById('選擇視窗2021按鈕').onclick = e => {
-  選擇年份 = '2021!B2:F';
+  選擇年份 = '2021';
+  document.forms[0].setAttribute("action", "https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse");
   document.forms[0][0].setAttribute("name", "entry.892031688");
   document.forms[0][1].setAttribute("name", "entry.977089316");
   document.forms[0][2].setAttribute("name", "entry.657500498");
@@ -367,7 +350,8 @@ document.getElementById('選擇視窗2021按鈕').onclick = e => {
 }
 
 document.getElementById('選擇視窗2022按鈕').onclick = e => {
-  選擇年份 = '2022!B2:F';
+  選擇年份 = '2022';
+  document.forms[0].setAttribute("action", "https://docs.google.com/forms/u/1/d/e/1FAIpQLSeqkw8jflmdbSgiEbjodnfLw5zEDebYxzMT0V9gTpOb8wjyTQ/formResponse");
   document.forms[0][0].setAttribute("name", "entry.1911469271");
   document.forms[0][1].setAttribute("name", "entry.1072618664");
   document.forms[0][2].setAttribute("name", "entry.1728754073");
@@ -393,9 +377,8 @@ document.getElementById('選擇視窗2022按鈕').onclick = e => {
   更新登入狀態(false);
 };
 
-載入按鈕.onclick = e => {
-  更新登入狀態();
-  下一題();
+載入按鈕.onclick = 載入提示.onclick = e => {
+  if (更新登入狀態()) 重載題庫();
 };
 
 // When the user clicks on the button, scroll to the top of the document
@@ -455,11 +438,10 @@ document.body.onkeydown = e => {
   }
 };
 
-/**
- * On load, called to load the auth2 library and API client library.
- * Initializes the API client library and sets up sign-in state  listeners.
- */
+// From https://developers.google.com/sheets/api/quickstart/js
+// On load, called to load the auth2 library and API client library.
 gapi.load('client:auth2', e => {
+  // Initializes the API client library and sets up sign-in state listeners.
   gapi.client.init({
     // Client ID and API key from the Developer Console
     clientId: '289902636224-oro06s681gdgk1kqrv8o1oca2shocfr4.apps.googleusercontent.com',

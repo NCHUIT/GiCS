@@ -1,3 +1,10 @@
+<!-- Copyright (C) 2022 NCHUIT <admin@nchuit.cc>. CC BY-NC-SA 4.0
+
+  Portions of this page are modifications based on work created and
+  shared by Google and used according to terms described in the
+  Creative Commons 4.0 Attribution License.
+-->
+
 <!DOCTYPE html>
 <html class="jf-inactive">
 
@@ -45,7 +52,6 @@ JwIDAQAB
   <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
-  <!--<script type='text/javascript' src='//font.arphic.com/FontSubsetOutput/1422950526983/F343E86A7D0AFBED82CC648B94CEB3E4/1422950526983.JS?1688261682'></script>-->
   <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
   <!--[if lt IE 9]>
   <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
@@ -89,7 +95,6 @@ JwIDAQAB
           src="panel_btn_click_sound_effect.mp3">你的瀏覽器不支援音訊</audio>
       </div>
       <div class="item" data-tooltip="登入 Google 帳號 以存取試算表" data-position="bottom right">
-        <!--Add buttons to initiate auth sequence and sign out-->
         <div id="登入按鈕" class="cursor_pointer positive ui button" style="display:none">
           <h5>登入</h5>
         </div>
@@ -102,13 +107,17 @@ JwIDAQAB
   </div>
   <div class="ui inverted segment">
     <div id="載入提示" class="ui active dimmer">
-      <div class="ui massive text loader">題目載入中<br>未登入請至右上方登入<br>已登入遲遲未載入請點我</div>
+      <div class="ui massive text loader">
+        題目載入中<br>
+        未登入請至右上方登入<br>
+        已登入遲遲未載入請點我<br>
+        滑鼠移到上方按鈕無反應時<br>
+        請鍵 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Delete</kbd><br>
+        並清除瀏覽器 Cookie
+      </div>
     </div>
     <div id="answer-panel" class="attack_modal_reading_sprite panel ui container">
-      <!-- 2022 GiCS, 大專 -->
-      <!-- <form action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse" -->
-      <form action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSeqkw8jflmdbSgiEbjodnfLw5zEDebYxzMT0V9gTpOb8wjyTQ/formResponse"
-        id="form" class="ui form" method="POST" target="formResponse">
+      <form id="form" class="ui form" method="POST" target="formResponse">
         <div id='清除按鈕' class="attack_modal_sprite btn_exit cursor_pointer pgo-style-exit-button-1-aQN0"
           data-tooltip="清除輸入" data-position="bottom right" data-extended-answer-panel="false"></div>
         <div id="時鐘" class="pgo-style-clock-1JHy5B">
@@ -135,8 +144,8 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">A</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項A" form="form" spellcheck="false"
-                      data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
+                    <textarea placeholder="未輸入選項A" form="form" spellcheck="false" data-ms-editor="true" rows="1"
+                      class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
                 </div>
@@ -145,8 +154,8 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">B</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項B" form="form" spellcheck="false"
-                      data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
+                    <textarea placeholder="未輸入選項B" form="form" spellcheck="false" data-ms-editor="true" rows="1"
+                      class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
                 </div>
@@ -155,8 +164,8 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">C</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項C" form="form" spellcheck="false"
-                      data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
+                    <textarea placeholder="未輸入選項C" form="form" spellcheck="false" data-ms-editor="true" rows="1"
+                      class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
                 </div>
@@ -165,8 +174,8 @@ JwIDAQAB
                     <div class="pgo-style-selection-choice-rrQTIw">D</div>
                   </div>
                   <div class="right floated fourteen wide column">
-                    <textarea placeholder="未輸入選項D" form="form" spellcheck="false"
-                      data-ms-editor="true" rows="1" class="cursor_pointer pgo-style-selection-content-1JGhEL">
+                    <textarea placeholder="未輸入選項D" form="form" spellcheck="false" data-ms-editor="true" rows="1"
+                      class="cursor_pointer pgo-style-selection-content-1JGhEL">
                     </textarea>
                   </div>
                 </div>
@@ -205,11 +214,17 @@ JwIDAQAB
     <iframe class="content" style="padding:unset" frame-border="0" width="100%" height="100%"
       src="https://hackmd.io/@NCHUIT/GiCS">說明載入中...</iframe>
   </div>
-  <div id="選擇視窗" class="ui mini modal">
-    <div class="header">請選擇題庫年份</div>
+  <div id="選擇視窗" class="ui mini basic modal">
+    <div class="ui icon header">
+      <i class="list icon"></i>
+      選擇題庫年份
+    </div>
+    <div class="content">
+      已區隔 2022 和 2021 兩個題庫，請選擇
+    </div>
     <div class="actions">
-      <div id="選擇視窗2022按鈕" class="ui positive button">2022</div>
-      <div id="選擇視窗2021按鈕" class="ui negative button">2021</div>
+      <div id="選擇視窗2022按鈕" class="ui green ok inverted button">2022</div>
+      <div id="選擇視窗2021按鈕" class="ui red cancel inverted button">2021</div>
     </div>
   </div>
   <div id="錯誤訊息視窗" class="ui tiny modal">
@@ -220,14 +235,15 @@ JwIDAQAB
       <div class="ui negative button">關閉</div>
     </div>
   </div>
-  <div class="ui inverted vertical footer segment">
-    <div class="ui center aligned container">
-      <div class="ui stackable grid">
-        <div class="column">
-          <div class="cursor_pointer ui inverted link list" data-tooltip="點我看組織章程" data-position="top center">
-            <a class="item" href="//ppt.cc/fA9uAx" target="_blank">© 2022 NCHUIT, Club</a>
-          </div>
-        </div>
+  <div class="ui inverted footer bottom text menu">
+    <div class="cursor_pointer item" data-tooltip="組織章程" data-position="right center">
+      <a class="item" target="_blank" href="//ppt.cc/fA9uAx">© 2022 NCHUIT, Club</a>
+    </div>
+    <div class="right menu">
+      <div class="cursor_pointer item" data-tooltip="創用 CC 授權條款" data-position="left center">
+        <a class="item" rel="license" target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW">
+          <img src="//i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+        </a>
       </div>
     </div>
   </div>

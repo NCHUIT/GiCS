@@ -1,3 +1,5 @@
+/* Copyright (C) 2022 NCHUIT <admin@nchuit.cc>. CC BY-NC-SA 4.0 */
+
 .intercom-launcher-frame,
 .intercom-launcher-badge-frame {
   z-index: 1040 !important;
@@ -71,9 +73,19 @@ i img {
   white-space: unset !important;
 }
 
-.ui.modal, #說明視窗.ui.modal {
+.ui.modal,
+#說明視窗.ui.modal {
   top: unset !important;
   left: unset !important;
+}
+
+.ui.inverted.footer.text.menu {
+  background-color: #1b1c1d !important;
+}
+
+.ui.footer.menu img {
+  height: 100% !important;
+  width: 100% !important;
 }
 
 /* from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp */

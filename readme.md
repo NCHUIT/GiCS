@@ -1,16 +1,22 @@
 ---
 tags: GiCS
+license: Attribution-NonCommercial-ShareAlike 4.0 International
 ---
 
 # 2022 GiCS 資安闖天關刷題說明
 
-![](https://img.shields.io/github/commit-activity/w/NCHUIT/2022GiCS?color=important) ![](https://img.shields.io/github/last-commit/NCHUIT/2022GiCS?color=success) ![](https://img.shields.io/github/languages/top/NCHUIT/2022GiCS) ![](https://img.shields.io/github/license/NCHUIT/2022GiCS?color=critical) [![](https://hackmd.io/@NCHUIT/2022GiCS/badge)](https://md.nchuit.cc/2022GiCS/edit)
+[![badge-cc-by-nc-sa][badge-cc-by-nc-sa]][url-cc-by-nc-sa]
+[![badge-HackMD][badge-HackMD]][url-edit]
+[![badge-license][badge-license]][url-license]
+[![badge-last-commit][badge-last-commit]][url-commits]
+[![badge-top-languages][badge-top-languages]][url-repo]
 
-本網頁原始碼存放庫 [<i class="fa fa-fw fa-github"></i>[點我前往]](https://github.com/NCHUIT/GiCS)  
-本頁說明導向此網站 [<img src="https://i.imgur.com/6LcYa68.png" height="20"> 2022 GiCS 資安闖天關刷題[點我前往]](https://nchuit.cc/GiCS)  
-本頁說明同步存放於 [<img src="https://hackmd.io/favicon.png" height="20"> HackMD[點我前往]](https://md.nchuit.cc/GiCS/edit?view)  
-本網頁的資料庫使用 [<img src="https://i.imgur.com/n4hNxBA.png" height="20"> Google 試算表[點我前往教學]](https://developers.google.com/sheets/api/quickstart/js)  
-本網頁資源媒體取自 <a target="_blank" href="https://www.pagamo.org/map?course_code=gics"><img src="https://i.imgur.com/3UoAhdC.png" height="20"> PaGamO[點我前往]</a>
+本著作係採用[創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款][url-cc-by-nc-sa]授權.  
+本網頁原始碼存放庫 [<i class="fa fa-fw fa-github"></i>[點我前往]][url-repo]  
+本頁說明導向此網站 [<img src="https://i.imgur.com/6LcYa68.png" height="20"> 2022 GiCS 資安闖天關刷題[點我前往]][url-NCHUIT-GiCS]  
+本頁說明同步存放於 [<img src="https://hackmd.io/favicon.png" height="20"> HackMD[點我前往]][url-view]  
+本網頁的資料庫使用 [<img src="https://i.imgur.com/n4hNxBA.png" height="20"> Google 試算表[點我前往教學]][url-gapi-js-qs]  
+本網頁資源媒體取自 [<img src="https://i.imgur.com/3UoAhdC.png" height="20"> PaGamO[點我前往]][url-2021-GiCS]
 
 <details open><summary><h2 style="display:inline;border-bottom:0">目錄</h2></summary>
 
@@ -48,41 +54,61 @@ tags: GiCS
 
 ## <i class="fa fa-fw fa-plus-square"></i>插件安裝
 
-安裝瀏覽器插件 [Stylus[點我前往]](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne)
+安裝瀏覽器插件 [Stylus[點我前往]][url-stylus]
 
-![](https://i.imgur.com/3VIEB6n.png)
+![step1](https://i.imgur.com/3VIEB6n.png)
 
 安裝完之後點出插件，編寫樣式給網站
 
-![](https://i.imgur.com/IYrOZwl.png)
+![step2](https://i.imgur.com/IYrOZwl.png)
 
 貼上代碼 `*{user-select:text!important}` 後，看你要不要命名然後儲存
 
-![](https://i.imgur.com/f5TxOgM.png)
+![step3](https://i.imgur.com/f5TxOgM.png)
 
 重新載入頁面後可以一次複製題目答案
 
-![](https://i.imgur.com/JtUJSCd.png)
+![step4](https://i.imgur.com/JtUJSCd.png)
 
 ## <i class="fa fa-fw fa-paste"></i>填充題庫
 
 點擊題目文字，它是輸入框，預設點選時全選讓你貼上，提示指的格式即介紹插件說明的**直接一次選取題目答案複製後的文字格式**
 
-![](https://i.imgur.com/TLoj01R.png)
+![step1](https://i.imgur.com/TLoj01R.png)
 
 貼上後會循環詢問前3個哪個是正確答案，如果都不是就是第4個  
 **若按錯重新貼上或點按鈕將選項換至A即可**
 
-![](https://i.imgur.com/ZWGo3dc.png)
+![step2](https://i.imgur.com/ZWGo3dc.png)
 
 確認完正確答案後就可以填充題庫啦~
 
-![](https://i.imgur.com/OGc6jzj.png)
+![step3](https://i.imgur.com/OGc6jzj.png)
 
 按下送出時會再問你一次
 
-![](https://i.imgur.com/NyIZf6A.png)
+![step4](https://i.imgur.com/NyIZf6A.png)
 
 如果貼上或輸入到一半的時候檢查到 Google 試算表的題庫有這個題目了，會提示
 
-![](https://i.imgur.com/hzNbTMH.png)
+![step5](https://i.imgur.com/hzNbTMH.png)
+
+> Portions of this page are modifications based on work created and [shared by Google][url-gd-policies] and used according to terms described in the [Creative Commons 4.0 Attribution License][url-cc-by].
+
+[url-edit]: https://md.nchuit.cc/GiCS/edit
+[url-view]: https://md.nchuit.cc/GiCS/edit?view
+[badge-HackMD]: https://md.nchuit.cc/GiCS/badge
+[badge-last-commit]: https://img.shields.io/github/last-commit/NCHUIT/GiCS?color=success
+[badge-top-languages]: https://img.shields.io/github/languages/top/NCHUIT/GiCS
+[badge-license]: https://img.shields.io/github/license/NCHUIT/GiCS?color=important
+[badge-cc-by-nc-sa]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
+[url-cc-by]: http://creativecommons.org/licenses/by/4.0
+[url-cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hant
+[url-gd-policies]: https://developers.google.com/readme/policies
+[url-commits]: https://github.com/NCHUIT/GiCS/commits/main
+[url-license]: https://github.com/NCHUIT/GiCS/blob/main/LICENSE.md
+[url-repo]: https://github.com/NCHUIT/GiCS
+[url-NCHUIT-GiCS]: https://nchuit.cc/GiCS
+[url-gapi-js-qs]: https://developers.google.com/sheets/api/quickstart/js
+[url-2021-GiCS]: https://www.pagamo.org/map?course_code=gics
+[url-stylus]: https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne
