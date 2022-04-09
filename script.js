@@ -1,9 +1,31 @@
+/** Copyright (C) 2022 NCHUIT <admin@nchuit.cc>
+ *
+ *  Everyone is permitted to copy and distribute verbatim or modified
+ *  copies of this license document, and changing it is allowed as long
+ *  as the name is changed.
+ *
+ *             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+ *                     Version 2, December 2004
+ *    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+ *
+ *   0. You just DO WHAT THE FUCK YOU WANT TO. */
+
+var 選擇年份 = '';
+
+var 暫存題庫 = [], 題庫 = [], 目前題目 = [], 正確答案;
+
+var 目前背景音樂 = new Audio(), 靜音狀態 = 0;
+
 const 時鐘 = document.getElementById("時鐘").children;
 const 靜音切換按鈕 = document.getElementById("靜音切換按鈕");
-const 載入提示 = document.getElementById('載入提示');
-const 載入按鈕 = document.getElementById('載入按鈕');
 const 登入按鈕 = document.getElementById('登入按鈕');
 const 登出按鈕 = document.getElementById('登出按鈕');
+const 載入按鈕 = document.getElementById('載入按鈕');
+const 載入提示 = document.getElementById('載入提示');
+const 按鈕A = document.getElementById('按鈕A');
+const 按鈕B = document.getElementById('按鈕B');
+const 按鈕C = document.getElementById('按鈕C');
+const 按鈕D = document.getElementById('按鈕D');
 const 送出按鈕 = document.getElementById('送出按鈕');
 const 至頂按鈕 = document.getElementById('至頂按鈕');
 const 狀態欄 = document.getElementById('狀態欄');
@@ -16,7 +38,7 @@ const 正解音效 = document.getElementById('victory_sound_effect');
 const 錯題音效 = document.getElementById('keep_going_sound_effect');
 const 點擊音效 = document.getElementById('panel_btn_click_sound_effect');
 
-var 輸入框 = [
+const 輸入框 = [
   document.forms[0][0],
   document.forms[0][1],
   document.forms[0][2],
@@ -24,16 +46,10 @@ var 輸入框 = [
   document.forms[0][4],
 ];
 
-var 選擇年份 = '';
-
-var 暫存題庫 = [], 題庫 = [], 目前題目 = [], 正確答案;
-
-var 目前背景音樂 = new Audio(), 靜音狀態 = 0;
-
 // From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+const sleep = (ms = 0) => new Promise(r => setTimeout(r, ms));
 
-function 切換背景音樂(哪個) {
+function 切換背景音樂(哪個 = '') {
   答題背景音樂.muted = 載入背景音樂.muted = true;
   目前背景音樂 = document.getElementById(哪個 + '_background_music');
   if (靜音狀態 == 2) {
@@ -42,7 +58,7 @@ function 切換背景音樂(哪個) {
   }
 }
 
-function 音效播放(音效) {
+function 音效播放(音效 = new HTMLAudioElement()) {
   音效.currentTime = 0;
   音效.play();
 }
@@ -65,13 +81,12 @@ function 靜音切換() {
   }
 }
 
-function 打亂陣列(array) {
-  for (let i = array.length - 1; i > 0; i--) {
+function 打亂陣列(陣列 = []) {
+  for (let i = 陣列.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    [陣列[i], 陣列[j]] = [陣列[j], 陣列[i]];
   }
-  // console.log(array);
-  return array;
+  return 陣列;
 }
 
 function 下一題() {
@@ -84,22 +99,18 @@ function 下一題() {
   輸入框[0].value = 輸入框[0].innerHTML = 目前題目[0];
   正確答案 = String(目前題目[1]);
   目前題目 = 打亂陣列(目前題目.slice(1));
-  // console.log(current);
   for (let 元素 of 輸入框.slice(1)) {
     元素.value = 目前題目.pop();
     元素.innerHTML = 元素.value;
   }
-  for (const i in 輸入框)
-    目前題目[i] = 輸入框[i].innerHTML;
-  // console.log(bgm.src);
+  for (const i in 輸入框) 目前題目[i] = 輸入框[i].innerHTML;
   切換背景音樂('fight');
   調整介面();
   載入提示.style.display = 'none';
 }
 
-async function 檢查答案(選項) {
+async function 檢查答案(選項 = new HTMLElement()) {
   if (送出按鈕.style.display == 'none') {
-    // console.log(正確答案,'\n',選項.value,'\n',選項.innerHTML);
     if (正確答案 === 選項.value || 正確答案 === 選項.innerHTML) {
       錯題音效.pause();
       音效播放(正解音效);
@@ -121,12 +132,12 @@ async function 檢查答案(選項) {
   }
 }
 
-function 欄高自適應(元素) {
+function 欄高自適應(元素 = new HTMLElement()) {
   元素.style.height = "auto";
   元素.style.height = 元素.scrollHeight + "px";
 }
 
-function 狀態欄續寫(訊息) {
+function 狀態欄續寫(訊息 = '') {
   狀態欄.appendChild(document.createTextNode(訊息 + '\n'));
 }
 
@@ -134,7 +145,7 @@ function 重設狀態欄(訊息 = `👉目前題庫有${題庫.length}題(新到
   狀態欄.innerHTML = 訊息 + '\n';
 }
 
-function 彈出錯誤訊息(訊息) {
+function 彈出錯誤訊息(訊息 = '') {
   重設狀態欄('⚠️錯誤訊息');
   狀態欄續寫(訊息);
   錯誤訊息視窗內文.innerHTML = 訊息;
@@ -143,23 +154,22 @@ function 彈出錯誤訊息(訊息) {
 }
 
 function 彈出說明視窗() {
-  $('#說明視窗 iframe').attr("height", screen.height * .7);
   $('#說明視窗').modal('show');
 }
 
 /**
- * From https://developers.google.com/sheets/api/quickstart/js
- * test: https://docs.google.com/spreadsheets/d/1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E
- * real: https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw
+ * From https://developers.google.com/sheets/api/quickstart/js  
+ * Test: https://docs.google.com/spreadsheets/d/1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E  
+ * Real: https://docs.google.com/spreadsheets/d/1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw
  */
 async function 重載題庫() {
   載入提示.style.display = 'flex';
   重設狀態欄();
   $('#選擇視窗').modal('show');
-  while(!選擇年份) await sleep(1000);
+  while (!選擇年份) await sleep(1000);
   gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw', // real
-    // spreadsheetId: '1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E', // test
+    spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw', // Real
+    // spreadsheetId: '1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E', // Test
     range: 選擇年份,
   }).then(function (response) {
     選擇年份 = '';
@@ -183,8 +193,7 @@ async function 重載題庫() {
  *  Called when the signed in status changes, to update the UI
  *  appropriately. After a sign-in, the API is called.
  */
-function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get(), 只是看看) {
-  //console.log('isSignedIn:',isSignedIn,typeof isSignedIn);
+function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get(), 只是看看 = false) {
   載入按鈕.style.display = 'none';
   if (isSignedIn) {
     登入按鈕.style.display = 'none';
@@ -252,8 +261,6 @@ function 檢查題目() {
 👉記得到試算表刪掉原來錯的，自動刪除開發中...`)) return true;
       else break;
     }
-  // console.clear();
-  // console.log(database);
   return false;
 }
 
@@ -264,7 +271,6 @@ function 輸入() {
   let bi = content.indexOf('\nB\n', ai);
   let ci = content.indexOf('\nC\n', bi);
   let di = content.indexOf('\nD\n', ci);
-  // console.log(ai, bi, ci, di);
   let ans = [
     content.substring(ai + 3, bi),
     content.substring(bi + 3, ci),
@@ -288,7 +294,6 @@ function 輸入() {
     for (let i = -1; !confirm((temp = ans[++i]) + tip);)
       if (i == 2) { temp = ans[3]; break; }
     ans.splice(ans.indexOf(temp), 1);
-    // console.log(ans);
     輸入框[1].value = temp;
     for (const i of Array(3).keys())
       輸入框[2 + i].value = 輸入框[2 + i].innerHTML = ans[i];
@@ -301,12 +306,12 @@ function 輸入() {
     $('#下一題按鈕').hide();
     $('#送出按鈕').show()
   }
-  // console.log(ai,bi,ci,di);
   調整介面();
 }
 
 var 介面狀態;
 function 調整介面() {
+  $('#說明視窗 iframe').attr("height", screen.height * .7);
   for (let 元素 of 輸入框)
     欄高自適應(元素);
   if (innerWidth < 767) {
@@ -351,10 +356,6 @@ document.getElementById('清除按鈕').onclick = 清除輸入框;
 document.getElementById('下一題按鈕').onclick = 載入提示.onclick = 下一題;
 document.getElementById('選單說明按鈕').onclick =
   document.getElementById('驚嘆號按鈕').onclick = 彈出說明視窗;
-document.getElementById('按鈕A').onclick = e => 檢查答案(輸入框[1]);
-document.getElementById('按鈕B').onclick = e => 檢查答案(輸入框[2]);
-document.getElementById('按鈕C').onclick = e => 檢查答案(輸入框[3]);
-document.getElementById('按鈕D').onclick = e => 檢查答案(輸入框[4]);
 
 document.getElementById('選擇視窗2021按鈕').onclick = e => {
   選擇年份 = '2021!B2:F';
@@ -376,14 +377,11 @@ document.getElementById('選擇視窗2022按鈕').onclick = e => {
 
 送出按鈕.onclick = 送出題目;
 靜音切換按鈕.onclick = 靜音切換;
-
-// When the user clicks on the button, scroll to the top of the document
-至頂按鈕.onclick = e => {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-};
-
-錯誤訊息視窗登入按鈕.onclick = 登入按鈕.onclick = 登入;
+登入按鈕.onclick = 錯誤訊息視窗登入按鈕.onclick = 登入;
+按鈕A.onclick = e => 檢查答案(輸入框[1]);
+按鈕B.onclick = e => 檢查答案(輸入框[2]);
+按鈕C.onclick = e => 檢查答案(輸入框[3]);
+按鈕D.onclick = e => 檢查答案(輸入框[4]);
 
 登出按鈕.onclick = e => {
   重設狀態欄('您已登出');
@@ -398,6 +396,12 @@ document.getElementById('選擇視窗2022按鈕').onclick = e => {
 載入按鈕.onclick = e => {
   更新登入狀態();
   下一題();
+};
+
+// When the user clicks on the button, scroll to the top of the document
+至頂按鈕.onclick = e => {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 };
 
 // From https://stackoverflow.com/questions/13623280/onclick-select-whole-text-textarea
@@ -418,7 +422,7 @@ onload = onresize = 調整介面;
 onfocus = e => {
   更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get(), true);
   調整介面();
-  if(載入提示.style.display!='none') 輸入框[0].focus();
+  if (載入提示.style.display != 'none') 輸入框[0].focus();
 };
 onblur = e => {
   調整介面();
@@ -428,7 +432,7 @@ onblur = e => {
 // from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
 // When the user scrolls down 20px from the top of the document, show the button
 onscroll = e => {
-  調整介面(); console.log('test');
+  調整介面();
   if (document.body.scrollTop > innerHeight
     || document.documentElement.scrollTop > innerHeight) {
     至頂按鈕.style.display = "block";
@@ -441,27 +445,13 @@ document.body.onload = e => { 靜音切換(); 調整介面(); 計時() };
 document.body.onclick = e => 音效播放(點擊音效);
 document.body.onkeydown = e => {
   if (e.target == document.body) switch (e.key.toUpperCase()) {
-    default: //console.log(e.key);
+    default:
       break; case ' ': e.preventDefault(); 下一題();
-      break; case '1': case 'A':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[1]);
-      break; case '2': case 'B':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[2]);
-      break; case '3': case 'C':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[3]);
-      break; case '4': case 'D':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        檢查答案(輸入框[4]);
-      break; case 'M':
-      if (e.target.tagName.toUpperCase() != 'TEXTAREA')
-        靜音切換();
-      break; case 'enter':
-      if (送出按鈕.style.display != 'none')
-        送出題目();
-      break; case 'escape': 清除輸入框();
+      break; case '1': case 'A': 按鈕A.click();
+      break; case '2': case 'B': 按鈕B.click();
+      break; case '3': case 'C': 按鈕C.click();
+      break; case '4': case 'D': 按鈕D.click();
+      break; case 'M': 靜音切換按鈕.click();
   }
 };
 
