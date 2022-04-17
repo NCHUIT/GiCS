@@ -116,7 +116,7 @@ function 靜音切換() {
   }
 }
 
-/** From https://developers.google.com/sheets/api/quickstart/js
+/** From https://developers.google.com/sheets/api/quickstart/js  
  *  Called when the signed in status changes, to update the UI
  *  appropriately. After a sign-in, the API is called.
  */
@@ -148,7 +148,7 @@ function 下一題() {
   $('#送出按鈕').hide();
   $('#下一題按鈕').show()
   document.getElementById('answer-panel-question-content').scrollTo(0, 0);
-  while (暫存題庫.length < 1) 更新登入狀態();
+  if (暫存題庫.length < 1 && !更新登入狀態()) 登入();
   目前題目 = 暫存題庫.pop();
   輸入框[0].value = 輸入框[0].innerHTML = 目前題目[0];
   正確答案 = String(目前題目[1]);
@@ -415,7 +415,6 @@ onblur = e => {
 // from https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
 // When the user scrolls down 20px from the top of the document, show the button
 onscroll = e => {
-  調整介面();
   if (document.body.scrollTop > innerHeight
     || document.documentElement.scrollTop > innerHeight) {
     至頂按鈕.style.display = "block";

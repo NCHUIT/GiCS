@@ -1,20 +1,38 @@
 /* Copyright (C) 2022 NCHUIT <admin@nchuit.cc>. CC BY-NC-SA 4.0 */
 
-.intercom-launcher-frame,
-.intercom-launcher-badge-frame {
-  z-index: 1040 !important;
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+
+  body,
+  #狀態欄.ui.container {
+    background-color: #0d1117 !important;
+    color: #abb2bf !important;
+  }
+
+  .ui.top.fixed.compact.menu {
+    background-color: #161b22 !important;
+  }
+
+  .ui.menu > *,
+  .ui.menu > * > * {
+    color: #ffffffb3 !important;
+  }
+
+  #狀態欄.ui.container{
+    border: 1px solid #21262d;
+  }
 }
 
-.cke {
-  visibility: hidden;
-}
+@media (max-width: 767px) {
+  .mobilehide {
+    display: none !important;
+  }
 
-.async-hide {
-  opacity: 0 !important;
-}
-
-* {
-  user-select: text !important;
+  .pgo-style-submit-button-pASHWz {
+    top: 465px !important;
+  }
 }
 
 a,
@@ -94,7 +112,7 @@ i img {
   /* Hidden by default */
   position: fixed;
   /* Fixed/sticky position */
-  bottom: 20px;
+  bottom: 70px;
   /* Place the button at the bottom of the page */
   right: 30px;
   /* Place the button 30px from the right */
@@ -121,14 +139,16 @@ i img {
   /* Firefox */
 }
 
-@media (max-width: 560px) {
-  .mobilehide {
-    display: none !important;
-  }
+/* 原HTML載入 */
+.intercom-launcher-frame,
+.intercom-launcher-badge-frame {
+  z-index: 1040 !important;
 }
 
-@media (max-width: 650px) {
-  .mobilehide2 {
-    display: none !important;
-  }
+.cke {
+  visibility: hidden;
+}
+
+.async-hide {
+  opacity: 0 !important;
 }
