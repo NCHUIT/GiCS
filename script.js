@@ -5,37 +5,36 @@
  * Creative Commons 4.0 Attribution License.
  */
 var 選擇年份 = '', 暫存題庫 = [], 題庫 = [], 目前題目 = [], 目前背景音樂 = new Audio(),
-  介面狀態, 登入狀態, 正確答案, 靜音狀態;
+  介面狀態, 登入狀態, 正確答案, 靜音狀態 = 1;
 
-const 時鐘 = document.getElementById("時鐘").children;
-const 靜音切換按鈕 = document.getElementById("靜音切換按鈕");
-const 登入按鈕 = document.getElementById('登入按鈕');
-const 登出按鈕 = document.getElementById('登出按鈕');
-const 載入按鈕 = document.getElementById('載入按鈕');
-const 載入提示 = document.getElementById('載入提示');
-const 按鈕A = document.getElementById('按鈕A');
-const 按鈕B = document.getElementById('按鈕B');
-const 按鈕C = document.getElementById('按鈕C');
-const 按鈕D = document.getElementById('按鈕D');
-const 送出按鈕 = document.getElementById('送出按鈕');
-const 至頂按鈕 = document.getElementById('至頂按鈕');
-const 狀態欄 = document.getElementById('狀態欄');
-const 錯誤訊息視窗 = document.getElementById('錯誤訊息視窗');
-const 錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文');
-const 錯誤訊息視窗登入按鈕 = document.getElementById('錯誤訊息視窗登入按鈕');
-const 載入背景音樂 = document.getElementById('map_background_music')
-const 答題背景音樂 = document.getElementById('fight_background_music')
-const 正解音效 = document.getElementById('victory_sound_effect');
-const 錯題音效 = document.getElementById('keep_going_sound_effect');
-const 點擊音效 = document.getElementById('panel_btn_click_sound_effect');
-
-const 輸入框 = [
-  document.forms[0][0],
-  document.forms[0][1],
-  document.forms[0][2],
-  document.forms[0][3],
-  document.forms[0][4],
-];
+const 時鐘 = document.getElementById("時鐘").children,
+  靜音切換按鈕 = document.getElementById("靜音切換按鈕"),
+  登入按鈕 = document.getElementById('登入按鈕'),
+  登出按鈕 = document.getElementById('登出按鈕'),
+  載入按鈕 = document.getElementById('載入按鈕'),
+  載入提示 = document.getElementById('載入提示'),
+  按鈕A = document.getElementById('按鈕A'),
+  按鈕B = document.getElementById('按鈕B'),
+  按鈕C = document.getElementById('按鈕C'),
+  按鈕D = document.getElementById('按鈕D'),
+  送出按鈕 = document.getElementById('送出按鈕'),
+  至頂按鈕 = document.getElementById('至頂按鈕'),
+  狀態欄 = document.getElementById('狀態欄'),
+  錯誤訊息視窗 = document.getElementById('錯誤訊息視窗'),
+  錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文'),
+  錯誤訊息視窗登入按鈕 = document.getElementById('錯誤訊息視窗登入按鈕'),
+  載入背景音樂 = document.getElementById('map_background_music'),
+  答題背景音樂 = document.getElementById('fight_background_music'),
+  正解音效 = document.getElementById('victory_sound_effect'),
+  錯題音效 = document.getElementById('keep_going_sound_effect'),
+  點擊音效 = document.getElementById('panel_btn_click_sound_effect'),
+  輸入框 = [
+    document.forms[0][0],
+    document.forms[0][1],
+    document.forms[0][2],
+    document.forms[0][3],
+    document.forms[0][4],
+  ];
 
 // From https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
 const sleep = (ms = 0) => new Promise(r => setTimeout(r, ms));
@@ -213,7 +212,7 @@ async function 重載題庫() {
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw', // Real
     // spreadsheetId: '1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E', // Test
-    range: 選擇年份 +'!B2:F',
+    range: 選擇年份 + '!B2:F',
   }).then(function (response) {
     載入提示.style.display = 'flex';
     var range = response.result;
@@ -423,7 +422,6 @@ onscroll = e => {
   }
 };
 
-document.body.onload = e => { 靜音切換(); 調整介面(); 計時() };
 document.body.onclick = e => 音效播放(點擊音效);
 document.body.onkeydown = e => {
   if (e.target == document.body) switch (e.key.toUpperCase()) {
@@ -457,3 +455,4 @@ gapi.load('client:auth2', e => {
     if (!更新登入狀態()) 登入();
   }, 錯誤 => 彈出錯誤訊息(JSON.stringify(錯誤, null, 2)));
 });
+靜音切換(); 調整介面(); 計時();
