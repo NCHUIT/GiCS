@@ -5,10 +5,13 @@
  * Creative Commons 4.0 Attribution License.
  */
 var 選擇年份 = '', 暫存題庫 = [], 題庫 = [], 目前題目 = [], 目前背景音樂 = new Audio(),
-  介面狀態, 登入狀態, 正確答案, 靜音狀態 = 1;
+  介面狀態, 登入狀態, 正確答案, 靜音狀態;
 
 const 時鐘 = document.getElementById("時鐘").children,
   靜音切換按鈕 = document.getElementById("靜音切換按鈕"),
+  使用者名稱 = document.getElementById('使用者名稱'),
+  選單說明按鈕 = document.getElementById('選單說明按鈕'),
+  登入按鈕區塊 = document.getElementById('登入按鈕區塊'),
   登入按鈕 = document.getElementById('登入按鈕'),
   登出按鈕 = document.getElementById('登出按鈕'),
   載入按鈕 = document.getElementById('載入按鈕'),
@@ -101,17 +104,21 @@ function 靜音切換() {
     default:
     case 0: 靜音狀態 = 1;
       靜音切換按鈕.innerHTML = `<i class="fa fa-volume-down"></i>`;
+      靜音切換按鈕.setAttribute("data-tooltip","僅點選音效");
       正解音效.muted = 錯題音效.muted = 點擊音效.muted = false;
-      return;
+      return 1;
     case 1: 靜音狀態 = 2;
       靜音切換按鈕.innerHTML = `<i class="fa fa-volume-up"></i>`;
+      靜音切換按鈕.setAttribute("data-tooltip","播放背景音樂");
       目前背景音樂.muted = false;
       目前背景音樂.play();
-      return;
+      return 2;
     case 2: 靜音狀態 = 0;
       靜音切換按鈕.innerHTML = `<i class="fa fa-volume-mute"></i>`;
+      靜音切換按鈕.setAttribute("data-tooltip","靜音");
       正解音效.muted = 錯題音效.muted = 點擊音效.muted = true;
       目前背景音樂.muted = true;
+      return 0;
   }
 }
 
@@ -119,16 +126,27 @@ function 靜音切換() {
  *  Called when the signed in status changes, to update the UI
  *  appropriately. After a sign-in, the API is called.
  */
-function 更新登入狀態(isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get(), 只是看看 = false) {
+function 更新登入狀態(isSignedIn = Boolean(gapi.auth2.getAuthInstance().isSignedIn.get()), 只是看看 = false) {
   載入按鈕.style.display = 'none';
   if (isSignedIn) {
     登入按鈕.style.display = 'none';
     登出按鈕.style.display = 'block';
-    if (只是看看) return;
+    if (只是看看) return isSignedIn;
     重載題庫();
   } else {
     登入按鈕.style.display = 'block';
     登出按鈕.style.display = 'none';
+  }
+  // From https://developers.google.com/identity/sign-in/web/people
+  if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+    const profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
+    使用者名稱.innerHTML = profile.getName();
+    選單說明按鈕.innerHTML = `<i><img src="${profile.getImageUrl()}"></i>`;
+    登入按鈕區塊.setAttribute("data-tooltip", "已登入 " + profile.getEmail());
+  } else {
+    使用者名稱.innerHTML = "登出";
+    選單說明按鈕.innerHTML = `<i class="fa fa-question-circle"></i>`;
+    登入按鈕區塊.setAttribute("data-tooltip", "登入 Google 帳號 以存取試算表");
   }
   return isSignedIn;
 }
@@ -186,10 +204,12 @@ async function 檢查答案(選項 = new HTMLElement()) {
 // From https://developers.google.com/sheets/api/quickstart/js
 function 狀態欄續寫(訊息 = '') {
   狀態欄.appendChild(document.createTextNode(訊息 + '\n'));
+  return 訊息;
 }
 
 function 重設狀態欄(訊息 = `👉${選擇年份}目前題庫有${題庫.length}題(新到舊)`) {
   狀態欄.innerHTML = 訊息 + '\n';
+  return 訊息;
 }
 
 function 彈出錯誤訊息(訊息 = '') {
@@ -198,6 +218,7 @@ function 彈出錯誤訊息(訊息 = '') {
   錯誤訊息視窗內文.innerHTML = 訊息;
   $('#錯誤訊息視窗').modal('show');
   錯誤訊息視窗.style.left = 'unset';
+  return 訊息;
 }
 
 // From https://developers.google.com/sheets/api/quickstart/js
@@ -230,16 +251,20 @@ async function 重載題庫() {
   }, 回應 => 彈出錯誤訊息('Error: ' + 回應.result.error.message));
 }
 
-function 登入() {
+async function 登入() {
   載入提示.style.display = 'flex';
   載入按鈕.style.display = 'block';
   登入按鈕.style.display = 'none';
   切換背景音樂('map');
+  if (gapi.auth2.getAuthInstance().isSignedIn.get())
+    gapi.auth2.getAuthInstance().signOut();
   try {
-    gapi.auth2.getAuthInstance().signIn();
-  } catch (e) {
+    await new Promise(r => gapi.auth2.getAuthInstance().signIn());
+  } catch (e) { // TO-DO
     console.log(e);
   }
+  gapi.auth2.getAuthInstance().isSignedIn.listen(更新登入狀態);
+  更新登入狀態();
 }
 
 function 清除輸入框() {
@@ -253,6 +278,7 @@ function 清除輸入框() {
 }
 
 function 送出題目() {
+  if (!gapi.auth2.getAuthInstance().isSignedIn.get()) return 彈出錯誤訊息('未登入');
   if (送出按鈕.style.display == 'none' || 檢查題目()) return;
   else if (confirm(輸入框[1].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
     document.forms[0].submit();
@@ -260,8 +286,6 @@ function 送出題目() {
     $('#下一題按鈕').show();
     更新登入狀態();
   }
-  if (!gapi.auth2.getAuthInstance().isSignedIn.get())
-    彈出錯誤訊息('未登入');
 }
 
 function 檢查題目() {
@@ -373,6 +397,12 @@ document.getElementById('選擇視窗2022按鈕').onclick = e => {
   暫存題庫 = 題庫 = 目前題目 = 正確答案 = [];
   清除輸入框();
   gapi.auth2.getAuthInstance().signOut();
+  // From https://stackoverflow.com/questions/179355/clearing-all-cookies-with-javascript
+  for (const cookie of document.cookie.split(";")) { // Clearing all cookies
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  }
   更新登入狀態(false);
 };
 

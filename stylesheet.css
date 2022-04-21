@@ -42,6 +42,15 @@ button,
     pointer !important
 }
 
+.fade.button {
+  opacity: unset;
+}
+
+#選單說明按鈕 i img {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
 iframe[name="formResponse"] {
   width: 1px;
   height: 1px;
