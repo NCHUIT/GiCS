@@ -51,7 +51,7 @@ button,
   border-radius: 50%;
 }
 
-iframe[name="formResponse"] {
+iframe[name$="formResponse"] {
   width: 1px;
   height: 1px;
   position: absolute;

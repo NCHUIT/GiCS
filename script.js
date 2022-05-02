@@ -241,10 +241,10 @@ async function 重載題庫() {
       題庫 = 暫存題庫 = range.values;
       重設狀態欄();
       題庫.reverse();
-      const fmt = ['🤔', '⭕正確答案: ', '錯誤答案1: ', '錯誤答案2: ', '錯誤答案3: '];
+      const 欄位標題 = ['🤔', '⭕正確答案: ', '錯誤答案1: ', '錯誤答案2: ', '錯誤答案3: '];
       for (const row of 題庫)
-        for (const i in fmt)
-          狀態欄續寫('\n' + fmt[i] + row[i]);
+        for (const i in 欄位標題)
+          狀態欄續寫('\n' + 欄位標題[i] + row[i]);
       打亂陣列(暫存題庫);
       下一題();
     } else 彈出錯誤訊息('No data found.');
