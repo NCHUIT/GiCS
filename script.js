@@ -240,7 +240,7 @@ async function 重載題庫() {
   選定題庫 = '';
   $('#選擇視窗').modal('show');
   if(答對題數>0) 答題紀錄.innerHTML +=
-    `[${new Date().toLocaleString()}] ⭕答對 ${答對題數} 題 🎯命中率 ${((答對題數/總題數)*100).toFixed(1)}%`
+    `[${new Date().toLocaleString()}] ${選定題庫} ⭕答對 ${答對題數}/${總題數} 題 🎯命中率 ${((答對題數/總題數)*100).toFixed(1)}%`
   while (!選定題庫) {
     $('#選擇視窗').modal('show');
     await sleep(50);
