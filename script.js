@@ -194,6 +194,7 @@ async function 檢查答案(選項 = new HTMLElement()) {
     } else {
       正解音效.pause();
       音效播放(錯題音效);
+      更新答題狀態欄();
     }
   } else {
     for (const 元素 of 輸入框.slice(1)) {
