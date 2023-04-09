@@ -223,6 +223,7 @@ function 彈出錯誤訊息(訊息 = '') {
 
 // From https://developers.google.com/sheets/api/quickstart/js
 async function 重載題庫() {
+  輸入框[1].parentElement.parentElement.removeAttribute('data-correct');
   載入提示.style.display = 'flex';
   選擇年份 = '';
   while (!選擇年份) {
@@ -324,13 +325,13 @@ function 輸入() {
     content.substring(ci + 3, di),
     content.substring(di + 3)
   ];
-  輸入框[1].parentElement.parentElement.removeAttribute('data-correct');
   if (ai > 5) 輸入框[0].value = content.substring(0, ai);
   if (檢查題目()) {
     for (const i in 輸入框)
       輸入框[i].value = 輸入框[i].innerHTML = 目前題目[i];
     $('#送出按鈕').hide();
     $('#下一題按鈕').show()
+    輸入框[1].parentElement.parentElement.removeAttribute('data-correct');
   } else if (ai > -1 && bi > -1 && ci > -1 && di > -1) {
     $('#下一題按鈕').hide();
     $('#送出按鈕').show();
