@@ -5,7 +5,7 @@
  * Creative Commons 4.0 Attribution License.
  */
 var 選定題庫 = '', 暫存題庫 = [], 題庫 = [], 目前題目 = [], 目前背景音樂 = new Audio(),
-  介面狀態, 登入狀態, 正確答案, 靜音狀態;
+  介面狀態, 登入狀態, 正確答案, 靜音狀態, 答對題數;
 
 const 時鐘 = document.getElementById("時鐘").children,
   靜音切換按鈕 = document.getElementById("靜音切換按鈕"),
@@ -23,6 +23,7 @@ const 時鐘 = document.getElementById("時鐘").children,
   送出按鈕 = document.getElementById('送出按鈕'),
   至頂按鈕 = document.getElementById('至頂按鈕'),
   狀態欄 = document.getElementById('狀態欄'),
+  答題狀態欄 = document.getElementById('答題狀態欄'),
   錯誤訊息視窗 = document.getElementById('錯誤訊息視窗'),
   錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文'),
   錯誤訊息視窗登入按鈕 = document.getElementById('錯誤訊息視窗登入按鈕'),
@@ -184,8 +185,10 @@ async function 檢查答案(選項 = new HTMLElement()) {
       錯題音效.pause();
       音效播放(正解音效);
       await sleep(50);
-      if (confirm('⭕答對啦！\n\n' + 正確答案 + '\n\n按下取消(Esc)返回、確定(Enter)下一題'))
+      if (confirm('⭕答對啦！\n\n' + 正確答案 + '\n\n按下取消(Esc)返回、確定(Enter)下一題')){
         下一題();
+        ++答對題數;
+      }
     } else {
       正解音效.pause();
       音效播放(錯題音效);
@@ -207,7 +210,13 @@ function 狀態欄續寫(訊息 = '') {
   return 訊息;
 }
 
-function 重設狀態欄(訊息 = `👉${選定題庫}目前題庫有${題庫.length}題(新到舊)`) {
+function 更新答題狀態欄(
+  訊息 = `👉目前答題進度(${暫存題庫.length}/${題庫.length}) ⭕答對 ${答對題數} 題 🎯命中率 ${((答對題數/題庫.length)*100).toFixed(0)}%`) {
+  答題狀態欄.innerHTML = 訊息 + '\n';
+  return 訊息;
+}
+
+function 重設狀態欄(訊息 = `👉「${選定題庫}」目前題庫有${題庫.length}題(新到舊)`) {
   狀態欄.innerHTML = 訊息 + '\n';
   return 訊息;
 }
@@ -227,6 +236,8 @@ async function 重載題庫() {
   載入提示.style.display = 'flex';
   選定題庫 = '';
   while (!選定題庫) {
+    if(答對題數>0) document.querySelector(`#選擇視窗.content`).innerHTML +=
+      `[${new Date().toLocaleString()}] ⭕答對 ${答對題數} 題 🎯命中率 ${((答對題數/題庫.length)*100).toFixed(1)}%`
     $('#選擇視窗').modal('show');
     await sleep(50);
   }
@@ -248,6 +259,7 @@ async function 重載題庫() {
           狀態欄續寫('\n' + 欄位標題[i] + row[i]);
       打亂陣列(暫存題庫);
       下一題();
+      答對題數 = 0;
     } else 彈出錯誤訊息('No data found.');
   }, 回應 => 彈出錯誤訊息('Error: ' + 回應.result.error.message));
 }
@@ -377,7 +389,7 @@ document.getElementById('選擇視窗按鈕1').onclick = e => {
 }
 
 document.getElementById('選擇視窗按鈕2').onclick = e => {
-  選定題庫 = '大雜燴';
+  選定題庫 = '大雜燴';  
   document.forms[0].setAttribute("action", "https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse");
   document.forms[0][0].setAttribute("name", "entry.892031688");
   document.forms[0][1].setAttribute("name", "entry.977089316");
@@ -395,7 +407,7 @@ document.getElementById('選擇視窗按鈕2').onclick = e => {
 按鈕D.onclick = e => 檢查答案(輸入框[4]);
 
 登出按鈕.onclick = e => {
-  重設狀態欄('您已登出');
+  重設狀態欄('👉目前題庫(您已登出)');
   載入按鈕.style.display = 'block';
   切換背景音樂('map');
   暫存題庫 = 題庫 = 目前題目 = 正確答案 = [];
