@@ -6,7 +6,7 @@
   }
 
   body,
-  #狀態欄.ui.container {
+  #狀態欄, #答題狀態欄 {
     background-color: #0d1117 !important;
     color: #abb2bf !important;
   }
@@ -20,7 +20,7 @@
     color: #ffffffb3 !important;
   }
 
-  #狀態欄.ui.container{
+  #狀態欄, #答題狀態欄 {
     border: 1px solid #21262d;
   }
 }
@@ -67,7 +67,7 @@ i img {
   z-index: 100;
 }
 
-#狀態欄 {
+#狀態欄, #答題狀態欄 {
   white-space: pre-wrap;
   font-size: large;
 }

@@ -188,6 +188,7 @@ async function 檢查答案(選項 = new HTMLElement()) {
       if (confirm('⭕答對啦！\n\n' + 正確答案 + '\n\n按下取消(Esc)返回、確定(Enter)下一題')){
         下一題();
         ++答對題數;
+        更新答題狀態欄();
       }
     } else {
       正解音效.pause();
