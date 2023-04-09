@@ -330,9 +330,11 @@ function 輸入() {
       輸入框[i].value = 輸入框[i].innerHTML = 目前題目[i];
     $('#送出按鈕').hide();
     $('#下一題按鈕').show()
+    輸入框[1].parentElement.parentElement.removeAttribute('data-correct');
   } else if (ai > -1 && bi > -1 && ci > -1 && di > -1) {
     $('#下一題按鈕').hide();
-    $('#送出按鈕').show()
+    $('#送出按鈕').show();
+    輸入框[1].parentElement.parentElement.setAttribute('data-correct', 'true');
     let temp;
     const tip = `
 
