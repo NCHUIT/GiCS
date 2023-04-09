@@ -4,7 +4,7 @@
  * shared by Google and used according to terms described in the
  * Creative Commons 4.0 Attribution License.
  */
-var 選擇年份 = '', 暫存題庫 = [], 題庫 = [], 目前題目 = [], 目前背景音樂 = new Audio(),
+var 選定題庫 = '', 暫存題庫 = [], 題庫 = [], 目前題目 = [], 目前背景音樂 = new Audio(),
   介面狀態, 登入狀態, 正確答案, 靜音狀態;
 
 const 時鐘 = document.getElementById("時鐘").children,
@@ -207,7 +207,7 @@ function 狀態欄續寫(訊息 = '') {
   return 訊息;
 }
 
-function 重設狀態欄(訊息 = `👉${選擇年份}目前題庫有${題庫.length}題(新到舊)`) {
+function 重設狀態欄(訊息 = `👉${選定題庫}目前題庫有${題庫.length}題(新到舊)`) {
   狀態欄.innerHTML = 訊息 + '\n';
   return 訊息;
 }
@@ -225,8 +225,8 @@ function 彈出錯誤訊息(訊息 = '') {
 async function 重載題庫() {
   輸入框[1].parentElement.parentElement.removeAttribute('data-correct');
   載入提示.style.display = 'flex';
-  選擇年份 = '';
-  while (!選擇年份) {
+  選定題庫 = '';
+  while (!選定題庫) {
     $('#選擇視窗').modal('show');
     await sleep(50);
   }
@@ -234,7 +234,7 @@ async function 重載題庫() {
   gapi.client.sheets.spreadsheets.values.get({
     spreadsheetId: '1mLuYzFZp-zuLn1w8OMAo9XT99kzyMYVd3Zq299FYNlw', // Real
     // spreadsheetId: '1o6qXeil50N9-J_ONMDZybYeHt1aZ9ReSIFwtVnRYk4E', // Test
-    range: 選擇年份 + '!B2:F',
+    range: 選定題庫 + '!B2:F',
   }).then(function (response) {
     載入提示.style.display = 'flex';
     var range = response.result;
@@ -366,24 +366,24 @@ document.getElementById('下一題按鈕').onclick = 下一題;
 document.getElementById('選單說明按鈕').onclick =
   document.getElementById('驚嘆號按鈕').onclick = e => $('#說明視窗').modal('show');
 
-document.getElementById('選擇視窗2021按鈕').onclick = e => {
-  選擇年份 = '2021';
-  document.forms[0].setAttribute("action", "https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse");
-  document.forms[0][0].setAttribute("name", "entry.892031688");
-  document.forms[0][1].setAttribute("name", "entry.977089316");
-  document.forms[0][2].setAttribute("name", "entry.657500498");
-  document.forms[0][3].setAttribute("name", "entry.1532072947");
-  document.forms[0][4].setAttribute("name", "entry.1090409630");
-}
-
-document.getElementById('選擇視窗2022按鈕').onclick = e => {
-  選擇年份 = '2022';
+document.getElementById('選擇視窗按鈕1').onclick = e => {
+  選定題庫 = '2022實際初賽題目';
   document.forms[0].setAttribute("action", "https://docs.google.com/forms/u/1/d/e/1FAIpQLSeqkw8jflmdbSgiEbjodnfLw5zEDebYxzMT0V9gTpOb8wjyTQ/formResponse");
   document.forms[0][0].setAttribute("name", "entry.1911469271");
   document.forms[0][1].setAttribute("name", "entry.1072618664");
   document.forms[0][2].setAttribute("name", "entry.1728754073");
   document.forms[0][3].setAttribute("name", "entry.1621978531");
   document.forms[0][4].setAttribute("name", "entry.1926198241");
+}
+
+document.getElementById('選擇視窗按鈕2').onclick = e => {
+  選定題庫 = '大雜燴';
+  document.forms[0].setAttribute("action", "https://docs.google.com/forms/u/1/d/e/1FAIpQLSc8J8l55WOGCbYfQlc3vA6sr-6TD7pPsFioW_bZCaTTVOjnWA/formResponse");
+  document.forms[0][0].setAttribute("name", "entry.892031688");
+  document.forms[0][1].setAttribute("name", "entry.977089316");
+  document.forms[0][2].setAttribute("name", "entry.657500498");
+  document.forms[0][3].setAttribute("name", "entry.1532072947");
+  document.forms[0][4].setAttribute("name", "entry.1090409630");
 }
 
 送出按鈕.onclick = 送出題目;
