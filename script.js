@@ -238,10 +238,11 @@ async function 重載題庫() {
   輸入框[1].parentElement.parentElement.removeAttribute('data-correct');
   載入提示.style.display = 'flex';
   選定題庫 = '';
+  $('#選擇視窗').modal('show');
+  if(答對題數>0) 答題紀錄.innerHTML +=
+    `[${new Date().toLocaleString()}] ⭕答對 ${答對題數} 題 🎯命中率 ${((答對題數/總題數)*100).toFixed(1)}%`
   while (!選定題庫) {
     $('#選擇視窗').modal('show');
-    if(答對題數>0) 答題紀錄.innerHTML +=
-      `[${new Date().toLocaleString()}] ⭕答對 ${答對題數} 題 🎯命中率 ${((答對題數/題庫.length)*100).toFixed(1)}%`
     await sleep(50);
   }
   重設狀態欄();
