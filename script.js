@@ -23,6 +23,7 @@ const 時鐘 = document.getElementById("時鐘").children,
   送出按鈕 = document.getElementById('送出按鈕'),
   至頂按鈕 = document.getElementById('至頂按鈕'),
   狀態欄 = document.getElementById('狀態欄'),
+  答題紀錄 = document.getElementById('答題紀錄'),
   答題狀態欄 = document.getElementById('答題狀態欄'),
   錯誤訊息視窗 = document.getElementById('錯誤訊息視窗'),
   錯誤訊息視窗內文 = document.getElementById('錯誤訊息視窗內文'),
@@ -237,7 +238,7 @@ async function 重載題庫() {
   載入提示.style.display = 'flex';
   選定題庫 = '';
   while (!選定題庫) {
-    if(答對題數>0) document.querySelector(`#選擇視窗.content`).innerHTML +=
+    if(答對題數>0) 答題紀錄.innerHTML +=
       `[${new Date().toLocaleString()}] ⭕答對 ${答對題數} 題 🎯命中率 ${((答對題數/題庫.length)*100).toFixed(1)}%`
     $('#選擇視窗').modal('show');
     await sleep(50);
