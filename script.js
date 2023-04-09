@@ -5,7 +5,7 @@
  * Creative Commons 4.0 Attribution License.
  */
 var 選定題庫 = '', 暫存題庫 = [], 題庫 = [], 目前題目 = [], 目前背景音樂 = new Audio(),
-  介面狀態, 登入狀態, 正確答案, 靜音狀態, 答對題數;
+  介面狀態, 登入狀態, 正確答案, 靜音狀態, 答對題數, 總題數;
 
 const 時鐘 = document.getElementById("時鐘").children,
   靜音切換按鈕 = document.getElementById("靜音切換按鈕"),
@@ -214,12 +214,12 @@ function 狀態欄續寫(訊息 = '') {
 }
 
 function 更新答題狀態欄(
-  訊息 = `👉目前答題進度(${暫存題庫.length}/${題庫.length}) ⭕答對 ${答對題數} 題 🎯命中率 ${((答對題數/題庫.length)*100).toFixed(1)}%`) {
+  訊息 = `👉目前答題進度(${暫存題庫.length}/${總題數}) ⭕答對 ${答對題數} 題 🎯命中率 ${((答對題數/總題數)*100).toFixed(1)}%`) {
   答題狀態欄.innerHTML = 訊息 + '\n';
   return 訊息;
 }
 
-function 重設狀態欄(訊息 = `👉「${選定題庫}」目前題庫有${題庫.length}題(新到舊)`) {
+function 重設狀態欄(訊息 = `👉「${選定題庫}」目前題庫有${總題數=題庫.length}題(新到舊)`) {
   狀態欄.innerHTML = 訊息 + '\n';
   return 訊息;
 }
