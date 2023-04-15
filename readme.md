@@ -28,7 +28,7 @@ license: Attribution-NonCommercial-ShareAlike 4.0 International
 
 ## <i class="fa fa-fw fa-gamepad"></i>刷題
 
-### 鍵盤熱鍵
+### 鍵盤快捷鍵
 
 <kbd>空白鍵</kbd> : 下一題
 
