@@ -3,7 +3,7 @@ tags: GiCS
 license: Attribution-NonCommercial-ShareAlike 4.0 International
 ---
 
-# 2022 GiCS 資安闖天關刷題說明
+# GiCS 資安闖天關刷題說明
 
 [![badge-cc-by-nc-sa][badge-cc-by-nc-sa]][url-cc-by-nc-sa]
 [![badge-HackMD][badge-HackMD]][url-edit]
@@ -13,7 +13,7 @@ license: Attribution-NonCommercial-ShareAlike 4.0 International
 
 本著作係採用[創用 CC 姓名標示-非商業性-相同方式分享 4.0 國際 授權條款][url-cc-by-nc-sa]授權.  
 本網頁原始碼存放庫 [<i class="fa fa-fw fa-github"></i>[點我前往]][url-repo]  
-本頁說明導向此網站 [<img src="https://i.imgur.com/6LcYa68.png" height="20"> 2022 GiCS 資安闖天關刷題[點我前往]][url-NCHUIT-GiCS]  
+本頁說明導向此網站 [<img src="https://nchuit.cc/favicon.ico" height="20"> GiCS 資安闖天關刷題[點我前往]][url-NCHUIT-GiCS]  
 本頁說明同步存放於 [<img src="https://hackmd.io/favicon.png" height="20"> HackMD[點我前往]][url-view]  
 本網頁的資料庫使用 [<img src="https://i.imgur.com/n4hNxBA.png" height="20"> Google 試算表[點我前往教學]][url-gapi-js-qs]  
 本網頁資源媒體取自 [<img src="https://i.imgur.com/3UoAhdC.png" height="20"> PaGamO[點我前往]][url-2021-GiCS]
@@ -53,21 +53,17 @@ license: Attribution-NonCommercial-ShareAlike 4.0 International
 ![](https://i.imgur.com/0FnNzZS.png) : 清除輸入
 
 ## <i class="fa fa-fw fa-plus-square"></i>插件安裝
+:::info
+若不想安裝插件可嘗試[參考此說明]( https://microsoftedgetips.microsoft.com/zh-tw/collections/editor-picks/55)，使用<i class="fa fa-fw fa-internet-explorer"></i>Edge 瀏覽器🕹快捷鍵: <kbd>Ctrl</kbd>+<kbd> Shift</kbd>+<kbd>X</kbd> 複製題目答案
+:::
 
-安裝瀏覽器插件 [Stylus[點我前往]][url-stylus]
-
+1. 安裝瀏覽器插件 [Stylus[點我前往]][url-stylus]  
 ![step1](https://i.imgur.com/3VIEB6n.png)
-
-安裝完之後點出插件，編寫樣式給網站
-
+2. 安裝完之後點出插件，編寫樣式給網站  
 ![step2](https://i.imgur.com/IYrOZwl.png)
-
-貼上代碼 `*{user-select:text!important}` 後，看你要不要命名然後儲存
-
+3. 貼上代碼 `*{user-select:text!important}` 後，看你要不要命名然後儲存  
 ![step3](https://i.imgur.com/f5TxOgM.png)
-
-重新載入頁面後可以一次複製題目答案
-
+4. 重新載入頁面後可以一次複製題目答案  
 ![step4](https://i.imgur.com/JtUJSCd.png)
 
 ## <i class="fa fa-fw fa-paste"></i>填充題庫
