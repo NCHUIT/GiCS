@@ -54,7 +54,7 @@ license: Attribution-NonCommercial-ShareAlike 4.0 International
 
 ## <i class="fa fa-fw fa-plus-square"></i>插件安裝
 
-> 若不想安裝插件可嘗試[參考此說明]( https://microsoftedgetips.microsoft.com/zh-tw/collections/editor-picks/55)，使用<i class="fa fa-fw fa-internet-explorer"></i>Edge 瀏覽器🕹快捷鍵: <kbd>Ctrl</kbd>+<kbd> Shift</kbd>+<kbd>X</kbd> 複製題目答案
+> 若不想安裝插件可嘗試[參考此說明](https://www.microsoft.com/zh-tw/edge/features/web-select?form=MT00D8)，使用<i class="fa fa-fw fa-internet-explorer"></i>Edge 瀏覽器🕹快捷鍵: <kbd>Ctrl</kbd>+<kbd> Shift</kbd>+<kbd>X</kbd> 複製題目答案
 
 1. 安裝瀏覽器插件 [Stylus[點我前往]][url-stylus]  
 ![step1](https://i.imgur.com/3VIEB6n.png)
