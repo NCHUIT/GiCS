@@ -54,12 +54,12 @@ license: Attribution-NonCommercial-ShareAlike 4.0 International
 
 ## <i class="fa fa-fw fa-plus-square"></i>插件安裝
 
-<div class="extended-markdown tip border rounded-1 mb-4 p-3 color-border-accent-emphasis color-bg-accent f5"><i>
+<div class="extended-markdown tip border rounded-1 mb-4 p-3 color-border-accent-emphasis color-bg-accent f5"><i hidden>
 
 :::info
 </i>
 
-若不想安裝插件可嘗試[參考此說明]( https://microsoftedgetips.microsoft.com/zh-tw/collections/editor-picks/55)，使用<i class="fa fa-fw fa-internet-explorer"></i>Edge 瀏覽器🕹快捷鍵: <kbd>Ctrl</kbd>+<kbd> Shift</kbd>+<kbd>X</kbd> 複製題目答案 <i>
+若不想安裝插件可嘗試[參考此說明]( https://microsoftedgetips.microsoft.com/zh-tw/collections/editor-picks/55)，使用<i class="fa fa-fw fa-internet-explorer"></i>Edge 瀏覽器🕹快捷鍵: <kbd>Ctrl</kbd>+<kbd> Shift</kbd>+<kbd>X</kbd> 複製題目答案 <i hidden>
 :::
 </i></div>
 
