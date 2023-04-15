@@ -1,4 +1,4 @@
-/** Copyright (C) 2022 NCHUIT <admin@nchuit.cc>. CC BY-NC-SA 4.0
+/** Copyright (C) 2023 NCHUIT <admin@nchuit.cc>. CC BY-NC-SA 4.0
  *
  * Portions of this page are modifications based on work created and
  * shared by Google and used according to terms described in the
