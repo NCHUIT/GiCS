@@ -4,7 +4,7 @@
  * shared by Google and used according to terms described in the
  * Creative Commons 4.0 Attribution License.
  */
-var 選定題庫 = '', 暫存題庫 = [], 題庫 = [], 目前題目 = [], 目前背景音樂 = new Audio(),
+let 選定題庫 = '', 暫存題庫 = [], 題庫 = [], 目前題目 = [], 目前背景音樂 = new Audio(),
   介面狀態, 登入狀態, 正確答案, 靜音狀態, 答對題數, 總題數;
 
 const 時鐘 = document.getElementById("時鐘").children,
@@ -124,11 +124,12 @@ function 靜音切換() {
   }
 }
 
+let 使用者;
 /** From https://developers.google.com/sheets/api/quickstart/js  
  *  Called when the signed in status changes, to update the UI
  *  appropriately. After a sign-in, the API is called.
  */
-function 更新登入狀態(isSignedIn = Boolean(gapi.auth2.getAuthInstance().isSignedIn.get()), 只是看看 = false) {
+function 更新登入狀態(isSignedIn = Boolean(gapi.client.getToken()), 只是看看 = false) {
   載入按鈕.style.display = 'none';
   if (isSignedIn) {
     登入按鈕.style.display = 'none';
@@ -139,12 +140,11 @@ function 更新登入狀態(isSignedIn = Boolean(gapi.auth2.getAuthInstance().is
     登入按鈕.style.display = 'block';
     登出按鈕.style.display = 'none';
   }
-  // From https://developers.google.com/identity/sign-in/web/people
-  if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-    const profile = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
-    使用者名稱.innerHTML = profile.getName();
-    選單說明按鈕.innerHTML = `<i><img src="${profile.getImageUrl()}"></i>`;
-    登入按鈕區塊.setAttribute("data-tooltip", "已登入 " + profile.getEmail());
+  // From https://developers.google.com/identity/gsi/web/reference/js-reference#CredentialResponse
+  if (gapi.client.getToken()) {
+    使用者名稱.innerHTML = 使用者.name;
+    選單說明按鈕.innerHTML = `<i><img src="${使用者.picture}"></i>`;
+    登入按鈕區塊.setAttribute("data-tooltip", "已登入 " + 使用者.email);
   } else {
     使用者名稱.innerHTML = "登出";
     選單說明按鈕.innerHTML = `<i class="fa fa-question-circle"></i>`;
@@ -273,14 +273,17 @@ async function 登入() {
   載入按鈕.style.display = 'block';
   登入按鈕.style.display = 'none';
   切換背景音樂('map');
-  if (gapi.auth2.getAuthInstance().isSignedIn.get())
-    gapi.auth2.getAuthInstance().signOut();
-  try {
-    await new Promise(r => gapi.auth2.getAuthInstance().signIn());
-  } catch (e) { // TO-DO
-    console.log(e);
+  const token = gapi.client.getToken();
+  if (token === null) {
+    // Prompt the user to select a Google Account and ask for consent to share their data
+    // when establishing a new session.
+    tokenClient.requestAccessToken({prompt: 'consent'});
+  } else {
+    google.accounts.oauth2.revoke(token.access_token);
+    gapi.client.setToken('');
+    // Skip display of account chooser and consent dialog for an existing session.
+    tokenClient.requestAccessToken({prompt: ''});
   }
-  gapi.auth2.getAuthInstance().isSignedIn.listen(更新登入狀態);
   更新登入狀態();
 }
 
@@ -295,7 +298,7 @@ function 清除輸入框() {
 }
 
 function 送出題目() {
-  if (!gapi.auth2.getAuthInstance().isSignedIn.get()) return 彈出錯誤訊息('未登入');
+  if (!gapi.client.getToken()) return 彈出錯誤訊息('未登入');
   if (送出按鈕.style.display == 'none' || 檢查題目()) return;
   else if (confirm(輸入框[1].value + '\n\n是正確答案嗎?\n\n按下確定(Enter)送至 Google 試算表')) {
     document.forms[0].submit();
@@ -411,19 +414,26 @@ document.getElementById('選擇視窗按鈕2').onclick = e => {
 按鈕D.onclick = e => 檢查答案(輸入框[4]);
 
 登出按鈕.onclick = e => {
-  重設狀態欄('👉目前題庫(您已登出)');
+  登出按鈕.style.display = 'none';
   載入按鈕.style.display = 'block';
-  切換背景音樂('map');
-  暫存題庫 = 題庫 = 目前題目 = 正確答案 = [];
-  清除輸入框();
-  gapi.auth2.getAuthInstance().signOut();
+  載入提示.style.display = 'flex';
+  const token = gapi.client.getToken();
+  if (token !== null) {
+    google.accounts.oauth2.revoke(token.access_token);
+    gapi.client.setToken('');
+  }
   // From https://stackoverflow.com/questions/179355/clearing-all-cookies-with-javascript
   for (const cookie of document.cookie.split(";")) { // Clearing all cookies
     const eqPos = cookie.indexOf("=");
     const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
   }
+  重設狀態欄('👉目前題庫(您已登出)');
+  切換背景音樂('map');
+  暫存題庫 = 題庫 = 目前題目 = 正確答案 = [];
+  清除輸入框();
   更新登入狀態(false);
+  google.accounts.id.prompt();
 };
 
 載入按鈕.onclick = 載入提示.onclick = e => {
@@ -452,7 +462,7 @@ for (const 元素 of 輸入框) {
 
 onload = onresize = 調整介面;
 onfocus = e => {
-  更新登入狀態(gapi.auth2.getAuthInstance().isSignedIn.get(), true);
+  更新登入狀態(gapi.client.getToken(), true);
   調整介面();
   if (載入提示.style.display != 'none') 輸入框[0].focus();
 };
@@ -485,24 +495,67 @@ document.body.onkeydown = e => {
   }
 };
 
-// From https://developers.google.com/sheets/api/quickstart/js
-// On load, called to load the auth2 library and API client library.
-gapi.load('client:auth2', e => {
-  // Initializes the API client library and sets up sign-in state listeners.
-  gapi.client.init({
-    // Client ID and API key from the Developer Console
-    clientId: '289902636224-oro06s681gdgk1kqrv8o1oca2shocfr4.apps.googleusercontent.com',
-    apiKey: 'AIzaSyCRfe3-dnm9GGMH_PFm9m5WHBMb_8U9HXY',
-    /**Array of API discovery doc URLs for APIs used by the quickstart */
-    discoveryDocs: ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
-    /**Authorization scopes required by the API; multiple scopes can be
-     * included, separated by spaces. */
-    scope: "https://www.googleapis.com/auth/spreadsheets.readonly"
-  }).then(e => {
-    // Listen for sign-in state changes.
-    gapi.auth2.getAuthInstance().isSignedIn.listen(更新登入狀態);
+/** Set after https://accounts.google.com/gsi/client are loaded.*/
+let tokenClient = google.accounts.oauth2.initTokenClient({
+  /**Client ID from the Developer Console*/
+  client_id: '289902636224-oro06s681gdgk1kqrv8o1oca2shocfr4.apps.googleusercontent.com',
+  // Authorization scopes required by the API; multiple scopes can be included, separated by spaces.
+  scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
+  callback : async (resp) => {
+    console.log(resp);
+    if (resp.error !== undefined) {
+      彈出錯誤訊息('Error: ' + 回應.error.message);
+      throw (resp);
+    }
     // Handle the initial sign-in state.
     if (!更新登入狀態()) 登入();
-  }, 錯誤 => 彈出錯誤訊息(JSON.stringify(錯誤, null, 2)));
+  },
+});;
+
+// From https://developers.google.com/sheets/api/quickstart/js
+/** Run after https://apis.google.com/js/api.js is loaded. */
+gapi.load('client', {
+  /** Callback after the API client is loaded. Loads the discovery doc to initialize the API. */
+  callback: async function initializeGapiClient() {
+    await gapi.client.init({
+      /**API key from the Developer Console*/
+      apiKey: 'AIzaSyCRfe3-dnm9GGMH_PFm9m5WHBMb_8U9HXY',
+      /**Discovery doc URL for APIs used by the quickstart*/
+      discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+    });
+  },
+  onerror: function() {
+    // Handle loading error.
+    alert('gapi.client failed to load!');
+  },
+  timeout: 5000, // 5 seconds.
+  /** Handle timeout. */
+  ontimeout: function() {
+    alert('gapi.client could not load in a timely manner!');
+  },
 });
+
+// From https://developers.google.com/identity/gsi/web/guides/display-button#javascript
+google.accounts.id.initialize({
+  client_id: "289902636224-oro06s681gdgk1kqrv8o1oca2shocfr4.apps.googleusercontent.com",
+  callback: function handleCredentialResponse(response) {
+    console.log("Encoded JWT ID token: ");
+    // https://stackoverflow.com/questions/38552003/how-to-decode-jwt-token-in-javascript-without-using-a-library
+    console.log(使用者 = JSON.parse(decodeURIComponent(atob(response.credential.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')).split('').map(
+      c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    ).join(''))));
+
+    if (gapi.client.getToken() === null) {
+      // Prompt the user to select a Google Account and ask for consent to share their data
+      // when establishing a new session.
+      tokenClient.requestAccessToken({prompt: 'consent'});
+    } else {
+      // Skip display of account chooser and consent dialog for an existing session.
+      tokenClient.requestAccessToken({prompt: ''});
+    }
+  }
+});
+
+google.accounts.id.prompt(); // also display the One Tap dialog
+
 靜音切換(); 調整介面(); 計時();
