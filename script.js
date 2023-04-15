@@ -383,7 +383,7 @@ document.getElementById('選單說明按鈕').onclick =
   document.getElementById('驚嘆號按鈕').onclick = e => $('#說明視窗').modal('show');
 
 document.getElementById('選擇視窗按鈕1').onclick = e => {
-  選定題庫 = '2022實際初賽題目';
+  選定題庫 = '實際初賽題目';
   document.forms[0].setAttribute("action", "https://docs.google.com/forms/u/1/d/e/1FAIpQLSeqkw8jflmdbSgiEbjodnfLw5zEDebYxzMT0V9gTpOb8wjyTQ/formResponse");
   document.forms[0][0].setAttribute("name", "entry.1911469271");
   document.forms[0][1].setAttribute("name", "entry.1072618664");
